@@ -9,6 +9,14 @@ node_modules: package-lock.json
 dev: node_modules
 	npm run dev
 
+build: node_modules
+	npm run build
+
+lint: node_modules
+	npm run lint
+
+.PHONY: dev build lint
+
 # Aliases
 run: dev
 .PHONY: run
