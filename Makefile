@@ -24,7 +24,10 @@ build: node_modules
 lint: node_modules
 	npm run lint
 
-.PHONY: up down dev build lint
+migrate: up
+	npx prisma migrate dev --name init
+
+.PHONY: up down dev build lint migrate
 
 # Aliases
 run: up dev
