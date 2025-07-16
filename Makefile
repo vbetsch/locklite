@@ -9,8 +9,11 @@ node_modules: package-lock.json
 	npm clean-install
 
 # Commands
-containers: docker-compose.yml
+up: docker-compose.yml
 	docker compose up -d
+
+down: docker-compose.yml
+	docker compose down
 
 dev: node_modules
 	npm run dev
@@ -21,8 +24,8 @@ build: node_modules
 lint: node_modules
 	npm run lint
 
-.PHONY: containers dev build lint
+.PHONY: up down dev build lint
 
 # Aliases
-run: containers dev
+run: up down dev
 .PHONY: run
