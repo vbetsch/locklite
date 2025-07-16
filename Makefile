@@ -1,4 +1,7 @@
 # Dependencies
+docker-compose.yml:
+	echo -e "ERROR: No docker-compose.yml found."
+
 package-lock.json:
 	echo -e "ERROR: No package-lock.json found."
 
@@ -6,6 +9,9 @@ node_modules: package-lock.json
 	npm clean-install
 
 # Commands
+db: docker-compose.yml
+	docker compose up -d
+
 dev: node_modules
 	npm run dev
 
@@ -15,8 +21,8 @@ build: node_modules
 lint: node_modules
 	npm run lint
 
-.PHONY: dev build lint
+.PHONY: db dev build lint
 
 # Aliases
-run: dev
+run: db dev
 .PHONY: run
