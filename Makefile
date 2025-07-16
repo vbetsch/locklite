@@ -13,7 +13,7 @@ up: docker-compose.yml
 	docker compose up -d
 
 down: docker-compose.yml
-	docker compose down
+	docker compose down -v
 
 dev: node_modules
 	npm run dev
