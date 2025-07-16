@@ -27,5 +27,5 @@ lint: node_modules
 .PHONY: up down dev build lint
 
 # Aliases
-run: up down dev
+run: up dev
 .PHONY: run
