@@ -1,8 +1,8 @@
 'use client'
 import styles from './page.module.css'
-import Title from "@/components/Title";
-import UsersList from "@/components/UsersList";
 import { useState } from 'react';
+import Title from "@/components/common/atoms/Title";
+import UsersList from "@/components/users/molecules/UsersList";
 
 export default function HelloWorldPage() {
     const [users, ] = useState<string[]>(['example', 'foo', 'nar'])
