@@ -21,6 +21,6 @@ model Credential {
   label           String
   secret          String
   createdAt       DateTime      @default(now())
-  masterAccount   MasterAccount @relation(fields: [masterAccountId], references: [id])
+  masterAccount   MasterAccount @relation(fields: [masterAccountId], references: [id], onDelete: Cascade)
   masterAccountId String
 }
