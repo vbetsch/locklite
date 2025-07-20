@@ -10,11 +10,11 @@ node_modules: package-lock.json
 
 # Commands
 up: docker-compose.yml
-	docker compose up -d
+	docker-compose up -d
 	sleep 3
 
 down: docker-compose.yml
-	docker compose down -v
+	docker-compose down -v
 
 dev: node_modules
 	npm run dev
