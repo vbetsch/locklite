@@ -3,7 +3,7 @@ import prisma from "../../../../lib/prisma";
 
 export async function GET() {
     try {
-        const users = await prisma.credential.findMany()
+        const users = await prisma.masterAccount.findMany()
         return NextResponse.json(users)
     } catch (error) {
         console.error(error)
