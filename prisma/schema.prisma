@@ -18,6 +18,7 @@ model MasterAccount {
 
 model Credential {
   id              String        @id @default(uuid())
+  label           String
   secret          String
   createdAt       DateTime      @default(now())
   masterAccount   MasterAccount @relation(fields: [masterAccountId], references: [id])
