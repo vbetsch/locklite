@@ -1,15 +1,6 @@
-import {NextResponse} from 'next/server'
-import prisma from "../../../../lib/prisma";
+import {UserService} from "@/services/userService";
 
 export async function GET() {
-    try {
-        const users = await prisma.masterAccount.findMany()
-        return NextResponse.json(users)
-    } catch (error) {
-        console.error(error)
-        return NextResponse.json(
-            {message: 'An error has occurred.'},
-            {status: 500}
-        )
-    }
+    const users = await UserService.getAllEntries();
+    return Response.json(users);
 }
