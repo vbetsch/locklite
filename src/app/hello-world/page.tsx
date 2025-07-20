@@ -1,9 +1,10 @@
 import styles from './page.module.css'
+import Title from "@/components/Title";
 
 export default function HelloWorldPage() {
     return (
         <div className={styles.container}>
-            <h1>Hello world!</h1>
+            <Title label="Hello world!"/>
             <p>Here we display the list of users: </p>
             <ul>
               <li>example</li>
