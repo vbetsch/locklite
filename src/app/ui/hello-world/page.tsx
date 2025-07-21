@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
 import {UserModelDto} from "@shared/dto/models/user.model.dto";
-import {UserGateway} from "@ui/services/user.gateway";
+import {UserGateway} from "@ui/gateways/user.gateway";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
 
 export default function HelloWorldPage() {
