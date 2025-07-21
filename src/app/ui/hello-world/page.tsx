@@ -13,7 +13,7 @@ export default function HelloWorldPage() {
     const [error, setError] = useState<string | null>(null)
 
     useApi<GetAllUsersResponseDto>({
-        request: UserGateway.getAll,
+        request: () => UserGateway.getAll(),
         onSuccess: (data) => setUsers(data.users),
         onError: (error) => setError(error.message),
     })
