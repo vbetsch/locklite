@@ -6,7 +6,6 @@ import UsersList from "@ui/components/users/molecules/UsersList";
 import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {UserGateway} from "@ui/gateways/user.gateway";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
-import {UsersNotFoundError} from "@shared/errors/users-not-found.error";
 
 export default function HelloWorldPage() {
     const [users, setUsers] = useState<UserModelDto[]>([])
@@ -18,7 +17,7 @@ export default function HelloWorldPage() {
                 const data: GetAllUsersResponseDto = await UserGateway.getAll();
                 setUsers(data.users);
             } catch (error) {
-                if (error instanceof UsersNotFoundError) {
+                if (error instanceof Error) {
                     setError(error.message);
                 } else {
                     console.error('Error while get all users: ', error);

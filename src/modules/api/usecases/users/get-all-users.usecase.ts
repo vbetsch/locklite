@@ -2,11 +2,11 @@ import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {UserAdapter} from "@api/adapters/user.adapter";
 import {UserRepository} from "@api/repositories/user.repository";
 import {MasterAccount} from '@prisma/generated';
-import {UsersNotFoundError} from "@shared/errors/users-not-found.error";
+import {UsersNotFoundError} from "@api/errors/users-not-found.error";
 
 export class GetAllUsersUseCase {
     public static async handle(): Promise<UserModelDto[]> {
-        let masterAccounts: MasterAccount[] | undefined;
+        let masterAccounts: MasterAccount[] | null = null;
         try {
             masterAccounts = await UserRepository.getAll();
         } catch (error) {
