@@ -19,10 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@api/*": ["./src/api/*"],
-      "@ui/*": ["./src/ui/*"],
-      "@shared/*": ["./src/shared/*"],
+      "@api/*": ["./src/modules/api/*"],
+      "@ui/*": ["./src/modules/ui/*"],
+      "@shared/*": ["./src/modules/shared/*"],
       "@prisma/*": ["./prisma/*"],
       "@lib/*": ["./lib/*"],
     }
