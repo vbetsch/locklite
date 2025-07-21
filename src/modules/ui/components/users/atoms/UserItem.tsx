@@ -1,9 +1,11 @@
+import {UserDto} from "@shared/dto/user.dto";
+
 type UserItemProps = {
-    user: string
+    user: UserDto
 }
 
 export default function UserItem(props: UserItemProps) {
     return (
-        <li>{props.user}</li>
+        <li>{props.user.email}</li>
     )
 }

@@ -7,13 +7,13 @@ import {RequestService} from "@shared/services/requestService";
 import {UserDto} from "@shared/dto/user.dto";
 
 export default function HelloWorldPage() {
-    const [users, setUsers] = useState<string[]>([])
+    const [users, setUsers] = useState<UserDto[]>([])
 
     useEffect(() => {
         void (async () => {
             try {
-                const data: UserDto[] = await RequestService.get<UserDto[]>('/api/users')
-                setUsers(data.map(user => user.email))
+                const users: UserDto[] = await RequestService.get<UserDto[]>('/api/users')
+                setUsers(users)
             } catch (error) {
                 console.error('Error:', error)
             }

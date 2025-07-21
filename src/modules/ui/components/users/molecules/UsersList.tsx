@@ -1,7 +1,8 @@
 import UserItem from "@ui/components/users/atoms/UserItem";
+import {UserDto} from "@shared/dto/user.dto";
 
 type UsersListProps = {
-    users: string[]
+    users: UserDto[]
 }
 
 export default function UsersList(props: UsersListProps) {
