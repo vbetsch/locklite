@@ -1,4 +1,4 @@
-import {HttpError} from "@api/errors/http-error";
+import {HttpError} from "@shared/errors/http-error";
 
 export async function handleApiRequest<T>(callback: () => Promise<T>): Promise<Response> {
     try {
