@@ -1,17 +1,12 @@
-import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {GetAllUsersUseCase} from "@api/usecases/users/get-all-users.usecase";
+import {handleApiRequest} from "@api/utils/handle-api-request";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
-import {UsersNotFoundError} from "@api/errors/users-not-found.error";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 
 export async function GET() {
-    try {
+    return handleApiRequest(async () => {
         const users: UserModelDto[] = await GetAllUsersUseCase.handle()
         const response: GetAllUsersResponseDto = {users}
-        return Response.json(response, {status: 200})
-    } catch (error) {
-        if (error instanceof UsersNotFoundError) {
-            return Response.json({error: error.message}, {status: 404})
-        }
-        return Response.json({error: 'Unknown error'}, {status: 500})
-    }
+        return response
+    })
 }
