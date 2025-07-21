@@ -1,7 +1,7 @@
-export class HttpError extends Error {
+export abstract class HttpError extends Error {
   public readonly status: number
 
-  public constructor(message: string, status: number) {
+  protected constructor(message: string, status: number) {
     super(message)
     this.status = status
     this.name = this.constructor.name
