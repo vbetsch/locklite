@@ -1,5 +1,5 @@
 import {UserModelDto} from "@shared/dto/models/user.model.dto";
-import {GetAllUsersUseCase} from "@api/usecases/get-all-users.usecase";
+import {GetAllUsersUseCase} from "@api/usecases/users/get-all-users.usecase";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
 
 export async function GET() {
