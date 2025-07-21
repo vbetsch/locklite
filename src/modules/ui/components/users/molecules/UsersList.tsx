@@ -1,4 +1,4 @@
-import UserItem from "@/components/users/atoms/UserItem";
+import UserItem from "@ui/components/users/atoms/UserItem";
 
 type UsersListProps = {
     users: string[]
