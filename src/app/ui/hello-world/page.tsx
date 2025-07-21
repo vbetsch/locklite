@@ -3,8 +3,8 @@ import styles from './page.module.css'
 import {useEffect, useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
-import {RequestService} from "@shared/services/requestService";
 import {UserDto} from "@shared/dto/user.dto";
+import {UserService} from "@ui/services/user.service";
 
 export default function HelloWorldPage() {
     const [users, setUsers] = useState<UserDto[]>([])
@@ -12,10 +12,10 @@ export default function HelloWorldPage() {
     useEffect(() => {
         void (async () => {
             try {
-                const users: UserDto[] = await RequestService.get<UserDto[]>('/api/users')
-                setUsers(users)
+                const users: UserDto[] = await UserService.getAll();
+                setUsers(users);
             } catch (error) {
-                console.error('Error:', error)
+                console.error('Error:', error);
             }
         })()
     }, [])
