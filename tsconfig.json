@@ -22,6 +22,7 @@
       "@/*": ["./src/*"],
       "@api/*": ["./src/api/*"],
       "@ui/*": ["./src/ui/*"],
+      "@shared/*": ["./src/shared/*"],
       "@prisma/*": ["./prisma/*"],
       "@lib/*": ["./lib/*"],
     }
