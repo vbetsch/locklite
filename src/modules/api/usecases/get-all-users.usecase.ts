@@ -1,10 +1,10 @@
-import {UserDto} from "@shared/dto/user.dto";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {UserAdapter} from "@api/adapters/user.adapter";
 import {UserRepository} from "@api/repositories/user.repository";
 import {MasterAccount} from '@prisma/generated';
 
 export class GetAllUsersUseCase {
-    public static async handle(): Promise<UserDto[]> {
+    public static async handle(): Promise<UserModelDto[]> {
         let masterAccounts: MasterAccount[] | undefined;
         try {
             masterAccounts = await UserRepository.getAll();

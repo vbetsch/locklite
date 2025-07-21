@@ -1,7 +1,7 @@
-import {UserDto} from "@shared/dto/user.dto";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 
 type UserItemProps = {
-    user: UserDto
+    user: UserModelDto
 }
 
 export default function UserItem(props: UserItemProps) {

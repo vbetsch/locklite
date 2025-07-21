@@ -3,17 +3,18 @@ import styles from './page.module.css'
 import {useEffect, useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
-import {UserDto} from "@shared/dto/user.dto";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {UserService} from "@ui/services/user.service";
+import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
 
 export default function HelloWorldPage() {
-    const [users, setUsers] = useState<UserDto[]>([])
+    const [users, setUsers] = useState<UserModelDto[]>([])
 
     useEffect(() => {
         void (async () => {
             try {
-                const users: UserDto[] = await UserService.getAll();
-                setUsers(users);
+                const data: GetAllUsersResponseDto = await UserService.getAll();
+                setUsers(data.users);
             } catch (error) {
                 console.error('Error:', error);
             }

@@ -1,9 +1,9 @@
 import {MasterAccount} from '@prisma/generated';
-import {UserDto} from "@shared/dto/user.dto";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 
 
 export class UserAdapter {
-    public static getUsers(masterAccounts: MasterAccount[]): UserDto[] {
+    public static getUsers(masterAccounts: MasterAccount[]): UserModelDto[] {
         return masterAccounts.map((account) => ({
             id: account.id,
             email: account.email,
