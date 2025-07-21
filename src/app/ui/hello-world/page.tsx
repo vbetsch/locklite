@@ -12,7 +12,7 @@ export default function HelloWorldPage() {
     const [users, setUsers] = useState<UserModelDto[]>([])
     const [error, setError] = useState<string | null>(null)
 
-    useApi<GetAllUsersResponseDto>({
+    const {loading} = useApi<GetAllUsersResponseDto>({
         request: () => UserGateway.getAll(),
         onSuccess: (data) => setUsers(data.users),
         onError: (err) => setError(err.message),
@@ -23,6 +23,7 @@ export default function HelloWorldPage() {
         <div className={styles.container}>
             <Title label="Hello world!"/>
             <p>Here we display the list of users: </p>
+            {loading && <span className="loading">Loading...</span>}
             {error && <span className="error">{error}</span>}
             <UsersList users={users}/>
         </div>
