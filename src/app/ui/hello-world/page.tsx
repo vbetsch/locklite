@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
 import {UserModelDto} from "@shared/dto/models/user.model.dto";
-import {UserService} from "@ui/services/user.service";
+import {UserGateway} from "@ui/services/user.gateway";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
 
 export default function HelloWorldPage() {
@@ -13,7 +13,7 @@ export default function HelloWorldPage() {
     useEffect(() => {
         void (async () => {
             try {
-                const data: GetAllUsersResponseDto = await UserService.getAll();
+                const data: GetAllUsersResponseDto = await UserGateway.getAll();
                 setUsers(data.users);
             } catch (error) {
                 console.error('Error:', error);
