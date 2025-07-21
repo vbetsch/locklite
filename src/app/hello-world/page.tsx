@@ -3,7 +3,7 @@ import styles from './page.module.css'
 import {useEffect, useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
-import {RequestService} from "@ui/services/requestService";
+import {RequestService} from "@shared/services/requestService";
 import {UserDto} from "@shared/dto/user.dto";
 
 export default function HelloWorldPage() {
