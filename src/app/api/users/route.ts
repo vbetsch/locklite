@@ -1,6 +1,12 @@
-import {UserService} from "@/services/userService";
+import {GetAllUsersUseCase} from "@api/usecases/users/get-all-users.usecase";
+import {handleApiRequest} from "@api/utils/handle-api-request";
+import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
+import {UserModelDto} from "@shared/dto/models/user.model.dto";
 
 export async function GET() {
-    const users = await UserService.getAll();
-    return Response.json(users);
+    return handleApiRequest(async () => {
+        const users: UserModelDto[] = await GetAllUsersUseCase.handle()
+        const response: GetAllUsersResponseDto = {users}
+        return response
+    })
 }
