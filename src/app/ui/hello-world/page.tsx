@@ -15,7 +15,8 @@ export default function HelloWorldPage() {
     useApi<GetAllUsersResponseDto>({
         request: () => UserGateway.getAll(),
         onSuccess: (data) => setUsers(data.users),
-        onError: (error) => setError(error.message),
+        onError: (err) => setError(err.message),
+        deps: [], // put params here
     })
 
     return (
