@@ -15,6 +15,6 @@ export class GetAllUsersUseCase {
             // TODO: Raise error
             throw new Error("Master accounts not found");
         }
-        return UserAdapter.getUsers(masterAccounts);
+        return UserAdapter.getUsersFromMasterAccounts(masterAccounts);
     }
 }

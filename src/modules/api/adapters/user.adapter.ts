@@ -3,7 +3,7 @@ import {UserModelDto} from "@shared/dto/models/user.model.dto";
 
 
 export class UserAdapter {
-    public static getUsers(masterAccounts: MasterAccount[]): UserModelDto[] {
+    public static getUsersFromMasterAccounts(masterAccounts: MasterAccount[]): UserModelDto[] {
         return masterAccounts.map((account) => ({
             id: account.id,
             email: account.email,
