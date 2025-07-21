@@ -16,7 +16,7 @@ export default function HelloWorldPage() {
                 const data: GetAllUsersResponseDto = await UserGateway.getAll();
                 setUsers(data.users);
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error while get all users: ', error);
             }
         })()
     }, [])
