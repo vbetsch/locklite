@@ -1,4 +1,4 @@
-import {HttpError} from "@api/errors/http-error";
+import {HttpError} from "@shared/errors/http-error";
 
 export class UsersNotFoundError extends HttpError {
   public constructor() {
