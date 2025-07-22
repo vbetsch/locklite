@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import {useState} from 'react';
 import Title from "@ui/components/common/atoms/Title";
 import UsersList from "@ui/components/users/molecules/UsersList";
+import Loader from "@ui/components/common/atoms/Loader";
 import {UserModelDto} from "@shared/dto/models/user.model.dto";
 import {UserGateway} from "@ui/gateways/user.gateway";
 import {GetAllUsersResponseDto} from "@shared/dto/responses/get-all-users.response.dto";
@@ -23,7 +24,7 @@ export default function HelloWorldPage() {
         <div className={styles.container}>
             <Title label="Hello world!"/>
             <p>Here we display the list of users: </p>
-            {loading && <span className="loading">Loading...</span>}
+            {loading && <Loader />}
             {error && <span className="error">{error}</span>}
             <UsersList users={users}/>
         </div>
