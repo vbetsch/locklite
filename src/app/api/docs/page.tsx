@@ -15,7 +15,7 @@ export default function ApiDocs() {
       // @ts-ignore
       const SwaggerUIBundle = window.SwaggerUIBundle;
       SwaggerUIBundle({
-        url: "/api/docs",
+        url: "/api/swagger",
         dom_id: "#swagger-ui",
       });
     };
