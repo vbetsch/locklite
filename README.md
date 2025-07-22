@@ -37,5 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## API Documentation
 
-During development, Swagger documentation is automatically served at `/api/docs`.
-The underlying OpenAPI specification can be fetched from `/api/swagger`.
+During development, Swagger UI is available at `/api/docs`.
+The underlying OpenAPI specification can be fetched from `/api/swagger` and is
+defined in `src/swagger/swagger.json`.
