@@ -9,8 +9,8 @@ type UsersListProps = {
 export default function UsersList(props: UsersListProps): JSX.Element {
   return (
     <ul>
-      {props.users.map((user, index) => (
-        <UserItem key={index} user={user} />
+      {props.users.map((user) => (
+        <UserItem key={user.id} user={user} />
       ))}
     </ul>
   );
