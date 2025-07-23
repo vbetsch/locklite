@@ -7,6 +7,8 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
  * @swagger
  * /api/users:
  *   get:
+ *     tags:
+ *      - Users
  *     description: Get all users
  *     responses:
  *       200:
