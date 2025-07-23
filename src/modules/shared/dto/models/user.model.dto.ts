@@ -7,12 +7,15 @@
  *       properties:
  *         id:
  *           type: string
+ *           format: uuid
  *         email:
  *           type: string
+ *           format: email
  *         password:
  *           type: string
  *         createdAt:
- *           type: Date
+ *           type: string
+ *           format: date-time
  */
 export type UserModelDto = {
   id: string;
