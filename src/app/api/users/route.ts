@@ -13,6 +13,10 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
  *     responses:
  *       200:
  *         description: Returns a list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetAllUsersResponseDto'
  */
 
 export async function GET(): Promise<Response> {
