@@ -42,7 +42,7 @@ export default tseslint.config(
         'max-len': ['warn', { code: 300, ignoreUrls: true }],
 
         // Code structure and clarity
-        'max-params': ['warn', 1],
+        // 'max-params': ['warn', 1],
         'default-case': 'warn',
         'require-await': 'error',
         'no-undefined': 'warn',
