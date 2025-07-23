@@ -26,7 +26,6 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
  *             example:
  *               error: Users not found
  */
-
 export async function GET(): Promise<Response> {
   return await handleApiRequest(async () => {
     const users: UserModelDto[] = await GetAllUsersUseCase.handle();
