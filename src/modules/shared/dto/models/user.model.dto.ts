@@ -11,6 +11,8 @@
  *           type: string
  *         password:
  *           type: string
+ *         createdAt:
+ *           type: Date
  */
 export type UserModelDto = {
   id: string;
