@@ -1,6 +1,6 @@
 'use client';
 import styles from './page.module.css';
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import Title from '@ui/components/common/atoms/Title';
 import UsersList from '@ui/components/users/molecules/UsersList';
 import Loader from '@ui/components/common/atoms/Loader';
@@ -9,7 +9,7 @@ import { UserGateway } from '@ui/gateways/user.gateway';
 import { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
 import { useApi } from '@ui/hooks/useApi';
 
-export default function HelloWorldPage() {
+export default function HelloWorldPage(): JSX.Element {
   const [users, setUsers] = useState<UserModelDto[]>([]);
   const [error, setError] = useState<string | null>(null);
 

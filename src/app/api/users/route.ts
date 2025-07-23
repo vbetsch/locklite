@@ -13,8 +13,8 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
  *         description: Returns a list of users
  */
 
-export async function GET() {
-  return handleApiRequest(async () => {
+export async function GET(): Promise<Response> {
+  return await handleApiRequest(async () => {
     const users: UserModelDto[] = await GetAllUsersUseCase.handle();
     const response: GetAllUsersResponseDto = { users };
     return response;

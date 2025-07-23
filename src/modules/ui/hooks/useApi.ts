@@ -16,7 +16,7 @@ export function useApi<T>({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    void (async () => {
+    void (async (): Promise<void> => {
       setLoading(true);
       try {
         const data = await request();

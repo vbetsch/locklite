@@ -1,3 +1,5 @@
+import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
+
 export class RequestService {
   public static async get<T>(url: string): Promise<T> {
     return await this._fetch<T>(url, { method: 'GET' });
@@ -36,8 +38,8 @@ export class RequestService {
     if (!response.ok) {
       let message = 'Unexpected error';
       try {
-        const errorJson = await response.json();
-        message = errorJson.error ?? message;
+        const errorJson: HttpResponseDto<unknown> = await response.json();
+        message = errorJson?.error ?? message;
       } catch {
         message = await response.text();
       }

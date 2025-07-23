@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { JSX, useEffect } from 'react';
 
-export default function ApiDocs() {
+export default function ApiDocs(): JSX.Element {
   useEffect(() => {
     const style = document.createElement('link');
     style.rel = 'stylesheet';
@@ -12,8 +12,8 @@ export default function ApiDocs() {
     const script = document.createElement('script');
     script.src =
       'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js';
-    script.onload = () => {
-      // @ts-ignore
+    script.onload = (): void => {
+      // @ts-expect-error: SwaggerUIBundle is unknown
       const SwaggerUIBundle = window.SwaggerUIBundle;
       SwaggerUIBundle({
         url: '/api/swagger',
