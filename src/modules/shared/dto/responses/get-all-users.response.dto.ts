@@ -1,5 +1,5 @@
-import {UserModelDto} from "@shared/dto/models/user.model.dto";
+import { UserModelDto } from '@shared/dto/models/user.model.dto';
 
 export type GetAllUsersResponseDto = {
-    users: UserModelDto[]
+  users: UserModelDto[];
 };

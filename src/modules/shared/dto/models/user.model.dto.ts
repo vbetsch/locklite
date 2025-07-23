@@ -1,6 +1,6 @@
 export type UserModelDto = {
-    id: string;
-    email: string;
-    password: string;
-    createdAt: Date;
-}
+  id: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+};

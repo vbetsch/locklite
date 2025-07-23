@@ -1,5 +1,5 @@
-import styles from './Loader.module.css'
+import styles from './Loader.module.css';
 
 export default function Loader() {
-    return <span className={styles.loader} aria-label="Loading" />
+  return <span className={styles.loader} aria-label="Loading" />;
 }

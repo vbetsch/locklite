@@ -1,14 +1,14 @@
-import type {Metadata} from "next";
-import React from "react";
+import type { Metadata } from 'next';
+import React from 'react';
 
 export const metadata: Metadata = {
-    title: 'Hello World',
-}
+  title: 'Hello World',
+};
 
 export default function HelloWorldLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  return <>{children}</>
+  return <>{children}</>;
 }

@@ -1,22 +1,23 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function ApiDocs() {
   useEffect(() => {
-    const style = document.createElement("link");
-    style.rel = "stylesheet";
-    style.href = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css";
+    const style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui.css';
     document.head.appendChild(style);
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js";
+    const script = document.createElement('script');
+    script.src =
+      'https://cdn.jsdelivr.net/npm/swagger-ui-dist/swagger-ui-bundle.js';
     script.onload = () => {
       // @ts-ignore
       const SwaggerUIBundle = window.SwaggerUIBundle;
       SwaggerUIBundle({
-        url: "/api/swagger",
-        dom_id: "#swagger-ui",
+        url: '/api/swagger',
+        dom_id: '#swagger-ui',
       });
     };
     document.body.appendChild(script);

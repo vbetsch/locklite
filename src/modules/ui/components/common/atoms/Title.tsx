@@ -1,9 +1,7 @@
 type TitleProps = {
-    label: string
-}
+  label: string;
+};
 
 export default function Title(props: TitleProps) {
-    return (
-        <h1>{props.label}</h1>
-    )
+  return <h1>{props.label}</h1>;
 }
