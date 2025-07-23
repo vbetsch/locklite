@@ -1,4 +1,5 @@
 'use client';
+import 'reflect-metadata';
 import styles from './page.module.css';
 import { JSX, useState } from 'react';
 import Title from '@ui/components/common/atoms/Title';

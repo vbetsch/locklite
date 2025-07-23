@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { GetAllUsersUseCase } from '@api/usecases/users/get-all-users.usecase';
 import { handleApiRequest } from '@api/utils/handle-api-request';
 import { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
