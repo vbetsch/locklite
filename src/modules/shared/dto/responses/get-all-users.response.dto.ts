@@ -1,5 +1,18 @@
-import {UserModelDto} from "@shared/dto/models/user.model.dto";
+import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
 
-export type GetAllUsersResponseDto = {
-    users: UserModelDto[]
-};
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     GetAllUsersResponseDto:
+ *       type: object
+ *       properties:
+ *         users:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/UserModelDto'
+ */
+export type GetAllUsersResponseDto = HttpResponseDto<{
+  users: UserModelDto[];
+}>;

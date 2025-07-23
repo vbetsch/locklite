@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 // import { Geist } from "next/font/google";
-import "./globals.css";
-import React from "react";
+import './globals.css';
+import React, { JSX } from 'react';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -11,29 +11,23 @@ import React from "react";
 export const metadata: Metadata = {
   title: {
     default: 'LockLite',
-    template: '%s | LockLite'
+    template: '%s | LockLite',
   },
-  description: "The best secure password manager",
+  description: 'The best secure password manager',
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): JSX.Element {
   return (
     <html lang="en">
       {/*<body className={`${geistSans.variable} ${geistMono.variable}`}>*/}
       <body>
-        <header>
-          header
-        </header>
-        <main>
-          {children}
-        </main>
-        <footer>
-          footer
-        </footer>
+        <header>header</header>
+        <main>{children}</main>
+        <footer>footer</footer>
       </body>
     </html>
   );
