@@ -16,7 +16,8 @@
     "next-swagger-doc": "^0.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "swagger-jsdoc": "^6.2.8"
+    "swagger-jsdoc": "^6.2.8",
+    "tsyringe": "^4.10.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

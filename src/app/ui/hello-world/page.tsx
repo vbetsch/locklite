@@ -8,13 +8,15 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserGateway } from '@ui/gateways/user.gateway';
 import { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
 import { useApi } from '@ui/hooks/useApi';
+import { container } from 'tsyringe';
 
 export default function HelloWorldPage(): JSX.Element {
   const [users, setUsers] = useState<UserModelDto[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const userGateway: UserGateway = container.resolve(UserGateway);
 
   const { loading } = useApi<GetAllUsersResponseDto>({
-    request: () => UserGateway.getAll(),
+    request: () => userGateway.getAll(),
     onSuccess: (data) => setUsers(data.users),
     onError: (err) => setError(err.message),
     deps: [], // put params here
