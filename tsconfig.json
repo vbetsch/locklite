@@ -1,31 +1,65 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    // Output / Module
+    "target": "ESNext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "preserve",
-    "incremental": true,
+    // Lint / Clean code / security
+    "strict": true,
+    "strictPropertyInitialization": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    // Decorators for tsyringe
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    // Compatibility ESM / interoperability
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    // Plugin Next
     "plugins": [
       {
         "name": "next"
       }
     ],
+    // Alias
+    "baseUrl": ".",
     "paths": {
-      "@api/*": ["./src/modules/api/*"],
-      "@ui/*": ["./src/modules/ui/*"],
-      "@shared/*": ["./src/modules/shared/*"],
-      "@prisma/*": ["./prisma/*"],
-      "@lib/*": ["./lib/*"],
-    }
+      "@api/*": [
+        "./src/modules/api/*"
+      ],
+      "@ui/*": [
+        "./src/modules/ui/*"
+      ],
+      "@shared/*": [
+        "./src/modules/shared/*"
+      ],
+      "@prisma/*": [
+        "./prisma/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,11 +1,10 @@
-import {UserModelDto} from "@shared/dto/models/user.model.dto";
+import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { JSX } from 'react';
 
 type UserItemProps = {
-    user: UserModelDto
-}
+  user: UserModelDto;
+};
 
-export default function UserItem(props: UserItemProps) {
-    return (
-        <li>{props.user.email}</li>
-    )
+export default function UserItem(props: UserItemProps): JSX.Element {
+  return <li>{props.user.email}</li>;
 }
