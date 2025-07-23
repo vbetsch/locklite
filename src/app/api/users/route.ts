@@ -17,6 +17,14 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/GetAllUsersResponseDto'
+ *       404:
+ *         description: Returns a not found error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
+ *             example:
+ *               error: Users not found
  */
 
 export async function GET(): Promise<Response> {
