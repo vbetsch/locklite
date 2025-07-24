@@ -6,7 +6,6 @@ import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
 import eslintPluginJest from 'eslint-plugin-jest';
-import eslintPluginNoComments from 'eslint-plugin-no-comments';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,7 +36,6 @@ export default tseslint.config(
         prettier: eslintPluginPrettier,
         import: importPlugin,
         jest: eslintPluginJest,
-        'no-comments': eslintPluginNoComments,
       },
       rules: {
         // Formatting
@@ -55,7 +53,6 @@ export default tseslint.config(
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
         'no-inline-comments': 'warn',
-        'no-comments/disallowComments': 'warn',
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
