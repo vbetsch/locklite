@@ -1,6 +1,6 @@
 import UserItem from '@ui/components/users/atoms/UserItem';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
-import { JSX } from 'react';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { JSX } from 'react';
 
 type UsersListProps = {
   users: UserModelDto[];

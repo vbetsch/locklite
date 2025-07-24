@@ -1,13 +1,14 @@
 'use client';
 import 'reflect-metadata';
 import styles from './page.module.css';
-import { JSX, useState } from 'react';
+import type { JSX } from 'react';
+import { useState } from 'react';
 import Title from '@ui/components/common/atoms/Title';
 import UsersList from '@ui/components/users/molecules/UsersList';
 import Loader from '@ui/components/common/atoms/Loader';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserGateway } from '@ui/gateways/user.gateway';
-import { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
+import type { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
 import { useApi } from '@ui/hooks/useApi';
 import { container } from 'tsyringe';
 
