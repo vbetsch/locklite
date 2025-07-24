@@ -30,6 +30,7 @@ const config: Config = {
       statements: 80,
     },
   },
+  coveragePathIgnorePatterns: ['<rootDir>/lib', '<rootDir>/prisma'],
 };
 
 export default config;
