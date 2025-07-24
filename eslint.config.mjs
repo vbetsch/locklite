@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
 import eslintPluginJest from 'eslint-plugin-jest';
 
@@ -20,7 +19,6 @@ export default tseslint.config(
     ...tseslint.configs.recommended,
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
     ...compat.extends('plugin:jest/recommended'),
-    ...compat.extends('plugin:prettier/recommended'),
 
     {
       ignores: ['node_modules', 'dist', 'jest.config.cjs'],
@@ -34,13 +32,11 @@ export default tseslint.config(
         },
       },
       plugins: {
-        prettier: eslintPluginPrettier,
         import: importPlugin,
         jest: eslintPluginJest,
       },
       rules: {
         // Formatting
-        'prettier/prettier': ['warn', { semi: true }],
         semi: ['error', 'always'],
         'max-len': ['warn', { code: 300, ignoreUrls: true }],
 
