@@ -26,7 +26,7 @@ lint: node_modules
 	npm run lint
 
 format: node_modules
-	npm run format
+	npm run format:w
 
 tests: node_modules
 	npm test
