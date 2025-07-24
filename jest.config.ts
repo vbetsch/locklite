@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  roots: ['<rootDir>'],
+  roots: ['<rootDir>/tests'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   transform: {
     '^.+\\.(ts|tsx)$': [
@@ -22,6 +22,7 @@ const config: Config = {
     '^@prisma/(.*)$': '<rootDir>/prisma/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
   },
+  testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   coverageThreshold: {
     global: {
       branches: 80,
