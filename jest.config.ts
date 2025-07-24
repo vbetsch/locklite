@@ -22,6 +22,14 @@ const config: Config = {
     '^@prisma/(.*)$': '<rootDir>/prisma/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
   },
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
 };
 
 export default config;
