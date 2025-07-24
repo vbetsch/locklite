@@ -86,6 +86,10 @@ export default tseslint.config(
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/no-empty-function': ['warn'],
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
+        "@typescript-eslint/consistent-type-imports": ["error", {
+          "prefer": "type-imports",
+          "disallowTypeAnnotations": false
+        }],
 
         // Naming conventions
         '@typescript-eslint/naming-convention': [
