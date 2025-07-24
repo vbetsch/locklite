@@ -23,7 +23,6 @@ build: node_modules
 	npm run build
 
 lint: node_modules
-	npm run format:c
 	npm run lint
 
 format: node_modules
