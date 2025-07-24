@@ -50,6 +50,7 @@ export default tseslint.config(
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
+        "no-inline-comments": "error",
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
