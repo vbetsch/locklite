@@ -10,8 +10,8 @@ jest.mock('@ui/components/users/atoms/UserItem', () => ({
 describe('UsersList', () => {
   it('should render a list of users', () => {
     const users: UserModelDto[] = [
-      {id: 1, username: 'Alice'} as unknown as UserModelDto,
-      {id: 2, username: 'Bob'} as unknown as UserModelDto
+      {id: 1, email: 'Alice'} as unknown as UserModelDto,
+      {id: 2, email: 'Bob'} as unknown as UserModelDto
     ];
 
     render(<UsersList users={users}/>);
