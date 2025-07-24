@@ -31,10 +31,13 @@ format: node_modules
 tests: node_modules
 	npm run test
 
+coverage: node_modules
+	npm run test:cov
+
 migrate: up
 	npx prisma migrate dev --name init
 
-.PHONY: up down dev build lint format tests migrate
+.PHONY: up down dev build lint format tests coverage migrate
 
 # Aliases
 run: up dev
