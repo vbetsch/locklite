@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { GetAllUsersUseCase } from '@api/usecases/users/get-all-users.usecase';
 import { handleApiRequest } from '@api/utils/handle-api-request';
-import { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { container } from 'tsyringe';
 
 /**

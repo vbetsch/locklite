@@ -1,5 +1,5 @@
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
-import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
 
 /**
  * @swagger
