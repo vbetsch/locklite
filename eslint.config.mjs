@@ -23,7 +23,11 @@ export default tseslint.config(
     ...compat.extends('plugin:prettier/recommended'),
 
     {
-      ignores: ['node_modules', 'dist', 'jest.config.cjs'],
+      ignores: [
+        '*',
+        '!src/**',
+        '!tests/**',
+      ],
     },
 
     {
@@ -140,9 +144,6 @@ export default tseslint.config(
     {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
       plugins: { jest: eslintPluginJest },
-      languageOptions: {
-        env: { 'jest/globals': true },
-      },
       settings: {
         jest: { version: 29 },
       },
