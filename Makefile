@@ -25,7 +25,10 @@ build: node_modules
 lint: node_modules
 	npm run lint
 
-format: node_modules
+format_check: node_modules
+	npm run format:c
+
+format_write: node_modules
 	npm run format:w
 
 tests: node_modules
@@ -37,8 +40,10 @@ coverage: node_modules
 migrate: up
 	npx prisma migrate dev --name init
 
-.PHONY: up down dev build lint format tests coverage migrate
+.PHONY: up down dev build lint format_check format_write tests coverage migrate
 
 # Aliases
 run: up dev
-.PHONY: run
+checks: format_check lint
+checks_build: checks build
+.PHONY: run checks checks_build
