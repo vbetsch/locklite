@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -6,6 +5,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
+import eslintPluginJest from 'eslint-plugin-jest';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -123,6 +123,18 @@ export default tseslint.config(
             project: './tsconfig.json',
           },
         },
+      },
+    },
+
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
+      plugins: { jest: eslintPluginJest },
+      extends: ['plugin:jest/recommended'],
+      languageOptions: {
+        env: { 'jest/globals': true },
+      },
+      settings: {
+        jest: { version: 29 },
       },
     },
   ],
