@@ -23,11 +23,7 @@ export default tseslint.config(
     ...compat.extends('plugin:prettier/recommended'),
 
     {
-      ignores: [
-        '*',
-        '!src/**',
-        '!tests/**',
-      ],
+      ignores: ['*', '!src/**', '!tests/**'],
     },
 
     {

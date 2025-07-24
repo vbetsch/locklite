@@ -1,8 +1,8 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import {UserAdapter} from '@api/adapters/user.adapter';
-import type {MasterAccount} from '@prisma/generated';
-import type {UserModelDto} from '@shared/dto/models/user.model.dto';
+import { UserAdapter } from '@api/adapters/user.adapter';
+import type { MasterAccount } from '@prisma/generated';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 
 describe('UserAdapter', () => {
   let adapter: UserAdapter;
