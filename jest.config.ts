@@ -3,16 +3,16 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.jest.json',
-    },
-  },
-  transform: {
-    '^.+\\.(ts|tsx)$': ['ts-jest', {}],
-  },
   roots: ['<rootDir>'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  transform: {
+    '^.+\\.(ts|tsx)$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.jest.json',
+      },
+    ],
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -30,7 +30,7 @@ const config: Config = {
       statements: 80,
     },
   },
-  coveragePathIgnorePatterns: ['<rootDir>/lib', '<rootDir>/prisma'],
+  coveragePathIgnorePatterns: ['<rootDir>/lib/', '<rootDir>/prisma/'],
 };
 
 export default config;
