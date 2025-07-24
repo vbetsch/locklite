@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -6,6 +5,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
+import eslintPluginJest from 'eslint-plugin-jest';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,9 +19,11 @@ export default tseslint.config(
     js.configs.recommended,
     ...tseslint.configs.recommended,
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
+    ...compat.extends('plugin:jest/recommended'),
+    ...compat.extends('plugin:prettier/recommended'),
 
     {
-      ignores: ['node_modules', 'dist', 'jest.config.cjs'],
+      ignores: ['*', '!src/**', '!tests/**'],
     },
 
     {
@@ -34,10 +36,11 @@ export default tseslint.config(
       plugins: {
         prettier: eslintPluginPrettier,
         import: importPlugin,
+        jest: eslintPluginJest,
       },
       rules: {
         // Formatting
-        'prettier/prettier': ['error', { semi: true }],
+        'prettier/prettier': ['warn', { semi: true }],
         semi: ['error', 'always'],
         'max-len': ['warn', { code: 300, ignoreUrls: true }],
 
@@ -50,6 +53,7 @@ export default tseslint.config(
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
+        'no-inline-comments': 'warn',
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
@@ -83,6 +87,13 @@ export default tseslint.config(
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/no-empty-function': ['warn'],
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          {
+            prefer: 'type-imports',
+            disallowTypeAnnotations: false,
+          },
+        ],
 
         // Naming conventions
         '@typescript-eslint/naming-convention': [
@@ -123,6 +134,14 @@ export default tseslint.config(
             project: './tsconfig.json',
           },
         },
+      },
+    },
+
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
+      plugins: { jest: eslintPluginJest },
+      settings: {
+        jest: { version: 29 },
       },
     },
   ],

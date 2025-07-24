@@ -29,37 +29,16 @@
     // Alias
     "baseUrl": ".",
     "paths": {
-      "@api/*": [
-        "./src/modules/api/*"
-      ],
-      "@ui/*": [
-        "./src/modules/ui/*"
-      ],
-      "@shared/*": [
-        "./src/modules/shared/*"
-      ],
-      "@prisma/*": [
-        "./prisma/*"
-      ],
-      "@lib/*": [
-        "./lib/*"
-      ]
+      "@api/*": ["./src/modules/api/*"],
+      "@ui/*": ["./src/modules/ui/*"],
+      "@shared/*": ["./src/modules/shared/*"],
+      "@prisma/*": ["./prisma/*"],
+      "@lib/*": ["./lib/*"]
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }
