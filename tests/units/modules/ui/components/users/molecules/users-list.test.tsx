@@ -1,10 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import UsersList from '@ui/components/users/molecules/UsersList';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { ReactElement } from 'react';
 
 jest.mock('@ui/components/users/atoms/UserItem', () => ({
   __esModule: true,
-  default: ({ user }: { user: UserModelDto }) => <li>{user.email}</li>,
+  default: ({ user }: { user: UserModelDto }): ReactElement => (
+    <li>{user.email}</li>
+  ),
 }));
 
 describe('UsersList', () => {

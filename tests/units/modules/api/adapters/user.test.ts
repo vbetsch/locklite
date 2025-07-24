@@ -19,13 +19,13 @@ describe('UserAdapter', () => {
           email: 'alice@example.com',
           password: 'secret1',
           createdAt: new Date('2025-01-01T00:00:00.000Z'),
-        } as any,
+        },
         {
           id: '2',
           email: 'bob@example.com',
           password: 'secret2',
           createdAt: new Date('2025-02-02T00:00:00.000Z'),
-        } as any,
+        },
       ];
 
       const expected: UserModelDto[] = [

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 
-import { UserRepository } from '@api/repositories/user.repository';
-import { UserAdapter } from '@api/adapters/user.adapter';
-import { MasterAccount } from '@prisma/generated';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserRepository } from '@api/repositories/user.repository';
+import type { UserAdapter } from '@api/adapters/user.adapter';
+import type { MasterAccount } from '@prisma/generated';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UsersNotFoundError } from '@api/errors/users-not-found.error';
 import { GetAllUsersUseCase } from '@api/usecases/users/get-all-users.usecase';
 
