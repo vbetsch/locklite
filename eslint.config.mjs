@@ -19,6 +19,7 @@ export default tseslint.config(
     js.configs.recommended,
     ...tseslint.configs.recommended,
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
+    ...compat.extends('plugin:jest/recommended'),
 
     {
       ignores: ['node_modules', 'dist', 'jest.config.cjs'],
@@ -50,8 +51,8 @@ export default tseslint.config(
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
-        "no-inline-comments": "error",
-        'no-comments/disallowComments': ['error', { allow: [] }],
+        'no-inline-comments': 'error',
+        'no-comments/disallowComments': ['error', {allow: []}],
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
@@ -131,7 +132,6 @@ export default tseslint.config(
     {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
       plugins: { jest: eslintPluginJest },
-      extends: ['plugin:jest/recommended'],
       languageOptions: {
         env: { 'jest/globals': true },
       },
