@@ -26,16 +26,21 @@ lint: node_modules
 	npm run lint
 
 format: node_modules
-	npm run format
+	npm run format:w
 
 tests: node_modules
-	npm run test
+	npm test
+
+coverage: node_modules
+	npm run test:cov
 
 migrate: up
 	npx prisma migrate dev --name init
 
-.PHONY: up down dev build lint format tests migrate
+.PHONY: up down dev build lint format tests coverage migrate
 
 # Aliases
 run: up dev
-.PHONY: run
+checks: lint
+checks_build: checks build
+.PHONY: run checks checks_build

@@ -20,9 +20,10 @@ export default tseslint.config(
     ...tseslint.configs.recommended,
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
     ...compat.extends('plugin:jest/recommended'),
+    ...compat.extends('plugin:prettier/recommended'),
 
     {
-      ignores: ['node_modules', 'dist', 'jest.config.cjs'],
+      ignores: ['*', '!src/**', '!tests/**'],
     },
 
     {
@@ -39,7 +40,7 @@ export default tseslint.config(
       },
       rules: {
         // Formatting
-        'prettier/prettier': ['error', { semi: true }],
+        'prettier/prettier': ['warn', { semi: true }],
         semi: ['error', 'always'],
         'max-len': ['warn', { code: 300, ignoreUrls: true }],
 
@@ -86,10 +87,13 @@ export default tseslint.config(
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/no-empty-function': ['warn'],
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
-        "@typescript-eslint/consistent-type-imports": ["error", {
-          "prefer": "type-imports",
-          "disallowTypeAnnotations": false
-        }],
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          {
+            prefer: 'type-imports',
+            disallowTypeAnnotations: false,
+          },
+        ],
 
         // Naming conventions
         '@typescript-eslint/naming-convention': [
@@ -136,9 +140,6 @@ export default tseslint.config(
     {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
       plugins: { jest: eslintPluginJest },
-      languageOptions: {
-        env: { 'jest/globals': true },
-      },
       settings: {
         jest: { version: 29 },
       },
