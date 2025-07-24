@@ -51,6 +51,7 @@ export default tseslint.config(
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
         "no-inline-comments": "error",
+        'no-comments/disallowComments': ['error', { allow: [] }],
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
