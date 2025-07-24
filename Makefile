@@ -29,7 +29,7 @@ format: node_modules
 	npm run format
 
 tests: node_modules
-	npm run test
+	npm test
 
 coverage: node_modules
 	npm run test:cov
