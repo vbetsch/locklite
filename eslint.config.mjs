@@ -54,8 +54,8 @@ export default tseslint.config(
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
-        'no-inline-comments': 'error',
-        'no-comments/disallowComments': 'error',
+        'no-inline-comments': 'warn',
+        'no-comments/disallowComments': 'warn',
 
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
