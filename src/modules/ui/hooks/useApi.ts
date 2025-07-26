@@ -19,7 +19,7 @@ export function useApi<T>({
     void (async (): Promise<void> => {
       setLoading(true);
       try {
-        const data = await request();
+        const data: Awaited<T> = await request();
         onSuccess(data);
       } catch (err) {
         if (err instanceof Error) onError?.(err);

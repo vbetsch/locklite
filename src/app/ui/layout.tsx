@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-// import { Geist } from "next/font/google";
-import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+import ThemeRegistry from '@ui/providers/ThemeRegistry';
+import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 
 export const metadata: Metadata = {
   title: {
@@ -19,16 +14,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>): JSX.Element {
+}): JSX.Element {
   return (
+    // eslint-disable-next-line no-restricted-syntax
     <html lang="en">
-      {/*<body className={`${geistSans.variable} ${geistMono.variable}`}>*/}
+      {/* eslint-disable-next-line no-restricted-syntax */}
       <body>
-        <header>header</header>
-        <main>{children}</main>
-        <footer>footer</footer>
+        <ThemeRegistry>
+          <Box className="foobarbaz">
+            <AppBar position="static" component="header">
+              <Toolbar>
+                <Typography variant="h6">Locklite</Typography>
+              </Toolbar>
+            </AppBar>
+            <Container
+              component="main"
+              maxWidth="md"
+              sx={{ flexGrow: 1, py: 4 }}
+            >
+              {children}
+            </Container>
+            <Box
+              component="footer"
+              sx={{
+                py: 2,
+                textAlign: 'center',
+                bgcolor: 'grey.100',
+              }}
+            >
+              © {new Date().getFullYear()} Locklite
+            </Box>
+          </Box>
+        </ThemeRegistry>
       </body>
     </html>
   );
