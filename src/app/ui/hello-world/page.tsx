@@ -22,7 +22,7 @@ export default function HelloWorldPage(): JSX.Element {
     request: () => userGateway.getAll(),
     onSuccess: (data) => setUsers(data.users),
     onError: (err) => setError(err.message),
-    deps: [], // put params here
+    deps: [],
   });
 
   return (
