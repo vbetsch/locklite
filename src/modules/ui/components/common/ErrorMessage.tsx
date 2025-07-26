@@ -11,7 +11,7 @@ export default function ErrorMessage(props: ErrorProps): JSX.Element | null {
   console.error(props.error);
   return (
     <Typography sx={{ color: 'red' }}>
-      Error: {props.error.message || 'Unknow error'}
+      Error: {props.error.message || 'Unknown error'}
     </Typography>
   );
 }
