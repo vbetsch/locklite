@@ -8,10 +8,10 @@ type ErrorProps = {
 
 export default function ErrorMessage(props: ErrorProps): JSX.Element | null {
   if (!props.error) return null;
-  console.error('Error: ', props.error);
+  console.error(props.error);
   return (
     <Typography sx={{ color: 'red' }}>
-      {props.error.message || 'Unknow error'}
+      Error: {props.error.message || 'Unknow error'}
     </Typography>
   );
 }
