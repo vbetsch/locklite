@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
