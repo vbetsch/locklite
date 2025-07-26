@@ -1,8 +1,11 @@
+import { cookies } from 'next/headers';
+import { lightTheme } from '@ui/themes/light.theme';
+import { darkTheme } from '@ui/themes/dark.theme';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import type { Metadata } from 'next';
 import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
-import MUIProvider from '@ui/providers/MUIProvider';
 
 export const metadata: Metadata = {
   title: {
@@ -12,21 +15,21 @@ export const metadata: Metadata = {
   description: 'The best secure password manager',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>): JSX.Element {
+}): Promise<JSX.Element> {
+  const themeCookie = (await cookies()).get('theme')?.value ?? 'light';
+  const theme = themeCookie === 'dark' ? darkTheme : lightTheme;
+
   return (
-    <html lang="en">
+    <html lang="fr">
       <body>
-        <MUIProvider>
-          <div className="root">
-            <header>header</header>
-            <main>{children}</main>
-            <footer>footer</footer>
-          </div>
-        </MUIProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
