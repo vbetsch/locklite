@@ -32,13 +32,13 @@ You have to install these softwares before starting :
 ### Table of contents
 
 Choose your operating system :
-- <a href="#windows">Windows</a>
-- <a href="#macos">MacOS</a>
-- <a href="#linux">Linux</a>
+- [Windows](#windows)
+- [MacOS](#macos)
+- [Linux](#linux)
 
 <h2 id="windows">Windows</h2>
 
-We recommend using a WSL for this project. If so, please follow the <a href="#linux">Linux</a> procedure.
+We recommend using a WSL for this project. If so, please follow the [Linux](#linux) procedure.
 
 ### Installation
 
