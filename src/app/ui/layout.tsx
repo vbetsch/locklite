@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
+import MUIProvider from '@ui/providers/MUIProvider';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -26,9 +27,13 @@ export default function RootLayout({
     <html lang="en">
       {/*<body className={`${geistSans.variable} ${geistMono.variable}`}>*/}
       <body>
-        <header>header</header>
-        <main>{children}</main>
-        <footer>footer</footer>
+        <MUIProvider>
+          <div className="root">
+            <header>header</header>
+            <main>{children}</main>
+            <footer>footer</footer>
+          </div>
+        </MUIProvider>
       </body>
     </html>
   );
