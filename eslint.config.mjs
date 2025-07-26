@@ -1,11 +1,12 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
+import {dirname} from 'path';
+import {fileURLToPath} from 'url';
+import {FlatCompat} from '@eslint/eslintrc';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import importPlugin from 'eslint-plugin-import';
 import eslintPluginJest from 'eslint-plugin-jest';
+import reactPlugin from 'eslint-plugin-react';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,6 +22,7 @@ export default tseslint.config(
     ...compat.extends('next/core-web-vitals', 'next/typescript'),
     ...compat.extends('plugin:jest/recommended'),
     ...compat.extends('plugin:prettier/recommended'),
+    ...compat.extends('plugin:react/recommended'),
 
     {
       ignores: ['*', '!src/**', '!tests/**'],
@@ -37,12 +39,16 @@ export default tseslint.config(
         prettier: eslintPluginPrettier,
         import: importPlugin,
         jest: eslintPluginJest,
+        react: reactPlugin,
       },
       rules: {
+        'no-undef': 'error',
+        'react/react-in-jsx-scope': 'error',
+        'react/jsx-uses-react': 'error',
         // Formatting
-        'prettier/prettier': ['warn', { semi: true }],
+        'prettier/prettier': ['warn', {semi: true}],
         semi: ['error', 'always'],
-        'max-len': ['warn', { code: 300, ignoreUrls: true }],
+        'max-len': ['warn', {code: 300, ignoreUrls: true}],
 
         // Code structure and clarity
         // 'max-params': ['warn', 1],
@@ -50,7 +56,7 @@ export default tseslint.config(
         'require-await': 'error',
         'no-undefined': 'warn',
         'no-var': 'error',
-        'prefer-const': ['error', { destructuring: 'all' }],
+        'prefer-const': ['error', {destructuring: 'all'}],
         'require-object-destructuring': 'off',
         'import/no-unresolved': 'error',
         'no-inline-comments': 'warn',
@@ -58,11 +64,11 @@ export default tseslint.config(
         // TypeScript strictness
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
-          { accessibility: 'explicit' },
+          {accessibility: 'explicit'},
         ],
         '@typescript-eslint/explicit-function-return-type': [
           'error',
-          { allowExpressions: false },
+          {allowExpressions: false},
         ],
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-explicit-any': 'error',
@@ -73,16 +79,16 @@ export default tseslint.config(
         '@typescript-eslint/prefer-function-type': 'warn',
         '@typescript-eslint/no-magic-numbers': [
           'warn',
-          { ignoreEnums: true, ignore: [0, 1], enforceConst: true },
+          {ignoreEnums: true, ignore: [0, 1], enforceConst: true},
         ],
         '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unused-vars': [
           'error',
-          { argsIgnorePattern: '^_' },
+          {argsIgnorePattern: '^_'},
         ],
         '@typescript-eslint/no-extraneous-class': [
           'error',
-          { allowConstructorOnly: false },
+          {allowConstructorOnly: false},
         ],
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/no-empty-function': ['warn'],
@@ -117,6 +123,19 @@ export default tseslint.config(
             format: ['PascalCase'],
           },
         ],
+        '@typescript-eslint/typedef': [
+          'error',
+          {
+            variableDeclaration: true,
+            memberVariableDeclaration: true,
+            propertyDeclaration: false,
+            arrayDestructuring: false,
+            objectDestructuring: false,
+            parameter: false,
+            arrowParameter: false,
+            variableDeclarationIgnoreFunction: true
+          },
+        ],
 
         // Ban unsafe casts
         'no-restricted-syntax': [
@@ -134,14 +153,17 @@ export default tseslint.config(
             project: './tsconfig.json',
           },
         },
+        react: {
+          version: 'detect',
+        },
       },
     },
 
     {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
-      plugins: { jest: eslintPluginJest },
+      plugins: {jest: eslintPluginJest},
       settings: {
-        jest: { version: 29 },
+        jest: {version: 29},
       },
     },
   ],
