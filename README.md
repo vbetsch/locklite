@@ -2,7 +2,7 @@
 
 # Locklite
 
-Intranet password manager for
+🔐 Intranet password manager for
 businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
