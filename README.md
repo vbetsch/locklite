@@ -2,7 +2,8 @@
 
 # Locklite
 
-Intranet password manager for businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
+Intranet password manager for
+businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
@@ -65,6 +66,11 @@ docker-compose up -d
 npm run dev
 ```
 
+3. Well done, the application is running!
+
+- UI : http://localhost:3000/ui (homepage)
+- API : http://localhost:3000/api/docs (Swagger documentation)
+
 ### Quality Assurance
 
 - Run unit tests
@@ -105,6 +111,11 @@ docker-compose up -d
 npm run dev
 ```
 
+3. Well done, the application is running!
+
+- UI : http://localhost:3000/ui (homepage)
+- API : http://localhost:3000/api/docs (Swagger documentation)
+
 ### Quality Assurance
 
 - Run unit tests
@@ -144,6 +155,11 @@ docker-compose up -d
 ```shell
 npm run dev
 ```
+
+3. Well done, the application is running!
+
+- UI : http://localhost:3000/ui (homepage)
+- API : http://localhost:3000/api/docs (Swagger documentation)
 
 ### Quality Assurance
 
