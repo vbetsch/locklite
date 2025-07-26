@@ -25,9 +25,9 @@ Intranet password manager for businesses
 
 You have to install these softwares before starting :
 
-- <a href="https://docs.docker.com/engine/install/" target="_blank">**Docker** Engine</a>
-- <a href="https://docs.docker.com/compose/install/" target="_blank">**Docker** Compose</a>
-- <a href="https://nodejs.org/en/blog/release/v22.17.1" target="_blank">**NodeJS** (v.22.17.1)</a>
+- [**Docker** Engine](https://docs.docker.com/engine/install/)
+- [**Docker** Compose](https://docs.docker.com/compose/install/)
+- [**NodeJS** (v.22.17.1)](https://nodejs.org/en/blog/release/v22.17.1)
 
 ### Table of contents
 
