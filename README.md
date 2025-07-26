@@ -32,6 +32,7 @@ You have to install these softwares before starting :
 ### Table of contents
 
 Choose your operating system :
+
 - [Windows](#windows)
 - [MacOS](#macos)
 - [Linux](#linux)
@@ -62,6 +63,20 @@ docker-compose up -d
 npm run dev
 ```
 
+### Quality Assurance
+
+- Run unit tests
+
+```shell
+npm test
+```
+
+- Run unit tests with coverage
+
+```shell
+npm run test:cov
+```
+
 <h2 id="macos">MacOS</h2>
 
 ### Installation
@@ -86,6 +101,20 @@ docker-compose up -d
 npm run dev
 ```
 
+### Quality Assurance
+
+- Run unit tests
+
+```shell
+npm test
+```
+
+- Run unit tests with coverage
+
+```shell
+npm run test:cov
+```
+
 <h2 id="linux">Linux</h2>
 
 ### Installation
@@ -108,4 +137,18 @@ docker-compose up -d
 
 ```shell
 npm run dev
+```
+
+### Quality Assurance
+
+- Run unit tests
+
+```shell
+npm test
+```
+
+- Run unit tests with coverage
+
+```shell
+npm run test:cov
 ```
