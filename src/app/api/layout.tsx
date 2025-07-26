@@ -13,7 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
+    // eslint-disable-next-line no-restricted-syntax
     <html lang="en">
+      {/* eslint-disable-next-line no-restricted-syntax */}
       <body>{children}</body>
     </html>
   );

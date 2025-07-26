@@ -3,6 +3,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { useEffect } from 'react';
+import { Box } from '@mui/material';
 
 export default function ApiDocs(): JSX.Element {
   useEffect(() => {
@@ -26,5 +27,5 @@ export default function ApiDocs(): JSX.Element {
     document.body.appendChild(script);
   }, []);
 
-  return <div id="swagger-ui" />;
+  return <Box id="swagger-ui" />;
 }
