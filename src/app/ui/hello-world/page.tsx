@@ -1,5 +1,6 @@
 'use client';
 import 'reflect-metadata';
+import React from 'react';
 import styles from './page.module.css';
 import type { JSX } from 'react';
 import { useState } from 'react';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import UsersList from '@ui/components/users/molecules/UsersList';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';

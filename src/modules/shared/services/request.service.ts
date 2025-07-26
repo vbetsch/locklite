@@ -26,7 +26,7 @@ export class RequestService {
   }
 
   private async _fetch<T>(url: string, options: RequestInit): Promise<T> {
-    const response = await fetch(url, {
+    const response: Response = await fetch(url, {
       ...options,
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export class RequestService {
     });
 
     if (!response.ok) {
-      let message = 'Unexpected error';
+      let message: string = 'Unexpected error';
       try {
         const errorJson: HttpResponseDto<unknown> = await response.json();
         message = errorJson?.error ?? message;

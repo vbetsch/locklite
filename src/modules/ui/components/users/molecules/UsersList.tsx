@@ -1,3 +1,4 @@
+import React from 'react';
 import UserItem from '@ui/components/users/atoms/UserItem';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import type { JSX } from 'react';
