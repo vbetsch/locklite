@@ -43,7 +43,7 @@ export default tseslint.config(
       },
       rules: {
         'no-undef': 'error',
-        'react/react-in-jsx-scope': 'error',
+        'react/react-in-jsx-scope': 'warn',
         'react/jsx-uses-react': 'error',
         // Formatting
         'prettier/prettier': ['warn', {semi: true}],
