@@ -1,36 +1,38 @@
 'use client';
 import 'reflect-metadata';
-import styles from './page.module.css';
+import React from 'react';
 import type { JSX } from 'react';
 import { useState } from 'react';
-import Title from '@ui/components/common/atoms/Title';
 import UsersList from '@ui/components/users/molecules/UsersList';
-import Loader from '@ui/components/common/atoms/Loader';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserGateway } from '@ui/gateways/user.gateway';
 import type { GetAllUsersResponseDto } from '@shared/dto/responses/get-all-users.response.dto';
 import { useApi } from '@ui/hooks/useApi';
 import { container } from 'tsyringe';
+import ErrorMessage from '@ui/components/common/ErrorMessage';
+import CircularLoader from '@ui/components/common/CircularLoader';
+import { Typography } from '@mui/material';
+import PageContainer from '@ui/components/common/PageContainer';
 
 export default function HelloWorldPage(): JSX.Element {
   const [users, setUsers] = useState<UserModelDto[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const userGateway: UserGateway = container.resolve(UserGateway);
 
   const { loading } = useApi<GetAllUsersResponseDto>({
     request: () => userGateway.getAll(),
     onSuccess: (data) => setUsers(data.users),
-    onError: (err) => setError(err.message),
-    deps: [], // put params here
+    onError: (err) => setError(err),
+    deps: [],
   });
 
   return (
-    <div className={styles.container}>
-      <Title label="Hello world!" />
-      <p>Here we display the list of users: </p>
-      {loading && <Loader />}
-      {error && <span className="error">{error}</span>}
+    <PageContainer>
+      <Typography variant={'h3'}>Hello world!</Typography>
+      <Typography>Here we display the list of users: </Typography>
+      <ErrorMessage error={error} />
+      <CircularLoader loading={loading} />
       <UsersList users={users} />
-    </div>
+    </PageContainer>
   );
 }

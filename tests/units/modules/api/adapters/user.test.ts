@@ -43,12 +43,13 @@ describe('UserAdapter', () => {
         },
       ];
 
-      const result = adapter.getUsersFromMasterAccounts(masterAccounts);
+      const result: UserModelDto[] =
+        adapter.getUsersFromMasterAccounts(masterAccounts);
       expect(result).toEqual(expected);
     });
 
     it('should return an empty array when passed an empty array', () => {
-      const result = adapter.getUsersFromMasterAccounts([]);
+      const result: UserModelDto[] = adapter.getUsersFromMasterAccounts([]);
       expect(result).toEqual([]);
     });
   });
