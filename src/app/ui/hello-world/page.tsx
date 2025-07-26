@@ -1,7 +1,6 @@
 'use client';
 import 'reflect-metadata';
 import React from 'react';
-import styles from './page.module.css';
 import type { JSX } from 'react';
 import { useState } from 'react';
 import UsersList from '@ui/components/users/molecules/UsersList';
@@ -12,7 +11,7 @@ import { useApi } from '@ui/hooks/useApi';
 import { container } from 'tsyringe';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import CircularLoader from '@ui/components/common/CircularLoader';
-import { Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default function HelloWorldPage(): JSX.Element {
   const [users, setUsers] = useState<UserModelDto[]>([]);
@@ -27,12 +26,20 @@ export default function HelloWorldPage(): JSX.Element {
   });
 
   return (
-    <Container className={styles.container}>
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Typography variant={'h3'}>Hello world!</Typography>
       <Typography>Here we display the list of users: </Typography>
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       <UsersList users={users} />
-    </Container>
+    </Box>
   );
 }
