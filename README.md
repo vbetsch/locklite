@@ -43,7 +43,9 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### Installation
 
-You need to install NodeJS packages
+1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+
+2. You need to install NodeJS packages
 
 ```shell
 npm install
@@ -81,7 +83,9 @@ npm run test:cov
 
 ### Installation
 
-You need to install NodeJS packages
+1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+
+2. You need to install NodeJS packages
 
 ```shell
 npm install
@@ -119,7 +123,9 @@ npm run test:cov
 
 ### Installation
 
-You need to install NodeJS packages
+1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+
+2. You need to install NodeJS packages
 
 ```shell
 npm install
