@@ -1,15 +1,9 @@
 import type { Metadata } from 'next';
-// import { Geist } from "next/font/google";
 import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { theme } from '@ui/themes/theme';
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+import { lightTheme } from '@ui/themes/light.theme';
 
 export const metadata: Metadata = {
   title: {
@@ -26,9 +20,8 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="en">
-      {/*<body className={`${geistSans.variable} ${geistMono.variable}`}>*/}
       <body>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           <CssBaseline />
           <div className={'foobarbaz'}>
             <header>header</header>
