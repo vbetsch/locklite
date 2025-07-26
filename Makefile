@@ -37,7 +37,11 @@ coverage: node_modules
 migrate: up
 	npx prisma migrate dev --name init
 
-.PHONY: up down dev build lint format tests coverage migrate
+clean:
+	rm -rf .next node_modules package-lock.json
+	npm install
+
+.PHONY: up down dev build lint format tests coverage migrate clean
 
 # Aliases
 run: up dev

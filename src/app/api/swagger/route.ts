@@ -1,7 +1,7 @@
 import { createSwaggerSpec } from 'next-swagger-doc';
 
 export function GET(): Response {
-  const spec = createSwaggerSpec({
+  const spec: object = createSwaggerSpec({
     apiFolder: 'src/app/api',
     schemaFolders: ['src/modules/shared/dto'],
     definition: {
