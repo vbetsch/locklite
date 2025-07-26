@@ -144,6 +144,11 @@ export default tseslint.config(
             selector: 'TSAsExpression > TSAnyKeyword',
             message: 'Do not use `as any`, types must be explicit and safe.',
           },
+          {
+            selector: "JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]",
+            message:
+              'Do not use native HTML elements: use an MUI component (PascalCase) instead.',
+          },
         ],
       },
       settings: {
