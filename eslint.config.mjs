@@ -42,66 +42,37 @@ export default tseslint.config(
         react: reactPlugin,
       },
       rules: {
-        'no-undef': 'error',
-        'react/react-in-jsx-scope': 'warn',
-        'react/jsx-uses-react': 'error',
-        // Formatting
-        'prettier/prettier': ['warn', {semi: true}],
-        semi: ['error', 'always'],
-        'max-len': ['warn', {code: 300, ignoreUrls: true}],
-
-        // Code structure and clarity
-        // 'max-params': ['warn', 1],
-        'default-case': 'warn',
-        'require-await': 'error',
-        'no-undefined': 'warn',
-        'no-var': 'error',
-        'prefer-const': ['error', {destructuring: 'all'}],
-        'require-object-destructuring': 'off',
-        'import/no-unresolved': 'error',
-        'no-inline-comments': 'warn',
-
-        // TypeScript strictness
-        '@typescript-eslint/explicit-member-accessibility': [
-          'error',
-          {accessibility: 'explicit'},
-        ],
-        '@typescript-eslint/explicit-function-return-type': [
-          'error',
-          {allowExpressions: false},
-        ],
-        '@typescript-eslint/explicit-module-boundary-types': 'error',
-        '@typescript-eslint/no-explicit-any': 'error',
-        '@typescript-eslint/no-inferrable-types': 'off',
-        '@typescript-eslint/no-namespace': 'off',
-        '@typescript-eslint/prefer-readonly': 'warn',
-        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
-        '@typescript-eslint/prefer-function-type': 'warn',
-        '@typescript-eslint/no-magic-numbers': [
-          'warn',
-          {ignoreEnums: true, ignore: [0, 1], enforceConst: true},
-        ],
-        '@typescript-eslint/no-unsafe-member-access': 'warn',
-        '@typescript-eslint/no-unused-vars': [
-          'error',
-          {argsIgnorePattern: '^_'},
-        ],
-        '@typescript-eslint/no-extraneous-class': [
-          'error',
-          {allowConstructorOnly: false},
-        ],
-        '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
-        '@typescript-eslint/no-empty-function': ['warn'],
-        '@typescript-eslint/adjacent-overload-signatures': 'warn',
-        '@typescript-eslint/consistent-type-imports': [
+        /* Ban unsafe casts */
+        'no-restricted-syntax': [
           'error',
           {
-            prefer: 'type-imports',
-            disallowTypeAnnotations: false,
+            selector: 'TSAsExpression > TSAnyKeyword',
+            message: 'Do not use `as any`, types must be explicit and safe.',
+          },
+          {
+            selector: "JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]",
+            message:
+              'Do not use native HTML elements: use an MUI component (PascalCase) instead.',
           },
         ],
 
-        // Naming conventions
+        /* Code structure and clarity */
+        // 'max-params': ['warn', 1],
+        'default-case': 'warn',
+        'import/no-unresolved': 'error',
+        'no-inline-comments': 'warn',
+        'no-undefined': 'warn',
+        'no-var': 'error',
+        'prefer-const': ['error', {destructuring: 'all'}],
+        'require-await': 'error',
+        'require-object-destructuring': 'off',
+
+        /* Formatting */
+        'max-len': ['warn', {code: 300, ignoreUrls: true}],
+        'prettier/prettier': ['warn', {semi: true}],
+        semi: ['error', 'always'],
+
+        /* Naming conventions */
         '@typescript-eslint/naming-convention': [
           'error',
           {
@@ -133,23 +104,49 @@ export default tseslint.config(
             objectDestructuring: false,
             parameter: false,
             arrowParameter: false,
-            variableDeclarationIgnoreFunction: true
+            variableDeclarationIgnoreFunction: true,
           },
         ],
 
-        // Ban unsafe casts
-        'no-restricted-syntax': [
+        /* TypeScript strictness */
+        '@typescript-eslint/adjacent-overload-signatures': 'warn',
+        '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
+        '@typescript-eslint/consistent-type-imports': [
           'error',
           {
-            selector: 'TSAsExpression > TSAnyKeyword',
-            message: 'Do not use `as any`, types must be explicit and safe.',
-          },
-          {
-            selector: "JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]",
-            message:
-              'Do not use native HTML elements: use an MUI component (PascalCase) instead.',
+            prefer: 'type-imports',
+            disallowTypeAnnotations: false,
           },
         ],
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          {allowExpressions: false},
+        ],
+        '@typescript-eslint/explicit-member-accessibility': [
+          'error',
+          {accessibility: 'explicit'},
+        ],
+        '@typescript-eslint/explicit-module-boundary-types': 'error',
+        '@typescript-eslint/no-empty-function': ['warn'],
+        '@typescript-eslint/no-extraneous-class': [
+          'error',
+          {allowConstructorOnly: false},
+        ],
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/no-magic-numbers': [
+          'warn',
+          {ignoreEnums: true, ignore: [0, 1], enforceConst: true},
+        ],
+        '@typescript-eslint/no-namespace': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'warn',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          {argsIgnorePattern: '^_'},
+        ],
+        '@typescript-eslint/prefer-function-type': 'warn',
+        '@typescript-eslint/prefer-readonly': 'warn',
+        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
       },
       settings: {
         'import/resolver': {
