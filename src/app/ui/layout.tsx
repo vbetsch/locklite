@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { lightTheme } from '@ui/themes/light.theme';
+import ThemeRegistry from '@ui/providers/ThemeRegistry';
 
 export const metadata: Metadata = {
   title: {
@@ -15,21 +14,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>): JSX.Element {
+}): JSX.Element {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          <div className={'foobarbaz'}>
+        <ThemeRegistry>
+          <div className="foobarbaz">
             <header>header</header>
             <main>{children}</main>
             <footer>footer</footer>
           </div>
-          {children}
-        </ThemeProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );
