@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import type { JSX } from 'react';
 import React from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { theme } from '@ui/themes/theme';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -26,9 +28,15 @@ export default function RootLayout({
     <html lang="en">
       {/*<body className={`${geistSans.variable} ${geistMono.variable}`}>*/}
       <body>
-        <header>header</header>
-        <main>{children}</main>
-        <footer>footer</footer>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className={'foobarbaz'}>
+            <header>header</header>
+            <main>{children}</main>
+            <footer>footer</footer>
+          </div>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
