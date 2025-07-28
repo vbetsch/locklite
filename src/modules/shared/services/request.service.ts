@@ -15,7 +15,7 @@ export class RequestService {
     if (!response.ok) {
       let message: string = 'Unexpected error';
       try {
-        const errorJson: HttpResponseDto<unknown> = await response.json();
+        const errorJson: HttpResponseDto<T> = await response.json();
         message = errorJson?.error ?? message;
       } catch {
         message = await response.text();
