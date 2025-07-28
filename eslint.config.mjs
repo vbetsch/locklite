@@ -162,6 +162,30 @@ export default tseslint.config(
     },
 
     {
+      files: ['src/app/ui/**/*.{ts,tsx}', 'src/modules/ui/**/*.{ts,tsx}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: ['@api/*'],
+          },
+        ],
+      },
+    },
+
+    {
+      files: ['src/app/api/**/*.{ts,tsx}', 'src/modules/api/**/*.{ts,tsx}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: ['@ui/*'],
+          },
+        ],
+      },
+    },
+
+    {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
       plugins: {jest: eslintPluginJest},
       settings: {

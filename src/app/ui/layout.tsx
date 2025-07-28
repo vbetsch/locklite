@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
-import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import PageContainer from '@ui/components/common/PageContainer';
 
 export const metadata: Metadata = {
   title: {
@@ -19,34 +20,18 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     // eslint-disable-next-line no-restricted-syntax
-    <html lang="en">
+    <html lang="en" style={{ height: '100%' }}>
       {/* eslint-disable-next-line no-restricted-syntax */}
-      <body>
+      <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <Box className="foobarbaz">
-            <AppBar position="static" component="header">
-              <Toolbar>
-                <Typography variant="h6">Locklite</Typography>
-              </Toolbar>
-            </AppBar>
-            <Container
-              component="main"
-              maxWidth="md"
-              sx={{ flexGrow: 1, py: 4 }}
-            >
-              {children}
-            </Container>
-            <Box
-              component="footer"
-              sx={{
-                py: 2,
-                textAlign: 'center',
-                bgcolor: 'grey.100',
-              }}
-            >
-              © {new Date().getFullYear()} Locklite
-            </Box>
-          </Box>
+          <AppBar position={'sticky'} component="header">
+            <Toolbar>
+              <Typography variant="h6">Locklite</Typography>
+            </Toolbar>
+          </AppBar>
+          <Container component="main">
+            <PageContainer>{children}</PageContainer>
+          </Container>
         </ThemeRegistry>
       </body>
     </html>
