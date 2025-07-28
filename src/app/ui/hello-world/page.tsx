@@ -12,7 +12,6 @@ import { container } from 'tsyringe';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import CircularLoader from '@ui/components/common/CircularLoader';
 import { Typography } from '@mui/material';
-import PageContainer from '@ui/components/common/PageContainer';
 
 export default function HelloWorldPage(): JSX.Element {
   const [users, setUsers] = useState<UserModelDto[]>([]);
@@ -27,12 +26,12 @@ export default function HelloWorldPage(): JSX.Element {
   });
 
   return (
-    <PageContainer>
+    <>
       <Typography variant={'h3'}>Hello world!</Typography>
       <Typography>Here we display the list of users: </Typography>
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       <UsersList users={users} />
-    </PageContainer>
+    </>
   );
 }

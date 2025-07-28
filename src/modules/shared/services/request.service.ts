@@ -3,6 +3,29 @@ import { injectable } from 'tsyringe';
 
 @injectable()
 export class RequestService {
+  private async _fetch<T>(url: string, options: RequestInit): Promise<T> {
+    const response: Response = await fetch(url, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.headers ?? {}),
+      },
+    });
+
+    if (!response.ok) {
+      let message: string = 'Unexpected error';
+      try {
+        const errorJson: HttpResponseDto<T> = await response.json();
+        message = errorJson?.error ?? message;
+      } catch {
+        message = await response.text();
+      }
+      throw new Error(message);
+    }
+
+    return response.json();
+  }
+
   public async get<T>(url: string): Promise<T> {
     return await this._fetch<T>(url, { method: 'GET' });
   }
@@ -23,28 +46,5 @@ export class RequestService {
 
   public async delete<T>(url: string): Promise<T> {
     return await this._fetch<T>(url, { method: 'DELETE' });
-  }
-
-  private async _fetch<T>(url: string, options: RequestInit): Promise<T> {
-    const response: Response = await fetch(url, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(options.headers ?? {}),
-      },
-    });
-
-    if (!response.ok) {
-      let message: string = 'Unexpected error';
-      try {
-        const errorJson: HttpResponseDto<unknown> = await response.json();
-        message = errorJson?.error ?? message;
-      } catch {
-        message = await response.text();
-      }
-      throw new Error(message);
-    }
-
-    return response.json();
   }
 }
