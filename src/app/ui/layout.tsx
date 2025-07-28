@@ -23,29 +23,23 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body>
         <ThemeRegistry>
-          <Box className="foobarbaz">
-            <AppBar position="static" component="header">
-              <Toolbar>
-                <Typography variant="h6">Locklite</Typography>
-              </Toolbar>
-            </AppBar>
-            <Container
-              component="main"
-              maxWidth="md"
-              sx={{ flexGrow: 1, py: 4 }}
-            >
-              {children}
-            </Container>
-            <Box
-              component="footer"
-              sx={{
-                py: 2,
-                textAlign: 'center',
-                bgcolor: 'grey.100',
-              }}
-            >
-              © {new Date().getFullYear()} Locklite
-            </Box>
+          <AppBar position="static" component="header">
+            <Toolbar>
+              <Typography variant="h6">Locklite</Typography>
+            </Toolbar>
+          </AppBar>
+          <Container component="main" maxWidth="md" sx={{ flexGrow: 1, py: 4 }}>
+            {children}
+          </Container>
+          <Box
+            component="footer"
+            sx={{
+              py: 2,
+              textAlign: 'center',
+              bgcolor: 'grey.100',
+            }}
+          >
+            © {new Date().getFullYear()} Locklite
           </Box>
         </ThemeRegistry>
       </body>
