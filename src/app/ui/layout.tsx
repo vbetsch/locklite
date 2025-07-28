@@ -36,7 +36,6 @@ export default function RootLayout({
             sx={{
               py: 2,
               textAlign: 'center',
-              bgcolor: 'grey.100',
             }}
           >
             © {new Date().getFullYear()} Locklite
