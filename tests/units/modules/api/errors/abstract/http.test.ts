@@ -1,4 +1,5 @@
 import { HttpError } from '@api/errors/abstract/http-error';
+import { StatusCodes } from 'http-status-codes';
 
 class TestError extends HttpError {
   public constructor(message: string, status: number) {
@@ -18,7 +19,10 @@ describe('HttpError', () => {
   });
 
   it('should be an instance of Error', () => {
-    const error: HttpError = new TestError('Error', 500);
+    const error: HttpError = new TestError(
+      'Error',
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
     expect(error).toBeInstanceOf(Error);
   });
 
