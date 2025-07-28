@@ -24,12 +24,12 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <AppBar position="static" component="header">
+          <AppBar component="header">
             <Toolbar>
               <Typography variant="h6">Locklite</Typography>
             </Toolbar>
           </AppBar>
-          <Container component="main" maxWidth="md" sx={{ flexGrow: 1, py: 4 }}>
+          <Container component="main" sx={{ height: '100%' }}>
             <PageContainer>{children}</PageContainer>
           </Container>
         </ThemeRegistry>
