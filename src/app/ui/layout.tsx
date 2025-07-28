@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
-import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import PageContainer from '@ui/components/common/PageContainer';
 
 export const metadata: Metadata = {
@@ -24,12 +24,12 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <AppBar component="header">
+          <AppBar position={'sticky'} component="header">
             <Toolbar>
               <Typography variant="h6">Locklite</Typography>
             </Toolbar>
           </AppBar>
-          <Container component="main" sx={{ height: '100%' }}>
+          <Container component="main">
             <PageContainer>{children}</PageContainer>
           </Container>
         </ThemeRegistry>
