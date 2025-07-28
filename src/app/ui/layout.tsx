@@ -20,9 +20,9 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     // eslint-disable-next-line no-restricted-syntax
-    <html lang="en">
+    <html lang="en" style={{ height: '100%' }}>
       {/* eslint-disable-next-line no-restricted-syntax */}
-      <body>
+      <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
           <AppBar position="static" component="header">
             <Toolbar>
@@ -32,15 +32,6 @@ export default function RootLayout({
           <Container component="main" maxWidth="md" sx={{ flexGrow: 1, py: 4 }}>
             <PageContainer>{children}</PageContainer>
           </Container>
-          <Box
-            component="footer"
-            sx={{
-              py: 2,
-              textAlign: 'center',
-            }}
-          >
-            © {new Date().getFullYear()} Locklite
-          </Box>
         </ThemeRegistry>
       </body>
     </html>
