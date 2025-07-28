@@ -1,4 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
+import React from 'react';
+import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import { useApi } from '@ui/hooks/useApi';
 
 describe('useApi', () => {
@@ -9,22 +11,27 @@ describe('useApi', () => {
     const onSuccess: (response: Data) => void = jest.fn();
     const onError: (error: Error) => void = jest.fn();
 
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useApi<Data>({ request, onSuccess, onError })
+    function TestComponent(): JSX.Element {
+      const { loading } = useApi<Data>({
+        request,
+        onSuccess,
+        onError,
+        deps: [],
+      });
+      // eslint-disable-next-line no-restricted-syntax
+      return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
+    }
+
+    render(<TestComponent />);
+    expect(screen.getByTestId('status')).toHaveTextContent('loading');
+
+    await waitFor(() =>
+      expect(screen.getByTestId('status')).toHaveTextContent('done')
     );
-
-    // initial state
-    expect(result.current.loading).toBe(true);
-
-    // wait for effect to complete
-    await act(async () => {
-      await waitForNextUpdate();
-    });
 
     expect(request).toHaveBeenCalled();
     expect(onSuccess).toHaveBeenCalledWith(data);
     expect(onError).not.toHaveBeenCalled();
-    expect(result.current.loading).toBe(false);
   });
 
   it('should call onError and set loading to false on Error rejection', async (): Promise<void> => {
@@ -35,20 +42,27 @@ describe('useApi', () => {
     const onSuccess: (response: unknown) => void = jest.fn();
     const onError: (err: Error) => void = jest.fn();
 
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useApi<unknown>({ request, onSuccess, onError })
+    function TestComponent(): JSX.Element {
+      const { loading } = useApi<unknown>({
+        request,
+        onSuccess,
+        onError,
+        deps: [],
+      });
+      // eslint-disable-next-line no-restricted-syntax
+      return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
+    }
+
+    render(<TestComponent />);
+    expect(screen.getByTestId('status')).toHaveTextContent('loading');
+
+    await waitFor(() =>
+      expect(screen.getByTestId('status')).toHaveTextContent('done')
     );
-
-    expect(result.current.loading).toBe(true);
-
-    await act(async () => {
-      await waitForNextUpdate();
-    });
 
     expect(request).toHaveBeenCalled();
     expect(onSuccess).not.toHaveBeenCalled();
     expect(onError).toHaveBeenCalledWith(error);
-    expect(result.current.loading).toBe(false);
   });
 
   it('should log non-Error and set loading to false when rejection is non-Error', async (): Promise<void> => {
@@ -64,15 +78,23 @@ describe('useApi', () => {
         /* ignore */
       });
 
-    const { result, waitForNextUpdate } = renderHook(() =>
-      useApi<unknown>({ request, onSuccess, onError })
+    function TestComponent(): JSX.Element {
+      const { loading } = useApi<unknown>({
+        request,
+        onSuccess,
+        onError,
+        deps: [],
+      });
+      // eslint-disable-next-line no-restricted-syntax
+      return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
+    }
+
+    render(<TestComponent />);
+    expect(screen.getByTestId('status')).toHaveTextContent('loading');
+
+    await waitFor(() =>
+      expect(screen.getByTestId('status')).toHaveTextContent('done')
     );
-
-    expect(result.current.loading).toBe(true);
-
-    await act(async () => {
-      await waitForNextUpdate();
-    });
 
     expect(request).toHaveBeenCalled();
     expect(onSuccess).not.toHaveBeenCalled();
@@ -81,7 +103,6 @@ describe('useApi', () => {
       'Unhandled API error:',
       rejectionValue
     );
-    expect(result.current.loading).toBe(false);
 
     consoleErrorSpy.mockRestore();
   });
