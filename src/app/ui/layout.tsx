@@ -3,6 +3,7 @@ import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import PageContainer from '@ui/components/common/PageContainer';
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,7 @@ export default function RootLayout({
             </Toolbar>
           </AppBar>
           <Container component="main" maxWidth="md" sx={{ flexGrow: 1, py: 4 }}>
-            {children}
+            <PageContainer>{children}</PageContainer>
           </Container>
           <Box
             component="footer"
