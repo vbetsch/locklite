@@ -41,6 +41,7 @@ describe('RequestService', () => {
 
     expect(fetchMock).toHaveBeenCalledWith('http://example.com/resource', {
       method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
     expect(result).toEqual(data);
@@ -143,6 +144,7 @@ describe('RequestService', () => {
 
     expect(fetchMock).toHaveBeenCalledWith('http://api.test/items/1', {
       method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
     expect(result).toEqual(data);
