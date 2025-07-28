@@ -6,6 +6,17 @@ import type { Theme } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
 
+jest.mock('@mui/material', (): typeof mui => {
+  const actual: typeof mui = jest.requireActual('@mui/material');
+  return {
+    ...actual,
+    useMediaQuery: jest.fn(),
+  };
+});
+
+const useMediaQueryMock: jest.MockedFunction<typeof mui.useMediaQuery> =
+  mui.useMediaQuery as jest.MockedFunction<typeof mui.useMediaQuery>;
+
 function TestComponent(): JSX.Element {
   const theme: Theme = useTheme();
   // eslint-disable-next-line no-restricted-syntax
@@ -13,27 +24,31 @@ function TestComponent(): JSX.Element {
 }
 
 describe('ThemeRegistry', () => {
-  afterEach((): void => {
-    jest.clearAllMocks();
+  beforeEach((): void => {
+    useMediaQueryMock.mockReset();
   });
 
   it('should apply dark theme when prefers-color-scheme is dark', (): void => {
-    jest.spyOn(mui, 'useMediaQuery').mockReturnValue(true);
+    useMediaQueryMock.mockReturnValue(true);
+
     render(
       <ThemeRegistry>
         <TestComponent />
       </ThemeRegistry>
     );
+
     expect(screen.getByTestId('mode')).toHaveTextContent('dark');
   });
 
   it('should apply light theme when prefers-color-scheme is not dark', (): void => {
-    jest.spyOn(mui, 'useMediaQuery').mockReturnValue(false);
+    useMediaQueryMock.mockReturnValue(false);
+
     render(
       <ThemeRegistry>
         <TestComponent />
       </ThemeRegistry>
     );
+
     expect(screen.getByTestId('mode')).toHaveTextContent('light');
   });
 });
