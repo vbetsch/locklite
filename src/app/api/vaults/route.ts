@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import type { NextRequest } from 'next/server';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
