@@ -12,17 +12,19 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  *   delete:
  *     tags:
  *      - Vaults
- *     description: Delete a vault by id
+ *     description: Delete a vault by ID
  *     parameters:
  *      - in: path
  *        name: id
  *        required: true
- *        description: id of vault to delete
+ *        description: ID of vault to delete
  *        schema:
  *          type: string
  *     responses:
  *       204:
  *         description: The vault has been successfully deleted
+ *       404:
+ *         description: No vault found with the entered ID
  *       500:
  *         description: Internal Server Error
  *         content:

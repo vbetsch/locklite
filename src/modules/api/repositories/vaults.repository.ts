@@ -2,6 +2,7 @@ import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import prisma from '@lib/prisma';
 import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import { NoVaultFoundError } from '@api/errors/no-vault-found.error';
 
 @injectable()
 export class VaultsRepository {
@@ -14,6 +15,11 @@ export class VaultsRepository {
   }
 
   public async delete(id: string): Promise<void> {
-    await prisma.vault.delete({ where: { id: id } });
+    try {
+      await prisma.vault.delete({ where: { id: id } });
+    } catch (error: unknown) {
+      console.error(error);
+      throw new NoVaultFoundError();
+    }
   }
 }
