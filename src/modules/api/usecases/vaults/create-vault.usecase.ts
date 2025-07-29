@@ -1,14 +1,14 @@
 import { inject, injectable } from 'tsyringe';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.interface';
-import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
 import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
+import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
 
 @injectable()
 export class CreateVaultUseCase
-  implements IUseCaseWithInput<CreateVaultParamsDto, VaultModelDto>
+  implements IUseCaseWithInput<CreateVaultRequestDto, VaultModelDto>
 {
   public constructor(
     @inject(VaultsRepository)
@@ -17,8 +17,8 @@ export class CreateVaultUseCase
     private readonly _vaultAdapter: VaultAdapter
   ) {}
 
-  public async handle(params: CreateVaultParamsDto): Promise<VaultModelDto> {
-    const vaultCreated: Vault = await this._vaultsRepository.create(params);
+  public async handle(input: CreateVaultRequestDto): Promise<VaultModelDto> {
+    const vaultCreated: Vault = await this._vaultsRepository.create(input);
     return this._vaultAdapter.getDtoFromModel(vaultCreated);
   }
 }

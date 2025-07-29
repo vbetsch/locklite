@@ -1,13 +1,14 @@
 import 'reflect-metadata';
-import type { NextRequest } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
-import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { CreateVaultResponseDto } from '@shared/dto/responses/create-vault.response.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
+import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import { StatusCodes } from 'http-status-codes';
 
 /**
  * @swagger
@@ -30,7 +31,7 @@ import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
  *             schema:
  *               $ref: '#/components/schemas/HttpResponseDto'
  */
-export async function GET(): Promise<Response> {
+export async function GET(): Promise<NextResponse> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
     container.resolve(GetMyVaultsUseCase);
   return await handleApiRequest(async () => {
@@ -52,9 +53,9 @@ export async function GET(): Promise<Response> {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateVaultParamsDto'
+ *             $ref: '#/components/schemas/CreateVaultRequestDto'
  *     responses:
- *       200:
+ *       201:
  *         description: Returns the vault created
  *         content:
  *           application/json:
@@ -67,13 +68,13 @@ export async function GET(): Promise<Response> {
  *             schema:
  *               $ref: '#/components/schemas/HttpResponseDto'
  */
-export async function POST(request: NextRequest): Promise<Response> {
-  const params: CreateVaultParamsDto = await request.json();
+export async function POST(request: NextRequest): Promise<NextResponse> {
+  const params: CreateVaultRequestDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
   return await handleApiRequest(async () => {
     const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
     const response: CreateVaultResponseDto = { vaultCreated };
     return response;
-  });
+  }, StatusCodes.CREATED);
 }
