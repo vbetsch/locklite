@@ -17,8 +17,8 @@ export class CreateVaultUseCase
     private readonly _vaultAdapter: VaultAdapter
   ) {}
 
-  public async handle(params: CreateVaultRequestDto): Promise<VaultModelDto> {
-    const vaultCreated: Vault = await this._vaultsRepository.create(params);
+  public async handle(input: CreateVaultRequestDto): Promise<VaultModelDto> {
+    const vaultCreated: Vault = await this._vaultsRepository.create(input);
     return this._vaultAdapter.getDtoFromModel(vaultCreated);
   }
 }
