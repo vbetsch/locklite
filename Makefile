@@ -46,5 +46,5 @@ clean:
 # Aliases
 run: up dev
 checks: lint tests
-checks_build: checks build
-.PHONY: run checks checks_build
+ci: checks build
+.PHONY: run checks ci
