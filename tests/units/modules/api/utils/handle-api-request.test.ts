@@ -1,4 +1,4 @@
-jest.mock('next/server', (): any => {
+jest.mock('next/server', (): unknown => {
   return {
     NextResponse: {
       json: jest.fn(
@@ -78,7 +78,9 @@ describe('handleApiRequest', () => {
     );
     const consoleErrorSpy: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'error')
-      .mockImplementation((): void => {});
+      .mockImplementation((): void => {
+        return;
+      });
 
     const response: IJsonResponse<{ error: string }> =
       await handleApiRequest(callback);
