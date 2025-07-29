@@ -1,10 +1,11 @@
 import type { IUseCase } from '@api/usecases/abstract/usecase.interface';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { Vault } from '@prisma/generated';
 
+@injectable()
 export class GetMyVaultsUseCase implements IUseCase<VaultModelDto[]> {
   public constructor(
     @inject(VaultsRepository)
