@@ -1,6 +1,7 @@
 import { createSwaggerSpec } from 'next-swagger-doc';
+import { NextResponse } from 'next/server';
 
-export function GET(): Response {
+export function GET(): NextResponse {
   const spec: object = createSwaggerSpec({
     apiFolder: 'src/app/api',
     schemaFolders: ['src/modules/shared/dto'],
@@ -13,5 +14,5 @@ export function GET(): Response {
     },
   });
 
-  return Response.json(spec);
+  return NextResponse.json(spec);
 }

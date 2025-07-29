@@ -1,38 +1,43 @@
+jest.mock('next/server', (): unknown => {
+  return {
+    NextResponse: {
+      json: jest.fn(
+        <T>(
+          body: T,
+          init: { status: number }
+        ): { body: T; status: number } => ({
+          body,
+          status: init.status,
+        })
+      ),
+    },
+  };
+});
+
+import { handleApiRequest } from '@api/utils/handle-api-request';
 import { HttpError } from '@api/errors/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
-import { handleApiRequest } from '@api/utils/handle-api-request';
+import { NextResponse } from 'next/server';
 
 interface IJsonResponse<T> {
   body: T;
   status: number;
 }
 
-type ResponseJson = <T>(body: T, init: { status: number }) => IJsonResponse<T>;
-
-declare global {
-  var Response: {
-    json: ResponseJson;
-  };
-}
+type NextResponseJson = <T>(
+  body: T,
+  init: { status: number }
+) => IJsonResponse<T>;
 
 describe('handleApiRequest', () => {
-  let jsonMock: jest.MockedFunction<ResponseJson>;
+  let jsonMock: jest.MockedFunction<NextResponseJson>;
 
   beforeEach((): void => {
-    jsonMock = jest.fn(
-      <T>(body: T, init: { status: number }): IJsonResponse<T> => ({
-        body,
-        status: init.status,
-      })
-    );
-    globalThis.Response = { json: jsonMock };
+    jsonMock = NextResponse.json as jest.MockedFunction<NextResponseJson>;
+    jsonMock.mockClear();
   });
 
-  afterEach((): void => {
-    jest.clearAllMocks();
-  });
-
-  it('should return 200 and data when callback resolves', async (): Promise<void> => {
+  it('returns 200 and data when callback resolves', async (): Promise<void> => {
     const data: { foo: string } = { foo: 'bar' };
     const callback: () => Promise<{ foo: string }> = jest.fn(
       (): Promise<{ foo: string }> => Promise.resolve(data)
@@ -46,7 +51,7 @@ describe('handleApiRequest', () => {
     expect(callback).toHaveBeenCalled();
   });
 
-  it('should return error message and status when HttpError is thrown', async (): Promise<void> => {
+  it('returns error message and status when HttpError is thrown', async (): Promise<void> => {
     const error: HttpError = new HttpError('Not Found', StatusCodes.NOT_FOUND);
     const callback: () => Promise<unknown> = jest.fn(
       (): Promise<unknown> => Promise.reject(error)
@@ -66,7 +71,7 @@ describe('handleApiRequest', () => {
     expect(callback).toHaveBeenCalled();
   });
 
-  it('should log error and return 500 when non-HttpError is thrown', async (): Promise<void> => {
+  it('logs error and returns 500 when non-HttpError is thrown', async (): Promise<void> => {
     const error: Error = new Error('Unexpected');
     const callback: () => Promise<unknown> = jest.fn(
       (): Promise<unknown> => Promise.reject(error)
@@ -74,7 +79,7 @@ describe('handleApiRequest', () => {
     const consoleErrorSpy: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'error')
       .mockImplementation((): void => {
-        /* ignore error */
+        return;
       });
 
     const response: IJsonResponse<{ error: string }> =
