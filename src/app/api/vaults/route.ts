@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import type { NextRequest } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
 import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
@@ -30,7 +30,7 @@ import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
  *             schema:
  *               $ref: '#/components/schemas/HttpResponseDto'
  */
-export async function GET(): Promise<Response> {
+export async function GET(): Promise<NextResponse> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
     container.resolve(GetMyVaultsUseCase);
   return await handleApiRequest(async () => {
@@ -67,7 +67,7 @@ export async function GET(): Promise<Response> {
  *             schema:
  *               $ref: '#/components/schemas/HttpResponseDto'
  */
-export async function POST(request: NextRequest): Promise<Response> {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   const params: CreateVaultParamsDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
