@@ -6,6 +6,7 @@ import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.param
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { CreateVaultResponseDto } from '@shared/dto/responses/create-vault.response.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
+import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 
 /**
  * @swagger
