@@ -12,8 +12,6 @@ export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
   }
 
   public getDtoListFromModelList(models: Vault[]): VaultModelDto[] {
-    return models.map((model: Vault) => ({
-      ...model,
-    }));
+    return models.map((model: Vault) => this.getDtoFromModel(model));
   }
 }
