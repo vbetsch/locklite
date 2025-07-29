@@ -6,6 +6,39 @@ import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.param
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { CreateVaultResponseDto } from '@shared/dto/responses/create-vault.response.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
+import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
+import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
+
+/**
+ * @swagger
+ * /api/vaults:
+ *   get:
+ *     tags:
+ *      - Vaults
+ *     description: Get my vaults
+ *     responses:
+ *       200:
+ *         description: Returns my vaults
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetMyVaultsResponseDto'
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
+ */
+export async function GET(): Promise<Response> {
+  const getMyVaultsUseCase: GetMyVaultsUseCase =
+    container.resolve(GetMyVaultsUseCase);
+  return await handleApiRequest(async () => {
+    const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
+    const response: GetMyVaultsResponseDto = { myVaults };
+    return response;
+  });
+}
 
 /**
  * @swagger
@@ -27,6 +60,12 @@ import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultResponseDto'
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
  */
 export async function POST(request: NextRequest): Promise<Response> {
   const params: CreateVaultParamsDto = await request.json();

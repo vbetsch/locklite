@@ -5,6 +5,10 @@ import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.param
 
 @injectable()
 export class VaultsRepository {
+  public async findAll(): Promise<Vault[]> {
+    return await prisma.vault.findMany();
+  }
+
   public async create(params: CreateVaultParamsDto): Promise<Vault> {
     return await prisma.vault.create({ data: params });
   }

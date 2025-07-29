@@ -8,7 +8,7 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
  *     CreateVaultResponseDto:
  *       type: object
  *       properties:
- *         vault:
+ *         vaultCreated:
  *           $ref: '#/components/schemas/VaultModelDto'
  */
 export type CreateVaultResponseDto = HttpResponseDto<{

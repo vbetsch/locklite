@@ -8,9 +8,10 @@ export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
   public getDtoFromModel(model: Vault): VaultModelDto {
     return {
       ...model,
-      id: model.id,
-      label: model.label,
-      secret: model.secret,
     };
+  }
+
+  public getDtoListFromModelList(models: Vault[]): VaultModelDto[] {
+    return models.map((model: Vault) => this.getDtoFromModel(model));
   }
 }
