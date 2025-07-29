@@ -23,6 +23,12 @@ import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/GetMyVaultsResponseDto'
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
  */
 export async function GET(): Promise<Response> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
@@ -54,6 +60,12 @@ export async function GET(): Promise<Response> {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultResponseDto'
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
  */
 export async function POST(request: NextRequest): Promise<Response> {
   const params: CreateVaultParamsDto = await request.json();
