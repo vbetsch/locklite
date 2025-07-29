@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import type { NextResponse } from 'next/server';
 import type { IdParam } from '@shared/dto/params/id.param';
 import { container } from 'tsyringe';
