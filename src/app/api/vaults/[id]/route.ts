@@ -24,7 +24,7 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  *       204:
  *         description: The vault has been successfully deleted
  *       404:
- *         description: No vault found with the entered ID
+ *         description: Vault not found
  *       500:
  *         description: Internal Server Error
  *         content:
