@@ -38,8 +38,8 @@ export async function DELETE(
 ): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
-  return await handleApiRequest(async () => {
-    await deleteVaultUseCase.handle(params);
-    return null;
-  }, StatusCodes.NO_CONTENT);
+  return await handleApiRequest(
+    () => deleteVaultUseCase.handle(params),
+    StatusCodes.NO_CONTENT
+  );
 }

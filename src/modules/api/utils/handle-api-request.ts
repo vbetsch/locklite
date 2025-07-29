@@ -8,6 +8,11 @@ export async function handleApiRequest<T>(
 ): Promise<NextResponse> {
   try {
     const data: Awaited<T> = await callback();
+
+    if (successStatusCode === StatusCodes.NO_CONTENT) {
+      return new NextResponse(null, { status: StatusCodes.NO_CONTENT });
+    }
+
     return NextResponse.json(data, {
       status: successStatusCode || StatusCodes.OK,
     });
