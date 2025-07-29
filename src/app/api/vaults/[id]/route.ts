@@ -3,6 +3,7 @@ import type { IdParam } from '@shared/dto/params/id.param';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
+import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
 
 /**
  * @swagger
