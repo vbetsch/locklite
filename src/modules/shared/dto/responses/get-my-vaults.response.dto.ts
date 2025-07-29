@@ -10,7 +10,7 @@ import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.respon
  *       properties:
  *         myVaults:
  *           type: array
- *           items
+ *           items:
  *             $ref: '#/components/schemas/VaultModelDto'
  */
 export type GetMyVaultsResponseDto = HttpResponseDto<{
