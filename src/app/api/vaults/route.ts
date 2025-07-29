@@ -8,6 +8,7 @@ import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
 import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import { StatusCodes } from 'http-status-codes';
 
 /**
  * @swagger
@@ -54,7 +55,7 @@ export async function GET(): Promise<NextResponse> {
  *           schema:
  *             $ref: '#/components/schemas/CreateVaultRequestDto'
  *     responses:
- *       200:
+ *       201:
  *         description: Returns the vault created
  *         content:
  *           application/json:
@@ -75,5 +76,5 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
     const response: CreateVaultResponseDto = { vaultCreated };
     return response;
-  });
+  }, StatusCodes.CREATED);
 }
