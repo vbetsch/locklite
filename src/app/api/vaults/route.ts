@@ -1,6 +1,8 @@
 import type { NextRequest } from 'next/server';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
+import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
+import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 
 /**
  * @swagger
