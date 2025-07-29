@@ -4,6 +4,7 @@ import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.int
 import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
 import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
+import { VaultsRepository } from '@api/repositories/vaults.repository';
 
 @injectable()
 export class CreateVaultUseCase
