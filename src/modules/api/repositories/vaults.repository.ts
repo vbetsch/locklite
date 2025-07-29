@@ -1,7 +1,7 @@
 import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import prisma from '@lib/prisma';
-import type { CreateVaultParamsDto } from '@shared/dto/params/create-vault.params.dto';
+import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
 
 @injectable()
 export class VaultsRepository {
@@ -9,7 +9,7 @@ export class VaultsRepository {
     return await prisma.vault.findMany();
   }
 
-  public async create(params: CreateVaultParamsDto): Promise<Vault> {
+  public async create(params: CreateVaultRequestDto): Promise<Vault> {
     return await prisma.vault.create({ data: params });
   }
 }
