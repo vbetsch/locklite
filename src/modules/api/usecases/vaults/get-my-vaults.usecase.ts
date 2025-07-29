@@ -14,6 +14,7 @@ export class GetMyVaultsUseCase implements IUseCase<VaultModelDto[]> {
   ) {}
 
   public async handle(): Promise<VaultModelDto[]> {
+    // TODO: To replace by find by user
     const myVaults: Vault[] = await this._vaultsRepository.findAll();
     return this._vaultAdapter.getDtoListFromModelList(myVaults);
   }
