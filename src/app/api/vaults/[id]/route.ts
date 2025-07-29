@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import type { NextResponse } from 'next/server';
+import type { NextRequest, NextResponse } from 'next/server';
 import type { IdParam } from '@shared/dto/params/id.param';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/utils/handle-api-request';
@@ -30,7 +30,10 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  *             schema:
  *               $ref: '#/components/schemas/HttpResponseDto'
  */
-export async function DELETE(params: IdParam): Promise<NextResponse> {
+export async function DELETE(
+  request: NextRequest,
+  params: IdParam
+): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
   return await handleApiRequest(async () => {

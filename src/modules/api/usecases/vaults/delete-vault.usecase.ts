@@ -11,6 +11,7 @@ export class DeleteVaultUseCase implements IUseCaseWithInput<IdParam, void> {
   ) {}
 
   public async handle(input: IdParam): Promise<void> {
-    await this._vaultsRepository.delete(input.params.id);
+    const vaultId: string = (await input.params)?.id;
+    await this._vaultsRepository.delete(vaultId);
   }
 }

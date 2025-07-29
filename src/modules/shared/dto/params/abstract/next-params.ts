@@ -1,3 +1,3 @@
 export type NextParams<T> = {
-  params: T;
+  params: Promise<T>;
 };
