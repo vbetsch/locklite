@@ -10,6 +10,31 @@ import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 /**
  * @swagger
  * /api/vaults:
+ *   get:
+ *     tags:
+ *      - Vaults
+ *     description: Get my vaults
+ *     responses:
+ *       200:
+ *         description: Returns my vaults
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetMyVaultsResponseDto'
+ */
+export async function GET(): Promise<Response> {
+  const getMyVaultsUseCase: GetMyVaultsUseCase =
+    container.resolve(GetMyVaultsUseCase);
+  return await handleApiRequest(async () => {
+    const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
+    const response: GetMyVaultsResponseDto = { myVaults };
+    return response;
+  });
+}
+
+/**
+ * @swagger
+ * /api/vaults:
  *   post:
  *     tags:
  *      - Vaults
