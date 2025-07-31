@@ -33,7 +33,14 @@ export default function WorkspacePage(): JSX.Element {
   });
 
   return (
-    <Container sx={{ padding: '2rem' }}>
+    <Container
+      sx={{
+        padding: '2rem',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '3rem',
+      }}
+    >
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
@@ -47,7 +54,8 @@ export default function WorkspacePage(): JSX.Element {
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
-          paddingTop={{ xs: 3, md: 4, lg: 6, xl: 8 }}
+          overflow={'auto'}
+          height={'60vh'}
         >
           {vaults.map(vault => (
             <Grid key={vault.id} size={1}>
