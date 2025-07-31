@@ -12,6 +12,7 @@ import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults
 import { useApi } from '@ui/hooks/useApi';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -20,17 +21,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import AddVaultModal from '@ui/components/modals/AddVaultModal';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
+  const [open, setOpen] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
-    deps: [],
+    deps: [open],
   });
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,16 +54,31 @@ export default function WorkspacePage(): JSX.Element {
         gap: '3rem',
       }}
     >
+      <AddVaultModal open={open} onClose={() => setOpen(false)} />
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
-      <TextField
-        fullWidth
-        placeholder="Search…"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        sx={{ mb: 2 }}
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '1rem',
+          width: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          placeholder="Search…"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          sx={{ minWidth: 150 }}
+          onClick={() => setOpen(true)}
+        >
+          Add a vault
+        </Button>
+      </Box>
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       {!loading && filteredVaults.length === 0 && (
@@ -74,7 +92,7 @@ export default function WorkspacePage(): JSX.Element {
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
           overflow={'auto'}
-          height={'70vh'}
+          height={'65vh'}
         >
           {filteredVaults.map(vault => (
             <Grid key={vault.id} size={1}>
