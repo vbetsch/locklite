@@ -1,7 +1,7 @@
 'use client';
 
 import 'reflect-metadata';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { JSX } from 'react';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
@@ -17,6 +17,7 @@ import {
   CardHeader,
   Container,
   Grid,
+  TextField,
   Typography,
 } from '@mui/material';
 
@@ -32,6 +33,15 @@ export default function WorkspacePage(): JSX.Element {
     deps: [],
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const filteredVaults: VaultModelDto[] = useMemo(
+    () =>
+      vaults.filter(v =>
+        v.label.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    [vaults, searchTerm]
+  );
+
   return (
     <Container
       sx={{
@@ -44,12 +54,19 @@ export default function WorkspacePage(): JSX.Element {
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
+      <TextField
+        fullWidth
+        placeholder="Rechercher…"
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        sx={{ mb: 2 }}
+      />
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
-      {!loading && vaults.length === 0 && (
+      {!loading && filteredVaults.length === 0 && (
         <Typography>No results found</Typography>
       )}
-      {vaults.length > 0 && (
+      {filteredVaults.length > 0 && (
         <Grid
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
@@ -57,7 +74,7 @@ export default function WorkspacePage(): JSX.Element {
           overflow={'auto'}
           height={'70vh'}
         >
-          {vaults.map(vault => (
+          {filteredVaults.map(vault => (
             <Grid key={vault.id} size={1}>
               <Card
                 sx={{
