@@ -39,18 +39,23 @@ export default function WorkspacePage(): JSX.Element {
         <Typography>No results found</Typography>
       )}
       {vaults.length > 0 && (
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={{ xs: 1, md: 2, lg: 3, xl: 4 }}
+          columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
+        >
           {vaults.map(vault => (
-            <Grid key={vault.id}>
-              <Card sx={{ bgcolor: 'background.paper', height: '100%' }}>
+            <Grid key={vault.id} size={1}>
+              <Card
+                key={vault.id}
+                sx={{
+                  bgcolor: 'background.paper',
+                }}
+              >
                 <CardHeader title={vault.label} />
                 <CardContent>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ flex: 1 }}
-                    >
+                  <Box>
+                    <Typography variant="body2" color="text.secondary">
                       Secret: {vault.secret}
                     </Typography>
                   </Box>
