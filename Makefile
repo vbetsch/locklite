@@ -8,6 +8,9 @@ package-lock.json:
 node_modules: package-lock.json
 	npm clean-install
 
+# Variables
+MIGRATION_NAME ?=
+
 # Commands
 up: docker-compose.yml
 	docker-compose up -d
@@ -35,8 +38,11 @@ coverage: node_modules
 	npm run test:cov
 
 migrate: up
-	npm run prisma:reset
-	npm run prisma:migrate
+	@if [ -z "$(MIGRATION_NAME)" ]; then \
+	  echo "Error: name is required"; \
+	  exit 1; \
+	fi
+	npm run prisma:migrate "$(MIGRATION_NAME)"
 
 clean:
 	rm -rf .next node_modules package-lock.json
