@@ -6,12 +6,11 @@ import { ThemeProvider, CssBaseline, useMediaQuery } from '@mui/material';
 import { lightTheme } from '@ui/themes/light.theme';
 import { darkTheme } from '@ui/themes/dark.theme';
 import type { Theme } from '@mui/material/styles';
+import type { SharedChildrenProps } from '@shared/types/props/SharedChildrenProps';
 
 export default function ThemeRegistry({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+}: SharedChildrenProps): JSX.Element {
   const prefersDarkMode: boolean = useMediaQuery(
     '(prefers-color-scheme: dark)'
   );

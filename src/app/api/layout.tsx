@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import React from 'react';
 import type { Metadata } from 'next';
+import type { SharedLayoutProps } from '@shared/types/props/SharedLayoutProps';
 
 export const metadata: Metadata = {
   title: 'LockLite API',
@@ -9,9 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+}: SharedLayoutProps): JSX.Element {
   return (
     // eslint-disable-next-line no-restricted-syntax
     <html lang="en">
