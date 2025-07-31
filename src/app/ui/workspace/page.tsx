@@ -23,21 +23,19 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
-import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
-import type { IdParam } from '@shared/dto/params/id.param';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
-    deps: [open],
+    deps: [open, deleteLoading],
   });
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -50,14 +48,14 @@ export default function WorkspacePage(): JSX.Element {
   );
 
   async function onDelete(id: string): Promise<void> {
-    setLoading(true);
+    setDeleteLoading(true);
     try {
       await vaultsGateway.deleteVault(id);
     } catch (error) {
       if (error instanceof Error) setError(error);
       else console.error('Unhandled API error:', error);
     } finally {
-      setLoading(false);
+      setDeleteLoading(false);
     }
   }
 

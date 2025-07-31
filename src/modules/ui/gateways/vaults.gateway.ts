@@ -25,4 +25,8 @@ export class VaultsGateway {
       data
     );
   }
+
+  public async deleteVault(id: string): Promise<void> {
+    await this._lockliteRequestService.delete<null>('vaults/' + id);
+  }
 }
