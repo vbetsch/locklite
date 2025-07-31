@@ -1,6 +1,6 @@
-import {dirname} from 'path';
-import {fileURLToPath} from 'url';
-import {FlatCompat} from '@eslint/eslintrc';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
@@ -50,7 +50,8 @@ export default tseslint.config(
             message: 'Do not use `as any`, types must be explicit and safe.',
           },
           {
-            selector: "JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]",
+            selector:
+              "JSXOpeningElement[name.type='JSXIdentifier'][name.name=/^[a-z]/]",
             message:
               'Do not use native HTML elements: use an MUI component (PascalCase) instead.',
           },
@@ -58,18 +59,19 @@ export default tseslint.config(
 
         /* Code structure and clarity */
         // 'max-params': ['warn', 1],
+
         'default-case': 'warn',
         'import/no-unresolved': 'error',
         'no-inline-comments': 'warn',
         'no-undefined': 'warn',
         'no-var': 'error',
-        'prefer-const': ['error', {destructuring: 'all'}],
+        'prefer-const': ['error', { destructuring: 'all' }],
         'require-await': 'error',
         'require-object-destructuring': 'off',
         'arrow-parens': ['error', 'as-needed'],
         /* Formatting */
-        'max-len': ['warn', {code: 300, ignoreUrls: true}],
-        'prettier/prettier': ['warn', {semi: true}],
+        'max-len': ['warn', { code: 300, ignoreUrls: true }],
+        'prettier/prettier': ['warn', { semi: true }],
         semi: ['error', 'always'],
 
         /* Naming conventions */
@@ -120,29 +122,29 @@ export default tseslint.config(
         ],
         '@typescript-eslint/explicit-function-return-type': [
           'error',
-          {allowExpressions: false},
+          { allowExpressions: false },
         ],
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
-          {accessibility: 'explicit'},
+          { accessibility: 'explicit' },
         ],
         '@typescript-eslint/explicit-module-boundary-types': 'error',
         '@typescript-eslint/no-empty-function': ['warn'],
         '@typescript-eslint/no-extraneous-class': [
           'error',
-          {allowConstructorOnly: false},
+          { allowConstructorOnly: false },
         ],
         '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/no-magic-numbers': [
           'warn',
-          {ignoreEnums: true, ignore: [0, 1], enforceConst: true},
+          { ignoreEnums: true, ignore: [0, 1], enforceConst: true },
         ],
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unused-vars': [
           'error',
-          {argsIgnorePattern: '^_'},
+          { argsIgnorePattern: '^_' },
         ],
         '@typescript-eslint/prefer-function-type': 'warn',
         '@typescript-eslint/prefer-readonly': 'warn',
@@ -187,9 +189,9 @@ export default tseslint.config(
 
     {
       files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
-      plugins: {jest: eslintPluginJest},
+      plugins: { jest: eslintPluginJest },
       settings: {
-        jest: {version: 29},
+        jest: { version: 29 },
       },
     },
   ],
