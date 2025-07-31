@@ -64,7 +64,9 @@ export default function WorkspacePage(): JSX.Element {
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       {!loading && filteredVaults.length === 0 && (
-        <Typography>No results found</Typography>
+        <Typography>
+          {searchTerm ? 'No vaults match your search' : 'No results found'}
+        </Typography>
       )}
       {filteredVaults.length > 0 && (
         <Grid
