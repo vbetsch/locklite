@@ -10,7 +10,14 @@ import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { useApi } from '@ui/hooks/useApi';
-import { Card, CardContent, Grid, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+} from '@mui/material';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
@@ -32,14 +39,24 @@ export default function WorkspacePage(): JSX.Element {
         <Typography>No results found</Typography>
       )}
       {vaults.length > 0 && (
-        <Grid>
-          {vaults.map((vault: VaultModelDto) => (
-            <Card key={vault.id}>
-              <CardContent>
-                <Typography>Label: {vault.label}</Typography>
-                <Typography>Secret: {vault.secret}</Typography>
-              </CardContent>
-            </Card>
+        <Grid container spacing={2}>
+          {vaults.map(vault => (
+            <Grid key={vault.id}>
+              <Card sx={{ bgcolor: 'background.paper', height: '100%' }}>
+                <CardHeader title={vault.label} />
+                <CardContent>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ flex: 1 }}
+                    >
+                      Secret: {vault.secret}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
         </Grid>
       )}
