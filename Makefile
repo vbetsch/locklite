@@ -39,16 +39,19 @@ coverage: node_modules
 
 migrate: up
 	@if [ -z "$(MIGRATION_NAME)" ]; then \
-	  echo "Error: name is required"; \
+	  echo "Error: MIGRATION_NAME is required"; \
 	  exit 1; \
 	fi
 	npm run prisma:migrate "$(MIGRATION_NAME)"
+
+reset_db: up
+	npm run prisma:reset
 
 clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests coverage migrate clean
+.PHONY: up down dev build lint format tests coverage migrate reset_db clean
 
 # Aliases
 run: up dev
