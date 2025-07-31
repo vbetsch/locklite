@@ -81,6 +81,8 @@ export default function WorkspacePage(): JSX.Element {
                       variant="body2"
                       color="text.secondary"
                       fontFamily={'monospace'}
+                      overflow={'scroll'}
+                      textOverflow={'ellipsis'}
                     >
                       {vault.secret}
                     </Typography>
