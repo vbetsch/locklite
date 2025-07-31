@@ -14,6 +14,7 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Container,
@@ -27,13 +28,14 @@ export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [open, setOpen] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
-    deps: [open],
+    deps: [open, deleteLoading],
   });
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -44,6 +46,22 @@ export default function WorkspacePage(): JSX.Element {
       ),
     [vaults, searchTerm]
   );
+
+  async function onDelete(id: string): Promise<void> {
+    setDeleteLoading(true);
+    try {
+      await vaultsGateway.deleteVault(id);
+    } catch (error) {
+      if (error instanceof Error) setError(error);
+      else console.error('Unhandled API error:', error);
+    } finally {
+      setDeleteLoading(false);
+    }
+  }
+
+  async function deleteVault(id: string): Promise<void> {
+    await onDelete(id);
+  }
 
   return (
     <Container
@@ -80,8 +98,8 @@ export default function WorkspacePage(): JSX.Element {
         </Button>
       </Box>
       <ErrorMessage error={error} />
-      <CircularLoader loading={loading} />
-      {!loading && filteredVaults.length === 0 && (
+      <CircularLoader loading={loading || deleteLoading} />
+      {!loading && !deleteLoading && filteredVaults.length === 0 && (
         <Typography>
           {searchTerm ? 'No vaults match your search' : 'No results found'}
         </Typography>
@@ -125,6 +143,11 @@ export default function WorkspacePage(): JSX.Element {
                     </Typography>
                   </Box>
                 </CardContent>
+                <CardActions>
+                  <Button color={'error'} onClick={() => deleteVault(vault.id)}>
+                    Delete
+                  </Button>
+                </CardActions>
               </Card>
             </Grid>
           ))}

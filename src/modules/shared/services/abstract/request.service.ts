@@ -44,7 +44,12 @@ export abstract class RequestService {
     });
   }
 
-  public async delete<T>(uri: string): Promise<T> {
-    return await this._fetch<T>(uri, { method: 'DELETE' });
+  public async delete(uri: string): Promise<void> {
+    await fetch(`${this._baseApiUrl}${uri}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }
