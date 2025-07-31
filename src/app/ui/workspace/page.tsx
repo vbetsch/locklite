@@ -98,8 +98,8 @@ export default function WorkspacePage(): JSX.Element {
         </Button>
       </Box>
       <ErrorMessage error={error} />
-      <CircularLoader loading={loading} />
-      {!loading && filteredVaults.length === 0 && (
+      <CircularLoader loading={loading || deleteLoading} />
+      {!loading && !deleteLoading && filteredVaults.length === 0 && (
         <Typography>
           {searchTerm ? 'No vaults match your search' : 'No results found'}
         </Typography>
