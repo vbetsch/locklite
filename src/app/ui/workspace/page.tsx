@@ -55,7 +55,7 @@ export default function WorkspacePage(): JSX.Element {
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
           overflow={'auto'}
-          height={'60vh'}
+          height={'70vh'}
         >
           {vaults.map(vault => (
             <Grid key={vault.id} size={1}>
