@@ -56,7 +56,7 @@ export default function WorkspacePage(): JSX.Element {
       </Typography>
       <TextField
         fullWidth
-        placeholder="Rechercher…"
+        placeholder="Search…"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
         sx={{ mb: 2 }}
