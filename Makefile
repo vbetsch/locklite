@@ -35,7 +35,8 @@ coverage: node_modules
 	npm run test:cov
 
 migrate: up
-	npx prisma migrate dev --name init
+	npm run prisma:reset
+	npm run prisma:migrate
 
 clean:
 	rm -rf .next node_modules package-lock.json
