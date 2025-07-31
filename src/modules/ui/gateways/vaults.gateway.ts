@@ -1,14 +1,17 @@
 import { inject, injectable } from 'tsyringe';
-import { RequestService } from '@shared/services/request.service';
 import { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
+import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
 
 @injectable()
 export class VaultsGateway {
   public constructor(
-    @inject(RequestService) private readonly _requestService: RequestService
+    @inject(LockliteApiRequestService)
+    private readonly _lockliteRequestService: LockliteApiRequestService
   ) {}
 
   public async getMyVaults(): Promise<GetMyVaultsResponseDto> {
-    return await this._requestService.get<GetMyVaultsResponseDto>('/vaults');
+    return await this._lockliteRequestService.get<GetMyVaultsResponseDto>(
+      '/vaults'
+    );
   }
 }

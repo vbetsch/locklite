@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
-import { RequestService } from '@shared/services/request.service';
+import { RequestService } from '@shared/services/abstract/request.service';
 
 describe('RequestService', () => {
   let service: RequestService;
