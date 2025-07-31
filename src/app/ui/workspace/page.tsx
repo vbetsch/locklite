@@ -12,6 +12,7 @@ import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults
 import { useApi } from '@ui/hooks/useApi';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -54,13 +55,23 @@ export default function WorkspacePage(): JSX.Element {
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
-      <TextField
-        fullWidth
-        placeholder="Search…"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        sx={{ mb: 2 }}
-      />
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '1rem',
+          width: '100%',
+        }}
+      >
+        <TextField
+          fullWidth
+          placeholder="Search…"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+        <Button variant="contained" sx={{ minWidth: 150 }}>
+          Add a vault
+        </Button>
+      </Box>
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       {!loading && filteredVaults.length === 0 && (
@@ -74,7 +85,7 @@ export default function WorkspacePage(): JSX.Element {
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
           overflow={'auto'}
-          height={'70vh'}
+          height={'65vh'}
         >
           {filteredVaults.map(vault => (
             <Grid key={vault.id} size={1}>
