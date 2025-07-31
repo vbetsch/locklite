@@ -1,6 +1,5 @@
 import type { JSX } from 'react';
 import React, { useState } from 'react';
-import type { SharedChildrenProps } from '@shared/types/props/SharedChildrenProps';
 import {
   Button,
   Dialog,
@@ -12,8 +11,9 @@ import {
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import ErrorMessage from '@ui/components/common/ErrorMessage';
 
-type AddVaultModalProps = SharedChildrenProps & {
+type AddVaultModalProps = {
   open: boolean;
   onClose: () => void;
 };
@@ -29,6 +29,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     setLoading(true);
     try {
       await vaultsGateway.createVault(data);
+      props.onClose();
     } catch (error) {
       if (error instanceof Error) setError(error);
       else console.error('Unhandled API error:', error);
@@ -39,9 +40,6 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
 
   const handleConfirm = async (): Promise<void> => {
     await onCreate({ label: newLabel, secret: newSecret });
-    setNewLabel('');
-    setNewSecret('');
-    props.onClose();
   };
 
   return (
@@ -65,9 +63,10 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           sx={{ mt: 2 }}
         />
       </DialogContent>
+      <ErrorMessage error={error} />
       <DialogActions>
         <Button onClick={props.onClose}>Cancel</Button>
-        <Button onClick={handleConfirm} variant="contained">
+        <Button onClick={handleConfirm} variant="contained" loading={loading}>
           Create
         </Button>
       </DialogActions>

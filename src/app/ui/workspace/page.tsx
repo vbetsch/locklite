@@ -21,10 +21,12 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import AddVaultModal from '@ui/components/modals/AddVaultModal';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
+  const [open, setOpen] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
@@ -52,6 +54,7 @@ export default function WorkspacePage(): JSX.Element {
         gap: '3rem',
       }}
     >
+      <AddVaultModal open={open} onClose={() => setOpen(false)} />
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
@@ -68,7 +71,11 @@ export default function WorkspacePage(): JSX.Element {
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
-        <Button variant="contained" sx={{ minWidth: 150 }}>
+        <Button
+          variant="contained"
+          sx={{ minWidth: 150 }}
+          onClick={e => setOpen(true)}
+        >
           Add a vault
         </Button>
       </Box>
