@@ -4,6 +4,7 @@ import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import PageContainer from '@ui/components/common/PageContainer';
+import type { SharedLayoutProps } from '@shared/types/props/SharedLayoutProps';
 
 export const metadata: Metadata = {
   title: {
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+}: SharedLayoutProps): JSX.Element {
   return (
     // eslint-disable-next-line no-restricted-syntax
     <html lang="en" style={{ height: '100%' }}>

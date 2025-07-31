@@ -1,6 +1,6 @@
-import React from 'react';
 import type { JSX } from 'react';
+import { redirect } from 'next/navigation';
 
-export default function Home(): JSX.Element {
-  return <></>;
+export default function HomePage(): JSX.Element {
+  redirect('/ui/workspace');
 }
