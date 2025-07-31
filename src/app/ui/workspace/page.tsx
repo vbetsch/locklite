@@ -74,7 +74,7 @@ export default function WorkspacePage(): JSX.Element {
         <Button
           variant="contained"
           sx={{ minWidth: 150 }}
-          onClick={e => setOpen(true)}
+          onClick={() => setOpen(true)}
         >
           Add a vault
         </Button>
