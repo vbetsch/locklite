@@ -7,8 +7,9 @@ import { IAdapter } from '@api/adapters/abstract/adapter.interface';
 export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
   public getDtoFromModel(model: Vault): VaultModelDto {
     return {
-      ...model,
       id: model.uuid,
+      label: model.label,
+      secret: model.secret,
     };
   }
 
