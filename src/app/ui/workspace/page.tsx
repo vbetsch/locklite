@@ -3,7 +3,13 @@
 import 'reflect-metadata';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
-import { List, ListItem, ListItemButton, ListItemText } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import CircularLoader from '@ui/components/common/CircularLoader';
@@ -33,7 +39,7 @@ export default function WorkspacePage(): JSX.Element {
           vaults.map((item, index) => (
             <ListItem key={index} disablePadding>
               <ListItemButton>
-                <ListItemText content={item.label} />
+                <Typography>{item.label}</Typography>
               </ListItemButton>
             </ListItem>
           ))
