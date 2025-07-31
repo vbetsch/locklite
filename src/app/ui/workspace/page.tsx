@@ -15,6 +15,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Container,
   Grid,
   Typography,
 } from '@mui/material';
@@ -32,7 +33,10 @@ export default function WorkspacePage(): JSX.Element {
   });
 
   return (
-    <>
+    <Container sx={{ padding: '2rem' }}>
+      <Typography variant={'h3'} textAlign={'left'}>
+        My vaults
+      </Typography>
       <ErrorMessage error={error} />
       <CircularLoader loading={loading} />
       {!loading && vaults.length === 0 && (
@@ -41,22 +45,36 @@ export default function WorkspacePage(): JSX.Element {
       {vaults.length > 0 && (
         <Grid
           container
-          spacing={{ xs: 1, md: 2, lg: 3, xl: 4 }}
+          spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
+          paddingTop={{ xs: 1, md: 2, lg: 3, xl: 4 }}
         >
           {vaults.map(vault => (
             <Grid key={vault.id} size={1}>
               <Card
-                key={vault.id}
                 sx={{
                   bgcolor: 'background.paper',
                 }}
               >
                 <CardHeader title={vault.label} />
                 <CardContent>
-                  <Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '1rem',
+                    }}
+                  >
                     <Typography variant="body2" color="text.secondary">
-                      Secret: {vault.secret}
+                      Secret:
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontFamily={'monospace'}
+                    >
+                      {vault.secret}
                     </Typography>
                   </Box>
                 </CardContent>
@@ -65,6 +83,6 @@ export default function WorkspacePage(): JSX.Element {
           ))}
         </Grid>
       )}
-    </>
+    </Container>
   );
 }
