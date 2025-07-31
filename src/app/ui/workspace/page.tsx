@@ -14,6 +14,7 @@ import {
   Box,
   Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Container,
@@ -22,11 +23,14 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
+import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import type { IdParam } from '@shared/dto/params/id.param';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
@@ -44,6 +48,22 @@ export default function WorkspacePage(): JSX.Element {
       ),
     [vaults, searchTerm]
   );
+
+  async function onDelete(id: string): Promise<void> {
+    setLoading(true);
+    try {
+      await vaultsGateway.deleteVault(id);
+    } catch (error) {
+      if (error instanceof Error) setError(error);
+      else console.error('Unhandled API error:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function deleteVault(id: string): Promise<void> {
+    await onDelete(id);
+  }
 
   return (
     <Container
@@ -125,6 +145,11 @@ export default function WorkspacePage(): JSX.Element {
                     </Typography>
                   </Box>
                 </CardContent>
+                <CardActions>
+                  <Button color={'error'} onClick={() => deleteVault(vault.id)}>
+                    Delete
+                  </Button>
+                </CardActions>
               </Card>
             </Grid>
           ))}
