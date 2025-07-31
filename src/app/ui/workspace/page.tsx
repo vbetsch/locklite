@@ -33,7 +33,7 @@ export default function WorkspacePage(): JSX.Element {
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
-    deps: [],
+    deps: [open],
   });
 
   const [searchTerm, setSearchTerm] = useState('');
