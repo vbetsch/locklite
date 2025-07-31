@@ -19,8 +19,8 @@ export default function WorkspacePage(): JSX.Element {
 
   const { loading } = useApi<GetMyVaultsResponseDto>({
     request: () => vaultsGateway.getMyVaults(),
-    onSuccess: (data) => setVaults(data.myVaults),
-    onError: (err) => setError(err),
+    onSuccess: data => setVaults(data.myVaults),
+    onError: error => setError(error),
     deps: [],
   });
 

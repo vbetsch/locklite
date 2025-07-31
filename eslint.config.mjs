@@ -66,7 +66,7 @@ export default tseslint.config(
         'prefer-const': ['error', {destructuring: 'all'}],
         'require-await': 'error',
         'require-object-destructuring': 'off',
-
+        'arrow-parens': ['error', 'as-needed'],
         /* Formatting */
         'max-len': ['warn', {code: 300, ignoreUrls: true}],
         'prettier/prettier': ['warn', {semi: true}],
