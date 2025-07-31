@@ -10,7 +10,9 @@
     "format:c": "prettier --check .",
     "format:w": "prettier --write .",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "prisma:reset": "prisma migrate reset",
+    "prisma:migrate": "prisma migrate dev --name"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
