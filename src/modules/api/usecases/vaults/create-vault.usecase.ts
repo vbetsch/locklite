@@ -19,6 +19,6 @@ export class CreateVaultUseCase
 
   public async handle(input: CreateVaultRequestDto): Promise<VaultModelDto> {
     const vaultCreated: Vault = await this._vaultsRepository.create(input);
-    return this._vaultAdapter.getDtoFromModel(vaultCreated);
+    return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }
 }

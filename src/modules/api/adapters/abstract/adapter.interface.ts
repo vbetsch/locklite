@@ -1,4 +1,4 @@
-export interface IAdapter<Model, Dto> {
-  getDtoFromModel(model: Model): Dto;
-  getDtoListFromModelList(models: Model[]): Dto[];
+export interface IAdapter<Entity, Dto> {
+  getDtoFromEntity(entity: Entity): Dto;
+  getDtoListFromEntities(entities: Entity[]): Dto[];
 }

@@ -14,9 +14,9 @@ export class VaultsRepository {
     return await prisma.vault.create({ data: params });
   }
 
-  public async delete(id: string): Promise<void> {
+  public async delete(uuid: string): Promise<void> {
     try {
-      await prisma.vault.delete({ where: { id: id } });
+      await prisma.vault.delete({ where: { uuid: uuid } });
     } catch (error: unknown) {
       console.error(error);
       throw new NoVaultFoundError();

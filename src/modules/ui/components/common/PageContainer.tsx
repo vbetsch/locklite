@@ -1,12 +1,9 @@
 import type { JSX } from 'react';
 import React from 'react';
 import { Container } from '@mui/material';
+import type { SharedChildrenProps } from '@shared/types/props/SharedChildrenProps';
 
-type PageContainerProps = {
-  children: React.ReactNode;
-};
-
-export default function PageContainer(props: PageContainerProps): JSX.Element {
+export default function PageContainer(props: SharedChildrenProps): JSX.Element {
   return (
     <Container
       sx={{
