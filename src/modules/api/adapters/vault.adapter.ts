@@ -5,15 +5,15 @@ import { IAdapter } from '@api/adapters/abstract/adapter.interface';
 
 @injectable()
 export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
-  public getDtoFromModel(model: Vault): VaultModelDto {
+  public getDtoFromEntity(entity: Vault): VaultModelDto {
     return {
-      id: model.uuid,
-      label: model.label,
-      secret: model.secret,
+      id: entity.uuid,
+      label: entity.label,
+      secret: entity.secret,
     };
   }
 
-  public getDtoListFromModelList(models: Vault[]): VaultModelDto[] {
-    return models.map((model: Vault) => this.getDtoFromModel(model));
+  public getDtoListFromEntities(entities: Vault[]): VaultModelDto[] {
+    return entities.map((entity: Vault) => this.getDtoFromEntity(entity));
   }
 }
