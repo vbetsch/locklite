@@ -15,6 +15,7 @@ export abstract class RequestService {
       try {
         // eslint-disable-next-line @typescript-eslint/typedef
         const errorJson = await response.json();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         message = errorJson?.error ?? message;
       } catch {
         message = await response.text();
