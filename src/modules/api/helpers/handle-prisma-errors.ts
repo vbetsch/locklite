@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { PrismaErrorLike } from '@api/types/prisma-error-like.type';
+import { StatusCodes } from 'http-status-codes';
 
 export function handlePrismaError(error: PrismaErrorLike): NextResponse {
   if (error.name === 'PrismaClientKnownRequestError') {
@@ -7,17 +8,17 @@ export function handlePrismaError(error: PrismaErrorLike): NextResponse {
       case 'P2002':
         return NextResponse.json(
           { error: 'Resource already exists' },
-          { status: 409 }
+          { status: StatusCodes.CONFLICT }
         );
       case 'P2025':
         return NextResponse.json(
           { error: 'Resource not found' },
-          { status: 404 }
+          { status: StatusCodes.NOT_FOUND }
         );
       case 'P2000':
         return NextResponse.json(
           { error: 'One of the requested values is too long' },
-          { status: 400 }
+          { status: StatusCodes.BAD_REQUEST }
         );
       default:
         console.error(
@@ -26,16 +27,19 @@ export function handlePrismaError(error: PrismaErrorLike): NextResponse {
         );
         return NextResponse.json(
           { error: 'Internal Server Error' },
-          { status: 500 }
+          { status: StatusCodes.INTERNAL_SERVER_ERROR }
         );
     }
   }
   if (error.name === 'PrismaClientValidationError') {
     return NextResponse.json(
       { error: 'Invalid request data' },
-      { status: 400 }
+      { status: StatusCodes.BAD_REQUEST }
     );
   }
   console.error(error);
-  return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  return NextResponse.json(
+    { error: 'Internal Server Error' },
+    { status: StatusCodes.INTERNAL_SERVER_ERROR }
+  );
 }
