@@ -24,13 +24,13 @@ import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.respon
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/GetMyVaultsResponseDto'
+ *               $ref: '#/components/schemas/GetMyVaultsDataDto'
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  */
 export async function GET(): Promise<
   NextResponse<HttpResponseDto<GetMyVaultsDataDto>>
@@ -69,13 +69,13 @@ export async function GET(): Promise<
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  */
 export async function POST(
   request: NextRequest

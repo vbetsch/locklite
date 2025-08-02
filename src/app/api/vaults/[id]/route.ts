@@ -28,13 +28,13 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  */
 export async function DELETE(
   request: NextRequest,
