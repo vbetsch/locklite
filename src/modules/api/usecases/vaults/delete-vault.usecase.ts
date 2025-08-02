@@ -1,17 +1,19 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.interface';
-import { IdParam } from '@shared/dto/params/id.param';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
+import { CreateVaultParams } from '@shared/dto/params/create-vault.params';
 
 @injectable()
-export class DeleteVaultUseCase implements IUseCaseWithInput<IdParam, void> {
+export class DeleteVaultUseCase
+  implements IUseCaseWithInput<CreateVaultParams, void>
+{
   public constructor(
     @inject(VaultsRepository)
     private readonly _vaultsRepository: VaultsRepository
   ) {}
 
-  public async handle(input: IdParam): Promise<void> {
-    const vaultId: string = (await input.params)?.id;
+  public async handle(params: CreateVaultParams): Promise<void> {
+    const vaultId: string = params.id;
     await this._vaultsRepository.delete(vaultId);
   }
 }

@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
-import type { IdParam } from '@shared/dto/params/id.param';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
+import type { CreateVaultParams } from '@shared/dto/params/create-vault.params';
+import type { HttpOptions } from '@shared/dto/options/abstract/http-options';
 
 /**
  * @swagger
@@ -38,12 +39,12 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  */
 export async function DELETE(
   request: NextRequest,
-  params: IdParam
+  options: HttpOptions<CreateVaultParams>
 ): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
   return await handleApiRequest<void>(
-    () => deleteVaultUseCase.handle(params),
+    async () => deleteVaultUseCase.handle(await options.params),
     StatusCodes.NO_CONTENT
   );
 }
