@@ -1,15 +1,14 @@
 import { injectable } from 'tsyringe';
 import { RequestService } from '@shared/services/abstract/request.service';
 import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
-import type { HttpBodyDto } from '@shared/dto/body/abstract/http.body.dto';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
-  protected override async _fetch<Data>(
+  protected override async _retrieve<Data>(
     uri: string,
     options: RequestInit
-  ): Promise<Response> {
-    const response: Response = await this._request(`/api${uri}`, options);
+  ): Promise<Data> {
+    const response: Response = await this._fetch(`/api${uri}`, options);
 
     let message: string = 'Unexpected error';
     let responseData: HttpResponseDto<Data>;
@@ -34,15 +33,6 @@ export class LockliteApiRequestService extends RequestService {
       throw new Error(message);
     }
 
-    return response;
-  }
-
-  protected override async _retrieveJson<Data>(
-    url: string,
-    options: RequestInit
-  ): Promise<Data> {
-    const response: Response = await this._fetch(url, options);
-    const responseData: HttpBodyDto<Data> = await response.json();
     return responseData.data;
   }
 }
