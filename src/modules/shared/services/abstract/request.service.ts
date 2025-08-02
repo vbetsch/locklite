@@ -1,8 +1,3 @@
-export type FetchResponse = {
-  response: Response;
-  body: unknown | null;
-};
-
 export abstract class RequestService {
   protected async _request(
     url: string,
@@ -17,10 +12,7 @@ export abstract class RequestService {
     });
   }
 
-  protected async _fetch(
-    url: string,
-    options: RequestInit
-  ): Promise<FetchResponse> {
+  protected async _fetch(url: string, options: RequestInit): Promise<Response> {
     const response: Response = await this._request(url, options);
 
     if (!response.ok) {
@@ -36,7 +28,7 @@ export abstract class RequestService {
       throw new Error(message);
     }
 
-    return { response: response, body: null };
+    return response;
   }
 
   protected async _execute(url: string, options: RequestInit): Promise<void> {
@@ -47,8 +39,8 @@ export abstract class RequestService {
     url: string,
     options: RequestInit
   ): Promise<T> {
-    const fetchResponse: FetchResponse = await this._fetch(url, options);
-    return fetchResponse.response.json();
+    const response: Response = await this._fetch(url, options);
+    return response.json();
   }
 
   public async get<T>(url: string): Promise<T> {
