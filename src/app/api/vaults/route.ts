@@ -36,7 +36,7 @@ export async function GET(): Promise<NextResponse> {
     container.resolve(GetMyVaultsUseCase);
   return await handleApiRequest<GetMyVaultsResponseDto>(async () => {
     const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
-    const response: GetMyVaultsResponseDto = { myVaults };
+    const response: GetMyVaultsResponseDto = { data: { myVaults } };
     return response;
   });
 }
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     container.resolve(CreateVaultUseCase);
   return await handleApiRequest<CreateVaultResponseDto>(async () => {
     const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
-    const response: CreateVaultResponseDto = { vaultCreated };
+    const response: CreateVaultResponseDto = { data: { vaultCreated } };
     return response;
   }, StatusCodes.CREATED);
 }

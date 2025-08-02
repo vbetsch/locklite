@@ -1,11 +1,4 @@
-/**
- * @swagger
- * components:
- *   schemas:
- *     HttpResponseDto:
- *       type: object
- *       properties:
- *         error:
- *           type: string
- */
-export type HttpResponseDto<T> = { error?: string } & T;
+import type { HttpDataDto } from '@shared/dto/responses/abstract/http.data.dto';
+import type { HttpErrorDto } from '@shared/dto/responses/http.error.dto';
+
+export type HttpResponseDto<T> = HttpDataDto<T> | HttpErrorDto;
