@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { Prisma } from '@prisma/client';
+import type { PrismaErrorLike } from '@api/types/prisma-error-like.type';
 
-export function handlePrismaError(error: unknown): NextResponse {
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+export function handlePrismaError(error: PrismaErrorLike): NextResponse {
+  if (error.name === 'PrismaClientKnownRequestError') {
     switch (error.code) {
       case 'P2002':
         return NextResponse.json(
@@ -18,7 +18,7 @@ export function handlePrismaError(error: unknown): NextResponse {
         break;
     }
   }
-  if (error instanceof Prisma.PrismaClientValidationError) {
+  if (error.name === 'PrismaClientValidationError') {
     return NextResponse.json(
       { error: 'Invalid request data.' },
       { status: 400 }

@@ -2,7 +2,7 @@ import { HttpError } from '@api/errors/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
 import { handlePrismaError } from '@api/helpers/handle-prisma-errors';
-import { Prisma } from '@prisma/client';
+import type { PrismaErrorLike } from '@api/types/prisma-error-like.type';
 
 export async function handleApiRequest<T>(
   callback: () => Promise<T>,
@@ -18,12 +18,14 @@ export async function handleApiRequest<T>(
     return NextResponse.json(data, {
       status: successStatusCode || StatusCodes.OK,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     if (
-      error instanceof Prisma.PrismaClientKnownRequestError ||
-      error instanceof Prisma.PrismaClientValidationError
+      typeof error === 'object' &&
+      error !== null &&
+      'name' in error &&
+      typeof error.name === 'string'
     ) {
-      return handlePrismaError(error);
+      return handlePrismaError(error as PrismaErrorLike);
     }
 
     if (error instanceof HttpError) {
