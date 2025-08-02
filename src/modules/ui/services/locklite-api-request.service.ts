@@ -4,17 +4,11 @@ import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dt
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
-  protected override async _fetch<Data>(
+  protected override async _retrieve<Data>(
     uri: string,
     options: RequestInit
   ): Promise<Data> {
-    const response: Response = await fetch(`/api${uri}`, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(options.headers ?? {}),
-      },
-    });
+    const response: Response = await this._fetch(`/api${uri}`, options);
 
     let message: string = 'Unexpected error';
     let responseData: HttpResponseDto<Data>;
