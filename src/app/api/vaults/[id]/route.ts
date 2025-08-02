@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import type { IdParam } from '@shared/dto/params/id.param';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/utils/handle-api-request';
+import { handleApiRequest } from '@api/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
 
