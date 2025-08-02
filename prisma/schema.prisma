@@ -11,5 +11,5 @@ datasource db {
 model Vault {
   uuid   String @id @default(uuid())
   label  String @db.VarChar(255)
-  secret String @db.VarChar(255)
+  secret String
 }
