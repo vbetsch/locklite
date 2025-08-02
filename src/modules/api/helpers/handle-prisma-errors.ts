@@ -15,7 +15,14 @@ export function handlePrismaError(error: PrismaErrorLike): NextResponse {
           { status: 404 }
         );
       default:
-        break;
+        console.error(
+          'Error: PrismaClientKnownRequestError not handled with code ' +
+            error.code
+        );
+        return NextResponse.json(
+          { error: 'Internal Server Error' },
+          { status: 500 }
+        );
     }
   }
   if (error.name === 'PrismaClientValidationError') {
@@ -24,5 +31,6 @@ export function handlePrismaError(error: PrismaErrorLike): NextResponse {
       { status: 400 }
     );
   }
+  console.error(error);
   return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
 }
