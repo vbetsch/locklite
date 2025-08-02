@@ -42,7 +42,7 @@ export async function DELETE(
 ): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
-  return await handleApiRequest(
+  return await handleApiRequest<void>(
     () => deleteVaultUseCase.handle(params),
     StatusCodes.NO_CONTENT
   );

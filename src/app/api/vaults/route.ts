@@ -34,7 +34,7 @@ import { StatusCodes } from 'http-status-codes';
 export async function GET(): Promise<NextResponse> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
     container.resolve(GetMyVaultsUseCase);
-  return await handleApiRequest(async () => {
+  return await handleApiRequest<GetMyVaultsResponseDto>(async () => {
     const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
     const response: GetMyVaultsResponseDto = { myVaults };
     return response;
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const params: CreateVaultRequestDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
-  return await handleApiRequest(async () => {
+  return await handleApiRequest<CreateVaultResponseDto>(async () => {
     const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
     const response: CreateVaultResponseDto = { vaultCreated };
     return response;
