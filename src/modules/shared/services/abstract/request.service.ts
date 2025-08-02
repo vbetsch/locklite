@@ -21,7 +21,7 @@ export abstract class RequestService {
       throw new Error(message);
     }
 
-    return response.json();
+    return await response.json();
   }
 
   public async get<T>(url: string): Promise<T> {
