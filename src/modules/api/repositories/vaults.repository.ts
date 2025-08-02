@@ -7,7 +7,11 @@ import { handlePrismaRequest } from '@api/helpers/prisma/handle-prisma-request';
 @injectable()
 export class VaultsRepository {
   public async findAll(): Promise<Vault[]> {
-    return await handlePrismaRequest<Vault[]>(() => prisma.vault.findMany());
+    return await handlePrismaRequest<Vault[]>(() =>
+      prisma.vault.findMany({
+        orderBy: { createdAt: 'desc' },
+      })
+    );
   }
 
   public async countByLabel(label: string): Promise<number> {
