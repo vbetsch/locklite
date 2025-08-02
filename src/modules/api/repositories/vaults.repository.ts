@@ -10,6 +10,14 @@ export class VaultsRepository {
     return await handlePrismaRequest<Vault[]>(() => prisma.vault.findMany());
   }
 
+  public async countByLabel(label: string): Promise<number> {
+    return await handlePrismaRequest<number>(() =>
+      prisma.vault.count({
+        where: { label },
+      })
+    );
+  }
+
   public async create(params: CreateVaultRequestDto): Promise<Vault> {
     return await handlePrismaRequest<Vault>(() =>
       prisma.vault.create({ data: params })

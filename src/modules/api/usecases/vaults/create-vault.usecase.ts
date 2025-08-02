@@ -5,6 +5,7 @@ import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
 import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import { VaultAlreadyExistsError } from '@api/errors/vault-already-exists.error';
 
 @injectable()
 export class CreateVaultUseCase
@@ -18,6 +19,12 @@ export class CreateVaultUseCase
   ) {}
 
   public async handle(input: CreateVaultRequestDto): Promise<VaultModelDto> {
+    const vaultsFound: number = await this._vaultsRepository.countByLabel(
+      input.label
+    );
+    if (vaultsFound > 0) {
+      throw new VaultAlreadyExistsError(input.label);
+    }
     const vaultCreated: Vault = await this._vaultsRepository.create(input);
     return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }
