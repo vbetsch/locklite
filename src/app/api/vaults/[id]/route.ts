@@ -25,6 +25,10 @@ import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
  *         description: The vault has been successfully deleted
  *       404:
  *         description: Resource not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
  *       500:
  *         description: Internal Server Error
  *         content:
