@@ -9,7 +9,8 @@ datasource db {
 }
 
 model Vault {
-  uuid   String @id @default(uuid())
-  label  String @db.VarChar(255)
-  secret String
+  uuid      String   @id @default(uuid())
+  label     String   @db.VarChar(255)
+  secret    String
+  createdAt DateTime @default(now())
 }
