@@ -1,4 +1,4 @@
-import type { HttpDataDto } from '@shared/dto/responses/abstract/http.data.dto';
-import type { HttpErrorDto } from '@shared/dto/responses/http.error.dto';
+import type { HttpBodyDto } from '@shared/dto/body/abstract/http.body.dto';
+import type { HttpErrorDto } from '@shared/dto/errors/http.error.dto';
 
-export type HttpResponseDto<T> = HttpDataDto<T> | HttpErrorDto;
+export type HttpResponseDto<Data> = HttpBodyDto<Data> | HttpErrorDto;

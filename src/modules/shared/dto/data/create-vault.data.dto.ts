@@ -1,5 +1,4 @@
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
 
 /**
  * @swagger
@@ -13,6 +12,6 @@ import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.respon
  *           vaultCreated:
  *             $ref: '#/components/schemas/VaultModelDto'
  */
-export type CreateVaultResponseDto = HttpResponseDto<{
+export type CreateVaultDataDto = {
   vaultCreated: VaultModelDto;
-}>;
+};
