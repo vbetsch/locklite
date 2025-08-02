@@ -54,6 +54,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           value={newLabel}
           onChange={e => setNewLabel(e.target.value)}
         />
+        <ErrorMessage error={error} />
         <TextField
           margin="dense"
           label="Secret"
@@ -63,7 +64,6 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           sx={{ mt: 2 }}
         />
       </DialogContent>
-      <ErrorMessage error={error} />
       <DialogActions>
         <Button onClick={props.onClose}>Cancel</Button>
         <Button onClick={handleConfirm} variant="contained" loading={loading}>
