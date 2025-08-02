@@ -8,7 +8,6 @@ import ErrorMessage from '@ui/components/common/ErrorMessage';
 import CircularLoader from '@ui/components/common/CircularLoader';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { useApi } from '@ui/hooks/useApi';
 import {
   Box,
@@ -23,6 +22,7 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
+import type { GetMyVaultsDataDto } from '@shared/dto/data/get-my-vaults.data.dto';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
@@ -31,9 +31,9 @@ export default function WorkspacePage(): JSX.Element {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  const { loading } = useApi<GetMyVaultsResponseDto>({
+  const { loading } = useApi<GetMyVaultsDataDto>({
     request: () => vaultsGateway.getMyVaults(),
-    onSuccess: body => setVaults(body?.data.myVaults),
+    onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
     deps: [open, deleteLoading],
   });

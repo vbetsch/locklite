@@ -28,7 +28,7 @@ export async function handleApiRequest<Data>(
       );
     }
 
-    console.error(error);
+    console.error('Error while handling API errors: ', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }

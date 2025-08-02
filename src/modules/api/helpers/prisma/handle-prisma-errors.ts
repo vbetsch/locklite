@@ -26,6 +26,6 @@ export function handlePrismaError(error: PrismaErrorLike): HttpError {
   if (error.name === 'PrismaClientValidationError') {
     return new InvalidRequestDataError();
   }
-  console.error(error);
+  console.error('Error while handling prisma errors: ', error);
   return new InternalServerError();
 }
