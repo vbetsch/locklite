@@ -14,6 +14,11 @@ export function handlePrismaError(error: PrismaErrorLike): NextResponse {
           { error: 'Resource not found' },
           { status: 404 }
         );
+      case 'P2000':
+        return NextResponse.json(
+          { error: 'One of the requested values is too long' },
+          { status: 400 }
+        );
       default:
         console.error(
           'Error: PrismaClientKnownRequestError not handled with code ' +
