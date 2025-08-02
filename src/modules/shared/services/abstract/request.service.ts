@@ -1,5 +1,8 @@
 export abstract class RequestService {
-  protected async _fetch(url: string, options: RequestInit): Promise<Response> {
+  protected async _request(
+    url: string,
+    options: RequestInit
+  ): Promise<Response> {
     return await fetch(url, {
       ...options,
       headers: {
@@ -9,12 +12,8 @@ export abstract class RequestService {
     });
   }
 
-  protected async _execute(url: string, options: RequestInit): Promise<void> {
-    await this._fetch(url, options);
-  }
-
-  protected async _retrieve<T>(url: string, options: RequestInit): Promise<T> {
-    const response: Response = await this._fetch(url, options);
+  protected async _fetch(url: string, options: RequestInit): Promise<Response> {
+    const response: Response = await this._request(url, options);
 
     if (!response.ok) {
       let message: string = 'Unexpected error';
@@ -29,22 +28,34 @@ export abstract class RequestService {
       throw new Error(message);
     }
 
+    return response;
+  }
+
+  protected async _execute(url: string, options: RequestInit): Promise<void> {
+    await this._fetch(url, options);
+  }
+
+  protected async _retrieveJson<T>(
+    url: string,
+    options: RequestInit
+  ): Promise<T> {
+    const response: Response = await this._fetch(url, options);
     return response.json();
   }
 
   public async get<T>(url: string): Promise<T> {
-    return await this._retrieve<T>(url, { method: 'GET' });
+    return await this._retrieveJson<T>(url, { method: 'GET' });
   }
 
   public async post<T>(url: string, body: unknown): Promise<T> {
-    return await this._retrieve<T>(url, {
+    return await this._retrieveJson<T>(url, {
       method: 'POST',
       body: JSON.stringify(body),
     });
   }
 
   public async put<T>(url: string, body: unknown): Promise<T> {
-    return await this._retrieve<T>(url, {
+    return await this._retrieveJson<T>(url, {
       method: 'PUT',
       body: JSON.stringify(body),
     });
