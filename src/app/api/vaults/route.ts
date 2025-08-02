@@ -24,7 +24,7 @@ import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.respon
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/GetMyVaultsDataDto'
+ *               $ref: '#/components/schemas/GetMyVaultsBodyDto'
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -63,7 +63,7 @@ export async function GET(): Promise<
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CreateVaultDataDto'
+ *               $ref: '#/components/schemas/CreateVaultBodyDto'
  *       400:
  *         description: One of the requested values is too long
  *         content:
