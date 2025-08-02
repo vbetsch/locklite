@@ -1,6 +1,7 @@
 import { injectable } from 'tsyringe';
 import { RequestService } from '@shared/services/abstract/request.service';
 import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
+import { StatusCodes } from 'http-status-codes';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
@@ -15,6 +16,11 @@ export class LockliteApiRequestService extends RequestService {
         ...(options.headers ?? {}),
       },
     });
+
+    if (response.status === StatusCodes.NO_CONTENT) {
+      // eslint-disable-next-line no-undefined
+      return undefined as unknown as Data;
+    }
 
     let message: string = 'Unexpected error';
     let responseData: HttpResponseDto<Data>;
