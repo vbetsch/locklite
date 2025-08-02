@@ -7,6 +7,7 @@ export async function handlePrismaRequest<T>(
   try {
     return await callback();
   } catch (error: unknown) {
+    // if match with type PrismaErrorLike
     if (
       typeof error === 'object' &&
       error !== null &&
