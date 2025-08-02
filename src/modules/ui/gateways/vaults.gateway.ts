@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
-import { CreateVaultDataDto } from '@shared/dto/data/create-vault.data.dto';
-import { GetMyVaultsDataDto } from '@shared/dto/data/get-my-vaults.data.dto';
+import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
+import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
 
 @injectable()

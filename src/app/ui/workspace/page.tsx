@@ -22,7 +22,7 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
-import type { GetMyVaultsDataDto } from '@shared/dto/data/get-my-vaults.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);

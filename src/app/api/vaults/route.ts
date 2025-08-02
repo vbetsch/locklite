@@ -5,11 +5,11 @@ import { handleApiRequest } from '@api/helpers/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
-import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { StatusCodes } from 'http-status-codes';
-import type { CreateVaultDataDto } from '@shared/dto/data/create-vault.data.dto';
-import type { GetMyVaultsDataDto } from '@shared/dto/data/get-my-vaults.data.dto';
-import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
+import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 
 /**
  * @swagger

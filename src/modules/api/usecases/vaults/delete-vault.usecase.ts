@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.interface';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
-import { CreateVaultParams } from '@shared/dto/params/create-vault.params';
+import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 
 @injectable()
 export class DeleteVaultUseCase

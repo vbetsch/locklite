@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 
 type AddVaultModalProps = {

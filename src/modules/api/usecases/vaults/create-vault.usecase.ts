@@ -4,7 +4,7 @@ import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.int
 import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
-import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { VaultAlreadyExistsError } from '@api/errors/vault-already-exists.error';
 
 @injectable()

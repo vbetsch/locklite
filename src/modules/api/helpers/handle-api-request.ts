@@ -1,7 +1,7 @@
 import { HttpError } from '@api/errors/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
-import type { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
+import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 
 export async function handleApiRequest<Data>(
   callback: () => Promise<Data>,
