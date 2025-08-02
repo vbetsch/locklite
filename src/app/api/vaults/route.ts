@@ -61,6 +61,12 @@ export async function GET(): Promise<NextResponse> {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultResponseDto'
+ *       400:
+ *         description: One of the requested values is too long
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpResponseDto'
  *       500:
  *         description: Internal Server Error
  *         content:
