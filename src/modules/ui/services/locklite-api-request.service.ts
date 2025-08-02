@@ -2,13 +2,14 @@ import { injectable } from 'tsyringe';
 import { RequestService } from '@shared/services/abstract/request.service';
 import { HttpResponseDto } from '@shared/dto/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
+import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
   protected override async _fetch<Data>(
     uri: string,
     options: RequestInit
-  ): Promise<Data> {
+  ): Promise<RequestServiceOutputType<Data>> {
     const response: Response = await fetch(`/api${uri}`, {
       ...options,
       headers: {
@@ -18,14 +19,17 @@ export class LockliteApiRequestService extends RequestService {
     });
 
     if (response.status === StatusCodes.NO_CONTENT) {
-      // eslint-disable-next-line no-undefined
-      return undefined as unknown as Data;
+      return {
+        status: StatusCodes.NO_CONTENT,
+        // eslint-disable-next-line no-undefined
+        data: undefined as unknown as Data,
+      };
     }
 
     let message: string = 'Unexpected error';
-    let responseData: HttpResponseDto<Data>;
+    let responseBody: HttpResponseDto<Data>;
     try {
-      responseData = await response.json();
+      responseBody = await response.json();
     } catch (error: unknown) {
       if (error instanceof Error) {
         message = error.message;
@@ -36,15 +40,15 @@ export class LockliteApiRequestService extends RequestService {
       throw new Error(message);
     }
 
-    if (!('data' in responseData)) {
-      if ('error' in responseData) {
-        throw new Error(responseData.error);
+    if (!('data' in responseBody)) {
+      if ('error' in responseBody) {
+        throw new Error(responseBody.error);
       }
       message = 'An error occurred while parsing locklite API call.';
-      console.error(`${message} Response: `, responseData);
+      console.error(`${message} Response: `, responseBody);
       throw new Error(message);
     }
 
-    return responseData.data;
+    return { status: response.status, data: responseBody.data };
   }
 }

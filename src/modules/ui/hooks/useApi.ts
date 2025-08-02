@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import type { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
 
 type UseApiOptions<T> = {
-  request: () => Promise<T>;
+  request: () => Promise<RequestServiceOutputType<T>>;
   onSuccess: (data: T) => void;
   onError?: (error: Error) => void;
   deps?: unknown[];
@@ -19,8 +20,8 @@ export function useApi<T>({
     void (async (): Promise<void> => {
       setLoading(true);
       try {
-        const data: Awaited<T> = await request();
-        onSuccess(data);
+        const output: Awaited<RequestServiceOutputType<T>> = await request();
+        onSuccess(output.data);
       } catch (err) {
         if (err instanceof Error) onError?.(err);
         else console.error('Unhandled API error:', err);

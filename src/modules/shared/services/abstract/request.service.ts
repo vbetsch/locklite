@@ -1,5 +1,10 @@
+import type { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
+
 export abstract class RequestService {
-  protected async _fetch<T>(url: string, options: RequestInit): Promise<T> {
+  protected async _fetch<T>(
+    url: string,
+    options: RequestInit
+  ): Promise<RequestServiceOutputType<T>> {
     const response: Response = await fetch(url, {
       ...options,
       headers: {
@@ -21,30 +26,37 @@ export abstract class RequestService {
       throw new Error(message);
     }
 
-    return await response.json();
+    return { status: response.status, data: await response.json() };
   }
 
-  public async get<T>(url: string): Promise<T> {
+  public async get<T>(url: string): Promise<RequestServiceOutputType<T>> {
     return await this._fetch<T>(url, { method: 'GET' });
   }
 
-  public async post<T>(url: string, body: unknown): Promise<T> {
+  public async post<T>(
+    url: string,
+    body: unknown
+  ): Promise<RequestServiceOutputType<T>> {
     return await this._fetch<T>(url, {
       method: 'POST',
       body: JSON.stringify(body),
     });
   }
 
-  public async put<T>(url: string, body: unknown): Promise<T> {
+  public async put<T>(
+    url: string,
+    body: unknown
+  ): Promise<RequestServiceOutputType<T>> {
     return await this._fetch<T>(url, {
       method: 'PUT',
       body: JSON.stringify(body),
     });
   }
 
-  public async delete(url: string): Promise<void> {
-    await this._fetch<void>(url, {
+  public async delete<T>(url: string): Promise<number> {
+    const output: RequestServiceOutputType<T> = await this._fetch<T>(url, {
       method: 'DELETE',
     });
+    return output.status;
   }
 }
