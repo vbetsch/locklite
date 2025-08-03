@@ -13,7 +13,6 @@ export function useApiFetch<T>({
   request,
   onSuccess,
   onError,
-  deps = [],
 }: UseApiFetchOptions<T>): {
   loading: boolean;
   error?: Error;
@@ -28,7 +27,7 @@ export function useApiFetch<T>({
   useEffect(() => {
     void execute();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [execute, ...deps]);
+  }, []);
 
   return { loading, error, refetch: execute };
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import 'reflect-metadata';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import type { JSX } from 'react';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
@@ -32,10 +32,21 @@ export default function WorkspacePage(): JSX.Element {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
+  const request = useCallback(
+    () => vaultsGateway.getMyVaults(),
+    [vaultsGateway]
+  );
+
+  const handleSuccess = useCallback(
+    (data: GetMyVaultsDataDto) => setVaults(data.myVaults),
+    []
+  );
+  const handleError = useCallback((err: Error) => setError(err), []);
+
   const { loading, refetch } = useApiFetch<GetMyVaultsDataDto>({
-    request: () => vaultsGateway.getMyVaults(),
-    onSuccess: data => setVaults(data.myVaults),
-    onError: error => setError(error),
+    request,
+    onSuccess: handleSuccess,
+    onError: handleError,
   });
 
   const [searchTerm, setSearchTerm] = useState('');
