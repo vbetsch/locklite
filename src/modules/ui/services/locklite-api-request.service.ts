@@ -11,12 +11,31 @@ import { BusinessError } from '@shared/errors/business-error';
 export class LockliteApiRequestService extends RequestService {
   private _errorMessage: string = 'Unexpected error';
 
-  private handleNoDataCase<Data>(): RequestServiceOutputType<Data> {
+  private _handleNoDataCase<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
       // eslint-disable-next-line no-undefined
       data: undefined as unknown as Data,
     };
+  }
+
+  private _handleParseError(error: unknown): never {
+    const message: string =
+      error instanceof Error
+        ? error.message
+        : 'An error occurred while parsing locklite API response';
+    UiLogger.error(`${message}: `, error);
+    throw new Error(message);
+  }
+
+  private async _parseData<Data>(
+    response: Response
+  ): Promise<HttpResponseDto<Data>> {
+    try {
+      return await response.json();
+    } catch (error: unknown) {
+      this._handleParseError(error);
+    }
   }
 
   protected override async _fetch<Data>(
@@ -32,22 +51,10 @@ export class LockliteApiRequestService extends RequestService {
     });
 
     if (response.status === StatusCodes.NO_CONTENT) {
-      return this.handleNoDataCase<Data>();
+      return this._handleNoDataCase<Data>();
     }
 
-    let responseBody: HttpResponseDto<Data>;
-    try {
-      responseBody = await response.json();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        this._errorMessage = error.message;
-      } else {
-        this._errorMessage =
-          'An error occurred while parsing locklite API response';
-      }
-      UiLogger.error(`${this._errorMessage}: `, error);
-      throw new Error(this._errorMessage);
-    }
+    const responseBody: HttpResponseDto<Data> = await this._parseData(response);
 
     if (!('data' in responseBody)) {
       if ('error' in responseBody) {
