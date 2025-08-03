@@ -3,13 +3,13 @@ import { useState, useCallback } from 'react';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { UiLogger } from '@ui/logs/ui.logger';
 
-type UseApiCallOptions<TData, TParams = undefined> = {
+type UseApiCallOptions<TData, TParams = null> = {
   request: (params?: TParams) => Promise<RequestServiceOutputType<TData>>;
   onSuccess?: (data: TData) => void;
   onError?: (error: Error) => void;
 };
 
-export function useApiCall<TData, TParams = undefined>({
+export function useApiCall<TData, TParams = null>({
   request,
   onSuccess,
   onError,
