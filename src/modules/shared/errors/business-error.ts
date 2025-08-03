@@ -15,6 +15,6 @@ export class BusinessError extends HttpError {
   }
 
   public override toString(): string {
-    return `${this.code}: ${this.message}`;
+    return `[${this.code}] ${this.message}`;
   }
 }

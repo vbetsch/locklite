@@ -8,6 +8,6 @@ export class HttpError extends Error {
   }
 
   public override toString(): string {
-    return `${this.status}: ${this.message}`;
+    return `(${this.status}) ${this.message}`;
   }
 }
