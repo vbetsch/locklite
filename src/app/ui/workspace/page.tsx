@@ -23,7 +23,7 @@ import {
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { UiLogger } from '@ui/logs/ui.logger';
-import { useApiFetch } from '@ui/hooks/useApiFetch';
+import { useApiFetch } from '@ui/hooks/api/useApiFetch';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
 export default function WorkspacePage(): JSX.Element {
