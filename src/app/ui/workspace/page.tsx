@@ -1,7 +1,7 @@
 'use client';
 
 import 'reflect-metadata';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { JSX } from 'react';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
@@ -21,35 +21,14 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
-import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { UiLogger } from '@ui/logs/ui.logger';
-import { useApiFetch } from '@ui/hooks/api/useApiFetch';
-import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
+import { useVaults } from '@ui/hooks/useVaults';
 
 export default function WorkspacePage(): JSX.Element {
-  const [vaults, setVaults] = useState<VaultModelDto[]>([]);
-  const [error, setError] = useState<Error | null>(null);
+  const { vaults, loading, error, refetch } = useVaults();
   const [open, setOpen] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
-
-  const request: () => Promise<RequestServiceOutputType<GetMyVaultsDataDto>> =
-    useCallback(() => vaultsGateway.getMyVaults(), [vaultsGateway]);
-
-  const handleSuccess: (data: GetMyVaultsDataDto) => void = useCallback(
-    (data: GetMyVaultsDataDto) => setVaults(data.myVaults),
-    []
-  );
-  const handleError: (error: Error) => void = useCallback(
-    (err: Error) => setError(err),
-    []
-  );
-
-  const { loading, refetch } = useApiFetch<GetMyVaultsDataDto>({
-    request,
-    onSuccess: handleSuccess,
-    onError: handleError,
-  });
 
   const [searchTerm, setSearchTerm] = useState('');
   const filteredVaults: VaultModelDto[] = useMemo(
@@ -66,7 +45,7 @@ export default function WorkspacePage(): JSX.Element {
       await vaultsGateway.deleteVault(id);
       await refetch();
     } catch (error) {
-      if (error instanceof Error) setError(error);
+      if (error instanceof Error) UiLogger.error(error.message);
       else UiLogger.error('Unhandled API error: ', error);
     } finally {
       setDeleteLoading(false);
