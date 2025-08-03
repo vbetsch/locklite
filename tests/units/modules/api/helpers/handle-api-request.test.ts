@@ -1,168 +1,102 @@
-import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
-import { LoggerColorEnum } from '@shared/logs/logger-color.enum';
-import { ApiLogger } from '@api/logs/api.logger';
+jest.mock('next/server', (): unknown => {
+  return {
+    NextResponse: {
+      json: jest.fn(
+        <T>(
+          body: T,
+          init: { status: number }
+        ): { body: T; status: number } => ({
+          body,
+          status: init.status,
+        })
+      ),
+    },
+  };
+});
 
-interface ICompute {
-  _compute(
-    tag: LoggerTagEnum,
-    message: string,
-    color?: LoggerColorEnum
-  ): string | void;
+import { HttpError } from '@api/errors/abstract/http-error';
+import { StatusCodes } from 'http-status-codes';
+import { handleApiRequest } from '@api/helpers/handle-api-request';
+import { ApiLogger } from '@api/logs/api.logger';
+import { NextResponse } from 'next/server';
+
+interface IJsonResponse<T> {
+  body: T;
+  status: number;
 }
 
-describe('ApiLogger', () => {
-  const originalEnv: string | undefined = process.env.NODE_ENV;
+type NextResponseJson = <T>(
+  body: T,
+  init: { status: number }
+) => IJsonResponse<T>;
 
-  beforeAll((): void => {
-    process.env.NODE_ENV = 'development';
+describe('handleApiRequest', () => {
+  let jsonMock: jest.MockedFunction<NextResponseJson>;
+
+  beforeEach((): void => {
+    jsonMock =
+      NextResponse.json as unknown as jest.MockedFunction<NextResponseJson>;
+    jsonMock.mockClear();
   });
 
-  afterAll((): void => {
-    process.env.NODE_ENV = originalEnv;
+  it('should return 200 and data when callback resolves', async (): Promise<void> => {
+    const data: { foo: string } = { foo: 'bar' };
+    const callback = jest.fn(async (): Promise<{ foo: string }> => data);
+
+    const response: IJsonResponse<{ data: { foo: string } }> =
+      await handleApiRequest(callback);
+
+    expect(jsonMock).toHaveBeenCalledWith({ data }, { status: StatusCodes.OK });
+    expect(response).toEqual({ body: { data }, status: StatusCodes.OK });
+    expect(callback).toHaveBeenCalled();
   });
 
-  afterEach((): void => {
-    jest.restoreAllMocks();
-  });
+  it('should return error message and status when HttpError is thrown', async (): Promise<void> => {
+    const error: HttpError = new HttpError('Not Found', StatusCodes.NOT_FOUND);
+    const callback = jest.fn(async (): Promise<unknown> => {
+      throw error;
+    });
 
-  it('should compute message without color via override', (): void => {
-    const compute: (
-      tag: LoggerTagEnum,
-      message: string,
-      color?: LoggerColorEnum
-    ) => string | void = (ApiLogger as unknown as ICompute)._compute.bind(
-      ApiLogger
+    const response: IJsonResponse<{ error: string }> =
+      await handleApiRequest(callback);
+
+    expect(jsonMock).toHaveBeenCalledWith(
+      { error: error.message },
+      { status: error.status }
     );
-    const result: string | void = compute(LoggerTagEnum.LOG, 'hello');
-    expect(result).toBe(`➔ ${LoggerTagEnum.LOG}: hello`);
+    expect(response).toEqual({
+      body: { error: error.message },
+      status: error.status,
+    });
+    expect(callback).toHaveBeenCalled();
   });
 
-  it('should compute message with color via override', (): void => {
-    const compute: (
-      tag: LoggerTagEnum,
-      message: string,
-      color?: LoggerColorEnum
-    ) => string | void = (ApiLogger as unknown as ICompute)._compute.bind(
-      ApiLogger
-    );
-    const result: string | void = compute(
-      LoggerTagEnum.INFO,
-      'info msg',
-      LoggerColorEnum.INFO
-    );
-    expect(result).toBe(
-      `${LoggerColorEnum.INFO}➔ ${LoggerTagEnum.INFO}: info msg${LoggerColorEnum.RESET}`
-    );
-  });
+  it('should log error and return 500 when non-HttpError is thrown', async (): Promise<void> => {
+    const error: Error = new Error('Unexpected');
+    const callback = jest.fn(async (): Promise<unknown> => {
+      throw error;
+    });
+    const loggerSpy: jest.SpyInstance<void, [string, unknown]> = jest
+      .spyOn(ApiLogger, 'error')
+      .mockImplementation((): void => undefined);
 
-  it('ok should log with SUCCESS color and OK tag', (): void => {
-    const spyLog: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'log')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.ok(LoggerTagEnum.OK, 'operation succeeded');
-    expect(spyLog).toHaveBeenCalledWith(
-      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.OK}: operation succeeded${LoggerColorEnum.RESET}`
-    );
-  });
+    const response: IJsonResponse<{ error: string }> =
+      await handleApiRequest(callback);
 
-  it('done should log with SUCCESS color and DONE tag', (): void => {
-    const spyLog: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'log')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.done(LoggerTagEnum.DONE, 'all done');
-    expect(spyLog).toHaveBeenCalledWith(
-      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.DONE}: all done${LoggerColorEnum.RESET}`
+    expect(loggerSpy).toHaveBeenCalledWith(
+      'Error while handling API errors: ',
+      error
     );
-  });
-
-  it('log should log without color and LOG tag', (): void => {
-    const spyLog: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'log')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.log('simple message');
-    expect(spyLog).toHaveBeenCalledWith(
-      `➔ ${LoggerTagEnum.LOG}: simple message`
+    expect(jsonMock).toHaveBeenCalledWith(
+      { error: 'Internal Server Error' },
+      { status: StatusCodes.INTERNAL_SERVER_ERROR }
     );
-  });
+    expect(response).toEqual({
+      body: { error: 'Internal Server Error' },
+      status: StatusCodes.INTERNAL_SERVER_ERROR,
+    });
+    expect(callback).toHaveBeenCalled();
 
-  it('debug should debug with DEBUG color and DEBUG tag', (): void => {
-    const spyDebug: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'debug')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.debug('debugging');
-    expect(spyDebug).toHaveBeenCalledWith(
-      `${LoggerColorEnum.DEBUG}➔ ${LoggerTagEnum.DEBUG}: debugging${LoggerColorEnum.RESET}`
-    );
-  });
-
-  it('info should info with INFO color and INFO tag', (): void => {
-    const spyInfo: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'info')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.info('information');
-    expect(spyInfo).toHaveBeenCalledWith(
-      `${LoggerColorEnum.INFO}➔ ${LoggerTagEnum.INFO}: information${LoggerColorEnum.RESET}`
-    );
-  });
-
-  it('warn should warn with WARNING color and WARN tag', (): void => {
-    const spyWarn: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'warn')
-      .mockImplementation((): void => {
-        return;
-      });
-    ApiLogger.warn('be cautious');
-    expect(spyWarn).toHaveBeenCalledWith(
-      `${LoggerColorEnum.WARNING}➔ ${LoggerTagEnum.WARN}: be cautious${LoggerColorEnum.RESET}`
-    );
-  });
-
-  it('error should error with ERROR color and ERROR tag and include error object', (): void => {
-    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
-      .spyOn(console, 'error')
-      .mockImplementation((): void => {
-        return;
-      });
-    const err: Error = new Error('failure');
-    ApiLogger.error('something broke', err);
-    expect(spyError).toHaveBeenCalledWith(
-      `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.ERROR}: something broke${LoggerColorEnum.RESET}`,
-      err
-    );
-  });
-
-  it('error should error with null message when message is null', (): void => {
-    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
-      .spyOn(console, 'error')
-      .mockImplementation((): void => {
-        return;
-      });
-    const err: Error = new Error('failure');
-    ApiLogger.error(null, err);
-    expect(spyError).toHaveBeenCalledWith(null, err);
-  });
-
-  it('critical should error with ERROR color and CRITICAL tag and include error object', (): void => {
-    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
-      .spyOn(console, 'error')
-      .mockImplementation((): void => {
-        return;
-      });
-    const err: Error = new Error('fatal');
-    ApiLogger.critical('critical failure', err);
-    expect(spyError).toHaveBeenCalledWith(
-      `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.CRITICAL}: critical failure${LoggerColorEnum.RESET}`,
-      err
-    );
+    loggerSpy.mockRestore();
   });
 });
