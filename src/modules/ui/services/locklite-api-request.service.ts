@@ -43,7 +43,12 @@ export class LockliteApiRequestService extends RequestService {
 
     if (!('data' in responseBody)) {
       if ('error' in responseBody) {
-        throw new Error(responseBody.error);
+        if ('code' in responseBody.error) {
+          // Business errors
+          throw new Error(responseBody.error.code);
+        }
+        // Http errors
+        throw new Error(responseBody.error.message);
       }
       message = 'An error occurred while parsing locklite API call.';
       UiLogger.error(`${message} Response: `, responseBody);
