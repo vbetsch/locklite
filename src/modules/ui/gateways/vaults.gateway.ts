@@ -29,7 +29,9 @@ export class VaultsGateway {
     );
   }
 
-  public async deleteVault(id: string): Promise<number> {
-    return await this._lockliteRequestService.delete('/vaults/' + id);
+  public async deleteVault(
+    id: string
+  ): Promise<RequestServiceOutputType<number>> {
+    return await this._lockliteRequestService.delete<number>('/vaults/' + id);
   }
 }
