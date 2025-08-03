@@ -2,7 +2,7 @@ import { HttpError } from '@api/errors/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
-import { Logger } from '@shared/logs/logger';
+import { ApiLogger } from '@api/logs/api.logger';
 
 export async function handleApiRequest<Data>(
   callback: () => Promise<Data>,
@@ -29,7 +29,7 @@ export async function handleApiRequest<Data>(
       );
     }
 
-    Logger.error(`Error while handling API errors: ${error}`);
+    ApiLogger.error(`Error while handling API errors: ${error}`);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }

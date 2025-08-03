@@ -2,10 +2,10 @@ import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
 import { LoggerColorEnum } from '@shared/logs/logger-color.enum';
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
-export class Logger {
-  private static readonly _prefix: string = '➔';
+export abstract class Logger {
+  protected static readonly _prefix: string = '➔';
 
-  private static _compute(
+  protected static _compute(
     tag: LoggerTagEnum,
     message: string,
     color?: LoggerColorEnum

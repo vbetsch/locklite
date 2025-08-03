@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
-import { Logger } from '@shared/logs/logger';
+import { UiLogger } from '@ui/logs/ui.logger';
 
 type UseApiOptions<T> = {
   request: () => Promise<RequestServiceOutputType<T>>;
@@ -25,7 +25,7 @@ export function useApi<T>({
         onSuccess(output.data);
       } catch (error) {
         if (error instanceof Error) onError?.(error);
-        else Logger.error(`Unhandled API error: ${error}`);
+        else UiLogger.error(`Unhandled API error: ${error}`);
       } finally {
         setLoading(false);
       }
