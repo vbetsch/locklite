@@ -32,11 +32,10 @@ export default function WorkspacePage(): JSX.Element {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  const { loading } = useApiFetch<GetMyVaultsDataDto>({
+  const { loading, refetch } = useApiFetch<GetMyVaultsDataDto>({
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
-    deps: [open, deleteLoading],
   });
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,6 +51,7 @@ export default function WorkspacePage(): JSX.Element {
     setDeleteLoading(true);
     try {
       await vaultsGateway.deleteVault(id);
+      await refetch();
     } catch (error) {
       if (error instanceof Error) setError(error);
       else UiLogger.error('Unhandled API error: ', error);
@@ -73,7 +73,13 @@ export default function WorkspacePage(): JSX.Element {
         gap: '3rem',
       }}
     >
-      <AddVaultModal open={open} onClose={() => setOpen(false)} />
+      <AddVaultModal
+        open={open}
+        onClose={async () => {
+          setOpen(false);
+          await refetch();
+        }}
+      />
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
       </Typography>
