@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/helpers/handle-api-request';
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
