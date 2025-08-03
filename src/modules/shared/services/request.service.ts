@@ -3,6 +3,16 @@ import type { RequestServiceOutputType } from '@shared/requests/request-service-
 export abstract class RequestService {
   protected errorMessage: string = 'Unexpected error';
 
+  protected async _fetch(url: string, options: RequestInit): Promise<Response> {
+    return await fetch(url, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.headers ?? {}),
+      },
+    });
+  }
+
   protected async _handleResponseNotOk(response: Response): Promise<never> {
     try {
       // eslint-disable-next-line @typescript-eslint/typedef
@@ -19,14 +29,7 @@ export abstract class RequestService {
     url: string,
     options: RequestInit
   ): Promise<RequestServiceOutputType<T>> {
-    const response: Response = await fetch(url, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(options.headers ?? {}),
-      },
-    });
-
+    const response: Response = await this._fetch(url, options);
     if (!response.ok) await this._handleResponseNotOk(response);
     return { status: response.status, data: await response.json() };
   }
