@@ -52,15 +52,19 @@ export abstract class Logger {
     );
   }
 
-  public static error(message: string): void {
+  public static error(message: string | null, error?: unknown): void {
     console.error(
-      this._compute(LoggerTagEnum.ERROR, message, LoggerColorEnum.ERROR)
+      message
+        ? this._compute(LoggerTagEnum.ERROR, message, LoggerColorEnum.ERROR)
+        : null,
+      error
     );
   }
 
-  public static critical(message: string): void {
+  public static critical(message: string, error?: unknown): void {
     console.error(
-      this._compute(LoggerTagEnum.CRITICAL, message, LoggerColorEnum.ERROR)
+      this._compute(LoggerTagEnum.CRITICAL, message, LoggerColorEnum.ERROR),
+      error
     );
   }
 }

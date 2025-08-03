@@ -33,7 +33,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       props.onClose();
     } catch (error) {
       if (error instanceof Error) setError(error);
-      else UiLogger.error(`Unhandled API error: ${error}`);
+      else UiLogger.error('Unhandled API error: ', error);
     } finally {
       setLoading(false);
     }

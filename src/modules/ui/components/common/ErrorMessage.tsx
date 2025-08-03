@@ -9,7 +9,7 @@ type ErrorProps = {
 
 export default function ErrorMessage(props: ErrorProps): JSX.Element | null {
   if (!props.error) return null;
-  UiLogger.error(props.error.toString());
+  UiLogger.error(null, props.error);
   return (
     <Typography sx={{ color: 'red' }}>
       Error: {props.error.message || 'Unknown error'}

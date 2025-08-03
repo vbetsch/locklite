@@ -37,7 +37,7 @@ export class LockliteApiRequestService extends RequestService {
       } else {
         message = 'An error occurred while locklite API errors';
       }
-      UiLogger.error(`${message}: ${error}`);
+      UiLogger.error(`${message}: `, error);
       throw new Error(message);
     }
 
@@ -46,7 +46,7 @@ export class LockliteApiRequestService extends RequestService {
         throw new Error(responseBody.error);
       }
       message = 'An error occurred while parsing locklite API call.';
-      UiLogger.error(`${message} Response: ${responseBody}`);
+      UiLogger.error(`${message} Response: `, responseBody);
       throw new Error(message);
     }
 

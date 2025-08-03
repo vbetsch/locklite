@@ -25,7 +25,7 @@ export function useApi<T>({
         onSuccess(output.data);
       } catch (error) {
         if (error instanceof Error) onError?.(error);
-        else UiLogger.error(`Unhandled API error: ${error}`);
+        else UiLogger.error('Unhandled API error: ', error);
       } finally {
         setLoading(false);
       }
