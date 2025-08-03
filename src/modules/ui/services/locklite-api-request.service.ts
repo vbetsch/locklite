@@ -50,9 +50,9 @@ export class LockliteApiRequestService extends RequestService {
       }
       throw new HttpError(responseBody.error.message, response.status);
     }
-    this.errorMessage = 'An error occurred while parsing locklite API call.';
-    UiLogger.error(`${this.errorMessage} Response: `, responseBody);
-    throw new Error(this.errorMessage);
+    this._errorMessage = 'An error occurred while parsing locklite API call.';
+    UiLogger.error(`${this._errorMessage} Response: `, responseBody);
+    throw new Error(this._errorMessage);
   }
 
   protected override async _request<Data>(

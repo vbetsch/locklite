@@ -1,7 +1,7 @@
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
 export abstract class RequestService {
-  protected errorMessage: string = 'Unexpected error';
+  protected _errorMessage: string = 'Unexpected error';
 
   protected async _fetch(url: string, options: RequestInit): Promise<Response> {
     return await fetch(url, {
@@ -18,11 +18,11 @@ export abstract class RequestService {
       // eslint-disable-next-line @typescript-eslint/typedef
       const errorJson = await response.json();
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      this.errorMessage = errorJson?.error ?? this.errorMessage;
+      this._errorMessage = errorJson?.error ?? this._errorMessage;
     } catch {
-      this.errorMessage = await response.text();
+      this._errorMessage = await response.text();
     }
-    throw new Error(this.errorMessage);
+    throw new Error(this._errorMessage);
   }
 
   protected async _request<T>(
