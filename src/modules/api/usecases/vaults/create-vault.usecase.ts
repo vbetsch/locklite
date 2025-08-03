@@ -5,7 +5,9 @@ import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
 import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
-import { VaultAlreadyExistsError } from '@api/errors/vault-already-exists.error';
+import { VaultAlreadyExistsError } from '@api/errors/business/vaults/vault-already-exists.error';
+import { RequestedValueTooLongError } from '@api/errors/http/prisma/requested-value-too-long.error';
+import { VaultLabelTooLongError } from '@api/errors/business/vaults/vault-label-too-long.error';
 
 @injectable()
 export class CreateVaultUseCase
@@ -25,7 +27,14 @@ export class CreateVaultUseCase
     if (vaultsFound > 0) {
       throw new VaultAlreadyExistsError(input.label);
     }
-    const vaultCreated: Vault = await this._vaultsRepository.create(input);
+    let vaultCreated: Vault;
+    try {
+      vaultCreated = await this._vaultsRepository.create(input);
+    } catch (error: unknown) {
+      if (error instanceof RequestedValueTooLongError)
+        throw new VaultLabelTooLongError();
+      throw error;
+    }
     return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }
 }

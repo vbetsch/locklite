@@ -1,8 +1,10 @@
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { ApiLogger } from '@api/logs/api.logger';
+import { InternalServerError } from '@api/errors/http/internal-server.error';
+import { BusinessError } from '@shared/errors/business-error';
 
 export async function handleApiRequest<Data>(
   callback: () => Promise<Data>,
@@ -22,17 +24,22 @@ export async function handleApiRequest<Data>(
       }
     );
   } catch (error: unknown) {
+    let httpError: HttpError;
     if (error instanceof HttpError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status }
-      );
+      httpError = error;
+      if (error instanceof BusinessError) {
+        return NextResponse.json(
+          { error: { message: httpError.message, code: error.code } },
+          { status: httpError.status }
+        );
+      }
+    } else {
+      ApiLogger.error('Error while handling API errors: ', error);
+      httpError = new InternalServerError();
     }
-
-    ApiLogger.error('Error while handling API errors: ', error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: StatusCodes.INTERNAL_SERVER_ERROR }
+      { error: { message: httpError.message } },
+      { status: httpError.status }
     );
   }
 }

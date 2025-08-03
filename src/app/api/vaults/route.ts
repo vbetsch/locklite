@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/helpers/handle-api-request';
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
@@ -64,8 +64,14 @@ export async function GET(): Promise<
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultBodyDto'
- *       400:
- *         description: One of the requested values is too long
+ *       409:
+ *         description: Vault already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
+ *       422:
+ *         description: The vault label must not exceed 255 characters
  *         content:
  *           application/json:
  *             schema:

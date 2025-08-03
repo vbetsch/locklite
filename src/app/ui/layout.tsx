@@ -4,7 +4,7 @@ import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import PageContainer from '@ui/components/common/PageContainer';
-import type { SharedLayoutProps } from '@shared/types/props/SharedLayoutProps';
+import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 
 export const metadata: Metadata = {
   title: {

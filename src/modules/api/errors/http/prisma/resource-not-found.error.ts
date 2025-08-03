@@ -1,4 +1,4 @@
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
 
 export class ResourceNotFoundError extends HttpError {

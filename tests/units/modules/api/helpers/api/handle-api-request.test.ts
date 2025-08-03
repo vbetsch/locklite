@@ -1,3 +1,5 @@
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+
 jest.mock('next/server', (): unknown => {
   return {
     NextResponse: {
@@ -14,9 +16,8 @@ jest.mock('next/server', (): unknown => {
   };
 });
 
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
-import { handleApiRequest } from '@api/helpers/handle-api-request';
 import { ApiLogger } from '@api/logs/api.logger';
 import { NextResponse } from 'next/server';
 
@@ -63,11 +64,11 @@ describe('handleApiRequest', () => {
       await handleApiRequest(callback);
 
     expect(jsonMock).toHaveBeenCalledWith(
-      { error: error.message },
+      { error: { message: error.message } },
       { status: error.status }
     );
     expect(response).toEqual({
-      body: { error: error.message },
+      body: { error: { message: error.message } },
       status: error.status,
     });
     expect(callback).toHaveBeenCalled();
@@ -90,11 +91,11 @@ describe('handleApiRequest', () => {
       error
     );
     expect(jsonMock).toHaveBeenCalledWith(
-      { error: 'Internal Server Error' },
+      { error: { message: 'Internal Server Error' } },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
     );
-    expect(response).toEqual({
-      body: { error: 'Internal Server Error' },
+    expect(response).toStrictEqual({
+      body: { error: { message: 'Internal Server Error' } },
       status: StatusCodes.INTERNAL_SERVER_ERROR,
     });
     expect(callback).toHaveBeenCalled();
