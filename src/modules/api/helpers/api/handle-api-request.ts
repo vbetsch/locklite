@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { ApiLogger } from '@api/logs/api.logger';
 import { InternalServerError } from '@api/errors/http/internal-server.error';
+import { BusinessError } from '@api/errors/business/abstract/business-error';
 
 export async function handleApiRequest<Data>(
   callback: () => Promise<Data>,
@@ -26,12 +27,18 @@ export async function handleApiRequest<Data>(
     let httpError: HttpError;
     if (error instanceof HttpError) {
       httpError = error;
+      if (error instanceof BusinessError) {
+        return NextResponse.json(
+          { error: { message: httpError.message, code: error.code } },
+          { status: httpError.status }
+        );
+      }
     } else {
       ApiLogger.error('Error while handling API errors: ', error);
       httpError = new InternalServerError();
     }
     return NextResponse.json(
-      { error: httpError.message },
+      { error: { message: httpError.message } },
       { status: httpError.status }
     );
   }

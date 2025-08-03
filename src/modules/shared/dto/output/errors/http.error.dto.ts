@@ -1,3 +1,5 @@
+import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
+
 /**
  * @swagger
  * components:
@@ -6,8 +8,14 @@
  *       type: object
  *       properties:
  *         error:
- *           type: string
+ *           type: object
+ *           properties:
+ *             message: string
+ *             code: string
  */
 export type HttpErrorDto = {
-  error: string;
+  error: {
+    message: string;
+    code?: BusinessErrorCodeEnumDto;
+  };
 };
