@@ -31,12 +31,9 @@ export default function WorkspacePage(): JSX.Element {
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const filteredVaults: VaultModelDto[] = useMemo(
-    () =>
-      vaults.filter(v =>
-        v.label.toLowerCase().includes(searchTerm.toLowerCase())
-      ),
-    [vaults, searchTerm]
+
+  const filteredVaults: VaultModelDto[] = vaults.filter(v =>
+    v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   async function onDelete(id: string): Promise<void> {
