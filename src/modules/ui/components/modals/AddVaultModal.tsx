@@ -32,7 +32,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     loading,
     error,
   } = useApiCall<CreateVaultDataDto, CreateVaultRequestDto>({
-    request: data => vaultsGateway.createVault(data!),
+    request: payload => vaultsGateway.createVault(payload!),
     onSuccess: async () => {
       props.onClose();
       await props.refreshVaults();
