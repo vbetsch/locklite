@@ -12,6 +12,7 @@ import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
+import { Logger } from '@shared/logs/logger';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -32,7 +33,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       props.onClose();
     } catch (error) {
       if (error instanceof Error) setError(error);
-      else console.error('Unhandled API error:', error);
+      else Logger.error(`Unhandled API error: ${error}`);
     } finally {
       setLoading(false);
     }

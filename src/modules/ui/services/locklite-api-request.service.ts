@@ -3,6 +3,7 @@ import { RequestService } from '@shared/services/abstract/request.service';
 import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
+import { Logger } from '@shared/logs/logger';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
@@ -36,7 +37,7 @@ export class LockliteApiRequestService extends RequestService {
       } else {
         message = 'An error occurred while locklite API errors';
       }
-      console.error(`${message}: `, error);
+      Logger.error(`${message}: ${error}`);
       throw new Error(message);
     }
 
@@ -45,7 +46,7 @@ export class LockliteApiRequestService extends RequestService {
         throw new Error(responseBody.error);
       }
       message = 'An error occurred while parsing locklite API call.';
-      console.error(`${message} Response: `, responseBody);
+      Logger.error(`${message} Response: ${responseBody}`);
       throw new Error(message);
     }
 

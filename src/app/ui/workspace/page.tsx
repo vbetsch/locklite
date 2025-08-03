@@ -23,6 +23,7 @@ import {
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import { Logger } from '@shared/logs/logger';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
@@ -53,7 +54,7 @@ export default function WorkspacePage(): JSX.Element {
       await vaultsGateway.deleteVault(id);
     } catch (error) {
       if (error instanceof Error) setError(error);
-      else console.error('Unhandled API error:', error);
+      else Logger.error(`Unhandled API error: ${error}`);
     } finally {
       setDeleteLoading(false);
     }
