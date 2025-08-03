@@ -55,7 +55,7 @@ export class LockliteApiRequestService extends RequestService {
     throw new Error(this.errorMessage);
   }
 
-  protected override async _fetch<Data>(
+  protected override async _request<Data>(
     uri: string,
     options: RequestInit
   ): Promise<RequestServiceOutputType<Data>> {
