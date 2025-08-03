@@ -1,5 +1,5 @@
 import type { PrismaErrorLike } from '@api/types/prisma-error-like.type';
-import type { HttpError } from '@api/errors/http/abstract/http-error';
+import type { HttpError } from '@shared/errors/http-error';
 import { InternalServerError } from '@api/errors/http/internal-server.error';
 import { ResourceAlreadyExistsError } from '@api/errors/http/prisma/resource-already-exists.error';
 import { ResourceNotFoundError } from '@api/errors/http/prisma/resource-not-found.error';

@@ -1,4 +1,4 @@
-import { HttpError } from '@api/errors/http/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
 
 export abstract class BusinessError extends HttpError {

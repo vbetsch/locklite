@@ -16,7 +16,7 @@ jest.mock('next/server', (): unknown => {
   };
 });
 
-import { HttpError } from '@api/errors/http/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { ApiLogger } from '@api/logs/api.logger';
 import { NextResponse } from 'next/server';

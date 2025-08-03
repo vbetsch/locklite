@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { BusinessError } from '@api/errors/business/abstract/business-error';
+import { BusinessError } from '@shared/errors/business-error';
 import { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
 
 export class VaultAlreadyExistsError extends BusinessError {

@@ -1,4 +1,4 @@
-import { HttpError } from '@api/errors/http/abstract/http-error';
+import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
 
 class TestError extends HttpError {
