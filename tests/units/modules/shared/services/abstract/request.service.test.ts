@@ -8,6 +8,11 @@ describe('RequestService', () => {
     (input: RequestInfo, init?: RequestInit) => Promise<Response>
   >;
 
+  const OK_STATUS: number = 200;
+  const CREATED_STATUS: number = 201;
+  const BAD_REQUEST_STATUS: number = 400;
+  const BAD_GATEWAY_STATUS: number = 502;
+
   beforeEach((): void => {
     service = new RequestService();
   });
@@ -21,7 +26,7 @@ describe('RequestService', () => {
     const data: Data = { foo: 'bar' };
     const mockResponse: Response = {
       ok: true,
-      status: 200,
+      status: OK_STATUS,
       json: jest.fn((): Promise<Data> => Promise.resolve(data)),
       headers: new Headers(),
       statusText: 'OK',
@@ -46,16 +51,16 @@ describe('RequestService', () => {
       headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
-    expect(result).toEqual({ status: 200, data });
+    expect(result).toEqual({ status: OK_STATUS, data });
   });
 
   it('should fetch with POST and return status and data', async (): Promise<void> => {
     type Data = { id: number };
-    const bodyPayload = { name: 'Alice' };
+    const bodyPayload: { name: string } = { name: 'Alice' };
     const data: Data = { id: 1 };
     const mockResponse: Response = {
       ok: true,
-      status: 201,
+      status: CREATED_STATUS,
       json: jest.fn((): Promise<Data> => Promise.resolve(data)),
       headers: new Headers(),
       statusText: 'Created',
@@ -82,16 +87,16 @@ describe('RequestService', () => {
       headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
-    expect(result).toEqual({ status: 201, data });
+    expect(result).toEqual({ status: CREATED_STATUS, data });
   });
 
   it('should fetch with PUT and return status and data', async (): Promise<void> => {
     type Data = { updated: boolean };
-    const bodyPayload = { value: 42 };
+    const bodyPayload: { value: number } = { value: 42 };
     const data: Data = { updated: true };
     const mockResponse: Response = {
       ok: true,
-      status: 200,
+      status: OK_STATUS,
       json: jest.fn((): Promise<Data> => Promise.resolve(data)),
       headers: new Headers(),
       statusText: 'OK',
@@ -118,7 +123,7 @@ describe('RequestService', () => {
       headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
-    expect(result).toEqual({ status: 200, data });
+    expect(result).toEqual({ status: OK_STATUS, data });
   });
 
   it('should fetch with DELETE and return status only', async (): Promise<void> => {
@@ -126,7 +131,7 @@ describe('RequestService', () => {
     const data: Data = { deleted: true };
     const mockResponse: Response = {
       ok: true,
-      status: 200,
+      status: OK_STATUS,
       json: jest.fn((): Promise<Data> => Promise.resolve(data)),
       headers: new Headers(),
       statusText: 'OK',
@@ -151,16 +156,18 @@ describe('RequestService', () => {
       headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
-    expect(result).toEqual(200);
+    expect(result).toEqual(OK_STATUS);
   });
 
   it('should throw error with JSON message when response not ok and JSON contains error', async (): Promise<void> => {
-    const errorMessage = 'Validation failed';
-    const errorJson = { error: errorMessage };
+    const errorMessage: string = 'Validation failed';
+    const errorJson: { error: string } = { error: errorMessage };
     const mockResponse: Response = {
       ok: false,
-      status: 400,
-      json: jest.fn(() => Promise.resolve(errorJson)),
+      status: BAD_REQUEST_STATUS,
+      json: jest.fn(
+        (): Promise<{ error: string }> => Promise.resolve(errorJson)
+      ),
       text: jest.fn(),
       headers: new Headers(),
       statusText: 'Bad Request',
@@ -182,11 +189,13 @@ describe('RequestService', () => {
   });
 
   it('should throw error with text message when response not ok and JSON parsing fails', async (): Promise<void> => {
-    const textMessage = 'Server down';
+    const textMessage: string = 'Server down';
     const mockResponse: Response = {
       ok: false,
-      status: 502,
-      json: jest.fn(() => Promise.reject(new Error('Invalid JSON'))),
+      status: BAD_GATEWAY_STATUS,
+      json: jest.fn(
+        (): Promise<unknown> => Promise.reject(new Error('Invalid JSON'))
+      ),
       text: jest.fn((): Promise<string> => Promise.resolve(textMessage)),
       headers: new Headers(),
       statusText: 'Bad Gateway',
