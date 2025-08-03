@@ -55,7 +55,7 @@ describe('Logger', () => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    Logger.ok(LoggerTagEnum.INFO, 'test ok');
+    Logger.ok('test ok');
     expect(spyLog).toHaveBeenCalledWith(
       `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.OK}: test ok${LoggerColorEnum.RESET}`
     );
@@ -65,7 +65,7 @@ describe('Logger', () => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    Logger.done(LoggerTagEnum.LOG, 'finished');
+    Logger.done('finished');
     expect(spyLog).toHaveBeenCalledWith(
       `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.DONE}: finished${LoggerColorEnum.RESET}`
     );
