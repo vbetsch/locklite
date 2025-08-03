@@ -1,8 +1,12 @@
 import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
 import { UiLogger } from '@ui/logs/ui.logger';
 
+interface ICompute {
+  _compute(tag: LoggerTagEnum, message: string): string | void;
+}
+
 describe('UiLogger', () => {
-  const originalEnv = process.env.NODE_ENV;
+  const originalEnv: string | undefined = process.env.NODE_ENV;
 
   beforeAll((): void => {
     process.env.NODE_ENV = 'development';
@@ -18,88 +22,106 @@ describe('UiLogger', () => {
   });
 
   it('should compute message ignoring prefix and color', (): void => {
-    const compute = (UiLogger as any)._compute as (
-      tag: LoggerTagEnum,
-      message: string
-    ) => string | void;
-    const result = compute.call(UiLogger, LoggerTagEnum.INFO, 'test message');
-    expect(result).toBe(`INFO: test message`);
+    const compute: (tag: LoggerTagEnum, message: string) => string | void = (
+      UiLogger as unknown as ICompute
+    )._compute.bind(UiLogger);
+    const result: string | void = compute(LoggerTagEnum.INFO, 'test message');
+    expect(result).toBe('INFO: test message');
   });
 
   it('ok should log with OK tag', (): void => {
-    const spy = jest.spyOn(console, 'log').mockImplementation((): void => {});
+    const spyLog: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'log')
+      .mockImplementation((): void => void 0);
     UiLogger.ok(LoggerTagEnum.INFO, 'operation successful');
-    expect(spy).toHaveBeenCalledWith('OK: operation successful');
+    expect(spyLog).toHaveBeenCalledWith('OK: operation successful');
   });
 
   it('done should log with DONE tag', (): void => {
-    const spy = jest.spyOn(console, 'log').mockImplementation((): void => {});
+    const spyLog: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'log')
+      .mockImplementation((): void => void 0);
     UiLogger.done(LoggerTagEnum.LOG, 'all done');
-    expect(spy).toHaveBeenCalledWith('DONE: all done');
+    expect(spyLog).toHaveBeenCalledWith('DONE: all done');
   });
 
   it('log should log with LOG tag', (): void => {
-    const spy = jest.spyOn(console, 'log').mockImplementation((): void => {});
+    const spyLog: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'log')
+      .mockImplementation((): void => void 0);
     UiLogger.log('simple log');
-    expect(spy).toHaveBeenCalledWith('LOG: simple log');
+    expect(spyLog).toHaveBeenCalledWith('LOG: simple log');
   });
 
   it('debug should debug with DEBUG tag', (): void => {
-    const spy = jest.spyOn(console, 'debug').mockImplementation((): void => {});
+    const spyDebug: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'debug')
+      .mockImplementation((): void => void 0);
     UiLogger.debug('debugging');
-    expect(spy).toHaveBeenCalledWith('DEBUG: debugging');
+    expect(spyDebug).toHaveBeenCalledWith('DEBUG: debugging');
   });
 
   it('info should info with INFO tag', (): void => {
-    const spy = jest.spyOn(console, 'info').mockImplementation((): void => {});
+    const spyInfo: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'info')
+      .mockImplementation((): void => void 0);
     UiLogger.info('some info');
-    expect(spy).toHaveBeenCalledWith('INFO: some info');
+    expect(spyInfo).toHaveBeenCalledWith('INFO: some info');
   });
 
   it('warn should warn with WARN tag', (): void => {
-    const spy = jest.spyOn(console, 'warn').mockImplementation((): void => {});
+    const spyWarn: jest.SpyInstance<void, [unknown]> = jest
+      .spyOn(console, 'warn')
+      .mockImplementation((): void => void 0);
     UiLogger.warn('a warning');
-    expect(spy).toHaveBeenCalledWith('WARN: a warning');
+    expect(spyWarn).toHaveBeenCalledWith('WARN: a warning');
   });
 
   it('error should error with ERROR tag and include error object', (): void => {
-    const spy = jest.spyOn(console, 'error').mockImplementation((): void => {});
-    const err = new Error('failure');
+    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
+      .spyOn(console, 'error')
+      .mockImplementation((): void => void 0);
+    const err: Error = new Error('failure');
     UiLogger.error('an error occurred', err);
-    expect(spy).toHaveBeenCalledWith('ERROR: an error occurred', err);
+    expect(spyError).toHaveBeenCalledWith('ERROR: an error occurred', err);
   });
 
   it('error should log null message when message is null', (): void => {
-    const spy = jest.spyOn(console, 'error').mockImplementation((): void => {});
-    const err = new Error('failure');
+    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
+      .spyOn(console, 'error')
+      .mockImplementation((): void => void 0);
+    const err: Error = new Error('failure');
     UiLogger.error(null, err);
-    expect(spy).toHaveBeenCalledWith(null, err);
+    expect(spyError).toHaveBeenCalledWith(null, err);
   });
 
   it('critical should error with CRITICAL tag and include error object', (): void => {
-    const spy = jest.spyOn(console, 'error').mockImplementation((): void => {});
-    const err = new Error('critical failure');
-    UiLogger.critical('something went terribly wrong', err);
-    expect(spy).toHaveBeenCalledWith(
-      'CRITICAL: something went terribly wrong',
-      err
-    );
+    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
+      .spyOn(console, 'error')
+      .mockImplementation((): void => void 0);
+    const err: Error = new Error('critical failure');
+    UiLogger.critical('critical failure', err);
+    expect(spyError).toHaveBeenCalledWith('CRITICAL: critical failure', err);
   });
 
-  it('logs undefined when NODE_ENV is not development', (): void => {
+  it('logs void and error object when NODE_ENV is not development', (): void => {
     process.env.NODE_ENV = 'production';
-    const spyLog = jest
+    const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
-      .mockImplementation((): void => {});
-    const spyError = jest
+      .mockImplementation((): void => void 0);
+    const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
       .spyOn(console, 'error')
-      .mockImplementation((): void => {});
-    const err = new Error('err');
+      .mockImplementation((): void => void 0);
+    const err: Error = new Error('err');
 
     UiLogger.log('will not log');
     UiLogger.error('will not error', err);
 
-    expect(spyLog).toHaveBeenCalledWith(undefined);
-    expect(spyError).toHaveBeenCalledWith(undefined, err);
+    expect(spyLog).toHaveBeenCalledTimes(1);
+    expect(spyLog.mock.calls[0][0]).toBe(void 0);
+
+    expect(spyError).toHaveBeenCalledTimes(1);
+    expect(spyError.mock.calls[0][0]).toBe(void 0);
+    expect(spyError.mock.calls[0][1]).toBe(err);
   });
 });
