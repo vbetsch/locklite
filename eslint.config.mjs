@@ -111,6 +111,8 @@ export default tseslint.config(
         ],
 
         /* TypeScript strictness */
+        '@typescript-eslint/no-use-before-define': ['error'],
+        '@typescript-eslint/no-unnecessary-condition': ['error'],
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/consistent-type-imports': [
