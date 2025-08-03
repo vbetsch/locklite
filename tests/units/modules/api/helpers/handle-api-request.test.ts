@@ -41,7 +41,9 @@ describe('handleApiRequest', () => {
 
   it('should return 200 and data when callback resolves', async (): Promise<void> => {
     const data: { foo: string } = { foo: 'bar' };
-    const callback = jest.fn(async (): Promise<{ foo: string }> => data);
+    const callback: () => Promise<{ foo: string }> = jest.fn(
+      (): Promise<{ foo: string }> => Promise.resolve(data)
+    );
 
     const response: IJsonResponse<{ data: { foo: string } }> =
       await handleApiRequest(callback);
@@ -53,9 +55,9 @@ describe('handleApiRequest', () => {
 
   it('should return error message and status when HttpError is thrown', async (): Promise<void> => {
     const error: HttpError = new HttpError('Not Found', StatusCodes.NOT_FOUND);
-    const callback = jest.fn(async (): Promise<unknown> => {
-      throw error;
-    });
+    const callback: () => Promise<unknown> = jest.fn(
+      (): Promise<unknown> => Promise.reject(error)
+    );
 
     const response: IJsonResponse<{ error: string }> =
       await handleApiRequest(callback);
@@ -73,12 +75,12 @@ describe('handleApiRequest', () => {
 
   it('should log error and return 500 when non-HttpError is thrown', async (): Promise<void> => {
     const error: Error = new Error('Unexpected');
-    const callback = jest.fn(async (): Promise<unknown> => {
-      throw error;
-    });
+    const callback: () => Promise<unknown> = jest.fn(
+      (): Promise<unknown> => Promise.reject(error)
+    );
     const loggerSpy: jest.SpyInstance<void, [string, unknown]> = jest
       .spyOn(ApiLogger, 'error')
-      .mockImplementation((): void => undefined);
+      .mockImplementation((): void => void 0);
 
     const response: IJsonResponse<{ error: string }> =
       await handleApiRequest(callback);
