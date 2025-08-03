@@ -35,7 +35,7 @@ export class LockliteApiRequestService extends RequestService {
       if (error instanceof Error) {
         message = error.message;
       } else {
-        message = 'An error occurred while locklite API errors';
+        message = 'An error occurred while parsing locklite API response';
       }
       UiLogger.error(`${message}: `, error);
       throw new Error(message);
