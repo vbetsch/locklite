@@ -9,6 +9,8 @@ import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
+  private _errorMessage: string = 'Unexpected error';
+
   private handleNoDataCase<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
@@ -33,18 +35,18 @@ export class LockliteApiRequestService extends RequestService {
       return this.handleNoDataCase<Data>();
     }
 
-    let message: string = 'Unexpected error';
     let responseBody: HttpResponseDto<Data>;
     try {
       responseBody = await response.json();
     } catch (error: unknown) {
       if (error instanceof Error) {
-        message = error.message;
+        this._errorMessage = error.message;
       } else {
-        message = 'An error occurred while parsing locklite API response';
+        this._errorMessage =
+          'An error occurred while parsing locklite API response';
       }
-      UiLogger.error(`${message}: `, error);
-      throw new Error(message);
+      UiLogger.error(`${this._errorMessage}: `, error);
+      throw new Error(this._errorMessage);
     }
 
     if (!('data' in responseBody)) {
@@ -58,9 +60,9 @@ export class LockliteApiRequestService extends RequestService {
         }
         throw new HttpError(responseBody.error.message, response.status);
       }
-      message = 'An error occurred while parsing locklite API call.';
-      UiLogger.error(`${message} Response: `, responseBody);
-      throw new Error(message);
+      this._errorMessage = 'An error occurred while parsing locklite API call.';
+      UiLogger.error(`${this._errorMessage} Response: `, responseBody);
+      throw new Error(this._errorMessage);
     }
 
     return { status: response.status, data: responseBody.data };
