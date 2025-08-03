@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { RequestService } from '@shared/services/request.service';
+import { RequestService } from '@shared/requests/request.service';
 
 describe('RequestService', () => {
   let service: RequestService;
