@@ -38,7 +38,7 @@ export default function WorkspacePage(): JSX.Element {
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
-    [CreateVaultParams]
+    CreateVaultParams
   >({
     request: params => vaultsGateway.deleteVault(params),
     onSuccess: () => refetch(),
