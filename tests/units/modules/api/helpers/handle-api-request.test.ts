@@ -64,11 +64,11 @@ describe('handleApiRequest', () => {
       await handleApiRequest(callback);
 
     expect(jsonMock).toHaveBeenCalledWith(
-      { error: error.message },
+      { error: { message: error.message } },
       { status: error.status }
     );
     expect(response).toEqual({
-      body: { error: error.message },
+      body: { error: { message: error.message } },
       status: error.status,
     });
     expect(callback).toHaveBeenCalled();
@@ -91,11 +91,11 @@ describe('handleApiRequest', () => {
       error
     );
     expect(jsonMock).toHaveBeenCalledWith(
-      { error: 'Internal Server Error' },
+      { error: { message: 'Internal Server Error' } },
       { status: StatusCodes.INTERNAL_SERVER_ERROR }
     );
-    expect(response).toEqual({
-      body: { error: 'Internal Server Error' },
+    expect(response).toStrictEqual({
+      body: { error: { message: 'Internal Server Error' } },
       status: StatusCodes.INTERNAL_SERVER_ERROR,
     });
     expect(callback).toHaveBeenCalled();
