@@ -9,6 +9,14 @@ import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
+  private handleNoDataCase<Data>(): RequestServiceOutputType<Data> {
+    return {
+      status: StatusCodes.NO_CONTENT,
+      // eslint-disable-next-line no-undefined
+      data: undefined as unknown as Data,
+    };
+  }
+
   protected override async _fetch<Data>(
     uri: string,
     options: RequestInit
@@ -22,11 +30,7 @@ export class LockliteApiRequestService extends RequestService {
     });
 
     if (response.status === StatusCodes.NO_CONTENT) {
-      return {
-        status: StatusCodes.NO_CONTENT,
-        // eslint-disable-next-line no-undefined
-        data: undefined as unknown as Data,
-      };
+      return this.handleNoDataCase<Data>();
     }
 
     let message: string = 'Unexpected error';
