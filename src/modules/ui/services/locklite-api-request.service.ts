@@ -9,8 +9,6 @@ import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
-  private _errorMessage: string = 'Unexpected error';
-
   private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
@@ -52,9 +50,9 @@ export class LockliteApiRequestService extends RequestService {
       }
       throw new HttpError(responseBody.error.message, response.status);
     }
-    this._errorMessage = 'An error occurred while parsing locklite API call.';
-    UiLogger.error(`${this._errorMessage} Response: `, responseBody);
-    throw new Error(this._errorMessage);
+    this.errorMessage = 'An error occurred while parsing locklite API call.';
+    UiLogger.error(`${this.errorMessage} Response: `, responseBody);
+    throw new Error(this.errorMessage);
   }
 
   protected override async _fetch<Data>(
