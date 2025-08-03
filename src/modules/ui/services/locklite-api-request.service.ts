@@ -28,7 +28,7 @@ export class LockliteApiRequestService extends RequestService {
     throw new Error(message);
   }
 
-  private async _parseData<Data>(
+  private async _parseBody<Data>(
     response: Response
   ): Promise<HttpResponseDto<Data>> {
     try {
@@ -54,7 +54,8 @@ export class LockliteApiRequestService extends RequestService {
       return this._handleNoDataCase<Data>();
     }
 
-    const responseBody: HttpResponseDto<Data> = await this._parseData(response);
+    const responseBody: HttpResponseDto<Data> =
+      await this._parseBody<Data>(response);
 
     if (!('data' in responseBody)) {
       if ('error' in responseBody) {
