@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import { RequestService } from '@shared/services/abstract/request.service';
+import { RequestService } from '@shared/services/request.service';
 import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
