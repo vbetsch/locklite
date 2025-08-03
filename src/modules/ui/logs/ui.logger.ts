@@ -7,6 +7,6 @@ export class UiLogger extends Logger {
     message: string
   ): string | void {
     if (process.env.NODE_ENV !== 'development') return;
-    return `${this._prefix} ${tag}: ${message}`;
+    return `${tag}: ${message}`;
   }
 }
