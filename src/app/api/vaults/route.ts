@@ -71,7 +71,7 @@ export async function GET(): Promise<
  *             schema:
  *               $ref: '#/components/schemas/HttpErrorDto'
  *       422:
- *         description: The vault label must not exceed 255 digits
+ *         description: The vault label must not exceed 255 characters
  *         content:
  *           application/json:
  *             schema:
