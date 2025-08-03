@@ -2,31 +2,31 @@ import { useEffect } from 'react';
 import { useApiCall } from './useApiCall';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
-type UseApiFetchOptions<TData, TParams = undefined> = {
-  request: (params?: TParams) => Promise<RequestServiceOutputType<TData>>;
+type UseApiFetchOptions<TData, TInput = undefined> = {
+  request: (input?: TInput) => Promise<RequestServiceOutputType<TData>>;
   onSuccess: (data: TData) => void;
   onError?: (error: Error) => void;
-  initialParams?: TParams;
+  initialParams?: TInput;
 };
 
-export function useApiFetch<TData, TParams = undefined>({
+export function useApiFetch<TData, TInput = undefined>({
   request,
   onSuccess,
   onError,
   initialParams,
-}: UseApiFetchOptions<TData, TParams>): {
+}: UseApiFetchOptions<TData, TInput>): {
   loading: boolean;
   error?: Error;
-  refetch: (params?: TParams) => Promise<void>;
+  refetch: (input?: TInput) => Promise<void>;
 } {
-  const { execute, loading, error } = useApiCall<TData, TParams>({
+  const { execute, loading, error } = useApiCall<TData, TInput>({
     request,
     onSuccess,
     onError,
   });
 
   useEffect(() => {
-    void execute(initialParams as TParams);
+    void execute(initialParams as TInput);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
