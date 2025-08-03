@@ -39,7 +39,7 @@ export class LockliteApiRequestService extends RequestService {
   private _handleNoDataInBody<Data>(
     response: Response,
     responseBody: HttpResponseDto<Data>
-  ): void {
+  ): never {
     if ('error' in responseBody) {
       if ('code' in responseBody.error && responseBody.error.code) {
         throw new BusinessError(
