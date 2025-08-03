@@ -64,8 +64,8 @@ export async function GET(): Promise<
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultBodyDto'
- *       400:
- *         description: One of the requested values is too long
+ *       422:
+ *         description: The vault label must not exceed 255 digits
  *         content:
  *           application/json:
  *             schema:
