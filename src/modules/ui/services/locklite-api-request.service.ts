@@ -11,7 +11,7 @@ import { BusinessError } from '@shared/errors/business-error';
 export class LockliteApiRequestService extends RequestService {
   private _errorMessage: string = 'Unexpected error';
 
-  private _handleNoDataCase<Data>(): RequestServiceOutputType<Data> {
+  private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
       // eslint-disable-next-line no-undefined
@@ -38,7 +38,7 @@ export class LockliteApiRequestService extends RequestService {
     }
   }
 
-  private _handleNoData<Data>(
+  private _handleNoDataInBody<Data>(
     response: Response,
     responseBody: HttpResponseDto<Data>
   ): void {
@@ -70,15 +70,14 @@ export class LockliteApiRequestService extends RequestService {
     });
 
     if (response.status === StatusCodes.NO_CONTENT) {
-      return this._handleNoDataCase<Data>();
+      return this._returnStatusWithoutData<Data>();
     }
 
     const responseBody: HttpResponseDto<Data> =
       await this._parseBody<Data>(response);
 
-    if (!('data' in responseBody)) {
-      this._handleNoData<Data>(response, responseBody);
-    }
+    if (!('data' in responseBody))
+      this._handleNoDataInBody<Data>(response, responseBody);
 
     return { status: response.status, data: responseBody.data };
   }
