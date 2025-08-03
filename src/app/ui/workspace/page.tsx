@@ -1,7 +1,7 @@
 'use client';
 
 import 'reflect-metadata';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import type { JSX } from 'react';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
@@ -21,37 +21,25 @@ import {
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
-import { UiLogger } from '@ui/logs/ui.logger';
 import { useVaults } from '@ui/hooks/useVaults';
+import { useApiCall } from '@ui/hooks/api/useApiCall';
+import { UiLogger } from '@ui/logs/ui.logger';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
   const [open, setOpen] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
   const [searchTerm, setSearchTerm] = useState('');
-
   const filteredVaults: VaultModelDto[] = vaults.filter(v =>
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  async function onDelete(id: string): Promise<void> {
-    setDeleteLoading(true);
-    try {
-      await vaultsGateway.deleteVault(id);
-      await refetch();
-    } catch (error) {
-      if (error instanceof Error) UiLogger.error(error.message);
-      else UiLogger.error('Unhandled API error: ', error);
-    } finally {
-      setDeleteLoading(false);
-    }
-  }
-
-  async function deleteVault(id: string): Promise<void> {
-    await onDelete(id);
-  }
+  const { execute: deleteVault, loading: deleteLoading } = useApiCall<number>({
+    request: () => vaultsGateway.deleteVault(),
+    onSuccess: () => refetch(),
+    onError: err => UiLogger.error(null, err),
+  });
 
   return (
     <Container
