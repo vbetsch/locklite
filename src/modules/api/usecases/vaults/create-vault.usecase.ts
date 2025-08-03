@@ -33,6 +33,7 @@ export class CreateVaultUseCase
     } catch (error: unknown) {
       if (error instanceof RequestedValueTooLongError)
         throw new VaultLabelTooLongError();
+      throw error;
     }
     return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }
