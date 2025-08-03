@@ -18,13 +18,13 @@ export abstract class Logger {
     return content;
   }
 
-  public static ok(tag: LoggerTagEnum, message: string): void {
+  public static ok(message: string): void {
     console.log(
       this._compute(LoggerTagEnum.OK, message, LoggerColorEnum.SUCCESS)
     );
   }
 
-  public static done(tag: LoggerTagEnum, message: string): void {
+  public static done(message: string): void {
     console.log(
       this._compute(LoggerTagEnum.DONE, message, LoggerColorEnum.SUCCESS)
     );
