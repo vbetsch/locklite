@@ -16,6 +16,7 @@ import { UiLogger } from '@ui/logs/ui.logger';
 
 type AddVaultModalProps = {
   open: boolean;
+  refreshVaults: () => Promise<void>;
   onClose: () => void;
 };
 
@@ -31,6 +32,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     try {
       await vaultsGateway.createVault(data);
       props.onClose();
+      await props.refreshVaults();
     } catch (error) {
       if (error instanceof Error) setError(error);
       else UiLogger.error('Unhandled API error: ', error);

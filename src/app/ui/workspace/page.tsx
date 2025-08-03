@@ -88,10 +88,8 @@ export default function WorkspacePage(): JSX.Element {
     >
       <AddVaultModal
         open={open}
-        onClose={async () => {
-          setOpen(false);
-          await refetch();
-        }}
+        onClose={() => setOpen(false)}
+        refreshVaults={refetch}
       />
       <Typography variant={'h3'} textAlign={'left'}>
         My vaults
