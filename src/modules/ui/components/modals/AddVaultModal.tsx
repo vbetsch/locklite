@@ -10,11 +10,11 @@ import {
 } from '@mui/material';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import { UiLogger } from '@ui/logs/ui.logger';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
+import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -31,7 +31,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     execute: createVault,
     loading,
     error,
-  } = useApiCall<CreateVaultDataDto, CreateVaultRequestDto>({
+  } = useApiCall<CreateVaultDataDto, CreateVaultPayloadDto>({
     request: payload => vaultsGateway.createVault(payload!),
     onSuccess: async () => {
       props.onClose();

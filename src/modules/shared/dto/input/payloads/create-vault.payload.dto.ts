@@ -2,7 +2,7 @@
  * @swagger
  * components:
  *   schemas:
- *     CreateVaultRequestDto:
+ *     CreateVaultPayloadDto:
  *       type: object
  *       required:
  *         - label
@@ -15,7 +15,7 @@
  *           type: string
  *           description: Password, token, or other sensitive string to store
  */
-export type CreateVaultRequestDto = {
+export type CreateVaultPayloadDto = {
   label: string;
   secret: string;
 };

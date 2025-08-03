@@ -4,14 +4,14 @@ import { IUseCaseWithInput } from '@api/usecases/abstract/usecase.with-input.int
 import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
-import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { VaultAlreadyExistsError } from '@api/errors/business/vaults/vault-already-exists.error';
 import { RequestedValueTooLongError } from '@api/errors/http/prisma/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/errors/business/vaults/vault-label-too-long.error';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 @injectable()
 export class CreateVaultUseCase
-  implements IUseCaseWithInput<CreateVaultRequestDto, VaultModelDto>
+  implements IUseCaseWithInput<CreateVaultPayloadDto, VaultModelDto>
 {
   public constructor(
     @inject(VaultsRepository)
@@ -20,7 +20,7 @@ export class CreateVaultUseCase
     private readonly _vaultAdapter: VaultAdapter
   ) {}
 
-  public async handle(input: CreateVaultRequestDto): Promise<VaultModelDto> {
+  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
     const vaultsFound: number = await this._vaultsRepository.countByLabel(
       input.label
     );

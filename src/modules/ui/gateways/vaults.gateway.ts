@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 @injectable()
 export class VaultsGateway {
@@ -22,7 +22,7 @@ export class VaultsGateway {
   }
 
   public async createVault(
-    data: CreateVaultRequestDto
+    data: CreateVaultPayloadDto
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
     return await this._lockliteRequestService.post<CreateVaultDataDto>(
       '/vaults',
