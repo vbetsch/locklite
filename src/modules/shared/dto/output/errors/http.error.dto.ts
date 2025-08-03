@@ -2,10 +2,12 @@
  * @swagger
  * components:
  *   schemas:
- *     HttpResponseDto:
+ *     HttpErrorDto:
  *       type: object
  *       properties:
  *         error:
  *           type: string
  */
-export type HttpResponseDto<T> = { error?: string } & T;
+export type HttpErrorDto = {
+  error: string;
+};

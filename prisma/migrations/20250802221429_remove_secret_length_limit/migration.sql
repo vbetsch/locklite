@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Vault" ALTER COLUMN "secret" SET DATA TYPE TEXT;

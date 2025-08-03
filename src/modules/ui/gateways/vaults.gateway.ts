@@ -1,8 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
-import { CreateVaultResponseDto } from '@shared/dto/responses/create-vault.response.dto';
+import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
+import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
 
 @injectable()
 export class VaultsGateway {
@@ -11,22 +12,24 @@ export class VaultsGateway {
     private readonly _lockliteRequestService: LockliteApiRequestService
   ) {}
 
-  public async getMyVaults(): Promise<GetMyVaultsResponseDto> {
-    return await this._lockliteRequestService.get<GetMyVaultsResponseDto>(
+  public async getMyVaults(): Promise<
+    RequestServiceOutputType<GetMyVaultsDataDto>
+  > {
+    return await this._lockliteRequestService.get<GetMyVaultsDataDto>(
       '/vaults'
     );
   }
 
   public async createVault(
     data: CreateVaultRequestDto
-  ): Promise<CreateVaultResponseDto> {
-    return await this._lockliteRequestService.post<CreateVaultResponseDto>(
+  ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
+    return await this._lockliteRequestService.post<CreateVaultDataDto>(
       '/vaults',
       data
     );
   }
 
-  public async deleteVault(id: string): Promise<void> {
-    await this._lockliteRequestService.delete('/vaults/' + id);
+  public async deleteVault(id: string): Promise<number> {
+    return await this._lockliteRequestService.delete('/vaults/' + id);
   }
 }

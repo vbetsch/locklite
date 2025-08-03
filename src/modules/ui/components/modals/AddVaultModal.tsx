@@ -10,8 +10,9 @@ import {
 } from '@mui/material';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
+import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
+import { UiLogger } from '@ui/logs/ui.logger';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -32,7 +33,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       props.onClose();
     } catch (error) {
       if (error instanceof Error) setError(error);
-      else console.error('Unhandled API error:', error);
+      else UiLogger.error('Unhandled API error: ', error);
     } finally {
       setLoading(false);
     }
@@ -54,6 +55,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           value={newLabel}
           onChange={e => setNewLabel(e.target.value)}
         />
+        <ErrorMessage error={error} />
         <TextField
           margin="dense"
           label="Secret"
@@ -63,7 +65,6 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           sx={{ mt: 2 }}
         />
       </DialogContent>
-      <ErrorMessage error={error} />
       <DialogActions>
         <Button onClick={props.onClose}>Cancel</Button>
         <Button onClick={handleConfirm} variant="contained" loading={loading}>
