@@ -5,7 +5,7 @@ import { Vault } from '@prisma/generated';
 import { VaultAdapter } from '@api/adapters/vault.adapter';
 import { VaultsRepository } from '@api/repositories/vaults.repository';
 import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
-import { VaultAlreadyExistsError } from '@api/errors/vault-already-exists.error';
+import { VaultAlreadyExistsError } from '@api/errors/business/vault-already-exists.error';
 
 @injectable()
 export class CreateVaultUseCase

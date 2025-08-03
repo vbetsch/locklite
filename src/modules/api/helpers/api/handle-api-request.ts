@@ -1,9 +1,9 @@
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@api/errors/http/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
 import { NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { ApiLogger } from '@api/logs/api.logger';
-import { InternalServerError } from '@api/errors/internal-server.error';
+import { InternalServerError } from '@api/errors/http/internal-server.error';
 
 export async function handleApiRequest<Data>(
   callback: () => Promise<Data>,

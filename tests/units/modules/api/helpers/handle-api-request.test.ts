@@ -1,3 +1,5 @@
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+
 jest.mock('next/server', (): unknown => {
   return {
     NextResponse: {
@@ -14,9 +16,8 @@ jest.mock('next/server', (): unknown => {
   };
 });
 
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@api/errors/http/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
-import { handleApiRequest } from '@api/helpers/handle-api-request';
 import { ApiLogger } from '@api/logs/api.logger';
 import { NextResponse } from 'next/server';
 

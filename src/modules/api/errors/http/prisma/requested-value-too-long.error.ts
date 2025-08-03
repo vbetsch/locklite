@@ -1,4 +1,4 @@
-import { HttpError } from '@api/errors/abstract/http-error';
+import { HttpError } from '@api/errors/http/abstract/http-error';
 import { StatusCodes } from 'http-status-codes';
 
 export class RequestedValueTooLongError extends HttpError {
