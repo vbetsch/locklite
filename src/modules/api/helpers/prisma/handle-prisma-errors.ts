@@ -5,6 +5,7 @@ import { ResourceAlreadyExistsError } from '@api/errors/prisma/resource-already-
 import { ResourceNotFoundError } from '@api/errors/prisma/resource-not-found.error';
 import { RequestedValueTooLongError } from '@api/errors/prisma/requested-value-too-long.error';
 import { InvalidRequestDataError } from '@api/errors/prisma/invalid-request-data.error';
+import { Logger } from '@shared/logs/logger';
 
 export function handlePrismaError(error: PrismaErrorLike): HttpError {
   if (error.name === 'PrismaClientKnownRequestError') {
@@ -16,9 +17,8 @@ export function handlePrismaError(error: PrismaErrorLike): HttpError {
       case 'P2000':
         return new RequestedValueTooLongError();
       default:
-        console.error(
-          'Error: PrismaClientKnownRequestError not handled with code ' +
-            error.code
+        Logger.error(
+          'PrismaClientKnownRequestError not handled with code ' + error.code
         );
         return new InternalServerError();
     }
@@ -26,6 +26,6 @@ export function handlePrismaError(error: PrismaErrorLike): HttpError {
   if (error.name === 'PrismaClientValidationError') {
     return new InvalidRequestDataError();
   }
-  console.error('Error while handling prisma errors: ', error);
+  Logger.error(`Error while handling prisma errors: ${error}`);
   return new InternalServerError();
 }
