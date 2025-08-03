@@ -1,9 +1,14 @@
 import { HttpError } from '@api/errors/http/abstract/http-error';
+import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
 
 export abstract class BusinessError extends HttpError {
-  public readonly code: string;
+  public readonly code: BusinessErrorCodeEnumDto;
 
-  protected constructor(message: string, status: number, code: string) {
+  protected constructor(
+    message: string,
+    status: number,
+    code: BusinessErrorCodeEnumDto
+  ) {
     super(message, status);
     this.code = code;
     this.name = this.constructor.name;

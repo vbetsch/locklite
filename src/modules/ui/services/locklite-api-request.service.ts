@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 import { RequestService } from '@shared/services/abstract/request.service';
 import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
-import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
+import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { UiLogger } from '@ui/logs/ui.logger';
 
 @injectable()

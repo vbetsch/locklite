@@ -3,7 +3,7 @@ import { LockliteApiRequestService } from '@ui/services/locklite-api-request.ser
 import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
-import { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
+import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
 @injectable()
 export class VaultsGateway {

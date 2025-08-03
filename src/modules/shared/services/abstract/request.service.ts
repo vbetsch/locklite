@@ -1,4 +1,4 @@
-import type { RequestServiceOutputType } from '@shared/types/requests/request-service-output.type';
+import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
 export abstract class RequestService {
   protected async _fetch<T>(
