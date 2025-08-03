@@ -24,6 +24,7 @@ import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import { useVaults } from '@ui/hooks/useVaults';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import { UiLogger } from '@ui/logs/ui.logger';
+import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -35,8 +36,11 @@ export default function WorkspacePage(): JSX.Element {
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const { execute: deleteVault, loading: deleteLoading } = useApiCall<number>({
-    request: () => vaultsGateway.deleteVault(),
+  const { execute: deleteVault, loading: deleteLoading } = useApiCall<
+    number,
+    [CreateVaultParams]
+  >({
+    request: params => vaultsGateway.deleteVault(params),
     onSuccess: () => refetch(),
     onError: err => UiLogger.error(null, err),
   });
@@ -126,7 +130,10 @@ export default function WorkspacePage(): JSX.Element {
                   </Box>
                 </CardContent>
                 <CardActions>
-                  <Button color={'error'} onClick={() => deleteVault(vault.id)}>
+                  <Button
+                    color={'error'}
+                    onClick={() => deleteVault({ id: vault.id })}
+                  >
                     Delete
                   </Button>
                 </CardActions>
