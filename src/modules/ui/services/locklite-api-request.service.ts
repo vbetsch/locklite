@@ -4,6 +4,8 @@ import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.resp
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { UiLogger } from '@ui/logs/ui.logger';
+import { HttpError } from '@shared/errors/http-error';
+import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
@@ -43,12 +45,14 @@ export class LockliteApiRequestService extends RequestService {
 
     if (!('data' in responseBody)) {
       if ('error' in responseBody) {
-        if ('code' in responseBody.error) {
-          // Business errors
-          throw new Error(responseBody.error.code);
+        if ('code' in responseBody.error && responseBody.error.code) {
+          throw new BusinessError(
+            responseBody.error.message,
+            response.status,
+            responseBody.error.code
+          );
         }
-        // Http errors
-        throw new Error(responseBody.error.message);
+        throw new HttpError(responseBody.error.message, response.status);
       }
       message = 'An error occurred while parsing locklite API call.';
       UiLogger.error(`${message} Response: `, responseBody);

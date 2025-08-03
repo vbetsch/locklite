@@ -1,10 +1,10 @@
 import { HttpError } from '@shared/errors/http-error';
 import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
 
-export abstract class BusinessError extends HttpError {
+export class BusinessError extends HttpError {
   public readonly code: BusinessErrorCodeEnumDto;
 
-  protected constructor(
+  public constructor(
     message: string,
     status: number,
     code: BusinessErrorCodeEnumDto
