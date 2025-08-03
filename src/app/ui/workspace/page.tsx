@@ -24,6 +24,7 @@ import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { UiLogger } from '@ui/logs/ui.logger';
 import { useApiFetch } from '@ui/hooks/useApiFetch';
+import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
@@ -32,16 +33,17 @@ export default function WorkspacePage(): JSX.Element {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  const request = useCallback(
-    () => vaultsGateway.getMyVaults(),
-    [vaultsGateway]
-  );
+  const request: () => Promise<RequestServiceOutputType<GetMyVaultsDataDto>> =
+    useCallback(() => vaultsGateway.getMyVaults(), [vaultsGateway]);
 
-  const handleSuccess = useCallback(
+  const handleSuccess: (data: GetMyVaultsDataDto) => void = useCallback(
     (data: GetMyVaultsDataDto) => setVaults(data.myVaults),
     []
   );
-  const handleError = useCallback((err: Error) => setError(err), []);
+  const handleError: (error: Error) => void = useCallback(
+    (err: Error) => setError(err),
+    []
+  );
 
   const { loading, refetch } = useApiFetch<GetMyVaultsDataDto>({
     request,
