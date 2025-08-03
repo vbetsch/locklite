@@ -1,6 +1,6 @@
-import { Logger } from '@shared/logs/logger';
 import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
 import { LoggerColorEnum } from '@shared/logs/logger-color.enum';
+import { ApiLogger } from '@api/logs/api.logger';
 
 interface ICompute {
   _compute(
@@ -10,7 +10,7 @@ interface ICompute {
   ): string | void;
 }
 
-describe('Logger', () => {
+describe('ApiLogger', () => {
   const originalEnv: string | undefined = process.env.NODE_ENV;
 
   beforeAll((): void => {
@@ -25,29 +25,33 @@ describe('Logger', () => {
     jest.restoreAllMocks();
   });
 
-  it('should compute message without color', (): void => {
+  it('should compute message without color via override', (): void => {
     const compute: (
       tag: LoggerTagEnum,
       message: string,
       color?: LoggerColorEnum
-    ) => string | void = (Logger as unknown as ICompute)._compute.bind(Logger);
+    ) => string | void = (ApiLogger as unknown as ICompute)._compute.bind(
+      ApiLogger
+    );
     const result: string | void = compute(LoggerTagEnum.LOG, 'hello');
-    expect(result).toEqual(`➔ ${LoggerTagEnum.LOG}: hello`);
+    expect(result).toBe(`➔ ${LoggerTagEnum.LOG}: hello`);
   });
 
-  it('should compute message with color', (): void => {
+  it('should compute message with color via override', (): void => {
     const compute: (
       tag: LoggerTagEnum,
       message: string,
       color?: LoggerColorEnum
-    ) => string | void = (Logger as unknown as ICompute)._compute.bind(Logger);
+    ) => string | void = (ApiLogger as unknown as ICompute)._compute.bind(
+      ApiLogger
+    );
     const result: string | void = compute(
       LoggerTagEnum.INFO,
-      'info message',
+      'info msg',
       LoggerColorEnum.INFO
     );
-    expect(result).toEqual(
-      `${LoggerColorEnum.INFO}➔ ${LoggerTagEnum.INFO}: info message${LoggerColorEnum.RESET}`
+    expect(result).toBe(
+      `${LoggerColorEnum.INFO}➔ ${LoggerTagEnum.INFO}: info msg${LoggerColorEnum.RESET}`
     );
   });
 
@@ -55,9 +59,9 @@ describe('Logger', () => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    Logger.ok('test ok');
+    ApiLogger.ok('operation succeeded');
     expect(spyLog).toHaveBeenCalledWith(
-      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.OK}: test ok${LoggerColorEnum.RESET}`
+      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.OK}: operation succeeded${LoggerColorEnum.RESET}`
     );
   });
 
@@ -65,9 +69,9 @@ describe('Logger', () => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    Logger.done('finished');
+    ApiLogger.done('all done');
     expect(spyLog).toHaveBeenCalledWith(
-      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.DONE}: finished${LoggerColorEnum.RESET}`
+      `${LoggerColorEnum.SUCCESS}➔ ${LoggerTagEnum.DONE}: all done${LoggerColorEnum.RESET}`
     );
   });
 
@@ -75,9 +79,9 @@ describe('Logger', () => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    Logger.log('just a message');
+    ApiLogger.log('simple message');
     expect(spyLog).toHaveBeenCalledWith(
-      `➔ ${LoggerTagEnum.LOG}: just a message`
+      `➔ ${LoggerTagEnum.LOG}: simple message`
     );
   });
 
@@ -85,7 +89,7 @@ describe('Logger', () => {
     const spyDebug: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'debug')
       .mockImplementation((): void => void 0);
-    Logger.debug('debugging');
+    ApiLogger.debug('debugging');
     expect(spyDebug).toHaveBeenCalledWith(
       `${LoggerColorEnum.DEBUG}➔ ${LoggerTagEnum.DEBUG}: debugging${LoggerColorEnum.RESET}`
     );
@@ -95,7 +99,7 @@ describe('Logger', () => {
     const spyInfo: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'info')
       .mockImplementation((): void => void 0);
-    Logger.info('information');
+    ApiLogger.info('information');
     expect(spyInfo).toHaveBeenCalledWith(
       `${LoggerColorEnum.INFO}➔ ${LoggerTagEnum.INFO}: information${LoggerColorEnum.RESET}`
     );
@@ -105,9 +109,9 @@ describe('Logger', () => {
     const spyWarn: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'warn')
       .mockImplementation((): void => void 0);
-    Logger.warn('be careful');
+    ApiLogger.warn('be cautious');
     expect(spyWarn).toHaveBeenCalledWith(
-      `${LoggerColorEnum.WARNING}➔ ${LoggerTagEnum.WARN}: be careful${LoggerColorEnum.RESET}`
+      `${LoggerColorEnum.WARNING}➔ ${LoggerTagEnum.WARN}: be cautious${LoggerColorEnum.RESET}`
     );
   });
 
@@ -115,10 +119,10 @@ describe('Logger', () => {
     const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
-    const err: Error = new Error('oops');
-    Logger.error('an error occurred', err);
+    const err: Error = new Error('failure');
+    ApiLogger.error('something broke', err);
     expect(spyError).toHaveBeenCalledWith(
-      `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.ERROR}: an error occurred${LoggerColorEnum.RESET}`,
+      `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.ERROR}: something broke${LoggerColorEnum.RESET}`,
       err
     );
   });
@@ -127,8 +131,8 @@ describe('Logger', () => {
     const spyError: jest.SpyInstance<void, [unknown, unknown]> = jest
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
-    const err: Error = new Error('oops');
-    Logger.error(null, err);
+    const err: Error = new Error('failure');
+    ApiLogger.error(null, err);
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 
@@ -137,7 +141,7 @@ describe('Logger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('fatal');
-    Logger.critical('critical failure', err);
+    ApiLogger.critical('critical failure', err);
     expect(spyError).toHaveBeenCalledWith(
       `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.CRITICAL}: critical failure${LoggerColorEnum.RESET}`,
       err
