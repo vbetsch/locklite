@@ -7,7 +7,7 @@ export class VaultLabelTooLongError extends BusinessError {
     super(
       `The vault label must not exceed 255 digits`,
       StatusCodes.UNPROCESSABLE_ENTITY,
-      BusinessErrorCodeEnumDto.VAULT_ALREADY_EXISTS
+      BusinessErrorCodeEnumDto.VAULT_LABEL_TOO_LONG
     );
   }
 }
