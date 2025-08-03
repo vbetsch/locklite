@@ -38,6 +38,25 @@ export class LockliteApiRequestService extends RequestService {
     }
   }
 
+  private _handleNoData<Data>(
+    response: Response,
+    responseBody: HttpResponseDto<Data>
+  ): void {
+    if ('error' in responseBody) {
+      if ('code' in responseBody.error && responseBody.error.code) {
+        throw new BusinessError(
+          responseBody.error.message,
+          response.status,
+          responseBody.error.code
+        );
+      }
+      throw new HttpError(responseBody.error.message, response.status);
+    }
+    this._errorMessage = 'An error occurred while parsing locklite API call.';
+    UiLogger.error(`${this._errorMessage} Response: `, responseBody);
+    throw new Error(this._errorMessage);
+  }
+
   protected override async _fetch<Data>(
     uri: string,
     options: RequestInit
@@ -58,19 +77,7 @@ export class LockliteApiRequestService extends RequestService {
       await this._parseBody<Data>(response);
 
     if (!('data' in responseBody)) {
-      if ('error' in responseBody) {
-        if ('code' in responseBody.error && responseBody.error.code) {
-          throw new BusinessError(
-            responseBody.error.message,
-            response.status,
-            responseBody.error.code
-          );
-        }
-        throw new HttpError(responseBody.error.message, response.status);
-      }
-      this._errorMessage = 'An error occurred while parsing locklite API call.';
-      UiLogger.error(`${this._errorMessage} Response: `, responseBody);
-      throw new Error(this._errorMessage);
+      this._handleNoData<Data>(response, responseBody);
     }
 
     return { status: response.status, data: responseBody.data };
