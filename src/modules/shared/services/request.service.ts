@@ -3,7 +3,7 @@ import type { RequestServiceOutputType } from '@shared/requests/request-service-
 export abstract class RequestService {
   protected errorMessage: string = 'Unexpected error';
 
-  protected async _handleResponseNotOk(response: Response): Promise<void> {
+  protected async _handleResponseNotOk(response: Response): Promise<never> {
     try {
       // eslint-disable-next-line @typescript-eslint/typedef
       const errorJson = await response.json();
