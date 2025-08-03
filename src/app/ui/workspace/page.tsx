@@ -40,7 +40,7 @@ export default function WorkspacePage(): JSX.Element {
     number,
     CreateVaultParams
   >({
-    request: params => vaultsGateway.deleteVault(params),
+    request: params => vaultsGateway.deleteVault(params!),
     onSuccess: () => refetch(),
     onError: err => UiLogger.error(null, err),
   });
