@@ -29,19 +29,19 @@ describe('UiLogger', () => {
     expect(result).toBe('INFO: test message');
   });
 
-  it('ok should log with OK tag', (): void => {
+  it('ok should log with OK tag only message', (): void => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    UiLogger.ok(LoggerTagEnum.INFO, 'operation successful');
+    UiLogger.ok('operation successful');
     expect(spyLog).toHaveBeenCalledWith('OK: operation successful');
   });
 
-  it('done should log with DONE tag', (): void => {
+  it('done should log with DONE tag only message', (): void => {
     const spyLog: jest.SpyInstance<void, [unknown]> = jest
       .spyOn(console, 'log')
       .mockImplementation((): void => void 0);
-    UiLogger.done(LoggerTagEnum.LOG, 'all done');
+    UiLogger.done('all done');
     expect(spyLog).toHaveBeenCalledWith('DONE: all done');
   });
 
