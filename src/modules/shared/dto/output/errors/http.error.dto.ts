@@ -10,8 +10,10 @@ import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/busines
  *         error:
  *           type: object
  *           properties:
- *             message: string
- *             code: string
+ *             message:
+ *               type: string
+ *             code:
+ *               type: string
  */
 export type HttpErrorDto = {
   error: {
