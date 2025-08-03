@@ -4,6 +4,7 @@ import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.r
 import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
+import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 
 @injectable()
 export class VaultsGateway {
@@ -30,8 +31,10 @@ export class VaultsGateway {
   }
 
   public async deleteVault(
-    id: string
+    params: CreateVaultParams
   ): Promise<RequestServiceOutputType<number>> {
-    return await this._lockliteRequestService.delete<number>('/vaults/' + id);
+    return await this._lockliteRequestService.delete<number>(
+      '/vaults/' + params.id
+    );
   }
 }
