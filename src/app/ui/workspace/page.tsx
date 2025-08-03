@@ -8,7 +8,6 @@ import ErrorMessage from '@ui/components/common/ErrorMessage';
 import CircularLoader from '@ui/components/common/CircularLoader';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import { useApi } from '@ui/hooks/useApi';
 import {
   Box,
   Button,
@@ -24,6 +23,7 @@ import {
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { UiLogger } from '@ui/logs/ui.logger';
+import { useApiFetch } from '@ui/hooks/useApiFetch';
 
 export default function WorkspacePage(): JSX.Element {
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
@@ -32,7 +32,7 @@ export default function WorkspacePage(): JSX.Element {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  const { loading } = useApi<GetMyVaultsDataDto>({
+  const { loading } = useApiFetch<GetMyVaultsDataDto>({
     request: () => vaultsGateway.getMyVaults(),
     onSuccess: data => setVaults(data.myVaults),
     onError: error => setError(error),
