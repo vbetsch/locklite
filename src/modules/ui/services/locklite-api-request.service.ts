@@ -59,7 +59,7 @@ export class LockliteApiRequestService extends RequestService {
     uri: string,
     options: RequestInit
   ): Promise<RequestServiceOutputType<Data>> {
-    const response: Response = await this._fetch(url, options);
+    const response: Response = await this._fetch(uri, options);
 
     if (response.status === StatusCodes.NO_CONTENT) {
       return this._returnStatusWithoutData<Data>();
