@@ -2,14 +2,18 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useApi } from '@ui/hooks/useApi';
+import { UiLogger } from '@ui/logs/ui.logger';
+
+type Data = { foo: string };
 
 describe('useApi', () => {
   it('should call onSuccess and set loading to false on success', async (): Promise<void> => {
-    type Data = { foo: string };
     const data: Data = { foo: 'bar' };
-    const request: () => Promise<Data> = jest.fn(() => Promise.resolve(data));
-    const onSuccess: (response: Data) => void = jest.fn();
-    const onError: (error: Error) => void = jest.fn();
+    const request = jest.fn(
+      (): Promise<{ data: Data }> => Promise.resolve({ data })
+    );
+    const onSuccess = jest.fn((_d: Data): void => {});
+    const onError = jest.fn((_e: Error): void => {});
 
     function TestComponent(): JSX.Element {
       const { loading } = useApi<Data>({
@@ -18,7 +22,6 @@ describe('useApi', () => {
         onError,
         deps: [],
       });
-      // eslint-disable-next-line no-restricted-syntax
       return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
     }
 
@@ -35,12 +38,10 @@ describe('useApi', () => {
   });
 
   it('should call onError and set loading to false on Error rejection', async (): Promise<void> => {
-    const error: Error = new Error('Failure');
-    const request: () => Promise<unknown> = jest.fn(() =>
-      Promise.reject(error)
-    );
-    const onSuccess: (response: unknown) => void = jest.fn();
-    const onError: (err: Error) => void = jest.fn();
+    const error = new Error('Failure');
+    const request = jest.fn((): Promise<unknown> => Promise.reject(error));
+    const onSuccess = jest.fn((_d: unknown): void => {});
+    const onError = jest.fn((_e: Error): void => {});
 
     function TestComponent(): JSX.Element {
       const { loading } = useApi<unknown>({
@@ -49,7 +50,6 @@ describe('useApi', () => {
         onError,
         deps: [],
       });
-      // eslint-disable-next-line no-restricted-syntax
       return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
     }
 
@@ -67,16 +67,14 @@ describe('useApi', () => {
 
   it('should log non-Error and set loading to false when rejection is non-Error', async (): Promise<void> => {
     const rejectionValue: unknown = { code: 123 };
-    const request: () => Promise<unknown> = jest.fn(() =>
-      Promise.reject(rejectionValue)
+    const request = jest.fn(
+      (): Promise<unknown> => Promise.reject(rejectionValue)
     );
-    const onSuccess: (response: unknown) => void = jest.fn();
-    const onError: (err: Error) => void = jest.fn();
-    const consoleErrorSpy: jest.SpyInstance<void, [unknown]> = jest
-      .spyOn(console, 'error')
-      .mockImplementation((): void => {
-        /* ignore */
-      });
+    const onSuccess = jest.fn((_d: unknown): void => {});
+    const onError = jest.fn((_e: Error): void => {});
+    const loggerSpy = jest
+      .spyOn(UiLogger, 'error')
+      .mockImplementation((): void => {});
 
     function TestComponent(): JSX.Element {
       const { loading } = useApi<unknown>({
@@ -85,7 +83,6 @@ describe('useApi', () => {
         onError,
         deps: [],
       });
-      // eslint-disable-next-line no-restricted-syntax
       return <div data-testid="status">{loading ? 'loading' : 'done'}</div>;
     }
 
@@ -99,11 +96,11 @@ describe('useApi', () => {
     expect(request).toHaveBeenCalled();
     expect(onSuccess).not.toHaveBeenCalled();
     expect(onError).not.toHaveBeenCalled();
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Unhandled API error:',
+    expect(loggerSpy).toHaveBeenCalledWith(
+      'Unhandled API error: ',
       rejectionValue
     );
 
-    consoleErrorSpy.mockRestore();
+    loggerSpy.mockRestore();
   });
 });
