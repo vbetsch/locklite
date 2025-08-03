@@ -1,4 +1,3 @@
-// src/hooks/useApiCall.ts
 import { useState, useCallback } from 'react';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { UiLogger } from '@ui/logs/ui.logger';
