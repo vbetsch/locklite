@@ -64,6 +64,12 @@ export async function GET(): Promise<
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/CreateVaultBodyDto'
+ *       409:
+ *         description: Vault already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       422:
  *         description: The vault label must not exceed 255 digits
  *         content:
