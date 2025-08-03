@@ -13,6 +13,8 @@ import { container } from 'tsyringe';
 import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import { UiLogger } from '@ui/logs/ui.logger';
+import { useApiCall } from '@ui/hooks/api/useApiCall';
+import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -23,26 +25,23 @@ type AddVaultModalProps = {
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  async function onCreate(data: CreateVaultRequestDto): Promise<void> {
-    setLoading(true);
-    try {
-      await vaultsGateway.createVault(data);
+  const {
+    execute: createVault,
+    loading,
+    error,
+  } = useApiCall<CreateVaultDataDto, CreateVaultRequestDto>({
+    request: data => vaultsGateway.createVault(data!),
+    onSuccess: async () => {
       props.onClose();
       await props.refreshVaults();
-    } catch (error) {
-      if (error instanceof Error) setError(error);
-      else UiLogger.error('Unhandled API error: ', error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    },
+    onError: err => UiLogger.error('Create vault failed', err),
+  });
 
   const handleConfirm = async (): Promise<void> => {
-    await onCreate({ label: newLabel, secret: newSecret });
+    await createVault({ label: newLabel, secret: newSecret });
   };
 
   return (
@@ -57,7 +56,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           value={newLabel}
           onChange={e => setNewLabel(e.target.value)}
         />
-        <ErrorMessage error={error} />
+        <ErrorMessage error={error || null} />
         <TextField
           margin="dense"
           label="Secret"
