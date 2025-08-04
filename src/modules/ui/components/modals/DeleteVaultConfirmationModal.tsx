@@ -8,12 +8,7 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-
-type ModalProps = {
-  open: boolean;
-  onSubmit: () => void;
-  onClose: () => void;
-};
+import type { ModalProps } from '@ui/components/modals/atoms/Modal';
 
 type DeleteVaultConfirmationModalProps = {
   vaultLabel: string;
