@@ -27,7 +27,7 @@ import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.pa
 import AddIcon from '@mui/icons-material/Add';
 import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
 import SearchBar from '@ui/components/common/SearchBar';
-import VaultCardContentLine from '@ui/components/vaults/atoms/VaultCardContentLine';
+import VaultCard from '@ui/components/vaults/molecules/VaultCard';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -153,24 +153,7 @@ export default function WorkspacePage(): JSX.Element {
         >
           {filteredVaults.map(vault => (
             <Grid key={vault.id} size={1}>
-              <Card
-                sx={{
-                  bgcolor: 'background.paper',
-                }}
-              >
-                <CardHeader title={vault.label} />
-                <CardContent>
-                  <VaultCardContentLine vaultSecret={vault.secret} />
-                </CardContent>
-                <CardActions>
-                  <Button
-                    color={'error'}
-                    onClick={() => handleDeleteClick(vault)}
-                  >
-                    Delete
-                  </Button>
-                </CardActions>
-              </Card>
+              <VaultCard vault={vault} deleteVault={handleDeleteClick} />
             </Grid>
           ))}
         </Grid>
