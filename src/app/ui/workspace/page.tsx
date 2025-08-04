@@ -27,6 +27,7 @@ import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.pa
 import AddIcon from '@mui/icons-material/Add';
 import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
 import SearchBar from '@ui/components/common/SearchBar';
+import VaultCardContentLine from '@ui/components/vaults/atoms/VaultCardContentLine';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -159,27 +160,7 @@ export default function WorkspacePage(): JSX.Element {
               >
                 <CardHeader title={vault.label} />
                 <CardContent>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '1rem',
-                    }}
-                  >
-                    <Typography variant="body2" color="text.secondary">
-                      Secret:
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      fontFamily={'monospace'}
-                      overflow={'scroll'}
-                      textOverflow={'ellipsis'}
-                    >
-                      {vault.secret}
-                    </Typography>
-                  </Box>
+                  <VaultCardContentLine vaultSecret={vault.secret} />
                 </CardContent>
                 <CardActions>
                   <Button
