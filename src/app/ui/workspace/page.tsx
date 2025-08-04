@@ -25,6 +25,7 @@ import { useVaults } from '@ui/hooks/useVaults';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import { UiLogger } from '@ui/logs/ui.logger';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -76,6 +77,7 @@ export default function WorkspacePage(): JSX.Element {
           onChange={e => setSearchTerm(e.target.value)}
         />
         <Button
+          startIcon={<AddIcon />}
           variant="contained"
           sx={{ minWidth: 150 }}
           onClick={() => setOpen(true)}
