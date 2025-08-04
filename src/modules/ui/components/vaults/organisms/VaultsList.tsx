@@ -1,14 +1,6 @@
 import React from 'react';
 import type { JSX } from 'react';
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Grid,
-  Skeleton,
-  Typography,
-} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import VaultCard from '@ui/components/vaults/molecules/VaultCard';
 import VaultSkeletons from '@ui/components/vaults/molecules/VaultSkeletons';
