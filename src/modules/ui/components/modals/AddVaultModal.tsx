@@ -20,8 +20,8 @@ import Form from 'next/form';
 
 type AddVaultModalProps = {
   open: boolean;
-  refreshVaults: () => Promise<void>;
   onClose: () => void;
+  refreshVaults: () => Promise<void>;
 };
 
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
@@ -67,6 +67,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             margin="dense"
             label="Label"
             fullWidth
+            required
             value={newLabel}
             onChange={e => setNewLabel(e.target.value)}
           />
@@ -74,6 +75,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             margin="dense"
             label="Secret"
             fullWidth
+            required
             value={newSecret}
             onChange={e => setNewSecret(e.target.value)}
             sx={{ mt: 2 }}
