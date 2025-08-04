@@ -16,7 +16,7 @@ type VaultsListProps = {
   loading: boolean;
   displayedVaults: VaultModelDto[];
   searchTerm: string;
-  deleteVault: (vault: VaultModelDto) => void;
+  refetchVaults: () => Promise<void>;
 };
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
@@ -63,7 +63,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
     >
       {props.displayedVaults.map(vault => (
         <Grid key={vault.id} size={1}>
-          <VaultCard vault={vault} deleteVault={props.deleteVault} />
+          <VaultCard vault={vault} refetchVaults={props.refetchVaults} />
         </Grid>
       ))}
     </Grid>
