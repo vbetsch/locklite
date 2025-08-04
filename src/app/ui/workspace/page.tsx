@@ -28,6 +28,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
 import SearchBar from '@ui/components/common/SearchBar';
 import VaultCard from '@ui/components/vaults/molecules/VaultCard';
+import VaultsList from '@ui/components/vaults/organisms/VaultsList';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -114,50 +115,12 @@ export default function WorkspacePage(): JSX.Element {
         </Button>
       </Box>
       <ErrorMessage error={error} />
-      {globalLoading && (
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
-          columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
-          alignContent={'start'}
-          overflow={'auto'}
-          height={'65vh'}
-        >
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Grid key={i} size={1}>
-              <Card sx={{ bgcolor: 'background.paper' }}>
-                <CardHeader title={<Skeleton variant="text" width="80%" />} />
-                <CardContent>
-                  <Skeleton variant="text" />
-                  <Skeleton variant="text" width="60%" />
-                </CardContent>
-                <CardActions />
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      )}
-      {!globalLoading && filteredVaults.length === 0 && (
-        <Typography>
-          {searchTerm ? 'No vaults match your search' : 'No results found'}
-        </Typography>
-      )}
-      {!globalLoading && filteredVaults.length > 0 && (
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
-          columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
-          alignContent={'start'}
-          overflow={'auto'}
-          height={'65vh'}
-        >
-          {filteredVaults.map(vault => (
-            <Grid key={vault.id} size={1}>
-              <VaultCard vault={vault} deleteVault={handleDeleteClick} />
-            </Grid>
-          ))}
-        </Grid>
-      )}
+      <VaultsList
+        loading={globalLoading}
+        searchTerm={searchTerm}
+        displayedVaults={filteredVaults}
+        deleteVault={handleDeleteClick}
+      />
     </Container>
   );
 }
