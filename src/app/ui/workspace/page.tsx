@@ -95,6 +95,7 @@ export default function WorkspacePage(): JSX.Element {
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
           columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
+          alignContent={'start'}
           overflow={'auto'}
           height={'65vh'}
         >
