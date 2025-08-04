@@ -105,9 +105,7 @@ export default function WorkspacePage(): JSX.Element {
                   <Skeleton variant="text" />
                   <Skeleton variant="text" width="60%" />
                 </CardContent>
-                <CardActions>
-                  <Skeleton variant="rectangular" width={80} height={32} />
-                </CardActions>
+                <CardActions />
               </Card>
             </Grid>
           ))}
