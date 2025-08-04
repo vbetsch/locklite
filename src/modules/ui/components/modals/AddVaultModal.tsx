@@ -17,7 +17,6 @@ import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import Form from 'next/form';
-import { margin } from '@mui/system';
 
 type AddVaultModalProps = {
   open: boolean;
