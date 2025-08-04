@@ -27,27 +27,38 @@ type AddVaultModalProps = {
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
+  const [error, setError] = useState<Error | null>(null);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
 
-  const {
-    execute: createVault,
-    loading,
-    error,
-  } = useApiCall<CreateVaultDataDto, CreateVaultPayloadDto>({
+  const handleClose = (): void => {
+    setError(null);
+    setNewLabel('');
+    setNewSecret('');
+    props.onClose();
+  };
+
+  const { execute: createVault, loading } = useApiCall<
+    CreateVaultDataDto,
+    CreateVaultPayloadDto
+  >({
     request: payload => vaultsGateway.createVault(payload!),
     onSuccess: async () => {
-      props.onClose();
+      handleClose();
       await props.refreshVaults();
     },
-    onError: err => UiLogger.error('Create vault failed', err),
+    onError: err => {
+      setError(err);
+      UiLogger.error('Create vault failed', err);
+    },
   });
 
   const handleSubmit = async (): Promise<void> => {
+    setError(null);
     await createVault({ label: newLabel, secret: newSecret });
   };
 
   return (
-    <Dialog open={props.open} onClose={props.onClose}>
+    <Dialog open={props.open} onClose={handleClose}>
       <DialogTitle>Add a vault</DialogTitle>
       <Form action={handleSubmit}>
         <DialogContent>
@@ -69,10 +80,10 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           />
         </DialogContent>
         <Box sx={{ paddingLeft: 3, height: 15 }}>
-          <ErrorMessage error={error || null} />
+          <ErrorMessage error={error} />
         </Box>
         <DialogActions>
-          <Button onClick={props.onClose}>Cancel</Button>
+          <Button onClick={handleClose}>Cancel</Button>
           <Button type={'submit'} variant="contained" loading={loading}>
             Create
           </Button>
