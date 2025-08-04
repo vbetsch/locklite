@@ -79,7 +79,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   }, [props.open]);
 
   return (
-    <Dialog open={props.open} onClose={handleClose}>
+    <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
       <DialogTitle>Add a vault</DialogTitle>
       <Form action={handleSubmit}>
         <DialogContent>
@@ -105,7 +105,15 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             sx={{ mt: 2 }}
           />
         </DialogContent>
-        <Box sx={{ paddingLeft: 3, height: 15 }}>
+        <Box
+          sx={{
+            paddingLeft: 3,
+            height: 15,
+            width: '100%',
+            overflowWrap: 'break-word',
+            wordBreak: 'break-word',
+          }}
+        >
           <ErrorMessage error={globalError} />
         </Box>
         <DialogActions>
