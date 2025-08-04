@@ -70,7 +70,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       />
       <CardHeader title={props.vault.label} />
       <CardContent>
-        <VaultCardContentLine vaultSecret={props.vault.secret} />
+        <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
       </CardContent>
       <CardActions>
         <Button

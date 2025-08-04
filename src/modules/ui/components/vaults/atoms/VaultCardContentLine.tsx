@@ -3,7 +3,8 @@ import type { JSX } from 'react';
 import { Box, Typography } from '@mui/material';
 
 type VaultCardContentLineProps = {
-  vaultSecret: string;
+  property: string;
+  value: string;
 };
 
 export default function VaultCardContentLine(
@@ -19,7 +20,7 @@ export default function VaultCardContentLine(
       }}
     >
       <Typography variant="body2" color="text.secondary">
-        Secret:
+        {props.property}:
       </Typography>
       <Typography
         variant="body2"
@@ -28,7 +29,7 @@ export default function VaultCardContentLine(
         overflow={'scroll'}
         textOverflow={'ellipsis'}
       >
-        {props.vaultSecret}
+        {props.value}
       </Typography>
     </Box>
   );
