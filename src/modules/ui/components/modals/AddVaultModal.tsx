@@ -15,6 +15,7 @@ import { UiLogger } from '@ui/logs/ui.logger';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import Form from 'next/form';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -40,38 +41,40 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     onError: err => UiLogger.error('Create vault failed', err),
   });
 
-  const handleConfirm = async (): Promise<void> => {
+  const handleSubmit = async (): Promise<void> => {
     await createVault({ label: newLabel, secret: newSecret });
   };
 
   return (
     <Dialog open={props.open} onClose={props.onClose}>
       <DialogTitle>Add a vault</DialogTitle>
-      <DialogContent>
-        <TextField
-          autoFocus
-          margin="dense"
-          label="Label"
-          fullWidth
-          value={newLabel}
-          onChange={e => setNewLabel(e.target.value)}
-        />
-        <ErrorMessage error={error || null} />
-        <TextField
-          margin="dense"
-          label="Secret"
-          fullWidth
-          value={newSecret}
-          onChange={e => setNewSecret(e.target.value)}
-          sx={{ mt: 2 }}
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={props.onClose}>Cancel</Button>
-        <Button onClick={handleConfirm} variant="contained" loading={loading}>
-          Create
-        </Button>
-      </DialogActions>
+      <Form action={handleSubmit}>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Label"
+            fullWidth
+            value={newLabel}
+            onChange={e => setNewLabel(e.target.value)}
+          />
+          <ErrorMessage error={error || null} />
+          <TextField
+            margin="dense"
+            label="Secret"
+            fullWidth
+            value={newSecret}
+            onChange={e => setNewSecret(e.target.value)}
+            sx={{ mt: 2 }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={props.onClose}>Cancel</Button>
+          <Button type={'submit'} variant="contained" loading={loading}>
+            Create
+          </Button>
+        </DialogActions>
+      </Form>
     </Dialog>
   );
 }
