@@ -17,7 +17,6 @@ import {
   Container,
   Grid,
   Skeleton,
-  TextField,
   Typography,
 } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
@@ -27,6 +26,7 @@ import { UiLogger } from '@ui/logs/ui.logger';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
+import SearchBar from '@ui/components/common/SearchBar';
 
 export default function WorkspacePage(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
@@ -102,12 +102,7 @@ export default function WorkspacePage(): JSX.Element {
           width: '100%',
         }}
       >
-        <TextField
-          fullWidth
-          placeholder="Search…"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Button
           startIcon={<AddIcon />}
           variant="contained"
