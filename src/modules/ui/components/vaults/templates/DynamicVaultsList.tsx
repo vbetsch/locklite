@@ -11,17 +11,18 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function DynamicVaultsList(): JSX.Element {
   const { vaults, loading, error, refetch } = useVaults();
-  const [open, setOpen] = useState(false);
+  const [openAddModal, setOpenAddModal] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
   const filteredVaults: VaultModelDto[] = vaults.filter(v =>
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
     <>
       <AddVaultModal
-        open={open}
-        onClose={() => setOpen(false)}
+        open={openAddModal}
+        onClose={() => setOpenAddModal(false)}
         refreshVaults={refetch}
       />
       <Box
@@ -36,7 +37,7 @@ export default function DynamicVaultsList(): JSX.Element {
           startIcon={<AddIcon />}
           variant="contained"
           sx={{ minWidth: 150 }}
-          onClick={() => setOpen(true)}
+          onClick={() => setOpenAddModal(true)}
         >
           Add a vault
         </Button>
