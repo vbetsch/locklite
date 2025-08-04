@@ -7,18 +7,7 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Container,
-  Grid,
-  Skeleton,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import AddVaultModal from '@ui/components/modals/AddVaultModal';
 import { useVaults } from '@ui/hooks/useVaults';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
@@ -27,7 +16,6 @@ import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.pa
 import AddIcon from '@mui/icons-material/Add';
 import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
 import SearchBar from '@ui/components/common/SearchBar';
-import VaultCard from '@ui/components/vaults/molecules/VaultCard';
 import VaultsList from '@ui/components/vaults/organisms/VaultsList';
 
 export default function WorkspacePage(): JSX.Element {
