@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import type { JSX } from 'react';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
-import CircularLoader from '@ui/components/common/CircularLoader';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import {
@@ -17,6 +16,7 @@ import {
   CardHeader,
   Container,
   Grid,
+  Skeleton,
   TextField,
   Typography,
 } from '@mui/material';
@@ -45,6 +45,8 @@ export default function WorkspacePage(): JSX.Element {
     onSuccess: () => refetch(),
     onError: err => UiLogger.error(null, err),
   });
+
+  const globalLoading: boolean = loading || deleteLoading;
 
   return (
     <Container
@@ -86,13 +88,37 @@ export default function WorkspacePage(): JSX.Element {
         </Button>
       </Box>
       <ErrorMessage error={error} />
-      <CircularLoader loading={loading || deleteLoading} />
-      {!loading && !deleteLoading && filteredVaults.length === 0 && (
+      {globalLoading && (
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
+          columns={{ xs: 1, md: 2, lg: 3, xl: 3 }}
+          alignContent={'start'}
+          overflow={'auto'}
+          height={'65vh'}
+        >
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Grid key={i} size={1}>
+              <Card sx={{ bgcolor: 'background.paper' }}>
+                <CardHeader title={<Skeleton variant="text" width="80%" />} />
+                <CardContent>
+                  <Skeleton variant="text" />
+                  <Skeleton variant="text" width="60%" />
+                </CardContent>
+                <CardActions>
+                  <Skeleton variant="rectangular" width={80} height={32} />
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {!globalLoading && filteredVaults.length === 0 && (
         <Typography>
           {searchTerm ? 'No vaults match your search' : 'No results found'}
         </Typography>
       )}
-      {filteredVaults.length > 0 && (
+      {!globalLoading && filteredVaults.length > 0 && (
         <Grid
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 4 }}
