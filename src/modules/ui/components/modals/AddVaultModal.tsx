@@ -19,6 +19,7 @@ import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import Form from 'next/form';
+import { BusinessError } from '@shared/errors/business-error';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -31,13 +32,15 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
 
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
-  const [error, setError] = useState<Error | null>(null);
+  const [labelError, setLabelError] = useState<Error | null>(null);
+  const [globalError, setGlobalError] = useState<Error | null>(null);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
 
   const handleClose = (): void => {
-    setError(null);
+    setLabelError(null);
+    setGlobalError(null);
     setNewLabel('');
     setNewSecret('');
     props.onClose();
@@ -53,13 +56,17 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       await props.refreshVaults();
     },
     onError: err => {
-      setError(err);
+      if (err instanceof BusinessError && err.message.includes('label')) {
+        setLabelError(err);
+      } else {
+        setGlobalError(err);
+      }
       UiLogger.error('Create vault failed', err);
     },
   });
 
   const handleSubmit = async (): Promise<void> => {
-    setError(null);
+    setGlobalError(null);
     await createVault({ label: newLabel, secret: newSecret });
   };
 
@@ -84,8 +91,11 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             required
             value={newLabel}
             onChange={e => setNewLabel(e.target.value)}
+            error={!!globalError || !!labelError}
+            helperText={labelError ? labelError.message : ''}
           />
           <TextField
+            error={!!globalError}
             margin="dense"
             label="Secret"
             fullWidth
@@ -96,7 +106,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           />
         </DialogContent>
         <Box sx={{ paddingLeft: 3, height: 15 }}>
-          <ErrorMessage error={error} />
+          <ErrorMessage error={globalError} />
         </Box>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
