@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import React, { useState } from 'react';
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
@@ -16,6 +17,7 @@ import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import Form from 'next/form';
+import { margin } from '@mui/system';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -58,7 +60,6 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             value={newLabel}
             onChange={e => setNewLabel(e.target.value)}
           />
-          <ErrorMessage error={error || null} />
           <TextField
             margin="dense"
             label="Secret"
@@ -68,6 +69,9 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
             sx={{ mt: 2 }}
           />
         </DialogContent>
+        <Box sx={{ paddingLeft: 3, height: 15 }}>
+          <ErrorMessage error={error || null} />
+        </Box>
         <DialogActions>
           <Button onClick={props.onClose}>Cancel</Button>
           <Button type={'submit'} variant="contained" loading={loading}>
