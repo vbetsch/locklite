@@ -1,4 +1,6 @@
-import type { JSX } from 'react';
+import type { JSX, RefObject } from 'react';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 import React, { useState } from 'react';
 import {
   Box,
@@ -25,10 +27,14 @@ type AddVaultModalProps = {
 };
 
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
+  const delayToFocusFirstInput: number = 100;
+
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
   const [error, setError] = useState<Error | null>(null);
   const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
+  const labelInputRef: RefObject<HTMLInputElement | null> =
+    useRef<HTMLInputElement>(null);
 
   const handleClose = (): void => {
     setError(null);
@@ -57,13 +63,21 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     await createVault({ label: newLabel, secret: newSecret });
   };
 
+  useEffect(() => {
+    if (props.open) {
+      setTimeout(() => {
+        labelInputRef.current?.focus();
+      }, delayToFocusFirstInput);
+    }
+  }, [props.open]);
+
   return (
     <Dialog open={props.open} onClose={handleClose}>
       <DialogTitle>Add a vault</DialogTitle>
       <Form action={handleSubmit}>
         <DialogContent>
           <TextField
-            autoFocus
+            inputRef={labelInputRef}
             margin="dense"
             label="Label"
             fullWidth
