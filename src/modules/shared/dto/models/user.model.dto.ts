@@ -10,7 +10,6 @@
  *       properties:
  *         id:
  *           type: string
- *           format: uuid
  *         email:
  *           type: string
  *           format: email
