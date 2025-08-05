@@ -30,7 +30,7 @@ import { authOptions } from '@lib/auth';
  *     description: By Next Auth
  *     responses:
  *       200:
- *         description: Session object or null if not authenticated
+ *         description: Session object or empty if not authenticated
  *         content:
  *           application/json:
  *             schema:
