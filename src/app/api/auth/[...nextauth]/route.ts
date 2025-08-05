@@ -64,7 +64,7 @@ import { authOptions } from '@lib/auth';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CsrfTokenDto'
+ *               $ref: '#/components/schemas/CsrfTokenBodyDto'
  *       500:
  *         description: Internal server error
  *         content:
