@@ -13,13 +13,6 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
 
 /**
  * @swagger
- * tags:
- *   - name: Vaults
- *     description: Manage password vault entries and encryption.
- */
-
-/**
- * @swagger
  * /api/vaults:
  *   get:
  *     tags: [Vaults]

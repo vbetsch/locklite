@@ -8,6 +8,15 @@ export const metadata: Metadata = {
   description: 'The API of the Locklite password manager',
 };
 
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Authentication and user management
+ *   - name: Vaults
+ *     description: Manage password vault entries and encryption.
+ */
+
 export default function RootLayout({
   children,
 }: SharedLayoutProps): JSX.Element {
