@@ -21,13 +21,6 @@ export class RegisterUseCase
     private readonly _userAdapter: UserAdapter
   ) {}
   public async handle(input: RegisterPayloadDto): Promise<UserModelDto> {
-    // if (!email || !password) {
-    //   return NextResponse.json(
-    //     { message: 'Email and password are required' },
-    //     { status: StatusCodes.BAD_REQUEST }
-    //   );
-    // }
-
     const userFound: User | null = await this._usersRepository.findByEmail(
       input.email
     );
