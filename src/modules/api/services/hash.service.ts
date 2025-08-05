@@ -13,7 +13,7 @@ export class HashService {
     return await hash(str, this._salt);
   }
 
-  private async _compareTwoHash(str: string, ref: string): Promise<boolean> {
+  private async _compareTwoHashes(str: string, ref: string): Promise<boolean> {
     return await compare(str, ref);
   }
 
@@ -31,9 +31,9 @@ export class HashService {
     refValue: string
   ): Promise<boolean> {
     try {
-      return await this._compareTwoHash(hashedInput, refValue);
+      return await this._compareTwoHashes(hashedInput, refValue);
     } catch (error: unknown) {
-      ApiLogger.error('An error occurred while compare two hash : ', error);
+      ApiLogger.error('An error occurred while comparing two hashes : ', error);
       throw error;
     }
   }
