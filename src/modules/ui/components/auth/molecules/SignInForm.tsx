@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { SessionStatus } from '@shared/auth/session-status.enum';
 import { RoutesEnum } from '@ui/router/routes.enum';
 
 export function SignInForm(): JSX.Element | null {
@@ -19,17 +20,17 @@ export function SignInForm(): JSX.Element | null {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      router.push('/');
+    if (status === SessionStatus.AUTHENTICATED) {
       router.push(RoutesEnum.WORKSPACE);
     }
   }, [session, status, router]);
 
   if (status === 'loading') {
     return <Typography>Loading...</Typography>;
+  if (status === SessionStatus.LOADING) {
   }
 
-  if (status === 'authenticated') {
+  if (status === SessionStatus.AUTHENTICATED) {
     return null;
   }
 
