@@ -20,6 +20,7 @@ export class RegisterUseCase
     @inject(UserAdapter)
     private readonly _userAdapter: UserAdapter
   ) {}
+
   public async handle(input: RegisterPayloadDto): Promise<UserModelDto> {
     const userFound: User | null = await this._usersRepository.findByEmail(
       input.email
