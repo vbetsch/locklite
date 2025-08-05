@@ -17,7 +17,7 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  *   get:
  *     tags:
  *      - Vaults
- *     description: Get my vaults
+ *     summary: Get my vaults
  *     responses:
  *       200:
  *         description: Returns my vaults
@@ -50,7 +50,7 @@ export async function GET(): Promise<
  *   post:
  *     tags:
  *      - Vaults
- *     description: Create a vault
+ *     summary: Create a vault
  *     requestBody:
  *       required: true
  *       content:
