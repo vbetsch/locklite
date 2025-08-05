@@ -13,7 +13,7 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  *   delete:
  *     tags:
  *      - Vaults
- *     description: Delete a vault by ID
+ *     summary: Delete a vault by ID
  *     parameters:
  *      - in: path
  *        name: id
