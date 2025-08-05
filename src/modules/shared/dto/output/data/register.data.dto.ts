@@ -1,3 +1,5 @@
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+
 /**
  * @swagger
  * components:
@@ -8,14 +10,9 @@
  *         data:
  *           type: object
  *           properties:
- *             userId:
- *               type: string
- *               format: uuid
- *             userEmail:
- *               type: string
- *               format: email
+ *             userCreated:
+ *               $ref: '#/components/schemas/UserModelDto'
  */
 export type RegisterDataDto = {
-  userId: string;
-  userEmail: string;
+  userCreated: UserModelDto;
 };

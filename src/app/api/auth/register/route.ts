@@ -5,6 +5,7 @@ import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.pay
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 
 /**
  * @swagger
@@ -51,10 +52,7 @@ export async function POST(
   const registerUseCase: RegisterUseCase = container.resolve(RegisterUseCase);
   return await handleApiRequest<RegisterDataDto>(async () => {
     const userCreated: UserModelDto = await registerUseCase.handle(payload);
-    const response: RegisterDataDto = {
-      userId: userCreated.id,
-      userEmail: userCreated.email,
-    };
+    const response: RegisterDataDto = { userCreated };
     return response;
   }, StatusCodes.CREATED);
 }
