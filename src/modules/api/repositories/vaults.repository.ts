@@ -2,6 +2,7 @@ import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import { handlePrismaRequest } from '@api/helpers/prisma/handle-prisma-request';
 import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import prisma from '@lib/prisma';
 
 @injectable()
 export class VaultsRepository {
