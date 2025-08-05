@@ -77,8 +77,6 @@ import { authOptions } from '@lib/auth';
  *     responses:
  *       200:
  *         description: Redirect URL after successful authentication
- *       401:
- *         description: Invalid credentials
  *       500:
  *         description: Internal server error
  */
@@ -112,7 +110,7 @@ import { authOptions } from '@lib/auth';
  *         required: true
  *         schema:
  *           type: string
- *         description: Provider identifier (e.g., credentials)
+ *         description: Provider identifier (e.g., Credentials)
  *     responses:
  *       302:
  *         description: Redirect after processing the callback
