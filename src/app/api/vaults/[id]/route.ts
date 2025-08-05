@@ -11,8 +11,7 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  * @swagger
  * /api/vaults/{id}:
  *   delete:
- *     tags:
- *      - Vaults
+ *     tags: [Vaults]
  *     summary: Delete a vault by ID
  *     parameters:
  *      - in: path

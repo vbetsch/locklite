@@ -15,8 +15,7 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  * @swagger
  * /api/vaults:
  *   get:
- *     tags:
- *      - Vaults
+ *     tags: [Vaults]
  *     summary: Get my vaults
  *     responses:
  *       200:
@@ -48,8 +47,7 @@ export async function GET(): Promise<
  * @swagger
  * /api/vaults:
  *   post:
- *     tags:
- *      - Vaults
+ *     tags: [Vaults]
  *     summary: Create a vault
  *     requestBody:
  *       required: true
@@ -69,13 +67,13 @@ export async function GET(): Promise<
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
+ *               $ref: '#/components/schemas/BusinessErrorDto'
  *       422:
  *         description: The vault label must not exceed 255 characters
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
+ *               $ref: '#/components/schemas/BusinessErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:

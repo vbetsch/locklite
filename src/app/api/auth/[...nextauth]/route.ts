@@ -5,8 +5,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/providers:
  *   get:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: Retrieve configured authentication providers
  *     description: By Next Auth
  *     responses:
@@ -24,8 +23,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/session:
  *   get:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: Get current user session
  *     description: By Next Auth
  *     responses:
@@ -43,8 +41,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/csrf:
  *   get:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: Retrieve CSRF token
  *     description: By Next Auth
  *     responses:
@@ -62,8 +59,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/signin:
  *   post:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: Sign in using credentials provider
  *     description: By Next Auth
  *     requestBody:
@@ -83,8 +79,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/signout:
  *   post:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: Sign out current user
  *     description: By Next Auth
  *     responses:
@@ -98,8 +93,7 @@ import { authOptions } from '@lib/auth';
  * @swagger
  * /api/auth/callback/{provider}:
  *   get:
- *     tags:
- *       - Auth
+ *     tags: [Auth]
  *     summary: OAuth callback endpoint for a given provider
  *     description: By Next Auth
  *     parameters:
