@@ -9,12 +9,12 @@ import {
 } from '@mui/material';
 import VaultCardContentLine from '@ui/components/vaults/atoms/VaultCardContentLine';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import DeleteVaultConfirmationModal from '@ui/components/modals/DeleteVaultConfirmationModal';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import { VaultsGateway } from '@ui/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/logs/ui.logger';
+import ConfirmationModal from '@ui/components/modals/atoms/ConfirmationModal';
 
 type VaultCardProps = {
   vault: VaultModelDto;
@@ -62,11 +62,13 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         bgcolor: 'background.paper',
       }}
     >
-      <DeleteVaultConfirmationModal
+      <ConfirmationModal
         open={confirmOpen}
         onSubmit={handleConfirmDelete}
         onClose={() => setConfirmOpen(false)}
-        vaultLabel={vaultToDelete?.label || 'unknown'}
+        title={'Delete vault'}
+        text={`Are you sure you want to delete « ${vaultToDelete?.label || 'unknown'} »?`}
+        confirmation={'delete'}
       />
       <CardHeader title={props.vault.label} />
       <CardContent>
