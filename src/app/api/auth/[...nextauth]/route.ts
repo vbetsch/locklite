@@ -8,6 +8,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: Retrieve configured authentication providers
+ *     description: By Next Auth
  *     responses:
  *       200:
  *         description: Returns the list of available providers
@@ -26,6 +27,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: Get current user session
+ *     description: By Next Auth
  *     responses:
  *       200:
  *         description: Session object or null if not authenticated
@@ -50,6 +52,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: Retrieve CSRF token
+ *     description: By Next Auth
  *     responses:
  *       200:
  *         description: CSRF token for form submissions
@@ -68,6 +71,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: Sign in using credentials provider
+ *     description: By Next Auth
  *     requestBody:
  *       required: true
  *       content:
@@ -90,6 +94,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: Sign out current user
+ *     description: By Next Auth
  *     responses:
  *       200:
  *         description: Redirect URL after sign out
@@ -104,6 +109,7 @@ import { authOptions } from '@lib/auth';
  *     tags:
  *       - Auth
  *     summary: OAuth callback endpoint for a given provider
+ *     description: By Next Auth
  *     parameters:
  *       - name: provider
  *         in: path
