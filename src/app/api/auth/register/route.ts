@@ -6,6 +6,7 @@ import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { RegisterUseCase } from '@api/usecases/auth/register.usecase';
 
 /**
  * @swagger
