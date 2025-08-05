@@ -5,8 +5,7 @@ import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 
 export const metadata: Metadata = {
   title: 'LockLite Auth',
-  description:
-    'The authentification management of the Locklite password manager',
+  description: 'The authentication management of the Locklite password manager',
 };
 
 export default function RootLayout({
