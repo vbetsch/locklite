@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import PageContainer from '@ui/components/common/PageContainer';
 
 function SignInForm(): JSX.Element | null {
   const { data: session, status } = useSession();
@@ -46,25 +47,27 @@ function SignInForm(): JSX.Element | null {
   }
 
   return (
-    // eslint-disable-next-line no-restricted-syntax
-    <form onSubmit={handleSubmit}>
-      <TextField
-        label="Email"
-        type="email"
-        fullWidth
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        fullWidth
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      {error && <Typography>{error}</Typography>}
-      <Button type="submit">Sign in</Button>
-    </form>
+    <PageContainer title={'Login'}>
+      {/* eslint-disable-next-line no-restricted-syntax */}
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Email"
+          type="email"
+          fullWidth
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          fullWidth
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        {error && <Typography>{error}</Typography>}
+        <Button type="submit">Sign in</Button>
+      </form>
+    </PageContainer>
   );
 }
 
