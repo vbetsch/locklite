@@ -1,16 +1,14 @@
 'use client';
 
-import React from 'react';
+import type { JSX } from 'react';
+import React, { useState } from 'react';
 import type { SignInResponse } from 'next-auth/react';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import type { JSX } from 'react';
-import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import Form from 'next/form';
 import { Typography } from '@mui/material';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 export default function SignInPage(): JSX.Element | null {
   const { data: session } = useSession();
@@ -24,7 +22,8 @@ export default function SignInPage(): JSX.Element | null {
     return null;
   }
 
-  async function handleSubmit(): Promise<void> {
+  async function handleSubmit(e: React.FormEvent): Promise<void> {
+    e.preventDefault();
     const res: SignInResponse | undefined = await signIn('credentials', {
       email,
       password,
@@ -38,7 +37,8 @@ export default function SignInPage(): JSX.Element | null {
   }
 
   return (
-    <Form action={handleSubmit}>
+    // eslint-disable-next-line no-restricted-syntax
+    <form onSubmit={handleSubmit}>
       <TextField
         label="Email"
         type="email"
@@ -55,6 +55,6 @@ export default function SignInPage(): JSX.Element | null {
       />
       {error && <Typography>{error}</Typography>}
       <Button type="submit">Sign in</Button>
-    </Form>
+    </form>
   );
 }
