@@ -2,18 +2,21 @@ import React from 'react';
 import type { JSX } from 'react';
 import {
   Button,
+  Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   Typography,
 } from '@mui/material';
-import type { AppModalProps } from '@ui/components/modals/atoms/AppModal';
-import AppModal from '@ui/components/modals/atoms/AppModal';
 
-type ConfirmationModalProps = {
+export type ConfirmationModalProps = {
+  open: boolean;
   onSubmit: () => void;
+  onClose: () => void;
+  title: string;
   text: string;
   confirmation: 'delete' | 'confirm';
-} & AppModalProps;
+};
 
 export default function ConfirmationModal(
   props: ConfirmationModalProps
@@ -26,7 +29,8 @@ export default function ConfirmationModal(
   };
 
   return (
-    <AppModal title={props.title} open={props.open} onClose={handleClose}>
+    <Dialog open={props.open} onClose={handleClose}>
+      <DialogTitle>{props.title}</DialogTitle>
       <DialogContent>
         <Typography>{props.text}</Typography>
       </DialogContent>
@@ -43,6 +47,6 @@ export default function ConfirmationModal(
           </Button>
         )}
       </DialogActions>
-    </AppModal>
+    </Dialog>
   );
 }
