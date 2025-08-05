@@ -36,7 +36,7 @@ import { authOptions } from '@lib/auth';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/SessionDto'
+ *               $ref: '#/components/schemas/SessionBodyDto'
  *       401:
  *         description: Not authenticated
  *         content:
