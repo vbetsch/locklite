@@ -21,7 +21,7 @@ import { RegisterUseCase } from '@api/usecases/auth/register.usecase';
  *           schema:
  *             $ref: '#/components/schemas/RegisterPayloadDto'
  *     responses:
- *      201:
+ *       201:
  *         description: User created successfully
  *         content:
  *           application/json:
