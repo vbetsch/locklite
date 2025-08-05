@@ -45,7 +45,7 @@ export function SignInForm(): JSX.Element | null {
     if (res?.error) {
       setError(new Error('Email or password is incorrect'));
     } else {
-      router.push('/');
+      router.push(RoutesEnum.WORKSPACE);
     }
   }
 
