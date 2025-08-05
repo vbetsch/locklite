@@ -4,13 +4,13 @@ import React from 'react';
 import type { JSX } from 'react';
 import PageContainer from '@ui/components/common/PageContainer';
 import { SessionProvider } from 'next-auth/react';
-import { SignUpForm } from '@ui/components/auth/molecules/SignUpForm';
+import { SignInForm } from '@ui/components/auth/molecules/SignInForm';
 
 export default function SignUpPage(): JSX.Element {
   return (
     <PageContainer title={'Register'}>
       <SessionProvider>
-        <SignUpForm />
+        <SignInForm />
       </SessionProvider>
     </PageContainer>
   );
