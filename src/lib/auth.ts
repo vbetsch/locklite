@@ -4,6 +4,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@lib/prisma';
 import { compare } from 'bcrypt';
 import type { User } from '@prisma/generated';
+import { RoutesEnum } from '@ui/router/routes.enum';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -30,6 +31,10 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  pages: { signIn: '/ui/login' },
+  pages: {
+    signIn: RoutesEnum.LOGIN,
+    signOut: RoutesEnum.LOGIN,
+    error: RoutesEnum.AUTH_ERROR,
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
