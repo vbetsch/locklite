@@ -5,7 +5,7 @@ import AddVaultModal from '@ui/components/vaults/organisms/AddVaultModal';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
 import VaultsList from './VaultsList';
-import { useVaults } from '@ui/hooks/useVaults';
+import { useVaults } from '@ui/hooks/api/fetch/useVaults';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import AddIcon from '@mui/icons-material/Add';
 
