@@ -14,7 +14,7 @@ import { authOptions } from '@lib/auth';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ProvidersDto'
+ *               $ref: '#/components/schemas/ProvidersBodyDto'
  *       500:
  *         description: Internal server error
  *         content:
