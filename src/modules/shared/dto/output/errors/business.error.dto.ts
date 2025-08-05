@@ -1,8 +1,10 @@
+import type { BusinessErrorCodeEnum } from '@shared/errors/business-error-code.enum';
+
 /**
  * @swagger
  * components:
  *   schemas:
- *     HttpErrorDto:
+ *     BusinessErrorDto:
  *       type: object
  *       properties:
  *         error:
@@ -10,9 +12,12 @@
  *           properties:
  *             message:
  *               type: string
+ *             code:
+ *               type: string
  */
-export type HttpErrorDto = {
+export type BusinessErrorDto = {
   error: {
     message: string;
+    code: BusinessErrorCodeEnum;
   };
 };

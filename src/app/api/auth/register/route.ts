@@ -33,7 +33,7 @@ import { RegisterUseCase } from '@api/usecases/auth/register.usecase';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
+ *               $ref: '#/components/schemas/BusinessErrorDto'
  *       500:
  *         description: Internal server error
  *         content:
