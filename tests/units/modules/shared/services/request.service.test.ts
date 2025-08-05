@@ -156,7 +156,7 @@ describe('RequestService', () => {
       headers: { 'Content-Type': 'application/json' },
     });
     expect(mockResponse.json).toHaveBeenCalled();
-    expect(result).toEqual(OK_STATUS);
+    expect(result).toEqual({ data: { deleted: true }, status: OK_STATUS });
   });
 
   it('should throw error with JSON message when response not ok and JSON contains error', async (): Promise<void> => {
