@@ -1,24 +1,34 @@
 'use client';
 
 import type { JSX } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { SignInResponse } from 'next-auth/react';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn, useSession, SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
-export default function SignInPage(): JSX.Element | null {
-  const { data: session } = useSession();
+function SignInForm(): JSX.Element | null {
+  const { data: session, status } = useSession();
   const router: AppRouterInstance = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  if (session) {
-    router.push('/');
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (status === 'authenticated' && session) {
+      router.push('/');
+    }
+  }, [session, status, router]);
+
+  if (status === 'loading') {
+    return <Typography>Loading...</Typography>;
+  }
+
+  if (status === 'authenticated') {
     return null;
   }
 
@@ -56,5 +66,13 @@ export default function SignInPage(): JSX.Element | null {
       {error && <Typography>{error}</Typography>}
       <Button type="submit">Sign in</Button>
     </form>
+  );
+}
+
+export default function SignInPage(): JSX.Element {
+  return (
+    <SessionProvider>
+      <SignInForm />
+    </SessionProvider>
   );
 }
