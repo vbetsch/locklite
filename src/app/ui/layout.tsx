@@ -3,7 +3,6 @@ import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
-import PageContainer from '@ui/components/common/PageContainer';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 
 export const metadata: Metadata = {
@@ -28,9 +27,7 @@ export default function RootLayout({
               <Typography variant="h6">Locklite</Typography>
             </Toolbar>
           </AppBar>
-          <Container component="main">
-            <PageContainer>{children}</PageContainer>
-          </Container>
+          <Container component="main">{children}</Container>
         </ThemeRegistry>
       </body>
     </html>
