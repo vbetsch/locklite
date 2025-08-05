@@ -85,7 +85,7 @@ import { authOptions } from '@lib/auth';
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/SignInRequestDto'
+ *             $ref: '#/components/schemas/SignInPayloadDto'
  *     responses:
  *       200:
  *         description: Redirect URL after successful authentication
