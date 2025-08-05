@@ -36,12 +36,12 @@ export default function ConfirmationModal(
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        {props.confirmation !== 'delete' && (
+        {props.confirmation === 'delete' && (
           <Button color="error" variant="contained" onClick={handleSubmit}>
             Delete
           </Button>
         )}
-        {props.confirmation !== 'confirm' && (
+        {props.confirmation === 'confirm' && (
           <Button color={'primary'} variant="contained" onClick={handleSubmit}>
             Confirm
           </Button>
