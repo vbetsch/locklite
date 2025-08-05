@@ -6,6 +6,14 @@ import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.pay
 
 @injectable()
 export class UsersRepository {
+  public async findByEmail(email: string): Promise<User | null> {
+    return await handlePrismaRequest<User | null>(() =>
+      prisma.user.findUnique({
+        where: { email },
+      })
+    );
+  }
+
   public async create(payload: RegisterPayloadDto): Promise<User> {
     return await handlePrismaRequest<User>(() =>
       prisma.user.create({ data: payload })

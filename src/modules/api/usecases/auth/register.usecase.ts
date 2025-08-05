@@ -6,6 +6,7 @@ import { UserAdapter } from '@api/adapters/user.adapter';
 import { UsersRepository } from '@api/repositories/users.repository';
 import { User } from '@prisma/generated';
 import { HashService } from '@api/services/hash.service';
+import { UserAlreadyExistsError } from '@api/errors/business/auth/user-already-exists.error';
 
 @injectable()
 export class RegisterUseCase
@@ -27,15 +28,12 @@ export class RegisterUseCase
     //   );
     // }
 
-    // const exists: User | null = await prisma.user.findUnique({
-    //   where: { email },
-    // });
-    // if (exists) {
-    //   return NextResponse.json(
-    //     { message: 'User already exists' },
-    //     { status: StatusCodes.CONFLICT }
-    //   );
-    // }
+    const userFound: User | null = await this._usersRepository.findByEmail(
+      input.email
+    );
+    if (userFound) {
+      throw new UserAlreadyExistsError(input.email);
+    }
 
     const inputHashed: RegisterPayloadDto = {
       ...input,
