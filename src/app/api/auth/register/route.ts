@@ -27,12 +27,6 @@ import { RegisterUseCase } from '@api/usecases/auth/register.usecase';
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/RegisterDataDto'
- *       400:
- *         description: Bad request (missing email or password)
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  *       409:
  *         description: User already exists
  *         content:
