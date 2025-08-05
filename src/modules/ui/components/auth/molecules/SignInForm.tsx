@@ -11,7 +11,7 @@ import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.
 import { SessionStatus } from '@shared/auth/session-status.enum';
 import { RoutesEnum } from '@ui/router/routes.enum';
 import CircularLoader from '@ui/components/common/CircularLoader';
-import ErrorMessage from '@ui/components/common/ErrorMessage';
+import { Box } from '@mui/material';
 
 export function SignInForm(): JSX.Element | null {
   const { data: session, status } = useSession();
@@ -36,13 +36,14 @@ export function SignInForm(): JSX.Element | null {
 
   async function handleSubmit(e: React.FormEvent): Promise<void> {
     e.preventDefault();
+    setError(null);
     const res: SignInResponse | undefined = await signIn('credentials', {
       email,
       password,
       redirect: false,
     });
     if (res?.error) {
-      setError(new Error(res.error));
+      setError(new Error('Email or password is incorrect'));
     } else {
       router.push('/');
     }
@@ -51,22 +52,35 @@ export function SignInForm(): JSX.Element | null {
   return (
     // eslint-disable-next-line no-restricted-syntax
     <form onSubmit={handleSubmit}>
-      <TextField
-        label="Email"
-        type="email"
-        fullWidth
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        fullWidth
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      {error && <ErrorMessage error={error} />}
-      <Button type="submit">Sign in</Button>
+      <Box display="flex" flexDirection="column" width={500} gap={2}>
+        <Box display="flex" flexDirection="column" gap={2}>
+          <TextField
+            error={!!error}
+            helperText={error ? error.message : null}
+            label="Email"
+            type="email"
+            fullWidth
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <TextField
+            error={!!error}
+            helperText={error ? error.message : null}
+            label="Password"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </Box>
+        <Button
+          type="submit"
+          variant={'contained'}
+          sx={{ width: 'fit-content' }}
+        >
+          Sign in
+        </Button>
+      </Box>
     </form>
   );
 }
