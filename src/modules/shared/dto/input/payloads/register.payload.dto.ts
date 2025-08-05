@@ -5,10 +5,10 @@
  *     RegisterPayloadDto:
  *       type: object
  *       properties:
- *         userEmail:
+ *         email:
  *           type: string
  *           format: email
- *         userPassword:
+ *         password:
  *           type: string
  *           format: password
  */
