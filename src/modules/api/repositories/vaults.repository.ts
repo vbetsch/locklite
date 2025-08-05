@@ -1,8 +1,8 @@
 import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import prisma from '@lib/prisma';
-import { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { handlePrismaRequest } from '@api/helpers/prisma/handle-prisma-request';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 @injectable()
 export class VaultsRepository {
@@ -22,9 +22,9 @@ export class VaultsRepository {
     );
   }
 
-  public async create(params: CreateVaultRequestDto): Promise<Vault> {
+  public async create(payload: CreateVaultPayloadDto): Promise<Vault> {
     return await handlePrismaRequest<Vault>(() =>
-      prisma.vault.create({ data: params })
+      prisma.vault.create({ data: payload })
     );
   }
 

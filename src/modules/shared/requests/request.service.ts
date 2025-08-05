@@ -58,10 +58,9 @@ export abstract class RequestService {
     });
   }
 
-  public async delete<T>(url: string): Promise<number> {
-    const output: RequestServiceOutputType<T> = await this._request<T>(url, {
+  public async delete<T>(url: string): Promise<RequestServiceOutputType<T>> {
+    return await this._request<T>(url, {
       method: 'DELETE',
     });
-    return output.status;
   }
 }

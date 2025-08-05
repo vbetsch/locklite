@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import { RequestService } from '@shared/services/request.service';
+import { RequestService } from '@shared/requests/request.service';
 import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
@@ -9,6 +9,8 @@ import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
 export class LockliteApiRequestService extends RequestService {
+  private readonly _baseUrl: string = '/api';
+
   private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
@@ -59,7 +61,10 @@ export class LockliteApiRequestService extends RequestService {
     uri: string,
     options: RequestInit
   ): Promise<RequestServiceOutputType<Data>> {
-    const response: Response = await this._fetch(uri, options);
+    const response: Response = await this._fetch(
+      `${this._baseUrl}${uri}`,
+      options
+    );
 
     if (response.status === StatusCodes.NO_CONTENT) {
       return this._returnStatusWithoutData<Data>();

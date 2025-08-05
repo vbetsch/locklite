@@ -5,11 +5,11 @@ import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
-import type { CreateVaultRequestDto } from '@shared/dto/input/requests/create-vault.request.dto';
 import { StatusCodes } from 'http-status-codes';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
+import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 /**
  * @swagger
@@ -56,7 +56,7 @@ export async function GET(): Promise<
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateVaultRequestDto'
+ *             $ref: '#/components/schemas/CreateVaultPayloadDto'
  *     responses:
  *       201:
  *         description: Returns the vault created
@@ -86,11 +86,12 @@ export async function GET(): Promise<
 export async function POST(
   request: NextRequest
 ): Promise<NextResponse<HttpResponseDto<CreateVaultDataDto>>> {
-  const params: CreateVaultRequestDto = await request.json();
+  const payload: CreateVaultPayloadDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
   return await handleApiRequest<CreateVaultDataDto>(async () => {
-    const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
+    const vaultCreated: VaultModelDto =
+      await createVaultUseCase.handle(payload);
     const response: CreateVaultDataDto = { vaultCreated };
     return response;
   }, StatusCodes.CREATED);
