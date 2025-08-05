@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { RoutesEnum } from '@ui/router/routes.enum';
 
 export function SignInForm(): JSX.Element | null {
   const { data: session, status } = useSession();
@@ -20,6 +21,7 @@ export function SignInForm(): JSX.Element | null {
   useEffect(() => {
     if (status === 'authenticated') {
       router.push('/');
+      router.push(RoutesEnum.WORKSPACE);
     }
   }, [session, status, router]);
 
