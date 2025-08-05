@@ -1,4 +1,4 @@
-import type { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions, User } from 'next-auth';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
@@ -19,12 +19,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials) return null;
-        const user: {
-          name: string | null;
-          id: string;
-          email: string;
-          password: string;
-        } | null = await prisma.user.findUnique({
+        const user: User | null = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
         if (!user) return null;
