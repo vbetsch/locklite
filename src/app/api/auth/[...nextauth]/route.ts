@@ -17,10 +17,6 @@ import { authOptions } from '@lib/auth';
  *               $ref: '#/components/schemas/ProvidersBodyDto'
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 /**
@@ -45,10 +41,6 @@ import { authOptions } from '@lib/auth';
  *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 /**
@@ -67,10 +59,6 @@ import { authOptions } from '@lib/auth';
  *               $ref: '#/components/schemas/CsrfTokenBodyDto'
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 /**
@@ -91,16 +79,8 @@ import { authOptions } from '@lib/auth';
  *         description: Redirect URL after successful authentication
  *       401:
  *         description: Invalid credentials
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 /**
@@ -115,10 +95,6 @@ import { authOptions } from '@lib/auth';
  *         description: Redirect URL after sign out
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 /**
@@ -140,10 +116,6 @@ import { authOptions } from '@lib/auth';
  *         description: Redirect after processing the callback
  *       500:
  *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  */
 
 const handler: ReturnType<typeof NextAuth> = NextAuth(authOptions);
