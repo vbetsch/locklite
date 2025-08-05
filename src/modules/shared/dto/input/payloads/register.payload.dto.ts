@@ -13,6 +13,6 @@
  *           format: password
  */
 export type RegisterPayloadDto = {
-  userEmail: string;
-  userPassword: string;
+  email: string;
+  password: string;
 };
