@@ -18,8 +18,7 @@ function SignInForm(): JSX.Element | null {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (status === 'authenticated' && session) {
+    if (status === 'authenticated') {
       router.push('/');
     }
   }, [session, status, router]);
