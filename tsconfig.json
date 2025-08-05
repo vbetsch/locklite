@@ -33,7 +33,7 @@
       "@ui/*": ["./src/modules/ui/*"],
       "@shared/*": ["./src/modules/shared/*"],
       "@prisma/*": ["./prisma/*"],
-      "@lib/*": ["./lib/*"]
+      "@lib/*": ["./src/lib/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
