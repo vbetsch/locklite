@@ -43,7 +43,7 @@ export function SignInForm(): JSX.Element | null {
       redirect: false,
     });
     if (res?.error) {
-      setError(new Error('Email or password is incorrect'));
+      setError(new Error('Invalid credentials'));
     } else {
       router.push(RoutesEnum.WORKSPACE);
     }
