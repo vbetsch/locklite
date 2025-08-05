@@ -5,6 +5,7 @@ import { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserAdapter } from '@api/adapters/user.adapter';
 import { UsersRepository } from '@api/repositories/users.repository';
 import { User } from '@prisma/generated';
+import { HashService } from '@api/services/hash.service';
 
 @injectable()
 export class RegisterUseCase
@@ -13,6 +14,8 @@ export class RegisterUseCase
   public constructor(
     @inject(UsersRepository)
     private readonly _usersRepository: UsersRepository,
+    @inject(HashService)
+    private readonly _hashService: HashService,
     @inject(UserAdapter)
     private readonly _userAdapter: UserAdapter
   ) {}
@@ -34,13 +37,12 @@ export class RegisterUseCase
     //   );
     // }
 
-    // const salt: number = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
-    // const hashed: string = await hash(password, salt);
+    const inputHashed: RegisterPayloadDto = {
+      ...input,
+      password: await this._hashService.hash(input.password),
+    };
 
-    // const user: User = await prisma.user.create({
-    //   data: { email, password: hashed },
-    // });
-    const user: User = await this._usersRepository.create(input);
+    const user: User = await this._usersRepository.create(inputHashed);
 
     return this._userAdapter.getDtoFromEntity(user);
   }
