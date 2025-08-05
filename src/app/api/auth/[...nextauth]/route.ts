@@ -37,10 +37,6 @@ import { authOptions } from '@lib/auth';
  *               $ref: '#/components/schemas/SessionBodyDto'
  *       401:
  *         description: Not authenticated
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal server error
  */
