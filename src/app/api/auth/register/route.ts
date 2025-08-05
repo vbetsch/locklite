@@ -6,13 +6,6 @@ import { StatusCodes } from 'http-status-codes';
 import type { User } from '@prisma/generated';
 /**
  * @swagger
- * tags:
- *   - name: Auth
- *     description: Authentication and user management
- */
-
-/**
- * @swagger
  * /api/auth/register:
  *   post:
  *     summary: Register a new user

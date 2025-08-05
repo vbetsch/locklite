@@ -13,10 +13,16 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
 
 /**
  * @swagger
+ * tags:
+ *   - name: Vaults
+ *     description: Manage password vault entries and encryption.
+ */
+
+/**
+ * @swagger
  * /api/vaults:
  *   get:
- *     tags:
- *      - Vaults
+ *     tags: [Vaults]
  *     summary: Get my vaults
  *     responses:
  *       200:
@@ -48,8 +54,7 @@ export async function GET(): Promise<
  * @swagger
  * /api/vaults:
  *   post:
- *     tags:
- *      - Vaults
+ *     tags: [Vaults]
  *     summary: Create a vault
  *     requestBody:
  *       required: true
