@@ -91,7 +91,7 @@ export async function POST(
         { status: StatusCodes.CONFLICT }
       );
     }
-    const salt: number = 10;
+    const salt: number = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
     const hashed: string = await hash(password, salt);
     const user: User = await prisma.user.create({
       data: { email, password: hashed },
