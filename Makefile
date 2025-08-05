@@ -34,6 +34,15 @@ format: node_modules
 tests: node_modules
 	npm test
 
+tests-shared: node_modules
+	npm run tests:units:shared
+
+tests-api: tests-shared
+	npm run tests:units:api
+
+tests-ui: tests-shared
+	npm run tests:units:ui
+
 coverage: node_modules
 	npm run test:cov
 
@@ -51,7 +60,7 @@ clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests coverage migrate reset_db clean
+.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate reset_db clean
 
 # Aliases
 run: up dev
