@@ -14,6 +14,7 @@
  *         secret:
  *           type: string
  *           description: Password, token, or other sensitive string to store
+ *           format: password
  */
 export type CreateVaultPayloadDto = {
   label: string;
