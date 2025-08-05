@@ -1,10 +1,13 @@
+import 'reflect-metadata';
 import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@lib/prisma';
-import { compare } from 'bcrypt';
-import type { User } from '@prisma/generated';
 import { RoutesEnum } from '@ui/router/routes.enum';
+import { SignInUseCase } from '@api/usecases/auth/signin.usecase';
+import { container } from 'tsyringe';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { SignInPayloadDto } from '@shared/dto/input/payloads/sign-in.payload.dto';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -16,18 +19,11 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        if (!credentials) return null;
-        const user: User | null = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
-        if (!user) return null;
-        const isValid: boolean = await compare(
-          credentials.password,
-          user.password
-        );
-        if (!isValid) return null;
-        return { id: user.id, email: user.email };
+      async authorize(
+        credentials: SignInPayloadDto | undefined
+      ): Promise<UserModelDto | null> {
+        const signInUseCase: SignInUseCase = container.resolve(SignInUseCase);
+        return await signInUseCase.handle(credentials || null);
       },
     }),
   ],
