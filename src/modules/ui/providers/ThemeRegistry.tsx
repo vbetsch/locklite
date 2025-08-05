@@ -6,7 +6,7 @@ import { ThemeProvider, CssBaseline, useMediaQuery } from '@mui/material';
 import { lightTheme } from '@ui/themes/light.theme';
 import { darkTheme } from '@ui/themes/dark.theme';
 import type { Theme } from '@mui/material/styles';
-import type { SharedChildrenProps } from '@shared/types/props/SharedChildrenProps';
+import type { SharedChildrenProps } from '@shared/props/SharedChildrenProps';
 
 export default function ThemeRegistry({
   children,

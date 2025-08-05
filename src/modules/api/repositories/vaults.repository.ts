@@ -1,25 +1,36 @@
 import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import prisma from '@lib/prisma';
-import { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
-import { NoVaultFoundError } from '@api/errors/no-vault-found.error';
+import { handlePrismaRequest } from '@api/helpers/prisma/handle-prisma-request';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 @injectable()
 export class VaultsRepository {
   public async findAll(): Promise<Vault[]> {
-    return await prisma.vault.findMany();
+    return await handlePrismaRequest<Vault[]>(() =>
+      prisma.vault.findMany({
+        orderBy: { createdAt: 'desc' },
+      })
+    );
   }
 
-  public async create(params: CreateVaultRequestDto): Promise<Vault> {
-    return await prisma.vault.create({ data: params });
+  public async countByLabel(label: string): Promise<number> {
+    return await handlePrismaRequest<number>(() =>
+      prisma.vault.count({
+        where: { label },
+      })
+    );
+  }
+
+  public async create(payload: CreateVaultPayloadDto): Promise<Vault> {
+    return await handlePrismaRequest<Vault>(() =>
+      prisma.vault.create({ data: payload })
+    );
   }
 
   public async delete(uuid: string): Promise<void> {
-    try {
-      await prisma.vault.delete({ where: { uuid: uuid } });
-    } catch (error: unknown) {
-      console.error(error);
-      throw new NoVaultFoundError();
-    }
+    await handlePrismaRequest<Vault>(() =>
+      prisma.vault.delete({ where: { uuid: uuid } })
+    );
   }
 }

@@ -1,14 +1,15 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/utils/handle-api-request';
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import type { CreateVaultResponseDto } from '@shared/dto/responses/create-vault.response.dto';
 import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
-import type { GetMyVaultsResponseDto } from '@shared/dto/responses/get-my-vaults.response.dto';
 import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
-import type { CreateVaultRequestDto } from '@shared/dto/requests/create-vault.request.dto';
 import { StatusCodes } from 'http-status-codes';
+import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
+import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 
 /**
  * @swagger
@@ -23,20 +24,22 @@ import { StatusCodes } from 'http-status-codes';
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/GetMyVaultsResponseDto'
+ *               $ref: '#/components/schemas/GetMyVaultsBodyDto'
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  */
-export async function GET(): Promise<NextResponse> {
+export async function GET(): Promise<
+  NextResponse<HttpResponseDto<GetMyVaultsDataDto>>
+> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
     container.resolve(GetMyVaultsUseCase);
-  return await handleApiRequest(async () => {
+  return await handleApiRequest<GetMyVaultsDataDto>(async () => {
     const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
-    const response: GetMyVaultsResponseDto = { myVaults };
+    const response: GetMyVaultsDataDto = { myVaults };
     return response;
   });
 }
@@ -53,28 +56,43 @@ export async function GET(): Promise<NextResponse> {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/CreateVaultRequestDto'
+ *             $ref: '#/components/schemas/CreateVaultPayloadDto'
  *     responses:
  *       201:
  *         description: Returns the vault created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CreateVaultResponseDto'
+ *               $ref: '#/components/schemas/CreateVaultBodyDto'
+ *       409:
+ *         description: Vault already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
+ *       422:
+ *         description: The vault label must not exceed 255 characters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/HttpResponseDto'
+ *               $ref: '#/components/schemas/HttpErrorDto'
  */
-export async function POST(request: NextRequest): Promise<NextResponse> {
-  const params: CreateVaultRequestDto = await request.json();
+export async function POST(
+  request: NextRequest
+): Promise<NextResponse<HttpResponseDto<CreateVaultDataDto>>> {
+  const payload: CreateVaultPayloadDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
-  return await handleApiRequest(async () => {
-    const vaultCreated: VaultModelDto = await createVaultUseCase.handle(params);
-    const response: CreateVaultResponseDto = { vaultCreated };
+  return await handleApiRequest<CreateVaultDataDto>(async () => {
+    const vaultCreated: VaultModelDto =
+      await createVaultUseCase.handle(payload);
+    const response: CreateVaultDataDto = { vaultCreated };
     return response;
   }, StatusCodes.CREATED);
 }

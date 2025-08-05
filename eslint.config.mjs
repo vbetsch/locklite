@@ -111,6 +111,8 @@ export default tseslint.config(
         ],
 
         /* TypeScript strictness */
+        '@typescript-eslint/no-use-before-define': ['error'],
+        '@typescript-eslint/no-unnecessary-condition': ['error'],
         '@typescript-eslint/adjacent-overload-signatures': 'warn',
         '@typescript-eslint/class-literal-property-style': ['warn', 'fields'],
         '@typescript-eslint/consistent-type-imports': [
@@ -169,7 +171,7 @@ export default tseslint.config(
         'no-restricted-imports': [
           'error',
           {
-            patterns: ['@api/*'],
+            patterns: ['@api/*', '@prisma/*'],
           },
         ],
       },
@@ -182,6 +184,18 @@ export default tseslint.config(
           'error',
           {
             patterns: ['@ui/*'],
+          },
+        ],
+      },
+    },
+
+    {
+      files: ['src/modules/shared/**/*.{ts,tsx}'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: ['@api/*', '@ui/*', '@prisma/*'],
           },
         ],
       },
