@@ -51,7 +51,7 @@ export default function ProfileMenu(
         }}
       >
         <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-          {session.user.name}
+          {session.user.name || 'Anonymous'}
         </Typography>
         {/*<Typography variant="body2" sx={{ color: 'text.secondary' }}>*/}
         {/*  Standard*/}
