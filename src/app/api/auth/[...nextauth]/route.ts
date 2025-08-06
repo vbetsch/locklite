@@ -104,6 +104,8 @@ import { authOptions } from '@lib/auth';
  *           type: string
  *         description: Provider identifier (e.g., Credentials)
  *     responses:
+ *       302:
+ *         description: Redirect (on success or error)
  *       400:
  *         description: Bad Request
  *       500:
