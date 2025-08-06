@@ -13,38 +13,42 @@ import type { Session } from 'next-auth';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@lib/auth';
 
+export type HandleApiRequestArgs<Data> = {
+  request: NextRequest;
+  needToBeAuthenticated: boolean;
+  callback: () => Promise<Data>;
+  successStatusCode?: StatusCodes;
+};
+
 export async function handleApiRequest<Data>(
-  request: NextRequest,
-  needToBeAuthenticated: boolean,
-  callback: () => Promise<Data>,
-  successStatusCode?: StatusCodes
+  args: HandleApiRequestArgs<Data>
 ): Promise<NextResponse<HttpResponseDto<Data>>> {
   try {
     const token: JWT | null = await getToken({
-      req: request,
+      req: args.request,
       secret: process.env.NEXTAUTH_SECRET,
     });
     if (!token) {
       throw new UnauthorizedError();
     }
 
-    if (needToBeAuthenticated) {
+    if (args.needToBeAuthenticated) {
       const session: Session | null = await getServerSession(authOptions);
       if (!session) {
         throw new UnauthorizedError();
       }
     }
 
-    const data: Awaited<Data> = await callback();
+    const data: Awaited<Data> = await args.callback();
 
-    if (successStatusCode === StatusCodes.NO_CONTENT) {
+    if (args.successStatusCode === StatusCodes.NO_CONTENT) {
       return new NextResponse(null, { status: StatusCodes.NO_CONTENT });
     }
 
     return NextResponse.json(
       { data },
       {
-        status: successStatusCode || StatusCodes.OK,
+        status: args.successStatusCode || StatusCodes.OK,
       }
     );
   } catch (error: unknown) {
