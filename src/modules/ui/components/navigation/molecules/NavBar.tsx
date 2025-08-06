@@ -8,6 +8,7 @@ import ProfileMenu from '@ui/components/menus/organisms/ProfileMenu';
 
 type NavBarProps = {
   title: string;
+  authenticated: boolean;
 };
 
 export default function NavBar(props: NavBarProps): JSX.Element {
@@ -35,10 +36,12 @@ export default function NavBar(props: NavBarProps): JSX.Element {
           >
             <AccountCircle />
           </IconButton>
-          <ProfileMenu
-            anchorEl={anchorProfileMenuEl}
-            setAnchorEl={setAnchorProfileMenuEl}
-          />
+          {props.authenticated && (
+            <ProfileMenu
+              anchorEl={anchorProfileMenuEl}
+              setAnchorEl={setAnchorProfileMenuEl}
+            />
+          )}
         </Box>
       </Toolbar>
     </AppBar>
