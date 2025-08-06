@@ -1,5 +1,6 @@
 import { createSwaggerSpec } from 'next-swagger-doc';
 import { NextResponse } from 'next/server';
+import { CONSTANTS } from '@shared/config/constants';
 
 export function GET(): NextResponse {
   const spec: object = createSwaggerSpec({
@@ -8,7 +9,7 @@ export function GET(): NextResponse {
     definition: {
       openapi: '3.0.0',
       info: {
-        title: 'Locklite API',
+        title: `${CONSTANTS.APP_NAME} API`,
         version: '1.0.0',
       },
     },
