@@ -4,7 +4,8 @@ import type { JSX } from 'react';
 import React, { useState, useEffect } from 'react';
 import type { SignInResponse } from 'next-auth/react';
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import type { ReadonlyURLSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -14,17 +15,25 @@ import CircularLoader from '@ui/components/common/CircularLoader';
 import { Box } from '@mui/material';
 
 export function SignInForm(): JSX.Element | null {
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const { data: session, status } = useSession();
   const router: AppRouterInstance = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<Error | null>(null);
 
+  const handleError = (): void => setError(new Error('Invalid credentials'));
+
   useEffect(() => {
     if (status === SessionStatus.AUTHENTICATED) {
       router.push(RoutesEnum.WORKSPACE);
     }
   }, [session, status, router]);
+
+  useEffect(() => {
+    const err: string | null = searchParams.get('error');
+    if (err) handleError();
+  }, [searchParams]);
 
   if (status === SessionStatus.LOADING) {
     return <CircularLoader loading={true} />;
@@ -44,7 +53,7 @@ export function SignInForm(): JSX.Element | null {
       callbackUrl: RoutesEnum.WORKSPACE,
     });
     if (res?.error) {
-      setError(new Error('Invalid credentials'));
+      handleError();
     } else {
       router.push(RoutesEnum.WORKSPACE);
     }
