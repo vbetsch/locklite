@@ -5,11 +5,12 @@ import ThemeRegistry from '@ui/providers/ThemeRegistry';
 import { Container } from '@mui/material';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 import MainNavBar from '@ui/components/navigation/organisms/MainNavBar';
+import { CONSTANTS } from '@shared/config/constants';
 
 export const metadata: Metadata = {
   title: {
-    default: 'LockLite',
-    template: '%s | LockLite',
+    default: CONSTANTS.APP_NAME,
+    template: `%s | ${CONSTANTS.APP_NAME}`,
   },
   description: 'The best secure password manager',
 };
@@ -23,7 +24,7 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <MainNavBar title={metadata.title} />
+          <MainNavBar title={CONSTANTS.APP_NAME} />
           <Container component="main">{children}</Container>
         </ThemeRegistry>
       </body>

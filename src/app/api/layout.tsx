@@ -2,10 +2,11 @@ import type { JSX } from 'react';
 import React from 'react';
 import type { Metadata } from 'next';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
+import { CONSTANTS } from '@shared/config/constants';
 
 export const metadata: Metadata = {
-  title: 'LockLite API',
-  description: 'The API of the Locklite password manager',
+  title: `${CONSTANTS.APP_NAME} API`,
+  description: `The API of the ${CONSTANTS.APP_NAME} password manager`,
 };
 
 /**
