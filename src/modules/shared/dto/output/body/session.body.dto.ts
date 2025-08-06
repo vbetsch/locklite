@@ -21,10 +21,6 @@
  *             name:
  *               type: string
  *               nullable: true
- *             image:
- *               type: string
- *               format: uri
- *               nullable: true
  *         expires:
  *           type: string
  *           format: date-time
@@ -34,7 +30,6 @@ export type SessionBodyDto = {
     id?: string;
     email: string;
     name?: string | null;
-    image?: string | null;
   };
   expires: string;
 };
