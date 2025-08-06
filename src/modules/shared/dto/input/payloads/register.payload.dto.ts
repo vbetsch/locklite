@@ -5,8 +5,8 @@
  *     RegisterPayloadDto:
  *       type: object
  *       required:
- *        - email
- *        - password
+ *         - email
+ *         - password
  *       properties:
  *         email:
  *           type: string
