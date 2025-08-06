@@ -36,7 +36,7 @@ export function SignInForm(): JSX.Element | null {
   }, [searchParams]);
 
   if (status === SessionStatus.LOADING) {
-    return <CircularLoader loading={true} />;
+    return <CircularLoader loading />;
   }
 
   if (status === SessionStatus.AUTHENTICATED) {
