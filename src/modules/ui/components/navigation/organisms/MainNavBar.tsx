@@ -5,11 +5,11 @@ import { CONSTANTS } from '@shared/config/constants';
 import { useSession } from 'next-auth/react';
 
 export default function MainNavBar(): JSX.Element {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   return (
     <NavBar
       title={CONSTANTS.APP_NAME}
-      loading={!session}
+      loading={status === 'loading'}
       authenticated={!!session?.user}
     />
   );
