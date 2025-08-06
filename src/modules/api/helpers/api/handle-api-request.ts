@@ -24,15 +24,15 @@ export async function handleApiRequest<Data>(
   args: HandleApiRequestArgs<Data>
 ): Promise<NextResponse<HttpResponseDto<Data>>> {
   try {
-    const token: JWT | null = await getToken({
-      req: args.request,
-      secret: process.env.NEXTAUTH_SECRET,
-    });
-    if (!token) {
-      throw new UnauthorizedError();
-    }
-
     if (args.needToBeAuthenticated) {
+      const token: JWT | null = await getToken({
+        req: args.request,
+        secret: process.env.NEXTAUTH_SECRET,
+      });
+      if (!token) {
+        throw new UnauthorizedError();
+      }
+
       const session: Session | null = await getServerSession(authOptions);
       if (!session) {
         throw new UnauthorizedError();
