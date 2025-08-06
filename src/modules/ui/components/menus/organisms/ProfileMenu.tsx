@@ -1,13 +1,20 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { Divider, Menu, MenuItem, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
 
 type ProfileMenuProps = {
   anchorEl: HTMLElement | null;
   setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
 };
 
-export default function ProfileMenu(props: ProfileMenuProps): JSX.Element {
+export default function ProfileMenu(
+  props: ProfileMenuProps
+): JSX.Element | null {
+  const { data: session } = useSession();
+
+  if (!session) return null;
+
   const handleClose = (): void => {
     props.setAnchorEl(null);
   };
@@ -44,11 +51,11 @@ export default function ProfileMenu(props: ProfileMenuProps): JSX.Element {
         }}
       >
         <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-          userName
+          {session.user?.name}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          userType
-        </Typography>
+        {/*<Typography variant="body2" sx={{ color: 'text.secondary' }}>*/}
+        {/*  Standard*/}
+        {/*</Typography>*/}
       </MenuItem>
       <Divider />
       <MenuItem sx={{ px: 2, py: 1.5 }}>
