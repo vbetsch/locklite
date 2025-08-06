@@ -40,7 +40,8 @@ export function SignInForm(): JSX.Element | null {
     const res: SignInResponse | undefined = await signIn('credentials', {
       email,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: RoutesEnum.WORKSPACE,
     });
     if (res?.error) {
       setError(new Error('Invalid credentials'));
