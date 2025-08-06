@@ -10,11 +10,11 @@ jest.mock('next/server', (): unknown => ({
 }));
 
 jest.mock('next-auth/jwt', (): unknown => ({
-  getToken: jest.fn(async () => null),
+  getToken: jest.fn(() => null),
 }));
 
 jest.mock('next-auth', (): unknown => ({
-  getServerSession: jest.fn(async () => null),
+  getServerSession: jest.fn(() => null),
 }));
 
 jest.mock('@lib/auth', (): unknown => ({
@@ -40,7 +40,7 @@ type NextResponseJson = <T>(
 
 describe('handleApiRequest', () => {
   let jsonMock: jest.MockedFunction<NextResponseJson>;
-  const fakeReq = {} as NextRequest;
+  const fakeReq: NextRequest = {} as NextRequest;
 
   beforeEach((): void => {
     jsonMock =
@@ -98,7 +98,9 @@ describe('handleApiRequest', () => {
     );
     const loggerSpy: jest.SpyInstance<void, [string, unknown]> = jest
       .spyOn(ApiLogger, 'error')
-      .mockImplementation((): void => {});
+      .mockImplementation((): void => {
+        return;
+      });
 
     const response: IJsonResponse<{ error: { message: string } }> =
       await handleApiRequest<unknown>({
