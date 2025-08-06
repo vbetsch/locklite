@@ -24,7 +24,7 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <MainNavBar title={CONSTANTS.APP_NAME} />
+          <MainNavBar />
           <Container component="main">{children}</Container>
         </ThemeRegistry>
       </body>

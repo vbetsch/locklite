@@ -1,17 +1,8 @@
 import React from 'react';
 import type { JSX } from 'react';
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import NavBar from '@ui/components/navigation/molecules/NavBar';
+import { CONSTANTS } from '@shared/config/constants';
 
-type MainNavBarProps = {
-  title: string;
-};
-
-export default function MainNavBar(props: MainNavBarProps): JSX.Element {
-  return (
-    <AppBar position={'sticky'} component="header">
-      <Toolbar>
-        <Typography variant="h6">{props.title}</Typography>
-      </Toolbar>
-    </AppBar>
-  );
+export default function MainNavBar(): JSX.Element {
+  return <NavBar title={CONSTANTS.APP_NAME} />;
 }
