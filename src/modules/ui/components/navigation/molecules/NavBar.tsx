@@ -5,6 +5,7 @@ import type { JSX } from 'react';
 import {
   AppBar,
   Box,
+  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -59,9 +60,28 @@ export default function NavBar(props: NavBarProps): JSX.Element {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            sx={{ mt: 1 }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem
+              sx={{
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                py: 1.5,
+                px: 2,
+                pointerEvents: 'none',
+              }}
+            >
+              <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+                userName
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                userType
+              </Typography>
+            </MenuItem>
+            <Divider />
+            <MenuItem sx={{ px: 2, py: 1.5 }}>
+              <Typography variant="inherit">Logout</Typography>
+            </MenuItem>
           </Menu>
         </Box>
       </Toolbar>
