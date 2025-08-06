@@ -70,7 +70,7 @@ import { authOptions } from '@lib/auth';
  *             $ref: '#/components/schemas/SignInPayloadDto'
  *     responses:
  *       200:
- *         description: Redirect URL after successful authentication
+ *         description: Redirect URL
  *       500:
  *         description: Internal server error
  */
@@ -84,7 +84,7 @@ import { authOptions } from '@lib/auth';
  *     description: By Next Auth
  *     responses:
  *       200:
- *         description: Redirect URL after sign out
+ *         description: Redirect URL
  *       500:
  *         description: Internal server error
  */
