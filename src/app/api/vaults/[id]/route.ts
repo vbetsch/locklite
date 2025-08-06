@@ -29,6 +29,12 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/HttpErrorDto'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:

@@ -24,6 +24,12 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/GetMyVaultsBodyDto'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -78,6 +84,12 @@ export async function GET(
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/BusinessErrorDto'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
