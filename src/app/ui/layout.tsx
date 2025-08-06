@@ -4,8 +4,7 @@ import React from 'react';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 import { CONSTANTS } from '@shared/config/constants';
 import ClientProviders from '@ui/providers/ClientProviders';
-import MainNavBar from '@ui/components/navigation/organisms/MainNavBar';
-import { Container } from '@mui/material';
+import PageLayout from '@ui/components/templates/PageLayout';
 
 export const metadata: Metadata = {
   title: {
@@ -22,8 +21,7 @@ export default function RootLayout(props: SharedLayoutProps): JSX.Element {
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ClientProviders>
-          <MainNavBar />
-          <Container component="main">{props.children}</Container>
+          <PageLayout>{props.children}</PageLayout>
         </ClientProviders>
       </body>
     </html>
