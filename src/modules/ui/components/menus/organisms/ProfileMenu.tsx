@@ -2,8 +2,6 @@ import React from 'react';
 import type { JSX } from 'react';
 import { Divider, Menu, MenuItem, Typography } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import { RoutesEnum } from '@ui/router/routes.enum';
 
 type ProfileMenuProps = {
   anchorEl: HTMLElement | null;
@@ -24,7 +22,6 @@ export default function ProfileMenu(
   const handleLogout = async (): Promise<void> => {
     await signOut();
     handleClose();
-    redirect(RoutesEnum.LOGIN);
   };
 
   return (
