@@ -1,17 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { JSX } from 'react';
-import PageContainer from '@ui/components/common/PageContainer';
-import { SessionProvider } from 'next-auth/react';
+import PageContainer from '@ui/components/templates/PageContainer';
 import { SignInForm } from '@ui/components/auth/molecules/SignInForm';
+import CircularLoader from '@ui/components/common/CircularLoader';
 
 export default function SignInPage(): JSX.Element {
   return (
     <PageContainer title={'Login'}>
-      <SessionProvider>
+      <Suspense fallback={<CircularLoader loading />}>
         <SignInForm />
-      </SessionProvider>
+      </Suspense>
     </PageContainer>
   );
 }
