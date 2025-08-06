@@ -6,5 +6,11 @@ import { useSession } from 'next-auth/react';
 
 export default function MainNavBar(): JSX.Element {
   const { data: session } = useSession();
-  return <NavBar title={CONSTANTS.APP_NAME} authenticated={!!session} />;
+  return (
+    <NavBar
+      title={CONSTANTS.APP_NAME}
+      loading={!session}
+      authenticated={!!session?.user}
+    />
+  );
 }

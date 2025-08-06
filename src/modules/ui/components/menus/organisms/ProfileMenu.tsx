@@ -13,7 +13,7 @@ export default function ProfileMenu(
 ): JSX.Element | null {
   const { data: session } = useSession();
 
-  if (!session) return null;
+  if (!session || !session.user) return null;
 
   const handleClose = (): void => {
     props.setAnchorEl(null);
@@ -51,7 +51,7 @@ export default function ProfileMenu(
         }}
       >
         <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-          {session.user?.name}
+          {session.user.name}
         </Typography>
         {/*<Typography variant="body2" sx={{ color: 'text.secondary' }}>*/}
         {/*  Standard*/}

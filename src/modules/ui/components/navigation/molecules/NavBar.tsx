@@ -5,6 +5,7 @@ import ProfileNavIcon from '@ui/components/navigation/atoms/ProfileNavIcon';
 
 type NavBarProps = {
   title: string;
+  loading: boolean;
   authenticated: boolean;
 };
 
@@ -15,7 +16,7 @@ export default function NavBar(props: NavBarProps): JSX.Element {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           {props.title}
         </Typography>
-        {props.authenticated && <ProfileNavIcon />}
+        {!props.loading && props.authenticated && <ProfileNavIcon />}
       </Toolbar>
     </AppBar>
   );
