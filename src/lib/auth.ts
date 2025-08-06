@@ -30,6 +30,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: RoutesEnum.LOGIN,
     signOut: RoutesEnum.LOGIN,
+    newUser: RoutesEnum.WORKSPACE,
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
