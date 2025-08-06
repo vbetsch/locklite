@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import type { JSX } from 'react';
 import React from 'react';
 import ThemeRegistry from '@ui/providers/ThemeRegistry';
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
+import MainNavBar from '@ui/components/navigation/organisms/MainNavBar';
 
 export const metadata: Metadata = {
   title: {
@@ -22,11 +23,7 @@ export default function RootLayout({
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
         <ThemeRegistry>
-          <AppBar position={'sticky'} component="header">
-            <Toolbar>
-              <Typography variant="h6">Locklite</Typography>
-            </Toolbar>
-          </AppBar>
+          <MainNavBar title={metadata.title} />
           <Container component="main">{children}</Container>
         </ThemeRegistry>
       </body>
