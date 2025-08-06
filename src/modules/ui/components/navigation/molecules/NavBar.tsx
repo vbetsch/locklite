@@ -31,7 +31,9 @@ export default function NavBar(props: NavBarProps): JSX.Element {
   return (
     <AppBar position={'sticky'} component="header">
       <Toolbar>
-        <Typography variant="h6">{props.title}</Typography>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          {props.title}
+        </Typography>
         <Box>
           <IconButton
             size="large"
