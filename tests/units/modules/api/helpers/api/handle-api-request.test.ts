@@ -1,3 +1,21 @@
+jest.mock('next-auth/jwt', () => ({
+  getToken: jest.fn(),
+}));
+
+jest.mock('next-auth', () => ({
+  getServerSession: jest.fn(),
+}));
+
+jest.mock('@api/logs/api.logger', () => ({
+  ApiLogger: { error: jest.fn() },
+}));
+
+jest.mock('next/server', () => ({
+  NextResponse: {
+    json: jest.fn(),
+  },
+}));
+
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from 'next-auth/jwt';
 import { getServerSession } from 'next-auth';
@@ -9,15 +27,6 @@ import { InternalServerError } from '@api/errors/http/internal-server.error';
 import { NextResponse } from 'next/server';
 import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 
-jest.mock('next-auth/jwt');
-jest.mock('next-auth');
-jest.mock('@api/logs/api.logger');
-jest.mock('next/server', () => ({
-  NextResponse: {
-    json: jest.fn(),
-  },
-}));
-
 describe('handleApiRequest', () => {
   const mockRequest = {} as any;
   const mockData = { key: 'value' };
@@ -28,7 +37,7 @@ describe('handleApiRequest', () => {
     process.env.NEXTAUTH_SECRET = 'secret';
   });
 
-  it('should return data with authentication', async () => {
+  it('returns data with authentication', async () => {
     (getToken as jest.Mock).mockResolvedValue({});
     (getServerSession as jest.Mock).mockResolvedValue({});
     mockCallback.mockResolvedValue(mockData);
@@ -47,7 +56,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should return data without authentication', async () => {
+  it('returns data without authentication', async () => {
     mockCallback.mockResolvedValue(mockData);
     (NextResponse.json as jest.Mock).mockReturnValue('response');
 
@@ -64,12 +73,10 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should return no content when status code is NO_CONTENT', async () => {
+  it('returns no content when status code is NO_CONTENT', async () => {
     mockCallback.mockResolvedValue(mockData);
-    const mockNoContentResponse = {};
-    jest
-      .spyOn(require('next/server'), 'NextResponse')
-      .mockImplementationOnce(() => mockNoContentResponse as any);
+    const noContentResponse = {};
+    (NextResponse as any).mockImplementationOnce(() => noContentResponse);
 
     const result = await handleApiRequest({
       request: mockRequest,
@@ -78,13 +85,13 @@ describe('handleApiRequest', () => {
       successStatusCode: StatusCodes.NO_CONTENT,
     });
 
-    expect(result).toBe(mockNoContentResponse);
+    expect(result).toBe(noContentResponse);
   });
 
-  it('should throw UnauthorizedError when no token', async () => {
+  it('throws UnauthorizedError when no token', async () => {
     (getToken as jest.Mock).mockResolvedValue(null);
 
-    const result = await handleApiRequest({
+    await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: true,
       callback: mockCallback,
@@ -96,11 +103,11 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should throw UnauthorizedError when no session', async () => {
+  it('throws UnauthorizedError when no session', async () => {
     (getToken as jest.Mock).mockResolvedValue({});
     (getServerSession as jest.Mock).mockResolvedValue(null);
 
-    const result = await handleApiRequest({
+    await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: true,
       callback: mockCallback,
@@ -112,7 +119,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should handle BusinessError', async () => {
+  it('handles BusinessError', async () => {
     const error = new BusinessError(
       'Business error',
       'BUSINESS_CODE',
@@ -120,7 +127,7 @@ describe('handleApiRequest', () => {
     );
     mockCallback.mockRejectedValue(error);
 
-    const result = await handleApiRequest({
+    await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: false,
       callback: mockCallback,
@@ -132,7 +139,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should handle generic HttpError', async () => {
+  it('handles generic HttpError', async () => {
     const error = new HttpError('Http error', StatusCodes.BAD_REQUEST);
     mockCallback.mockRejectedValue(error);
 
@@ -148,7 +155,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('should handle unknown error as InternalServerError', async () => {
+  it('handles unknown error as InternalServerError', async () => {
     const error = new Error('Unknown');
     mockCallback.mockRejectedValue(error);
 
