@@ -13,8 +13,6 @@
  *           required:
  *             - email
  *           properties:
- *             id:
- *               type: string
  *             email:
  *               type: string
  *               format: email
@@ -27,7 +25,6 @@
  */
 export type SessionBodyDto = {
   user: {
-    id?: string;
     email: string;
     name?: string | null;
   };
