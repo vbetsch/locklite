@@ -10,11 +10,11 @@ jest.mock('@api/logs/api.logger', () => ({
   ApiLogger: { error: jest.fn() },
 }));
 
-jest.mock('next/server', () => ({
-  NextResponse: {
-    json: jest.fn(),
-  },
-}));
+jest.mock('next/server', () => {
+  const mockNextResponse = jest.fn();
+  mockNextResponse.json = jest.fn();
+  return { NextResponse: mockNextResponse };
+});
 
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from 'next-auth/jwt';
@@ -76,7 +76,7 @@ describe('handleApiRequest', () => {
   it('returns no content when status code is NO_CONTENT', async () => {
     mockCallback.mockResolvedValue(mockData);
     const noContentResponse = {};
-    (NextResponse as any).mockImplementationOnce(() => noContentResponse);
+    (NextResponse as jest.Mock).mockReturnValue(noContentResponse);
 
     const result = await handleApiRequest({
       request: mockRequest,
@@ -86,6 +86,9 @@ describe('handleApiRequest', () => {
     });
 
     expect(result).toBe(noContentResponse);
+    expect(NextResponse).toHaveBeenCalledWith(null, {
+      status: StatusCodes.NO_CONTENT,
+    });
   });
 
   it('throws UnauthorizedError when no token', async () => {
