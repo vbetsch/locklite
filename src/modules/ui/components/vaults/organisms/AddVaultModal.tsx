@@ -67,7 +67,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
 
   const handleSubmit = async (): Promise<void> => {
     setGlobalError(null);
-    await createVault({ label: newLabel, secret: newSecret });
+    await createVault({ label: newLabel, secret: newSecret, userId: '' });
   };
 
   useEffect(() => {
