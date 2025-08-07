@@ -53,7 +53,8 @@ describe('HashService', () => {
     });
 
     it('falls back to default salt rounds when env var is missing', async (): Promise<void> => {
-      process.env.BCRYPT_SALT_ROUNDS = undefined;
+      delete (process.env as Record<string, string | undefined>)
+        .BCRYPT_SALT_ROUNDS;
       service = new HashService();
 
       const input: string = 'hello';
