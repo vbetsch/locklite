@@ -1,5 +1,4 @@
 import { StatusCodes } from 'http-status-codes';
-import { handleApiRequest } from './handleApiRequest';
 import { getToken } from 'next-auth/jwt';
 import { getServerSession } from 'next-auth';
 import { ApiLogger } from '@api/logs/api.logger';
@@ -8,6 +7,7 @@ import { BusinessError } from '@shared/errors/business-error';
 import { HttpError } from '@shared/errors/http-error';
 import { InternalServerError } from '@api/errors/http/internal-server.error';
 import { NextResponse } from 'next/server';
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
 
 jest.mock('next-auth/jwt');
 jest.mock('next-auth');
