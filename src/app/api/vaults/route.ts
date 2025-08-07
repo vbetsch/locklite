@@ -24,6 +24,12 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/GetMyVaultsBodyDto'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -31,15 +37,19 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  *             schema:
  *               $ref: '#/components/schemas/HttpErrorDto'
  */
-export async function GET(): Promise<
-  NextResponse<HttpResponseDto<GetMyVaultsDataDto>>
-> {
+export async function GET(
+  request: NextRequest
+): Promise<NextResponse<HttpResponseDto<GetMyVaultsDataDto>>> {
   const getMyVaultsUseCase: GetMyVaultsUseCase =
     container.resolve(GetMyVaultsUseCase);
-  return await handleApiRequest<GetMyVaultsDataDto>(async () => {
-    const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
-    const response: GetMyVaultsDataDto = { myVaults };
-    return response;
+  return await handleApiRequest<GetMyVaultsDataDto>({
+    request: request,
+    needToBeAuthenticated: true,
+    callback: async () => {
+      const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
+      const response: GetMyVaultsDataDto = { myVaults };
+      return response;
+    },
   });
 }
 
@@ -74,6 +84,12 @@ export async function GET(): Promise<
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/BusinessErrorDto'
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -87,10 +103,15 @@ export async function POST(
   const payload: CreateVaultPayloadDto = await request.json();
   const createVaultUseCase: CreateVaultUseCase =
     container.resolve(CreateVaultUseCase);
-  return await handleApiRequest<CreateVaultDataDto>(async () => {
-    const vaultCreated: VaultModelDto =
-      await createVaultUseCase.handle(payload);
-    const response: CreateVaultDataDto = { vaultCreated };
-    return response;
-  }, StatusCodes.CREATED);
+  return await handleApiRequest<CreateVaultDataDto>({
+    request: request,
+    needToBeAuthenticated: true,
+    callback: async () => {
+      const vaultCreated: VaultModelDto =
+        await createVaultUseCase.handle(payload);
+      const response: CreateVaultDataDto = { vaultCreated };
+      return response;
+    },
+    successStatusCode: StatusCodes.CREATED,
+  });
 }

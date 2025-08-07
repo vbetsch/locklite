@@ -46,9 +46,14 @@ export async function POST(
 ): Promise<NextResponse<HttpResponseDto<RegisterDataDto>>> {
   const payload: RegisterPayloadDto = await request.json();
   const registerUseCase: RegisterUseCase = container.resolve(RegisterUseCase);
-  return await handleApiRequest<RegisterDataDto>(async () => {
-    const userCreated: UserModelDto = await registerUseCase.handle(payload);
-    const response: RegisterDataDto = { userCreated };
-    return response;
-  }, StatusCodes.CREATED);
+  return await handleApiRequest<RegisterDataDto>({
+    request: request,
+    needToBeAuthenticated: false,
+    callback: async () => {
+      const userCreated: UserModelDto = await registerUseCase.handle(payload);
+      const response: RegisterDataDto = { userCreated };
+      return response;
+    },
+    successStatusCode: StatusCodes.CREATED,
+  });
 }
