@@ -1,3 +1,16 @@
+import type { NextRequest } from 'next/server';
+import type { Mock } from 'jest-mock';
+import { StatusCodes } from 'http-status-codes';
+import { getToken } from 'next-auth/jwt';
+import { getServerSession } from 'next-auth';
+import { ApiLogger } from '@api/logs/api.logger';
+import { UnauthorizedError } from '@api/errors/http/unauthorized.error';
+import { BusinessError } from '@shared/errors/business-error';
+import { HttpError } from '@shared/errors/http-error';
+import { InternalServerError } from '@api/errors/http/internal-server.error';
+import { NextResponse } from 'next/server';
+import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+
 jest.mock('next-auth/jwt', () => ({
   getToken: jest.fn(),
 }));
@@ -11,39 +24,28 @@ jest.mock('@api/logs/api.logger', () => ({
 }));
 
 jest.mock('next/server', () => {
-  const mockNextResponse = jest.fn();
+  const mockNextResponse: Mock = jest.fn() as Mock;
   mockNextResponse.json = jest.fn();
   return { NextResponse: mockNextResponse };
 });
 
-import { StatusCodes } from 'http-status-codes';
-import { getToken } from 'next-auth/jwt';
-import { getServerSession } from 'next-auth';
-import { ApiLogger } from '@api/logs/api.logger';
-import { UnauthorizedError } from '@api/errors/http/unauthorized.error';
-import { BusinessError } from '@shared/errors/business-error';
-import { HttpError } from '@shared/errors/http-error';
-import { InternalServerError } from '@api/errors/http/internal-server.error';
-import { NextResponse } from 'next/server';
-import { handleApiRequest } from '@api/helpers/api/handle-api-request';
-
 describe('handleApiRequest', () => {
-  const mockRequest = {} as any;
-  const mockData = { key: 'value' };
-  const mockCallback = jest.fn();
+  const mockRequest: NextRequest = {} as NextRequest;
+  const mockData: Record<string, string> = { key: 'value' };
+  const mockCallback: jest.Mock<Promise<unknown>, []> = jest.fn();
 
-  beforeEach(() => {
+  beforeEach((): void => {
     jest.clearAllMocks();
     process.env.NEXTAUTH_SECRET = 'secret';
   });
 
-  it('returns data with authentication', async () => {
+  it('returns data with authentication', async (): Promise<void> => {
     (getToken as jest.Mock).mockResolvedValue({});
     (getServerSession as jest.Mock).mockResolvedValue({});
     mockCallback.mockResolvedValue(mockData);
     (NextResponse.json as jest.Mock).mockReturnValue('response');
 
-    const result = await handleApiRequest({
+    const result: unknown = await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: true,
       callback: mockCallback,
@@ -56,11 +58,11 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('returns data without authentication', async () => {
+  it('returns data without authentication', async (): Promise<void> => {
     mockCallback.mockResolvedValue(mockData);
     (NextResponse.json as jest.Mock).mockReturnValue('response');
 
-    const result = await handleApiRequest({
+    const result: unknown = await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: false,
       callback: mockCallback,
@@ -73,12 +75,12 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('returns no content when status code is NO_CONTENT', async () => {
+  it('returns no content when status code is NO_CONTENT', async (): Promise<void> => {
     mockCallback.mockResolvedValue(mockData);
-    const noContentResponse = {};
-    (NextResponse as jest.Mock).mockReturnValue(noContentResponse);
+    const noContentResponse: object = {};
+    (NextResponse as unknown as jest.Mock).mockReturnValue(noContentResponse);
 
-    const result = await handleApiRequest({
+    const result: unknown = await handleApiRequest({
       request: mockRequest,
       needToBeAuthenticated: false,
       callback: mockCallback,
@@ -91,7 +93,7 @@ describe('handleApiRequest', () => {
     });
   });
 
-  it('throws UnauthorizedError when no token', async () => {
+  it('throws UnauthorizedError when no token', async (): Promise<void> => {
     (getToken as jest.Mock).mockResolvedValue(null);
 
     await handleApiRequest({
@@ -106,7 +108,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('throws UnauthorizedError when no session', async () => {
+  it('throws UnauthorizedError when no session', async (): Promise<void> => {
     (getToken as jest.Mock).mockResolvedValue({});
     (getServerSession as jest.Mock).mockResolvedValue(null);
 
@@ -122,8 +124,8 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('handles BusinessError', async () => {
-    const error = new BusinessError(
+  it('handles BusinessError', async (): Promise<void> => {
+    const error: BusinessError = new BusinessError(
       'Business error',
       'BUSINESS_CODE',
       StatusCodes.BAD_REQUEST
@@ -142,8 +144,11 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('handles generic HttpError', async () => {
-    const error = new HttpError('Http error', StatusCodes.BAD_REQUEST);
+  it('handles generic HttpError', async (): Promise<void> => {
+    const error: HttpError = new HttpError(
+      'Http error',
+      StatusCodes.BAD_REQUEST
+    );
     mockCallback.mockRejectedValue(error);
 
     await handleApiRequest({
@@ -158,8 +163,8 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('handles unknown error as InternalServerError', async () => {
-    const error = new Error('Unknown');
+  it('handles unknown error as InternalServerError', async (): Promise<void> => {
+    const error: Error = new Error('Unknown');
     mockCallback.mockRejectedValue(error);
 
     await handleApiRequest({
@@ -168,7 +173,10 @@ describe('handleApiRequest', () => {
       callback: mockCallback,
     });
 
-    expect(ApiLogger.error).toHaveBeenCalled();
+    expect(ApiLogger.error).toHaveBeenCalledWith(
+      'Error while handling API errors: ',
+      error
+    );
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: { message: new InternalServerError().message } },
       { status: new InternalServerError().status }
