@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
-import { DeleteVaultUseCase } from '@api/usecases/vaults/delete-vault.usecase';
+import { DeleteVaultUseCase } from '@api/domain/usecases/vaults/delete-vault.usecase';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import type { HttpOptions } from '@shared/dto/input/options/abstract/http-options';
 
