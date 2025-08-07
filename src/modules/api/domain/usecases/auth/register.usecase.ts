@@ -22,9 +22,9 @@ export class RegisterUseCase
   ) {}
 
   public async handle(input: RegisterPayloadDto): Promise<UserModelDto> {
-    const userFound: User | null = await this._usersRepository.findByEmail(
-      input.email
-    );
+    const userFound: User | null = await this._usersRepository.findByEmail({
+      email: input.email,
+    });
     if (userFound) {
       throw new UserAlreadyExistsError(input.email);
     }
@@ -34,7 +34,7 @@ export class RegisterUseCase
       password: await this._hashService.hash(input.password),
     };
 
-    const user: User = await this._usersRepository.create(inputHashed);
+    const user: User = await this._usersRepository.create({ ...inputHashed });
 
     return this._userAdapter.getDtoFromEntity(user);
   }

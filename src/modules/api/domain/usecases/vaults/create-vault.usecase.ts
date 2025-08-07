@@ -21,15 +21,19 @@ export class CreateVaultUseCase
   ) {}
 
   public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
-    const vaultsFound: number = await this._vaultsRepository.countByLabel(
-      input.label
-    );
+    const vaultsFound: number = await this._vaultsRepository.countByLabel({
+      label: input.label,
+    });
     if (vaultsFound > 0) {
       throw new VaultAlreadyExistsError(input.label);
     }
     let vaultCreated: Vault;
     try {
-      vaultCreated = await this._vaultsRepository.create(input);
+      // TODO: set real user id
+      vaultCreated = await this._vaultsRepository.create({
+        ...input,
+        userId: '',
+      });
     } catch (error: unknown) {
       if (error instanceof RequestedValueTooLongError)
         throw new VaultLabelTooLongError();

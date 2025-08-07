@@ -25,9 +25,9 @@ export class SignInUseCase
   ): Promise<UserModelDto | null> {
     if (!input) return null;
 
-    const userFound: User | null = await this._usersRepository.findByEmail(
-      input.email
-    );
+    const userFound: User | null = await this._usersRepository.findByEmail({
+      email: input.email,
+    });
     if (!userFound) return null;
 
     const credentialsAreValid: boolean = await this._hashService.compare(
