@@ -13,7 +13,6 @@ describe('SignInUseCase', () => {
   let userAdapter: UserAdapter;
   let useCase: SignInUseCase;
 
-  // Mocks typés
   let findByEmailMock: jest.MockedFunction<
     (email: string) => Promise<User | null>
   >;
@@ -28,7 +27,6 @@ describe('SignInUseCase', () => {
       jest.fn<(hashedInput: string, refValue: string) => Promise<boolean>>();
     getDtoFromEntityMock = jest.fn<(user: User) => UserModelDto>();
 
-    // On construit des doubles structuraux (pas de any).
     usersRepository = { findByEmail: findByEmailMock } as UsersRepository;
     hashService = {
       compare: compareMock,
@@ -74,7 +72,6 @@ describe('SignInUseCase', () => {
       id: 'u_1',
       email: 'john@doe.tld',
       password: 'hashed:123',
-      // champs supplémentaires tolérés par Prisma peuvent être ajoutés si nécessaire
     } as unknown as User;
 
     findByEmailMock.mockResolvedValue(found);
@@ -102,7 +99,6 @@ describe('SignInUseCase', () => {
     const dto: UserModelDto = {
       id: 'u_42',
       email: 'alice@acme.tld',
-      // ajoute d’autres propriétés si ton UserModelDto en contient
     } as UserModelDto;
 
     findByEmailMock.mockResolvedValue(found);
