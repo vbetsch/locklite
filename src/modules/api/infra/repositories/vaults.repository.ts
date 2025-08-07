@@ -1,8 +1,10 @@
 import { injectable } from 'tsyringe';
 import { Vault } from '@prisma/generated';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import prisma from '@lib/prisma';
+import { SharedUuidRecord } from '@api/infra/records/shared/shared-uuid.record';
+import { VaultLabelRecord } from '@api/infra/records/vaults/vault-label.record';
+import { CreateVaultRecord } from '@api/infra/records/vaults/create-vault.record';
 
 @injectable()
 export class VaultsRepository {
@@ -14,23 +16,23 @@ export class VaultsRepository {
     );
   }
 
-  public async countByLabel(label: string): Promise<number> {
+  public async countByLabel(record: VaultLabelRecord): Promise<number> {
     return await handlePrismaRequest<number>(() =>
       prisma.vault.count({
-        where: { label },
+        where: { label: record.label },
       })
     );
   }
 
-  public async create(payload: CreateVaultPayloadDto): Promise<Vault> {
+  public async create(record: CreateVaultRecord): Promise<Vault> {
     return await handlePrismaRequest<Vault>(() =>
-      prisma.vault.create({ data: payload })
+      prisma.vault.create({ data: record })
     );
   }
 
-  public async delete(uuid: string): Promise<void> {
+  public async delete(record: SharedUuidRecord): Promise<void> {
     await handlePrismaRequest<Vault>(() =>
-      prisma.vault.delete({ where: { uuid: uuid } })
+      prisma.vault.delete({ where: { uuid: record.uuid } })
     );
   }
 }
