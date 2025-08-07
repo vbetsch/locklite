@@ -19,4 +19,6 @@
 export type CreateVaultPayloadDto = {
   label: string;
   secret: string;
+  // TODO: create a prisma type
+  userId: string;
 };
