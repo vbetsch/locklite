@@ -57,7 +57,7 @@ describe('SignInUseCase', () => {
 
     const result: UserModelDto | null = await useCase.handle(input);
 
-    expect(findByEmailMock).toHaveBeenCalledWith('foo@bar.tld');
+    expect(findByEmailMock).toHaveBeenCalledWith({ email: 'foo@bar.tld' });
     expect(compareMock).not.toHaveBeenCalled();
     expect(getDtoFromEntityMock).not.toHaveBeenCalled();
     expect(result).toBeNull();
@@ -79,7 +79,7 @@ describe('SignInUseCase', () => {
 
     const result: UserModelDto | null = await useCase.handle(input);
 
-    expect(findByEmailMock).toHaveBeenCalledWith('john@doe.tld');
+    expect(findByEmailMock).toHaveBeenCalledWith({ email: 'john@doe.tld' });
     expect(compareMock).toHaveBeenCalledWith('wrong', 'hashed:123');
     expect(getDtoFromEntityMock).not.toHaveBeenCalled();
     expect(result).toBeNull();
@@ -107,7 +107,7 @@ describe('SignInUseCase', () => {
 
     const result: UserModelDto | null = await useCase.handle(input);
 
-    expect(findByEmailMock).toHaveBeenCalledWith('alice@acme.tld');
+    expect(findByEmailMock).toHaveBeenCalledWith({ email: 'alice@acme.tld' });
     expect(compareMock).toHaveBeenCalledWith('p@ssw0rd', 'bcrypt$hash');
     expect(getDtoFromEntityMock).toHaveBeenCalledWith(found);
     expect(result).toEqual(dto);
