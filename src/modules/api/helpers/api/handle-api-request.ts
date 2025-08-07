@@ -1,26 +1,54 @@
 import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { ApiLogger } from '@api/logs/api.logger';
 import { InternalServerError } from '@api/errors/http/internal-server.error';
 import { BusinessError } from '@shared/errors/business-error';
+import type { JWT } from 'next-auth/jwt';
+import { getToken } from 'next-auth/jwt';
+import { UnauthorizedError } from '@api/errors/http/unauthorized.error';
+import type { Session } from 'next-auth';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@lib/auth';
+
+export type HandleApiRequestArgs<Data> = {
+  request: NextRequest;
+  needToBeAuthenticated: boolean;
+  callback: () => Promise<Data>;
+  successStatusCode?: StatusCodes;
+};
 
 export async function handleApiRequest<Data>(
-  callback: () => Promise<Data>,
-  successStatusCode?: StatusCodes
+  args: HandleApiRequestArgs<Data>
 ): Promise<NextResponse<HttpResponseDto<Data>>> {
   try {
-    const data: Awaited<Data> = await callback();
+    if (args.needToBeAuthenticated) {
+      const token: JWT | null = await getToken({
+        req: args.request,
+        secret: process.env.NEXTAUTH_SECRET,
+      });
+      if (!token) {
+        throw new UnauthorizedError();
+      }
 
-    if (successStatusCode === StatusCodes.NO_CONTENT) {
+      const session: Session | null = await getServerSession(authOptions);
+      if (!session) {
+        throw new UnauthorizedError();
+      }
+    }
+
+    const data: Awaited<Data> = await args.callback();
+
+    if (args.successStatusCode === StatusCodes.NO_CONTENT) {
       return new NextResponse(null, { status: StatusCodes.NO_CONTENT });
     }
 
     return NextResponse.json(
       { data },
       {
-        status: successStatusCode || StatusCodes.OK,
+        status: args.successStatusCode || StatusCodes.OK,
       }
     );
   } catch (error: unknown) {

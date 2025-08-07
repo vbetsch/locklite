@@ -1,13 +1,13 @@
 import { HttpError } from '@shared/errors/http-error';
-import type { BusinessErrorCodeEnumDto } from '@shared/dto/output/errors/business-error-code.enum.dto';
+import type { BusinessErrorCodeEnum } from '@shared/errors/business-error-code.enum';
 
 export class BusinessError extends HttpError {
-  public readonly code: BusinessErrorCodeEnumDto;
+  public readonly code: BusinessErrorCodeEnum;
 
   public constructor(
     message: string,
     status: number,
-    code: BusinessErrorCodeEnumDto
+    code: BusinessErrorCodeEnum
   ) {
     super(message, status);
     this.code = code;

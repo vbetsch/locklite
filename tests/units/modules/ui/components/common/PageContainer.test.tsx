@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import PageContainer from '@ui/components/common/PageContainer';
+import PageContainer from '@ui/components/templates/PageContainer';
 
 describe('PageContainer', () => {
   it('renders its children', (): void => {

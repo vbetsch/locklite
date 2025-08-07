@@ -1,11 +1,11 @@
 import { Box, Button } from '@mui/material';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import SearchBar from '@ui/components/common/SearchBar';
-import AddVaultModal from '@ui/components/vaults/templates/AddVaultModal';
+import AddVaultModal from '@ui/components/vaults/organisms/AddVaultModal';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
-import VaultsList from '../organisms/VaultsList';
-import { useVaults } from '@ui/hooks/useVaults';
+import VaultsList from './VaultsList';
+import { useVaults } from '@ui/hooks/api/fetch/useVaults';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import AddIcon from '@mui/icons-material/Add';
 

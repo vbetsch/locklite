@@ -11,9 +11,8 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  * @swagger
  * /api/vaults/{id}:
  *   delete:
- *     tags:
- *      - Vaults
- *     description: Delete a vault by ID
+ *     tags: [Vaults]
+ *     summary: Delete a vault by ID
  *     parameters:
  *      - in: path
  *        name: id
@@ -26,6 +25,12 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  *         description: The vault has been successfully deleted
  *       404:
  *         description: Resource not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HttpErrorDto'
+ *       401:
+ *         description: Unauthorized
  *         content:
  *           application/json:
  *             schema:
@@ -43,8 +48,10 @@ export async function DELETE(
 ): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
-  return await handleApiRequest<void>(
-    async () => deleteVaultUseCase.handle(await options.params),
-    StatusCodes.NO_CONTENT
-  );
+  return await handleApiRequest<void>({
+    request: request,
+    needToBeAuthenticated: true,
+    callback: async () => deleteVaultUseCase.handle(await options.params),
+    successStatusCode: StatusCodes.NO_CONTENT,
+  });
 }
