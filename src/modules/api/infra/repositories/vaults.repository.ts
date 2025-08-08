@@ -23,6 +23,7 @@ export class VaultsRepository {
         where: {
           userId: record.userId,
         },
+        orderBy: { createdAt: 'desc' },
       })
     );
   }
