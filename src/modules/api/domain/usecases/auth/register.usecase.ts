@@ -23,7 +23,7 @@ export class RegisterUseCase
 
   private async _testIfUserExists(email: string): Promise<void | never> {
     const userFound: User | null = await this._usersRepository.findByEmail({
-      email: email,
+      email,
     });
     if (userFound) {
       throw new UserAlreadyExistsError(email);
