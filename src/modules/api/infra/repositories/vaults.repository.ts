@@ -1,0 +1,38 @@
+import { injectable } from 'tsyringe';
+import { Vault } from '@prisma/generated';
+import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
+import prisma from '@lib/prisma';
+import { SharedUuidRecord } from '@api/infra/records/shared/shared-uuid.record';
+import { VaultLabelRecord } from '@api/infra/records/vaults/vault-label.record';
+import { CreateVaultRecord } from '@api/infra/records/vaults/create-vault.record';
+
+@injectable()
+export class VaultsRepository {
+  public async findAll(): Promise<Vault[]> {
+    return await handlePrismaRequest<Vault[]>(() =>
+      prisma.vault.findMany({
+        orderBy: { createdAt: 'desc' },
+      })
+    );
+  }
+
+  public async countByLabel(record: VaultLabelRecord): Promise<number> {
+    return await handlePrismaRequest<number>(() =>
+      prisma.vault.count({
+        where: { label: record.label },
+      })
+    );
+  }
+
+  public async create(record: CreateVaultRecord): Promise<Vault> {
+    return await handlePrismaRequest<Vault>(() =>
+      prisma.vault.create({ data: record })
+    );
+  }
+
+  public async delete(record: SharedUuidRecord): Promise<void> {
+    await handlePrismaRequest<Vault>(() =>
+      prisma.vault.delete({ where: { uuid: record.uuid } })
+    );
+  }
+}

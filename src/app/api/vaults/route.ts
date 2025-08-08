@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import { CreateVaultUseCase } from '@api/usecases/vaults/create-vault.usecase';
-import { GetMyVaultsUseCase } from '@api/usecases/vaults/get-my-vaults.usecase';
+import { CreateVaultUseCase } from '@api/domain/usecases/vaults/create-vault.usecase';
+import { GetMyVaultsUseCase } from '@api/domain/usecases/vaults/get-my-vaults.usecase';
 import { StatusCodes } from 'http-status-codes';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';

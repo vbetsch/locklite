@@ -4,10 +4,10 @@ import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http
 import type { RegisterDataDto } from '@shared/dto/output/data/register.data.dto';
 import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.payload.dto';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/helpers/api/handle-api-request';
+import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import { RegisterUseCase } from '@api/usecases/auth/register.usecase';
+import { RegisterUseCase } from '@api/domain/usecases/auth/register.usecase';
 
 /**
  * @swagger
