@@ -7,5 +7,5 @@ export enum BusinessErrorCodeEnum {
   USER_ALREADY_EXISTS = 'L-409-UAE',
 
   // Others
-  IMPOSSIBLE_CASE = 'L-409-0IC',
+  IMPOSSIBLE_CASE = 'L-500-0IC',
 }
