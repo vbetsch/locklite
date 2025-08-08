@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
-import { Vault, User } from '@prisma/generated';
+import { Vault, User as UserModel } from '@prisma/generated';
 import { VaultAdapter } from '@api/app/adapters/vault.adapter';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAlreadyExistsError } from '@api/domain/errors/vaults/vault-already-exists.error';
@@ -27,34 +27,54 @@ export class CreateVaultUseCase
     private readonly _vaultAdapter: VaultAdapter
   ) {}
 
-  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
+  private async _getCurrentUser(): Promise<UserModel> {
     const session: Session | null = await getServerSession(authOptions);
     if (!session || !session.user || !session.user.email) {
       throw new UnauthorizedError();
     }
-    const userFound: User | null = await this._usersRepository.findByEmail({
-      email: session.user.email,
-    });
+    const userFound: UserModel | null = await this._usersRepository.findByEmail(
+      {
+        email: session.user.email,
+      }
+    );
     if (!userFound) {
       throw new ImpossibleCaseError();
     }
+    return userFound;
+  }
+
+  private async _testVaultAlreadyExists(label: string): Promise<void> {
     const vaultsFound: number = await this._vaultsRepository.countByLabel({
-      label: input.label,
+      label,
     });
     if (vaultsFound > 0) {
-      throw new VaultAlreadyExistsError(input.label);
+      throw new VaultAlreadyExistsError(label);
     }
-    let vaultCreated: Vault;
+  }
+
+  private async _createVaultInDatabase(
+    input: CreateVaultPayloadDto,
+    userId: string
+  ): Promise<Vault> {
     try {
-      vaultCreated = await this._vaultsRepository.create({
+      return await this._vaultsRepository.create({
         ...input,
-        userId: userFound.id,
+        userId,
       });
     } catch (error: unknown) {
       if (error instanceof RequestedValueTooLongError)
         throw new VaultLabelTooLongError();
       throw error;
     }
+  }
+
+  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
+    const currentUser: UserModel = await this._getCurrentUser();
+    await this._testVaultAlreadyExists(input.label);
+    const vaultCreated: Vault = await this._createVaultInDatabase(
+      input,
+      currentUser.id
+    );
     return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }
 }
