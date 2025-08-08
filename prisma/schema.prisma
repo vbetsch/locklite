@@ -8,15 +8,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// --- Business ---
+
+model Vault {
+  uuid      String   @id @default(uuid())
+  label     String   @db.VarChar(255)
+  secret    String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
 // --- Next Auth ---
 
 model User {
-  id        String    @id @default(cuid())
-  name      String?
-  email     String    @unique
-  password  String
-  accounts  Account[]
-  sessions  Session[]
+  id       String    @id @default(cuid())
+  name     String?
+  email    String    @unique
+  password String
+  accounts Account[]
+  sessions Session[]
+
+  // Business
+  vaults   Vault[]
 }
 
 model Account {
@@ -47,16 +63,7 @@ model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-  @@map("verification_tokens")
+
   @@unique([identifier, token])
-}
-
-
-// --- Business ---
-
-model Vault {
-  uuid      String   @id @default(uuid())
-  label     String   @db.VarChar(255)
-  secret    String
-  createdAt DateTime @default(now())
+  @@map("verification_tokens")
 }

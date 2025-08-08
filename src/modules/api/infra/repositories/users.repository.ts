@@ -1,0 +1,23 @@
+import { injectable } from 'tsyringe';
+import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
+import { User } from '@prisma/generated';
+import prisma from '@lib/prisma';
+import { UserEmailRecord } from '@api/infra/records/users/user-email.record';
+import { CreateUserRecord } from '@api/infra/records/users/create-user.record';
+
+@injectable()
+export class UsersRepository {
+  public async findByEmail(record: UserEmailRecord): Promise<User | null> {
+    return await handlePrismaRequest<User | null>(() =>
+      prisma.user.findUnique({
+        where: { email: record.email },
+      })
+    );
+  }
+
+  public async create(record: CreateUserRecord): Promise<User> {
+    return await handlePrismaRequest<User>(() =>
+      prisma.user.create({ data: record })
+    );
+  }
+}
