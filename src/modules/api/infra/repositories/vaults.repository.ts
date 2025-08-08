@@ -9,14 +9,6 @@ import { VaultUserIdRecord } from '@api/infra/records/vaults/vault-user-id.recor
 
 @injectable()
 export class VaultsRepository {
-  public async findAll(): Promise<Vault[]> {
-    return await handlePrismaRequest<Vault[]>(() =>
-      prisma.vault.findMany({
-        orderBy: { createdAt: 'desc' },
-      })
-    );
-  }
-
   public async findByUserId(record: VaultUserIdRecord): Promise<Vault[]> {
     return await handlePrismaRequest<Vault[]>(() =>
       prisma.vault.findMany({
