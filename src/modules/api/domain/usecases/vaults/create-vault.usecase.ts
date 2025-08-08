@@ -8,11 +8,7 @@ import { VaultAlreadyExistsError } from '@api/domain/errors/vaults/vault-already
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/domain/errors/vaults/vault-label-too-long.error';
 import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
-import { getServerSession, Session } from 'next-auth';
-import { authOptions } from '@lib/auth';
-import { UsersRepository } from '@api/infra/repositories/users.repository';
-import { UnauthorizedError } from '@api/app/errors/unauthorized.error';
-import { ImpossibleCaseError } from '@api/domain/errors/impossible-case.error';
+import { CurrentUserService } from '@api/domain/services/current-user.service';
 
 @injectable()
 export class CreateVaultUseCase
@@ -21,27 +17,11 @@ export class CreateVaultUseCase
   public constructor(
     @inject(VaultsRepository)
     private readonly _vaultsRepository: VaultsRepository,
-    @inject(UsersRepository)
-    private readonly _usersRepository: UsersRepository,
+    @inject(CurrentUserService)
+    private readonly _currentUserService: CurrentUserService,
     @inject(VaultAdapter)
     private readonly _vaultAdapter: VaultAdapter
   ) {}
-
-  private async _getCurrentUser(): Promise<UserModel> {
-    const session: Session | null = await getServerSession(authOptions);
-    if (!session || !session.user || !session.user.email) {
-      throw new UnauthorizedError();
-    }
-    const userFound: UserModel | null = await this._usersRepository.findByEmail(
-      {
-        email: session.user.email,
-      }
-    );
-    if (!userFound) {
-      throw new ImpossibleCaseError();
-    }
-    return userFound;
-  }
 
   private async _testVaultAlreadyExists(label: string): Promise<void> {
     const vaultsFound: number = await this._vaultsRepository.countByLabel({
@@ -69,7 +49,7 @@ export class CreateVaultUseCase
   }
 
   public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
-    const currentUser: UserModel = await this._getCurrentUser();
+    const currentUser: UserModel = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
     const vaultCreated: Vault = await this._createVaultInDatabase(
       input,

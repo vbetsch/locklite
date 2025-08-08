@@ -5,12 +5,16 @@ import prisma from '@lib/prisma';
 import { SharedUuidRecord } from '@api/infra/records/shared/shared-uuid.record';
 import { VaultLabelRecord } from '@api/infra/records/vaults/vault-label.record';
 import { CreateVaultRecord } from '@api/infra/records/vaults/create-vault.record';
+import { VaultUserIdRecord } from '@api/infra/records/vaults/vault-user-id.record';
 
 @injectable()
 export class VaultsRepository {
-  public async findAll(): Promise<Vault[]> {
+  public async findByUserId(record: VaultUserIdRecord): Promise<Vault[]> {
     return await handlePrismaRequest<Vault[]>(() =>
       prisma.vault.findMany({
+        where: {
+          userId: record.userId,
+        },
         orderBy: { createdAt: 'desc' },
       })
     );
