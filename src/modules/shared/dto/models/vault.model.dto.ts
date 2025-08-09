@@ -16,7 +16,7 @@
  *         label:
  *           type: string
  *           description: name of the vault
- *           example: Google, Amazon, Netflix, Disney+
+ *           example: Google, Amazon, Netflix, Disney+ or the other
  *         secret:
  *           type: string
  *           description: password, token, code or other sensitive string to store
