@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  recipes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target branch of release
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+          fetch-depth: 0
+
+      - name: Ensure file exists
+        run: |
+          test -f docs/RECETTES.md
+
+      - name: Upload RECETTES.md to release assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          gh release upload "$TAG" "docs/RECETTES.md" --clobber
