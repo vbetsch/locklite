@@ -11,6 +11,7 @@
  *         id:
  *           type: string
  *           description: UUID
+ *           format: uuid
  *         email:
  *           type: string
  *           description: user's email
