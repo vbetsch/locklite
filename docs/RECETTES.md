@@ -169,8 +169,7 @@ existe déjà
 2. Entrer l'email et le mot de passe de votre utilisateur
 3. Cliquer sur le bouton pour se connecter
 
-**Résultat attendu** : je suis redirigé sur l'espace de travail, je vois l'icône "profil" en haut à droite qui, quand je
-clique dessus, m'affiche mon nom et un bouton pour me déconnecter.
+**Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône "profil" dans la barre de navigation
 
 **Couverture** :
 
@@ -188,6 +187,21 @@ clique dessus, m'affiche mon nom et un bouton pour me déconnecter.
 
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
 identifiants valides
+
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F2.2 — Menu profil de l'utilisateur
+
+**Préconditions** : être connecté avec un utilisateur
+
+**Étapes** :
+
+1. Se rendre sur `/ui/workspace`
+2. Cliquer sur l'icône profil de la barre de navigation
+
+**Résultat attendu** : Un menu s'ouvre affichant mon nom et un bouton pour me déconnecter.
 
 **Couverture** :
 
