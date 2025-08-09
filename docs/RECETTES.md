@@ -83,7 +83,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 1. Accéder à `/ui/workspace`
 2. Attendre le chargement de l'affichage
 
-**Résultat attendu** : les coffres-forts s'affichent correctement, je peux voir leur nom et leur secret
+**Résultat attendu** : les coffres-forts s'affichent correctement, je peux voir leurs noms et leurs secrets
 
 > S'il n'y en a aucun, un texte explicite doit s'afficher
 
