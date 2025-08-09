@@ -215,13 +215,13 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 ## 8. Procédure d’exécution
 
+- **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
+
 ### Tests unitaires
 
 - **Local** :
   1. `npm install`
   2. `npm test`
-
-- **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
 
 [//]: # (TODO: AUTH)
 
