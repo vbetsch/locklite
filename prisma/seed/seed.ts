@@ -1,42 +1,12 @@
 import bcrypt from 'bcrypt';
 import {PrismaClient, User, Vault} from '../generated';
-
-type SeedVault = {
-  readonly label: string;
-  readonly secret: string;
-};
-
-type SeedUser = {
-  readonly name: string | null;
-  readonly email: string;
-  readonly passwordPlain: string;
-  readonly vaults: ReadonlyArray<SeedVault>;
-};
+import {usersToSeed} from "@prisma/seed/data/users.data.seed";
+import {UserTypeSeed} from "@prisma/seed/types/user.type.seed";
+import {VaultTypeSeed} from "@prisma/seed/types/vault.type.seed";
 
 const prisma: PrismaClient = new PrismaClient();
 
-const usersToSeed: ReadonlyArray<SeedUser> = [
-  {
-    name: 'Ada Lovelace',
-    email: 'ada@example.com',
-    passwordPlain: 'Password!2345',
-    vaults: [
-      {label: 'Work credentials', secret: 'encrypted:work-secret-1'},
-      {label: 'Personal banking', secret: 'encrypted:personal-secret-1'},
-    ],
-  },
-  {
-    name: 'Alan Turing',
-    email: 'alan@example.com',
-    passwordPlain: 'Password!6789',
-    vaults: [
-      {label: 'Prod access', secret: 'encrypted:prod-secret-1'},
-      {label: 'Side projects', secret: 'encrypted:side-secret-1'},
-    ],
-  },
-];
-
-async function upsertUserWithVaults(seed: SeedUser): Promise<User> {
+async function upsertUserWithVaults(seed: UserTypeSeed): Promise<User> {
   const saltRounds: number = 12;
   const passwordHash: string = await bcrypt.hash(seed.passwordPlain, saltRounds);
 
@@ -60,7 +30,7 @@ async function upsertUserWithVaults(seed: SeedUser): Promise<User> {
 
   if (existingVaults.length === 0) {
     await prisma.vault.createMany({
-      data: seed.vaults.map((v: SeedVault) => ({
+      data: seed.vaults.map((v: VaultTypeSeed) => ({
         label: v.label,
         secret: v.secret,
         userId: user.id,
