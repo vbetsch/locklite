@@ -43,10 +43,10 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                                          | Tests structurels | Tests sécurité |
-|----|---------------------------|-------------------------------------------------------------|-------------------|----------------|
-| F0 | Documentation API         | —                                                           | `TS-E1.1`         | —              |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.3.C` |                   |                |
+| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels | Tests sécurité |
+|----|---------------------------|------------------------------------------------|-------------------|----------------|
+| F0 | Documentation API         | —                                              | `TS-E1.1`         | —              |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`         |                |
 
 [//]: # (| F2 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
 
@@ -78,7 +78,8 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 3. Sélectionner la barre de recherche
 4. Entrer les premières lettres d'un coffre-fort, puis d'autres lettres
 
-**Résultat attendu** : je ne vois que les coffres-forts qui commencent par les lettres que j'ai entré, pas de casse sensible
+**Résultat attendu** : je ne vois que les coffres-forts qui commencent par les lettres que j'ai entré, pas de casse
+sensible
 
 **Couverture** :
 
@@ -119,22 +120,6 @@ existe déjà
 
 - [x] test manuel
 
-### TC-F1.3.C — Création de coffres-forts : libellé trop long
-
-**Étapes** :
-
-1. Accéder à `/ui/workspace`
-2. Cliquer sur le bouton pour créer un coffre-fort
-3. Entrer un libellé de plus de 255 digits ainsi qu'un mot de passe
-4. Cliquer sur le bouton pour créer
-
-**Résultat attendu** : le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est
-trop long
-
-**Couverture** :
-
-- [x] test manuel
-
 ### TC-F1.4 — Suppression de coffres-forts
 
 **Préconditions** : avoir au moins un coffre-fort
@@ -152,27 +137,29 @@ trop long
 
 - [x] test manuel
 
-[//]: # (### TC-F3.1 — Connexion réussie)
-
-[//]: # (**Préconditions** : compte utilisateur existant avec mot de passe valide)
-
-[//]: # (**Étapes** :)
-
-[//]: # (1. Accéder à `/ui/login`)
-
-[//]: # (2. Saisir email et mot de passe valides)
-
-[//]: # (3. Soumettre le formulaire)
-
-[//]: # (**Résultat attendu** : redirection vers l'espace de travail, session active)
-
 ## 7. Tests structurels
 
-### TS-E1.1 — Codes HTTP & format d’erreur
+### TS-F1.3 — Création de coffres-forts : libellé trop long
 
-**But** : vérifier que les erreurs suivent le format attendu
+**Étapes** :
 
-**Vérification** : appel API avec données invalides → code 400, schéma d'erreur conforme
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton pour créer un coffre-fort
+3. Entrer un libellé de plus de 255 digits ainsi qu'un mot de passe
+4. Cliquer sur le bouton pour créer
+
+**Résultat attendu** : le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est
+trop long
+
+**Couverture** :
+
+- [x] test manuel
+
+[//]: # (### TS-E1.1 — Codes HTTP & format d’erreur)
+
+[//]: # (**But** : vérifier que les erreurs suivent le format attendu)
+
+[//]: # (**Vérification** : appel API avec données invalides → code 400, schéma d'erreur conforme)
 
 ## 8. Tests de sécurité
 
