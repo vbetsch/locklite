@@ -1,4 +1,4 @@
-import {VaultTypeSeed} from "@prisma/seed/types/vault.type.seed";
+import {VaultTypeSeed} from "./vault.type.seed";
 
 export type UserTypeSeed = {
   readonly name: string | null;
