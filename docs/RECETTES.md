@@ -53,11 +53,11 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité |
-|----|---------------------------|------------------------------------------------|----------------------|----------------|
-| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —              |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —              |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`                       | TS-F2.X              | SE-XXX         |
+| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité        |
+|----|---------------------------|------------------------------------------------|----------------------|-----------------------|
+| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —                     |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`            | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 6. Tests fonctionnels
 
@@ -244,11 +244,25 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 ## 8. Tests de sécurité
 
-### SEC-H1 — Hashage des mots de passe
+### SE-HASH — Hashage des mots de passe
 
 **But** : vérifier la sécurité du stockage des mots de passe maîtres
 
 **Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
+
+**Couverture** :
+
+- [x] test manuel
+
+### SE-GUARD — Protection des routes
+
+**But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
+
+**Vérification** : sans être connecté, essayer de se rendre sur `/ui/workspace`, je dois être redirigé vers `/ui/login`
+
+**Couverture** :
+
+- [x] test manuel
 
 ## 9. Procédure d’exécution
 
