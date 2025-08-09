@@ -1,12 +1,10 @@
 # Cahier de recettes
 
-> Version : [`1.0.0`](https://github.com/vbetsch/locklite/releases/tag/v1.0.0)
+> Version : [`1.1.0`](https://github.com/vbetsch/locklite/releases/tag/v1.1.0)
 >
 > Projet : LockLite — Gestionnaire de mots de passe
 >
 > Compétence RNCP : C2.3.1
-
-[//]: # (TODO: Modify when we will have authentication -> AUTH)
 
 [//]: # (TODO: Modify when we will link with tests -> TESTS)
 
@@ -38,15 +36,13 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 - **Environnements** : développement local, CI GitHub Actions
 
-[//]: # (TODO: AUTH)
+- **Comptes de test** :
 
-[//]: # (- **Comptes de test** :)
+  - `admin@example.com` / `admin`
 
-[//]: # (  - `admin@example.com` / `admin`)
+  - `user@example.com` / `user`
 
-[//]: # (  - `user@example.com` / `user`)
-
-[//]: # (- **Jeux de données** : coffres-forts et entrées préremplis via seed Prisma)
+- **Jeux de données** : coffres-forts et utilisateurs générés via seed Prisma avec la commande `npm run prisma:seed`
 
 ## 4. Stratégie de test
 
@@ -61,10 +57,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 |----|---------------------------|------------------------------------------------|----------------------|----------------|
 | F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —              |
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —              |
-
-[//]: # (TODO: AUTH)
-
-[//]: # (| F2 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
+| F2 | Authentification          | TC-F2.X                                        | TS-F2.X              | SE-XXX         |
 
 ## 6. Tests fonctionnels
 
@@ -166,6 +159,20 @@ existe déjà
 
 - [x] test manuel
 
+### TC-F2.X
+
+**Préconditions** :
+
+**Étapes** :
+
+1. Accéder à `/...`
+
+**Résultat attendu** :
+
+**Couverture** :
+
+- [x] test manuel
+
 ## 7. Tests structurels
 
 ### TS-F0.1 — Format des erreurs
@@ -201,19 +208,15 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 - [x] test manuel
 
-[//]: # (TODO: AUTH)
+## 8. Tests de sécurité
 
-[//]: # (## 8. Tests de sécurité)
+### SEC-H1 — Hashage des mots de passe
 
-[//]: # (### SEC-H1 — Hashage des mots de passe)
+**But** : vérifier la sécurité du stockage des mots de passe maîtres
 
-[//]: # (**But** : vérifier l’utilisation de bcrypt avec paramétrage sécurisé)
+**Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
 
-[//]: # (**Vérification** : inspection DB → aucun mot de passe en clair)
-
-[//]: # (## 9. Procédure d’exécution)
-
-## 8. Procédure d’exécution
+## 9. Procédure d’exécution
 
 - **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
 
@@ -223,11 +226,7 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
   1. `npm install`
   2. `npm test`
 
-[//]: # (TODO: AUTH)
-
-[//]: # (## 10. Critères de réussite)
-
-## 9. Critères de réussite
+## 10. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -237,11 +236,7 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
   - 80% de lignes
   - 80% de statements
 
-[//]: # (TODO: AUTH)
-
-[//]: # (## 11. Traçabilité)
-
-## 10. Traçabilité
+## 11. Traçabilité
 
 Chaque scénario est lié à :
 
@@ -251,11 +246,7 @@ Chaque scénario est lié à :
 
 [//]: # (- Un test Jest &#40;`describe/it`&#41; reprenant cet ID)
 
-[//]: # (TODO: AUTH)
-
-[//]: # (## 12. Gestion des anomalies)
-
-## 11. Gestion des anomalies
+## 12. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de gestion de projet.
 
