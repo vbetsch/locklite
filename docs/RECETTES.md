@@ -205,15 +205,15 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 [//]: # (## 8. Tests de sécurité)
 
-[//]: # (TODO: AUTH)
-
 [//]: # (### SEC-H1 — Hashage des mots de passe)
 
 [//]: # (**But** : vérifier l’utilisation de bcrypt avec paramétrage sécurisé)
 
 [//]: # (**Vérification** : inspection DB → aucun mot de passe en clair)
 
-## 9. Procédure d’exécution
+[//]: # (## 9. Procédure d’exécution)
+
+## 8. Procédure d’exécution
 
 - **Local** :
   1. `npm install`
@@ -221,7 +221,11 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 - **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
 
-## 10. Critères de réussite
+[//]: # (TODO: AUTH)
+
+[//]: # (## 10. Critères de réussite)
+
+## 9. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -231,7 +235,11 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
   - 80% de lignes
   - 80% de statements
 
-## 11. Traçabilité
+[//]: # (TODO: AUTH)
+
+[//]: # (## 11. Traçabilité)
+
+## 10. Traçabilité
 
 Chaque scénario est lié à :
 
@@ -241,7 +249,11 @@ Chaque scénario est lié à :
 
 [//]: # (- Un test Jest &#40;`describe/it`&#41; reprenant cet ID)
 
-## 12. Gestion des anomalies
+[//]: # (TODO: AUTH)
+
+[//]: # (## 12. Gestion des anomalies)
+
+## 11. Gestion des anomalies
 
 - Création d'un ticket "bug" dans l'outil de gestion de projet.
 
