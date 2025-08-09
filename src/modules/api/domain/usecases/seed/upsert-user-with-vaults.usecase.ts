@@ -5,6 +5,7 @@ import { inject, injectable } from 'tsyringe';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { HashService } from '@api/domain/services/hash.service';
 import { UsersRepository } from '@api/infra/repositories/users.repository';
+import type { VaultTypeSeed } from '@api/infra/prisma/seed/types/vault.type.seed';
 
 @injectable()
 export class UpsertUserWithVaultsUseCase
@@ -19,18 +20,23 @@ export class UpsertUserWithVaultsUseCase
     private readonly _vaultsRepository: VaultsRepository
   ) {}
 
-  public async handle(input: UserTypeSeed): Promise<User> {
+  private async _createUser(input: UserTypeSeed): Promise<User> {
     const passwordHash: string = await this._hashService.hash(
       input.passwordPlain
     );
 
-    const user: User = await this._usersRepository.createOrUpdate({
+    return await this._usersRepository.createOrUpdate({
       email: input.email,
       // eslint-disable-next-line no-undefined
       name: input.name || undefined,
       password: passwordHash,
     });
+  }
 
+  private async _createVaults(
+    user: User,
+    vaults: ReadonlyArray<VaultTypeSeed>
+  ): Promise<void> {
     const existingVaults: ReadonlyArray<Vault> =
       await this._vaultsRepository.findByUserId({
         userId: user.id,
@@ -39,10 +45,14 @@ export class UpsertUserWithVaultsUseCase
     if (existingVaults.length === 0) {
       await this._vaultsRepository.createMany({
         userId: user.id,
-        vaults: input.vaults,
+        vaults: vaults,
       });
     }
+  }
 
+  public async handle(input: UserTypeSeed): Promise<User> {
+    const user: User = await this._createUser(input);
+    await this._createVaults(user, input.vaults);
     return user;
   }
 }
