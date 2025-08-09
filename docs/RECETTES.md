@@ -60,7 +60,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 | ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité |
 |----|---------------------------|------------------------------------------------|----------------------|----------------|
 | F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —              |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            |                |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —              |
 
 [//]: # (TODO: AUTH)
 
@@ -201,7 +201,9 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 - [x] test manuel
 
-## 8. Tests de sécurité
+[//]: # (TODO: AUTH)
+
+[//]: # (## 8. Tests de sécurité)
 
 [//]: # (TODO: AUTH)
 
