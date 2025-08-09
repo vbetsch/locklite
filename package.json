@@ -16,7 +16,9 @@
     "tests:units:api": "jest tests/units/modules/api",
     "test:cov": "jest --coverage",
     "prisma:reset": "prisma migrate reset",
-    "prisma:migrate": "prisma migrate dev --name"
+    "prisma:migrate": "prisma migrate dev --name",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
