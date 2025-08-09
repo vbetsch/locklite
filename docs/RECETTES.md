@@ -107,7 +107,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 3. Sélectionner la barre de recherche
 4. Entrer les premières lettres d'un coffre-fort, puis d'autres lettres
 
-**Résultat attendu** : je ne vois que les coffres-forts qui commencent par les lettres que j'ai entré, pas de casse
+**Résultat attendu** : je ne vois que les coffres-forts qui commencent par les lettres que j'ai entrées, pas de casse
 sensible
 
 **Couverture** :
