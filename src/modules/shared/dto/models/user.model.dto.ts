@@ -18,7 +18,7 @@
  *           format: email
  *         name:
  *           type: string
- *           description: fist name and last name
+ *           description: first name and last name
  */
 export type UserModelDto = {
   id: string;
