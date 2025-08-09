@@ -257,7 +257,7 @@ Chaque scénario est lié à :
 
 ## 11. Gestion des anomalies
 
-- Création d'un ticket "bug" dans l'outil de gestion de projet.
+- Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de gestion de projet.
 
 [//]: # (TODO : BUGS)
 
