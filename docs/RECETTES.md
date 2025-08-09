@@ -45,12 +45,25 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 | ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels | Tests sécurité |
 |----|---------------------------|------------------------------------------------|-------------------|----------------|
-| F0 | Documentation API         | —                                              | `TS-E1.1`         | —              |
+| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`         | —              |
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`         |                |
 
 [//]: # (| F2 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
 
 ## 6. Tests fonctionnels
+
+### TC-F0 — Affichage de la documentation API
+
+**Étapes** :
+
+1. Accéder à `/api/docs`
+
+**Résultat attendu** : un Swagger s'affiche, toutes les routes API sont présentes, catégorisées, décrites et
+documentées, les schémas sont tous présents et complets, je peux exécuter les routes API depuis l'interface
+
+**Couverture** :
+
+- [x] test manuel
 
 ### TC-F1.1 — Affichage des coffres-forts
 
@@ -139,27 +152,38 @@ existe déjà
 
 ## 7. Tests structurels
 
-### TS-F1.3 — Création de coffres-forts : libellé trop long
+### TS-F0.1 — Format des erreurs
 
-**Étapes** :
+**But** : vérifier que les erreurs suivent le format attendu
 
-1. Accéder à `/ui/workspace`
-2. Cliquer sur le bouton pour créer un coffre-fort
-3. Entrer un libellé de plus de 255 digits ainsi qu'un mot de passe
-4. Cliquer sur le bouton pour créer
-
-**Résultat attendu** : le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est
-trop long
+**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type 'error', vérifier qu'ils
+contiennent bien tous un objet 'error' contenant un attribut 'message'
 
 **Couverture** :
 
 - [x] test manuel
 
-[//]: # (### TS-E1.1 — Codes HTTP & format d’erreur)
+### TS-F0.2 — Format des réponses API
 
-[//]: # (**But** : vérifier que les erreurs suivent le format attendu)
+**But** : vérifier que les réponses suivent le format attendu
 
-[//]: # (**Vérification** : appel API avec données invalides → code 400, schéma d'erreur conforme)
+**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type 'data', vérifier qu'ils
+contiennent bien tous un objet 'data' contenant les informations à transmettre
+
+**Couverture** :
+
+- [x] test manuel
+
+### TS-F1.3 — Libellé de coffre-fort trop long
+
+**But** : vérifier que les contraintes de base de données sont respectées
+
+**Vérification** : créer un coffre-fort avec un libellé de plus de 255 digits, le coffre-fort ne s'ajoute pas dans la
+liste, une erreur apparaît m'indiquant que le libellé est trop long
+
+**Couverture** :
+
+- [x] test manuel
 
 ## 8. Tests de sécurité
 
