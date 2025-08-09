@@ -1,6 +1,6 @@
 # Cahier de recettes
 
-> Version : [`1.1.1`](https://github.com/vbetsch/locklite/releases/tag/v1.1.1)
+> Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
 >
 > Projet : LockLite — Gestionnaire de mots de passe
 >
@@ -26,7 +26,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 [//]: # (TODO: BUGS)
 
-[//]: # (- Plan de correction des bogues &#40;C2.3.2&#41; : [lien])
+- Plan de correction des bogues (C2.3.2) : [lien]
 
 ## 3. Environnements et données de test
 
@@ -83,7 +83,8 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 1. Accéder à `/ui/workspace`
 2. Attendre le chargement de l'affichage
 
-**Résultat attendu** : mes coffres-forts s'affichent correctement, je ne vois que les miens et il n'en manque aucun, je peux voir leurs noms et leurs secrets
+**Résultat attendu** : mes coffres-forts s'affichent correctement, je ne vois que les miens et il n'en manque aucun, je
+peux voir leurs noms et leurs secrets
 
 > S'il n'y en a aucun, un texte explicite doit s'afficher
 
@@ -307,7 +308,7 @@ Chaque scénario est lié à :
 
 [//]: # (TODO : TESTS)
 
-[//]: # (- Un test Jest &#40;`describe/it`&#41; reprenant cet ID)
+- Un test Jest (`describe/it`) reprenant cet ID
 
 ## 12. Gestion des anomalies
 
@@ -315,4 +316,4 @@ Chaque scénario est lié à :
 
 [//]: # (TODO : BUGS)
 
-[//]: # (Ajout dans le Plan de correction des bogues &#40;C2.3.2&#41;.)
+Ajout dans le Plan de correction des bogues (C2.3.2).
