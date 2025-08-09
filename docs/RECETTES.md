@@ -32,7 +32,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 [//]: # (  - `user@example.com` / `user`)
 
-[//]: # (- **Jeux de données** : vaults et entrées préremplis via seed Prisma)
+[//]: # (- **Jeux de données** : coffres-forts et entrées préremplis via seed Prisma)
 
 ## 4. Stratégie de test
 
@@ -43,28 +43,114 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels | Tests structurels | Tests sécurité |
-|----|---------------------------|--------------------|-------------------|----------------|
-| F0 | Documentation API         | —                  | TS-E1.1           | —              |
-| F2 | Gestion des coffres-forts |                    |                   |                |
+| ID | Fonctionnalité            | Tests fonctionnels                                          | Tests structurels | Tests sécurité |
+|----|---------------------------|-------------------------------------------------------------|-------------------|----------------|
+| F0 | Documentation API         | —                                                           | `TS-E1.1`         | —              |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.3.C` |                   |                |
 
-[//]: # (| F3 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
+[//]: # (| F2 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
 
 ## 6. Tests fonctionnels
 
-### TC-F3.1 — Connexion réussie
-
-**Préconditions** : compte utilisateur existant avec mot de passe valide
+### TC-F1.1 — Affichage des coffres-forts
 
 **Étapes** :
 
-1. Accéder à `/ui/login`
+1. Accéder à `/ui/workspace`
+2. Attendre le chargement de l'affichage
 
-2. Saisir email et mot de passe valides
+**Résultat attendu** : les coffres-forts s'affichent correctement, je peux voir leur nom et leur secret
 
-3. Soumettre le formulaire
+> S'il n'y en a aucun, un texte explicite doit s'afficher
 
-**Résultat attendu** : redirection vers l'espace de travail, session active
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F1.2 — Recherche de coffres-forts
+
+**Préconditions** : avoir au moins deux coffres-forts qui commencent par des lettres différentes
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Attendre le chargement de l'affichage
+3. Sélectionner la barre de recherche
+4. Entrer les premières lettres d'un coffre-fort, puis d'autres lettres
+
+**Résultat attendu** : je ne vois que les coffres-forts qui commencent par les lettres que j'ai entré, pas de casse sensible
+
+**Couverture** :
+
+- [x] test manuel
+
+> Si aucun résultat n'est trouvé, un texte me l'indique
+
+### TC-F1.3.A — Création de coffres-forts : succès
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton pour créer un coffre-fort
+3. Entrer un libellé ainsi qu'un mot de passe
+4. Cliquer sur le bouton pour créer
+
+**Résultat attendu** : le coffre-fort s'ajoute au début de la liste
+
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F1.3.B — Création de coffres-forts : déjà existant
+
+**Préconditions** : avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton pour créer un coffre-fort
+3. Entrer un libellé d'un coffre-fort existant ainsi qu'un mot de passe
+4. Cliquer sur le bouton pour créer
+
+**Résultat attendu** : le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le coffre-fort
+existe déjà
+
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F1.3.C — Création de coffres-forts : libellé trop long
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton pour créer un coffre-fort
+3. Entrer un libellé de plus de 255 digits ainsi qu'un mot de passe
+4. Cliquer sur le bouton pour créer
+
+**Résultat attendu** : le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est
+trop long
+
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F1.4 — Suppression de coffres-forts
+
+**Préconditions** : avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton Supprimer d'un coffre-fort
+3. Confirmer l'action
+4. Attendre le chargement de l'action
+
+**Résultat attendu** : je ne vois plus le coffre-fort que j'ai supprimé
+
+**Couverture** :
+
+- [x] test manuel
 
 [//]: # (### TC-F3.1 — Connexion réussie)
 
@@ -126,6 +212,6 @@ Chaque scénario est lié à :
 
 ## 12. Gestion des anomalies
 
- - Création d'un ticket "bug" dans l'outil de gestion de projet.
+- Création d'un ticket "bug" dans l'outil de gestion de projet.
 
 [//]: # (Ajout dans le Plan de correction des bogues &#40;C2.3.2&#41;.)
