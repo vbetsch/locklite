@@ -19,7 +19,7 @@
  *           example: Google, Amazon, Netflix, Disney+
  *         secret:
  *           type: string
- *           description: password, code, token, any string
+ *           description: password, token, code or other sensitive string to store
  *           format: password
  */
 export type VaultModelDto = {
