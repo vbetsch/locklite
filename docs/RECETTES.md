@@ -215,6 +215,8 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 ## 8. Procédure d’exécution
 
+### Tests unitaires
+
 - **Local** :
   1. `npm install`
   2. `npm test`
