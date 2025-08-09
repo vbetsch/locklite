@@ -55,17 +55,17 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité     | Tests fonctionnels | Tests structurels | Tests sécurité |
-|----|--------------------|--------------------|-------------------|----------------|
-| F1 | Documentation API  | —                  | TS-E1.1           | —              |
-| F2 | Gestion des vaults |                    |                   |                |
-| F3 | Authentification   | TC-F3.1            |                   | SEC-H1         |
+| ID | Fonctionnalité            | Tests fonctionnels | Tests structurels | Tests sécurité |
+|----|---------------------------|--------------------|-------------------|----------------|
+| F1 | Documentation API         | —                  | TS-E1.1           | —              |
+| F2 | Gestion des coffres-forts |                    |                   |                |
+| F3 | Authentification          | TC-F3.1            |                   | SEC-H1         |
 
 ---
 
 ## 6. Tests fonctionnels
 
-### TC-F1.1 — Connexion réussie
+### TC-F3.1 — Connexion réussie
 
 **Préconditions** : compte utilisateur existant avec mot de passe valide
 
