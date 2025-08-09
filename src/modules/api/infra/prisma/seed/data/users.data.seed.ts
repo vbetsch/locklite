@@ -2,21 +2,21 @@ import type { UserTypeSeed } from '@api/infra/prisma/seed/types/user.type.seed';
 
 export const usersToSeed: ReadonlyArray<UserTypeSeed> = [
   {
-    name: 'Ada Lovelace',
-    email: 'ada@example.com',
-    passwordPlain: 'Password!2345',
+    name: 'Administrator',
+    email: 'admin@example.com',
+    passwordPlain: 'admin',
     vaults: [
-      { label: 'Work credentials', secret: 'encrypted:work-secret-1' },
-      { label: 'Personal banking', secret: 'encrypted:personal-secret-1' },
+      { label: 'Google', secret: 'g0ogle' },
+      { label: 'Amazon', secret: 'am4z0n' },
     ],
   },
   {
-    name: 'Alan Turing',
-    email: 'alan@example.com',
-    passwordPlain: 'Password!6789',
+    name: 'Standard User',
+    email: 'user@example.com',
+    passwordPlain: 'user',
     vaults: [
-      { label: 'Prod access', secret: 'encrypted:prod-secret-1' },
-      { label: 'Side projects', secret: 'encrypted:side-secret-1' },
+      { label: 'Netflix', secret: 'n3tfl1x' },
+      { label: 'Disney +', secret: 'disney.plu$' },
     ],
   },
 ];
