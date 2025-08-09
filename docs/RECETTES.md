@@ -43,10 +43,10 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels | Tests sécurité |
-|----|---------------------------|------------------------------------------------|-------------------|----------------|
-| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`         | —              |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`         |                |
+| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité |
+|----|---------------------------|------------------------------------------------|----------------------|----------------|
+| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —              |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            |                |
 
 [//]: # (| F2 | Authentification          | TC-F3.1            |                   | SEC-H1         |)
 
@@ -156,8 +156,8 @@ existe déjà
 
 **But** : vérifier que les erreurs suivent le format attendu
 
-**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type 'error', vérifier qu'ils
-contiennent bien tous un objet 'error' contenant un attribut 'message'
+**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "error", vérifier qu'ils
+contiennent bien tous un objet `error` contenant un attribut `message`
 
 **Couverture** :
 
@@ -167,8 +167,8 @@ contiennent bien tous un objet 'error' contenant un attribut 'message'
 
 **But** : vérifier que les réponses suivent le format attendu
 
-**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type 'data', vérifier qu'ils
-contiennent bien tous un objet 'data' contenant les informations à transmettre
+**Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "data", vérifier qu'ils
+contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Couverture** :
 
