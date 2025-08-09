@@ -1,6 +1,6 @@
 # Cahier de recettes
 
-> Version : 1.0.0
+> Version : [`1.0.0`](https://github.com/vbetsch/locklite/releases/tag/v1.0.0)
 >
 > Projet : LockLite — Gestionnaire de mots de passe
 >
