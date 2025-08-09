@@ -53,11 +53,11 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 ## 5. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité        |
-|----|---------------------------|------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`            | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
+|----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
+| F0 | Documentation API         | `TC-F0`                                                   | `TS-F0.1`, `TS-F0.2` | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`                       | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 6. Tests fonctionnels
 
