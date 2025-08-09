@@ -53,14 +53,15 @@ migrate: up
 	fi
 	npm run prisma:migrate "$(MIGRATION_NAME)"
 
-reset_db: up
+seed: up
 	npm run prisma:reset
+	npm run prisma:seed
 
 clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate reset_db clean
+.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate seed clean
 
 # Aliases
 run: up dev
