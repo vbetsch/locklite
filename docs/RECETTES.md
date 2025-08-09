@@ -231,7 +231,7 @@ liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
-- Couverture minimale définie dans Jest et dans la CI :
+- Couverture minimale définie dans Jest bloquante dans la CI :
   - 80% de branches
   - 80% de fonctions
   - 80% de lignes
