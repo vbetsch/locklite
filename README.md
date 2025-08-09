@@ -91,6 +91,15 @@ npm test
 npm run test:cov
 ```
 
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
+```
+
 <h2 id="macos">MacOS</h2>
 
 ### Installation
@@ -142,6 +151,15 @@ npm test
 npm run test:cov
 ```
 
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
+```
+
 <h2 id="linux">Linux</h2>
 
 ### Installation
@@ -191,4 +209,13 @@ npm test
 
 ```shell
 npm run test:cov
+```
+
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
 ```
