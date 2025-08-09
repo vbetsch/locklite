@@ -60,13 +60,19 @@ npm install
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+2. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+3. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+4. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -105,13 +111,19 @@ npm install
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+2. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+3. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+4. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -150,13 +162,19 @@ npm install
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+2. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+3. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+4. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
