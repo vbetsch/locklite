@@ -1,12 +1,10 @@
-import {PrismaClient} from '@prisma/generated';
-import {usersToSeed} from "@prisma/seed/data/users.data.seed";
-import {upsertUserWithVaults} from "@prisma/seed/scripts/upsert-user-with-vaults.seed";
-
-const prisma: PrismaClient = new PrismaClient();
+import { usersToSeed } from '@api/infra/prisma/seed/data/users.data.seed';
+import { upsertUserWithVaults } from '@api/infra/prisma/seed/scripts/upsert-user-with-vaults.seed';
+import prisma from '@lib/prisma';
 
 async function main(): Promise<void> {
   for (const seed of usersToSeed) {
-    await upsertUserWithVaults(prisma, seed);
+    await upsertUserWithVaults(seed);
   }
 }
 

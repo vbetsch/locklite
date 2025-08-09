@@ -18,7 +18,7 @@
     "prisma:reset": "prisma migrate reset",
     "prisma:migrate": "prisma migrate dev --name",
     "prisma:generate": "prisma generate",
-    "prisma:seed": "tsx prisma/seed/seed.ts"
+    "prisma:seed": "tsx src/modules/api/infra/prisma/seed/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
