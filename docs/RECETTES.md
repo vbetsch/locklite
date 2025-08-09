@@ -57,7 +57,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 |----|---------------------------|------------------------------------------------|----------------------|----------------|
 | F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —              |
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —              |
-| F2 | Authentification          | TC-F2.X                                        | TS-F2.X              | SE-XXX         |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`                       | TS-F2.X              | SE-XXX         |
 
 ## 6. Tests fonctionnels
 
@@ -159,15 +159,35 @@ existe déjà
 
 - [x] test manuel
 
-### TC-F2.X
+### TC-F2.1.A — Connexion d'un utilisateur : succès
 
-**Préconditions** :
+**Préconditions** : ne pas être déjà connecté, être muni d'au moins un utilisateur
 
 **Étapes** :
 
-1. Accéder à `/...`
+1. Se rendre sur `/ui/login`
+2. Entrer l'email et le mot de passe de votre utilisateur
+3. Cliquer sur le bouton pour se connecter
 
-**Résultat attendu** :
+**Résultat attendu** : je suis redirigé sur l'espace de travail, je vois l'icône "profil" en haut à droite qui, quand je
+clique dessus, m'affiche mon nom et un bouton pour me déconnecter.
+
+**Couverture** :
+
+- [x] test manuel
+
+### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
+
+**Préconditions** : ne pas être déjà connecté
+
+**Étapes** :
+
+1. Se rendre sur `/ui/login`
+2. Entrer un email et/ou un mot de passe erronés
+3. Cliquer sur le bouton pour se connecter
+
+**Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
+identifiants valides
 
 **Couverture** :
 
