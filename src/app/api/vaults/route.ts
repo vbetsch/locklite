@@ -23,7 +23,7 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-va
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/GetMyVaultsBodyDto'
+ *               $ref: '#/components/schemas/GetMyVaultsDataDto'
  *       401:
  *         description: Unauthorized
  *         content:
@@ -71,7 +71,7 @@ export async function GET(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CreateVaultBodyDto'
+ *               $ref: '#/components/schemas/CreateVaultDataDto'
  *       409:
  *         description: Vault already exists
  *         content:

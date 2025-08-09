@@ -4,11 +4,15 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
  * @swagger
  * components:
  *   schemas:
- *     GetMyVaultsBodyDto:
+ *     GetMyVaultsDataDto:
  *       type: object
+ *       required:
+ *        - data
  *       properties:
  *         data:
  *           type: object
+ *           required:
+ *            - myVaults
  *           properties:
  *             myVaults:
  *               type: array

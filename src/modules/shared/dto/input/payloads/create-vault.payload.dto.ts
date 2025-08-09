@@ -10,10 +10,11 @@
  *       properties:
  *         label:
  *           type: string
- *           description: Name of the vault
+ *           description: name of the vault
+ *           example: Google, Amazon, Netflix, Disney+ or the other
  *         secret:
  *           type: string
- *           description: Password, token, or other sensitive string to store
+ *           description: password, token, code or other sensitive string to store
  *           format: password
  */
 export type CreateVaultPayloadDto = {
