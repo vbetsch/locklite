@@ -32,15 +32,13 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 - **Environnements** : développement local, CI GitHub Actions
 
-[//]: # (TODO)
+- **Comptes de test** :
 
-[//]: # (- **Comptes de test** :)
+  - `admin@example.com` / `admin`
 
-[//]: # (  - `admin@test.local` / `P@ssw0rd!123`)
+  - `user@example.com` / `user`
 
-[//]: # (  - `user@test.local` / `P@ssw0rd!123`)
-
-[//]: # (- **Jeux de données** : vaults et entrées préremplis via seed Prisma)
+- **Jeux de données** : vaults et entrées préremplis via seed Prisma
 
 ---
 
@@ -108,8 +106,6 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
   2. `npm test`
 
 - **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
-
-[//]: # (  2. `npm run prisma:reset`)
 
 ---
 
