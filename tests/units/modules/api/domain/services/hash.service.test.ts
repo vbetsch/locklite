@@ -37,7 +37,7 @@ describe('HashService', () => {
     process.env.BCRYPT_SALT_ROUNDS = ORIGINAL_ENV;
   });
 
-  describe('hash', () => {
+  describe('hash (SE-HASH)', () => {
     it('hashes string with env-provided salt rounds', async (): Promise<void> => {
       process.env.BCRYPT_SALT_ROUNDS = String(CUSTOM_SALT);
       service = new HashService();
@@ -86,7 +86,7 @@ describe('HashService', () => {
     });
   });
 
-  describe('compare', () => {
+  describe('compare (SE-HASH)', () => {
     it('returns true when bcrypt.compare resolves true', async (): Promise<void> => {
       const data: string = 'plain';
       const ref: string = 'hash';

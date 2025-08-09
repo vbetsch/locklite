@@ -21,7 +21,7 @@ describe('RequestService', () => {
     jest.resetAllMocks();
   });
 
-  it('should fetch with GET and return status and data', async (): Promise<void> => {
+  it('should fetch with GET and return status and data (TS-F0.2)', async (): Promise<void> => {
     type Data = { foo: string };
     const data: Data = { foo: 'bar' };
     const mockResponse: Response = {
@@ -54,7 +54,7 @@ describe('RequestService', () => {
     expect(result).toEqual({ status: OK_STATUS, data });
   });
 
-  it('should fetch with POST and return status and data', async (): Promise<void> => {
+  it('should fetch with POST and return status and data (TS-F0.2)', async (): Promise<void> => {
     type Data = { id: number };
     const bodyPayload: { name: string } = { name: 'Alice' };
     const data: Data = { id: 1 };
@@ -90,7 +90,7 @@ describe('RequestService', () => {
     expect(result).toEqual({ status: CREATED_STATUS, data });
   });
 
-  it('should fetch with PUT and return status and data', async (): Promise<void> => {
+  it('should fetch with PUT and return status and data (TS-F0.2)', async (): Promise<void> => {
     type Data = { updated: boolean };
     const bodyPayload: { value: number } = { value: 42 };
     const data: Data = { updated: true };

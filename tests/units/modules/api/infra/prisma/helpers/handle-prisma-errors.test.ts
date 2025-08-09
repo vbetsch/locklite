@@ -35,7 +35,7 @@ describe('handlePrismaError', () => {
     expect(result).toBeInstanceOf(ResourceNotFoundError);
   });
 
-  it('returns RequestedValueTooLongError for PrismaClientKnownRequestError with P2000', (): void => {
+  it('returns RequestedValueTooLongError for PrismaClientKnownRequestError with P2000 (TS-F1.3)', (): void => {
     const error: PrismaErrorLike = {
       name: 'PrismaClientKnownRequestError',
       code: 'P2000',
