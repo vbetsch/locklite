@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import {PrismaClient, User, Vault} from './generated';
+import {PrismaClient, User, Vault} from '../generated';
 
 type SeedVault = {
   readonly label: string;
