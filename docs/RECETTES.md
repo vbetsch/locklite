@@ -1,6 +1,6 @@
 # Cahier de recettes
 
-> Version : [`1.1.0`](https://github.com/vbetsch/locklite/releases/tag/v1.1.0)
+> Version : [`1.1.1`](https://github.com/vbetsch/locklite/releases/tag/v1.1.1)
 >
 > Projet : LockLite — Gestionnaire de mots de passe
 >
@@ -56,7 +56,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 | ID | Fonctionnalité            | Tests fonctionnels                             | Tests structurels    | Tests sécurité        |
 |----|---------------------------|------------------------------------------------|----------------------|-----------------------|
 | F0 | Documentation API         | `TC-F0`                                        | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B` | `TS-F1.3`            | `SE-VAULTS`           |
 | F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`            | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 6. Tests fonctionnels
@@ -93,7 +93,8 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 ### TC-F1.2 — Recherche de coffres-forts
 
-**Préconditions** : être connecté avec un utilisateur, avoir au moins deux coffres-forts qui commencent par des lettres différentes
+**Préconditions** : être connecté avec un utilisateur, avoir au moins deux coffres-forts qui commencent par des lettres
+différentes
 
 **Étapes** :
 
@@ -239,14 +240,24 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer un coffre-fort avec un libellé de plus de 255 digits, le coffre-fort ne s'ajoute pas dans la
-liste, une erreur apparaît m'indiquant que le libellé est trop long
+**Vérification** : être connecté avec un utilisateur, créer un coffre-fort avec un libellé de plus de 255 digits, le
+coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 **Couverture** :
 
 - [x] test manuel
 
 ## 8. Tests de sécurité
+
+### SE-VAULTS - Confidentialité des coffres-forts
+
+**But** : vérifier la sécurité du stockage des coffres-forts
+
+**Vérification** : inspection de la base de données → mes vaults sont liés à mon userId (tous et uniquement les miens)
+
+**Couverture** :
+
+- [x] test manuel
 
 ### SE-HASH — Hashage des mots de passe
 
