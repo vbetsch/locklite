@@ -6,9 +6,13 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
  *   schemas:
  *     CreateVaultDataDto:
  *       type: object
+ *       required:
+ *        - data
  *       properties:
  *         data:
  *           type: object
+ *           required:
+ *            - vaultCreated
  *           properties:
  *             vaultCreated:
  *               $ref: '#/components/schemas/VaultModelDto'

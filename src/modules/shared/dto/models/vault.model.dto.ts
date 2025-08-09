@@ -4,6 +4,10 @@
  *   schemas:
  *     VaultModelDto:
  *       type: object
+ *       required:
+ *        - id
+ *        - label
+ *        - secret
  *       properties:
  *         id:
  *           type: string

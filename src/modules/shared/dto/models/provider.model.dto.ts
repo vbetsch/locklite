@@ -4,6 +4,12 @@
  *   schemas:
  *     ProviderModelDto:
  *       type: object
+ *       required:
+ *        - id
+ *        - name
+ *        - type
+ *        - signinUrl
+ *        - callbackUrl
  *       properties:
  *         id:
  *           type: string
