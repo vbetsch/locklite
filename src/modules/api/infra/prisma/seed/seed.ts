@@ -1,10 +1,15 @@
+import 'reflect-metadata';
 import { usersToSeed } from '@api/infra/prisma/seed/data/users.data.seed';
-import { upsertUserWithVaults } from '@api/infra/prisma/seed/scripts/upsert-user-with-vaults.seed';
 import prisma from '@lib/prisma';
+import { container } from 'tsyringe';
+import { UpsertUserWithVaultsUseCase } from '@api/domain/usecases/seed/upsert-user-with-vaults.usecase';
+
+const upsertUserWithVaultsUseCase: UpsertUserWithVaultsUseCase =
+  container.resolve(UpsertUserWithVaultsUseCase);
 
 async function main(): Promise<void> {
   for (const seed of usersToSeed) {
-    await upsertUserWithVaults(seed);
+    await upsertUserWithVaultsUseCase.handle(seed);
   }
 }
 
