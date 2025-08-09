@@ -4,9 +4,13 @@
  *   schemas:
  *     HttpErrorDto:
  *       type: object
+ *       required:
+ *        - error
  *       properties:
  *         error:
  *           type: object
+ *           required:
+ *            - message
  *           properties:
  *             message:
  *               type: string
