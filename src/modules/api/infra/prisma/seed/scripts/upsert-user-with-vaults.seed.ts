@@ -5,23 +5,19 @@ import type { User, Vault } from '@prisma/generated';
 import prisma from '@lib/prisma';
 import { HashService } from '@api/domain/services/hash.service';
 import { container } from 'tsyringe';
+import { UsersRepository } from '@api/infra/repositories/users.repository';
 
 const hashService: HashService = container.resolve(HashService);
+const usersRepository: UsersRepository = container.resolve(UsersRepository);
 
 export async function upsertUserWithVaults(seed: UserTypeSeed): Promise<User> {
   const passwordHash: string = await hashService.hash(seed.passwordPlain);
 
-  const user: User = await prisma.user.upsert({
-    where: { email: seed.email },
-    update: {
-      name: seed.name,
-      password: passwordHash,
-    },
-    create: {
-      name: seed.name,
-      email: seed.email,
-      password: passwordHash,
-    },
+  const user: User = await usersRepository.createOrUpdate({
+    email: seed.email,
+    // eslint-disable-next-line no-undefined
+    name: seed.name || undefined,
+    password: passwordHash,
   });
 
   const existingVaults: ReadonlyArray<Vault> = await prisma.vault.findMany({

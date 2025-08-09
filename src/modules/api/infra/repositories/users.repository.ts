@@ -20,4 +20,19 @@ export class UsersRepository {
       prisma.user.create({ data: record })
     );
   }
+
+  public async createOrUpdate(record: CreateUserRecord): Promise<User> {
+    return await prisma.user.upsert({
+      where: { email: record.email },
+      update: {
+        name: record.name,
+        password: record.password,
+      },
+      create: {
+        name: record.name,
+        email: record.email,
+        password: record.password,
+      },
+    });
+  }
 }
