@@ -76,6 +76,8 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 ### TC-F1.1 — Affichage des coffres-forts
 
+**Préconditions** : être connecté avec un utilisateur
+
 **Étapes** :
 
 1. Accéder à `/ui/workspace`
@@ -91,7 +93,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 ### TC-F1.2 — Recherche de coffres-forts
 
-**Préconditions** : avoir au moins deux coffres-forts qui commencent par des lettres différentes
+**Préconditions** : être connecté avec un utilisateur, avoir au moins deux coffres-forts qui commencent par des lettres différentes
 
 **Étapes** :
 
@@ -111,6 +113,8 @@ sensible
 
 ### TC-F1.3.A — Création de coffres-forts : succès
 
+**Préconditions** : être connecté avec un utilisateur
+
 **Étapes** :
 
 1. Accéder à `/ui/workspace`
@@ -126,7 +130,7 @@ sensible
 
 ### TC-F1.3.B — Création de coffres-forts : déjà existant
 
-**Préconditions** : avoir au moins un coffre-fort
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
 **Étapes** :
 
@@ -144,7 +148,7 @@ existe déjà
 
 ### TC-F1.4 — Suppression de coffres-forts
 
-**Préconditions** : avoir au moins un coffre-fort
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
 **Étapes** :
 
@@ -235,7 +239,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : créer un coffre-fort avec un libellé de plus de 255 digits, le coffre-fort ne s'ajoute pas dans la
+**Vérification** : être connecté avec un utilisateur, créer un coffre-fort avec un libellé de plus de 255 digits, le coffre-fort ne s'ajoute pas dans la
 liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 **Couverture** :
