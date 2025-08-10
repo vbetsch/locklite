@@ -186,7 +186,7 @@ existe déjà
 **Étapes** :
 
 1. Se rendre sur `/ui/login`
-2. Entrer un email et/ou un mot de passe erroné
+2. Entrer un email et/ou un mot de passe erronés
 3. Cliquer sur le bouton pour se connecter
 
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
