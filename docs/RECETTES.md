@@ -121,7 +121,7 @@ sensible
 3. Entrer un libellé ainsi qu'un mot de passe
 4. Cliquer sur le bouton pour créer
 
-**Résultat attendu** : le coffre-fort s'ajoute au début de la liste
+**Résultat attendu** : le coffre-fort s'ajoute au début de la liste, je suis le seul membre de ce coffre-fort
 
 **Couverture** :
 
