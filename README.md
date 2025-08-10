@@ -18,9 +18,10 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
 
-[//]: # (## Asserts)
+### Documentation
 
-[//]: # (- [ASSERT_NAME]&#40;ASSERT_PATH&#41;)
+- [Test Plan (C2.3.1)](docs/RECETTES.md)
+- [Defect Correction Plan (C2.3.2)](docs/BOGUES.md)
 
 ### Dependencies
 
@@ -44,7 +45,8 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. These values are only for the local environment, you can modify it if you want.
+1. Create a `.env` file by copying the example file `.env.example` file. These values are only for the local
+   environment, you can modify it if you want.
 
 2. Start docker services with the following command
 
