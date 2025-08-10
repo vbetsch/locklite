@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
-|----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                   | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`        | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                   | Tests structurels    | Tests sécurité        |
+|----|---------------------------|----------------------------------------------------------------------|----------------------|-----------------------|
+| F0 | Documentation API         | `TC-F0`                                                              | `TS-F0.1`, `TS-F0.2` | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5` | `TS-F1.3`            | `SE-VAULTS`           |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                   | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 5. Tests fonctionnels
 
@@ -157,6 +157,23 @@ existe déjà
 4. Attendre le chargement de l'action
 
 **Résultat attendu** : je ne vois plus le coffre-fort que j'ai supprimé
+
+**Couverture** :
+
+- [ ] test manuel
+
+### TC-F1.5 — Modifier les membres d'un coffre-fort
+
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur les membres d'un coffre-fort
+3. Modifier les membres
+4. Valider la modification
+
+**Résultat attendu** : les membres correspondent à la modification appliquée
 
 **Couverture** :
 
@@ -273,7 +290,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données → mes vaults sont liés à mon userId (tous et uniquement les miens)
+**Vérification** : inspection de la base de données → mes coffres-forts sont liés à mon userId (tous et uniquement les
+miens)
 
 **Couverture** :
 
