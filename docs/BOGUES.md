@@ -133,5 +133,5 @@ Pour chaque test en échec :
 - Correction :  
   - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.  
   - Création : relier le coffre-fort au propriétaire au moment de l’insert.  
-  - Ajouter des tests unitaires : un utilisateur A ne doit jamais voir/éditer les coffres-forts de B ; création doit lier le `ownerId`.  
+  - Ajouter des tests unitaires : un utilisateur A ne doit jamais voir/éditer les coffres-forts de B, création doit lier le `ownerId`.  
 - Validation : Tests unitaires OK (list/read/update/delete), vérification manuelle en recette avec deux comptes distincts.
