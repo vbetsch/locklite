@@ -1,7 +1,5 @@
 # Plan de correction des bogues
 
-> Version : `1.0`
->
 > Projet : LockLite — Gestionnaire de mots de passe
 >
 > Compétence RNCP : C2.3.1
@@ -79,7 +77,7 @@ Pour chaque test en échec :
 
 1. Création d’une branche Git dédiée au correctif.
 2. Implémentation du correctif en respectant les bonnes pratiques et normes de sécurité.
-3. Ajout ou mise à jour des tests unitaires et d’intégration.
+3. Ajout ou mise à jour des tests unitaires.
 4. Exécution des tests en local.
 5. Création d’une Pull Request avec revue par IA.
 6. Validation automatique par la CI (GitHub Actions).
@@ -109,9 +107,33 @@ Pour chaque test en échec :
 
 > Les anomalies ci-dessous illustrent l’application de ce plan. Les autres sont consignées dans l’outil de suivi interne.
 
-### Bug #001 – Échec d’authentification avec mot de passe valide
-- **Priorité** : Bloquant  
-- **Catégorie** : Fonctionnelle  
-- **Cause racine** : Mauvaise comparaison entre mot de passe clair et hashé.  
-- **Correction** : Utilisation correcte de `bcrypt.compare` + ajout d’un test unitaire.  
-- **Validation** : Tests unitaires et recette utilisateur validée.
+### Bug #001 – Zone cliquable du bouton Logout trop restreinte
+- Priorité : Mineur  
+- Catégorie : UX/Accessibilité  
+- Description : Le `onClick` était attaché au label au lieu de l’élément de liste ; cliquer à côté du texte ne déclenchait pas la déconnexion.  
+- Cause racine : Gestionnaire d’événement positionné sur le mauvais composant MUI.  
+- Correction : Déplacer `onClick` sur `ListItem`/`ListItemButton`
+- Validation : vérification manuelle du déclenchement sur toute la zone.
+
+---
+
+### Bug #002 – Incohérences de nommage dans la documentation API
+- Priorité : Majeur  
+- Catégorie : Technique/Documentation  
+- Description : Les noms exposés dans la documentation (OpenAPI/Swagger) ne correspondaient pas toujours aux objets réellement retournés.  
+- Cause racine : Divergence entre DTO/schema et la génération de doc.  
+- Correction : Aligner les schémas OpenAPI avec les DTO réels, régénérer la doc  
+- Validation : Documentation régénérée et relue
+
+---
+
+### Bug #003 – Visibilité des coffres-forts entre utilisateurs
+- Priorité : Bloquant (Sécurité)  
+- Catégorie : Sécurité/Fonctionnelle  
+- Description : Les utilisateurs voyaient les coffres-forts de tout le monde ; de plus, un coffre-fort créé n’était pas relié à l’utilisateur courant.  
+- Cause racine : Requêtes non scoping par `userId` et absence de liaison propriétaire à la création.  
+- Correction :  
+  - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.  
+  - Création : relier le coffre-fort au propriétaire au moment de l’insert.  
+  - Ajouter des tests unitaires : un utilisateur A ne doit jamais voir/éditer les coffres-forts de B ; création doit lier le `ownerId`.  
+- Validation : Tests unitaires OK (list/read/update/delete scoping), vérification manuelle en recette avec deux comptes distincts.
