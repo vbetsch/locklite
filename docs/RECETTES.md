@@ -11,6 +11,8 @@
 - Documentation API Swagger : http://localhost:3000/api/docs
 - Plan de correction des bogues : [BOGUES.md](BOGUES.md)
 
+[//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
+
 [//]: # (TODO: Modify when we will have production environment -> PROD)
 
 ## 1. Objet et périmètre
@@ -44,7 +46,9 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 4. Matrice de couverture
 
-[//]: # (TODO: Ajouter des tests d'accessibilité)
+[//]: # (TODO: ACCESSIBILITY)
+
+[//]: # (Ajouter des tests d'accessibilité)
 
 | ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
 |----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
