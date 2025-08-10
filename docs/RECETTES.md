@@ -222,7 +222,7 @@ identifiants valides
 2. Cliquer sur l'icône profil de la barre de navigation
 3. Cliquer sur "se déconnecter"
 
-**Résultat attendu** : Je suis redirigé sur la page de login, je ne peux pas me rendre sur `/ui/workspace`
+**Résultat attendu** : Je suis redirigé sur la page de login
 
 **Couverture** :
 
