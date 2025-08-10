@@ -69,7 +69,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.1 — Affichage des coffres-forts
 
@@ -87,7 +87,7 @@ peux voir leurs noms et leurs secrets
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.2 — Recherche de coffres-forts
 
@@ -106,7 +106,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 > Si aucun résultat n'est trouvé, un texte me l'indique
 
@@ -125,7 +125,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.3.B — Création de coffres-forts : déjà existant
 
@@ -143,7 +143,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.4 — Suppression de coffres-forts
 
@@ -160,7 +160,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F2.1.A — Connexion d'un utilisateur : succès
 
@@ -176,7 +176,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
@@ -194,7 +194,7 @@ identifiants valides
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TC-F2.2.A — Menu profil de l'utilisateur : affichage
@@ -210,7 +210,7 @@ identifiants valides
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F2.2.B — Menu profil de l'utilisateur : déconnexion
 
@@ -226,6 +226,7 @@ identifiants valides
 
 **Couverture** :
 
+- [x] test manuel
 
 ## 6. Tests structurels
 
@@ -238,7 +239,7 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
@@ -250,7 +251,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
@@ -262,7 +263,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ## 7. Tests de sécurité
@@ -275,7 +276,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-HASH — Hashage des mots de passe
 
@@ -285,7 +286,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### SE-GUARD — Protection des routes
@@ -296,7 +297,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ## 8. Procédure d’exécution
