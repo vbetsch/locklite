@@ -2,7 +2,7 @@
 
 > Compétence RNCP : C2.3.1
 >
-> Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
+> Version : [`1.2.0`](https://github.com/vbetsch/locklite/releases/tag/v1.2.0)
 
 ### Références
 
