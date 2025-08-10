@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                   | Tests structurels    | Tests sécurité        |
-|----|---------------------------|----------------------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                              | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                   | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité        |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|-----------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`           |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 5. Tests fonctionnels
 
@@ -171,9 +171,26 @@ existe déjà
 1. Accéder à `/ui/workspace`
 2. Cliquer sur les membres d'un coffre-fort
 3. Modifier les membres
-4. Valider la modification
+4. Appliquer la modification
 
 **Résultat attendu** : les membres correspondent à la modification appliquée
+
+**Couverture** :
+
+- [ ] test manuel
+
+### TC-F1.6 — Modifier les informations d'un coffre-fort
+
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton "Modifier" d'un coffre-fort
+3. Modifier le nom et le secret
+4. Confirmer les modifications
+
+**Résultat attendu** : les informations se sont bien mises à jour
 
 **Couverture** :
 
@@ -276,7 +293,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer un coffre-fort avec un libellé de plus de 255 caractères, le
+**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255 caractères, le
 coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 **Couverture** :
