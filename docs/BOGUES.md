@@ -23,7 +23,7 @@ identifiées lors de la phase de recette, afin de garantir le fonctionnement du 
 - **Tests automatisés** : Jest pour les tests unitaires
 - **Surveillance en développement** : logs applicatifs (loggers), console et monitoring.
 - **Intégration continue** : GitHub Actions pour exécuter automatiquement les suites de tests.
-- **Traçabilité** : Outil de gestion Notion qui référence les bogues découverts
+- **Traçabilité** : Outil de suivi Notion qui référence les bogues découverts
 
 ### 2.2 Sources de détection
 
@@ -89,7 +89,7 @@ Pour chaque test en échec :
 
 ## 6. Suivi et traçabilité
 
-- Les bogues sont référencés dès leur détection dans l'outil de gestion de projet.
+- Les bogues sont référencés dès leur détection dans l'outil de suivi interne.
 - Ils sont étiquettés par les identifiants des
   scénarios de recettes concernés.
 - **Indicateurs de suivi** :
