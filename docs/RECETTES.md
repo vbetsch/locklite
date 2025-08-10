@@ -2,7 +2,7 @@
 
 > Compétence RNCP : C2.3.1
 >
-> Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
+> Version : [`1.2.0`](https://github.com/vbetsch/locklite/releases/tag/v1.2.0)
 
 ### Références
 
@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
-|----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                   | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`        | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité        |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|-----------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`           |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 5. Tests fonctionnels
 
@@ -69,7 +69,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### TC-F1.1 — Affichage des coffres-forts
 
@@ -81,13 +81,13 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 2. Attendre le chargement de l'affichage
 
 **Résultat attendu** : mes coffres-forts s'affichent correctement, je ne vois que les miens et il n'en manque aucun, je
-peux voir leurs noms et leurs secrets
+peux voir leurs noms, leurs noms d'utilisateurs, leurs secrets, et leurs membres
 
 > S'il n'y en a aucun, un texte explicite doit s'afficher
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### TC-F1.2 — Recherche de coffres-forts
 
@@ -106,7 +106,7 @@ sensible
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 > Si aucun résultat n'est trouvé, un texte me l'indique
 
@@ -121,11 +121,11 @@ sensible
 3. Entrer un libellé ainsi qu'un mot de passe
 4. Cliquer sur le bouton pour créer
 
-**Résultat attendu** : le coffre-fort s'ajoute au début de la liste
+**Résultat attendu** : le coffre-fort s'ajoute au début de la liste, je suis le seul membre de ce coffre-fort
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### TC-F1.3.B — Création de coffres-forts : déjà existant
 
@@ -143,7 +143,7 @@ existe déjà
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### TC-F1.4 — Suppression de coffres-forts
 
@@ -160,7 +160,41 @@ existe déjà
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
+
+### TC-F1.5 — Modifier les membres d'un coffre-fort
+
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur les membres d'un coffre-fort
+3. Modifier les membres
+4. Appliquer la modification
+
+**Résultat attendu** : les membres correspondent à la modification appliquée
+
+**Couverture** :
+
+- [ ] test manuel
+
+### TC-F1.6 — Modifier les informations d'un coffre-fort
+
+**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
+
+**Étapes** :
+
+1. Accéder à `/ui/workspace`
+2. Cliquer sur le bouton "Modifier" d'un coffre-fort
+3. Modifier le nom et le secret
+4. Confirmer les modifications
+
+**Résultat attendu** : les informations se sont bien mises à jour
+
+**Couverture** :
+
+- [ ] test manuel
 
 ### TC-F2.1.A — Connexion d'un utilisateur : succès
 
@@ -172,12 +206,12 @@ existe déjà
 2. Entrer l'email et le mot de passe de votre utilisateur
 3. Cliquer sur le bouton pour se connecter
 
-**Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône "profil" dans la barre de navigation
+**Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône du profil dans la barre de navigation
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
 
@@ -194,8 +228,8 @@ identifiants valides
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ### TC-F2.2.A — Menu profil de l'utilisateur : affichage
 
@@ -204,13 +238,14 @@ identifiants valides
 **Étapes** :
 
 1. Se rendre sur `/ui/workspace`
-2. Cliquer sur l'icône profil de la barre de navigation
+2. Cliquer sur l'icône du profil de la barre de navigation
 
-**Résultat attendu** : Un menu s'ouvre affichant mon nom et un bouton pour me déconnecter.
+**Résultat attendu** : Un menu s'ouvre affichant mon nom et un bouton pour me déconnecter, l'icône représente mon avatar
+si j'ai un nom
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### TC-F2.2.B — Menu profil de l'utilisateur : déconnexion
 
@@ -219,14 +254,14 @@ identifiants valides
 **Étapes** :
 
 1. Se rendre sur `/ui/workspace`
-2. Cliquer sur l'icône profil de la barre de navigation
+2. Cliquer sur l'icône du profil de la barre de navigation
 3. Cliquer sur "se déconnecter"
 
 **Résultat attendu** : Je suis redirigé sur la page de login
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ## 6. Tests structurels
 
@@ -239,8 +274,8 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
 
@@ -251,20 +286,20 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer un coffre-fort avec un libellé de plus de 255 caractères, le
+**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255 caractères, le
 coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ## 7. Tests de sécurité
 
@@ -272,11 +307,12 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données → mes vaults sont liés à mon userId (tous et uniquement les miens)
+**Vérification** : inspection de la base de données → mes coffres-forts sont liés à mon userId (tous et uniquement les
+miens)
 
 **Couverture** :
 
-- [x] test manuel
+- [ ] test manuel
 
 ### SE-HASH — Hashage des mots de passe
 
@@ -286,8 +322,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ### SE-GUARD — Protection des routes
 
@@ -297,8 +333,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [x] test manuel
-- [x] tests unitaires
+- [ ] test manuel
+- [ ] tests unitaires
 
 ## 8. Procédure d’exécution
 
