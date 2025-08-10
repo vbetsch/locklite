@@ -129,7 +129,7 @@ Pour chaque test en échec :
 - Priorité : Bloquant (Sécurité)  
 - Catégorie : Sécurité/Fonctionnelle  
 - Description : Les utilisateurs voyaient les coffres-forts de tout le monde ; de plus, un coffre-fort créé n’était pas relié à l’utilisateur courant.  
-- Cause racine : Requêtes non scoping par `userId` et absence de liaison propriétaire à la création.  
+- Cause racine : Les requêtes ne sont pas filtrées par `userId` et absence de liaison propriétaire à la création.  
 - Correction :  
   - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.  
   - Création : relier le coffre-fort au propriétaire au moment de l’insert.  
