@@ -44,35 +44,41 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Generate data with Prisma seed
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
 
 ```shell
 npm run prisma:seed
 ```
 
-3. Launch the application in development mode
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-4. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -104,35 +110,41 @@ npm run prisma:seed
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Generate data with Prisma seed
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
 
 ```shell
 npm run prisma:seed
 ```
 
-3. Launch the application in development mode
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-4. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -164,35 +176,41 @@ npm run prisma:seed
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Generate data with Prisma seed
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
 
 ```shell
 npm run prisma:seed
 ```
 
-3. Launch the application in development mode
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-4. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
