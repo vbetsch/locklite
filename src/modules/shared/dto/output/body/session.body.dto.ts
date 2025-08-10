@@ -15,9 +15,11 @@
  *           properties:
  *             email:
  *               type: string
+ *               description: current user's email
  *               format: email
  *             name:
  *               type: string
+ *               description: current user's name
  *               nullable: true
  *         expires:
  *           type: string

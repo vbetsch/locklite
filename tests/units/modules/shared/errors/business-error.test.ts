@@ -21,7 +21,7 @@ describe('BusinessError', () => {
     expect(error).toBeInstanceOf(Error);
   });
 
-  it('should set message, status and code properties', (): void => {
+  it('should set message, status and code properties (TS-F0.1)', (): void => {
     expect(error.message).toBe(message);
     expect(error.status).toBe(status);
     expect(error.code).toBe(sampleCode);

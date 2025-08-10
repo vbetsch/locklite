@@ -48,7 +48,7 @@ describe('SignInUseCase', () => {
     expect(getDtoFromEntityMock).not.toHaveBeenCalled();
   });
 
-  it('returns null when user is not found', async (): Promise<void> => {
+  it('returns null when user is not found (TC-F2.1.B)', async (): Promise<void> => {
     const input: SignInPayloadDto = {
       email: 'foo@bar.tld',
       password: 'secret',
@@ -63,7 +63,7 @@ describe('SignInUseCase', () => {
     expect(result).toBeNull();
   });
 
-  it('returns null when credentials are invalid', async (): Promise<void> => {
+  it('returns null when credentials are invalid (TC-F2.1.B)', async (): Promise<void> => {
     const input: SignInPayloadDto = {
       email: 'john@doe.tld',
       password: 'wrong',
@@ -85,7 +85,7 @@ describe('SignInUseCase', () => {
     expect(result).toBeNull();
   });
 
-  it('returns UserModelDto when credentials are valid', async (): Promise<void> => {
+  it('returns UserModelDto when credentials are valid (TC-F2.1.A)', async (): Promise<void> => {
     const input: SignInPayloadDto = {
       email: 'alice@acme.tld',
       password: 'p@ssw0rd',

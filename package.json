@@ -16,7 +16,10 @@
     "tests:units:api": "jest tests/units/modules/api",
     "test:cov": "jest --coverage",
     "prisma:reset": "prisma migrate reset",
-    "prisma:migrate": "prisma migrate dev --name"
+    "prisma:migrate": "prisma migrate dev --name",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:seed": "tsx src/modules/api/infra/prisma/seed/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -61,6 +64,7 @@
     "prisma": "^6.12.0",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "^5",
     "typescript-eslint": "^8.38.0"
   }

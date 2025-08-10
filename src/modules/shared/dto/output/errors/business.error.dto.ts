@@ -6,9 +6,14 @@ import type { BusinessErrorCodeEnum } from '@shared/errors/business-error-code.e
  *   schemas:
  *     BusinessErrorDto:
  *       type: object
+ *       required:
+ *        - error
  *       properties:
  *         error:
  *           type: object
+ *           required:
+ *            - message
+ *            - code
  *           properties:
  *             message:
  *               type: string

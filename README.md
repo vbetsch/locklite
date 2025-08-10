@@ -18,9 +18,10 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
 
-[//]: # (## Asserts)
+### Documentation
 
-[//]: # (- [ASSERT_NAME]&#40;ASSERT_PATH&#41;)
+- [Test Plan (C2.3.1)](docs/RECETTES.md)
+- [Defect Correction Plan (C2.3.2)](docs/BOGUES.md)
 
 ### Dependencies
 
@@ -44,29 +45,42 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. These values are only for the local
+   environment, you can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -83,35 +97,56 @@ npm test
 
 ```shell
 npm run test:cov
+```
+
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
 ```
 
 <h2 id="macos">MacOS</h2>
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -128,35 +163,56 @@ npm test
 
 ```shell
 npm run test:cov
+```
+
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
 ```
 
 <h2 id="linux">Linux</h2>
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. Replace the default values with your own.
+1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
 
-2. You need to install NodeJS packages
-
-```shell
-npm install
-```
-
-### Getting Started
-
-1. Start docker services with the following command
+2. Start docker services with the following command
 
 ```shell
 docker-compose up -d
 ```
 
-2. Launch the application in development mode
+3. You need to install NodeJS packages
+
+```shell
+npm install
+```
+
+4. Generate database schema
+
+```shell
+npm run prisma:push
+```
+
+5. Generate data with Prisma seed
+
+```shell
+npm run prisma:seed
+```
+
+### Getting Started
+
+1. Launch the application in development mode
 
 ```shell
 npm run dev
 ```
 
-3. Well done, the application is running!
+2. Well done, the application is running!
 
 - UI : http://localhost:3000/ui (homepage)
 - API : http://localhost:3000/api/docs (Swagger documentation)
@@ -173,4 +229,13 @@ npm test
 
 ```shell
 npm run test:cov
+```
+
+### Database
+
+- Reset Prisma database
+
+```shell
+npm run prisma:reset
+npm run prisma:seed
 ```

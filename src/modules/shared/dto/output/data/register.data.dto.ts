@@ -6,9 +6,13 @@ import type { UserModelDto } from '@shared/dto/models/user.model.dto';
  *   schemas:
  *     RegisterDataDto:
  *       type: object
+ *       required:
+ *        - data
  *       properties:
  *         data:
  *           type: object
+ *           required:
+ *            - userCreated
  *           properties:
  *             userCreated:
  *               $ref: '#/components/schemas/UserModelDto'
