@@ -27,7 +27,7 @@ identifiées lors de la phase de recette, afin de garantir le fonctionnement du 
 
 ### 2.2 Sources de détection
 
-- Échecs des scénarios du cahier de recette.
+- Échecs des scénarios du cahier de recettes.
 - Alertes CI/CD lors des push ou pull requests.
 
 ### 2.3 Fiche d’anomalie
@@ -83,7 +83,7 @@ Pour chaque test en échec :
 
 ### 5.2 Critères de validation
 
-- Tous les tests du cahier de recette sont passés.
+- Tous les tests du cahier de recettes sont passés.
 - Aucune régression détectée.
 - Code conforme aux règles ESLint et Prettier.
 
