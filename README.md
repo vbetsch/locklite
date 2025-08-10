@@ -44,7 +44,7 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### Installation
 
-1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
+1. Create a `.env` file by copying the example file `.env.example` file. These values are only for the local environment, you can modify it if you want.
 
 2. Start docker services with the following command
 
