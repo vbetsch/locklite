@@ -2,7 +2,7 @@
 
 > Projet : LockLite — Gestionnaire de mots de passe
 >
-> Compétence RNCP : C2.3.1
+> Compétence RNCP : C2.3.2
 
 [//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
 
