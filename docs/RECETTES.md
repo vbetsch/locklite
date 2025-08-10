@@ -6,10 +6,6 @@
 >
 > Compétence RNCP : C2.3.1
 
-[//]: # (TODO: Modify when we will link with tests -> TESTS)
-
-[//]: # (TODO: Modify when we will have bugs plan -> BUGS)
-
 [//]: # (TODO: Modify when we will have production environment -> PROD)
 
 ## 1. Objet et périmètre
@@ -23,10 +19,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 - Schéma Prisma : [schema.prisma](../prisma/schema.prisma)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
 - Documentation API Swagger : http://localhost:3000/api/docs
-
-[//]: # (TODO: BUGS)
-
-- Plan de correction des bogues (C2.3.2) : [lien]
+- Plan de correction des bogues : [BOGUES.md](BOGUES.md)
 
 ## 3. Environnements et données de test
 
@@ -312,15 +305,9 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 Chaque scénario est lié à :
 
 - Un ID unique (ex. `TC-F3.1`)
-
-[//]: # (TODO : TESTS)
-
-- Un test Jest (`describe/it`) reprenant cet ID
+- Des tests Jest reprenant cet ID
 
 ## 12. Gestion des anomalies
 
-- Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de gestion de projet.
-
-[//]: # (TODO : BUGS)
-
-Ajout dans le Plan de correction des bogues (C2.3.2).
+- Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
+- Respect du [Plan de correction des bogues](BOGUES.md).
