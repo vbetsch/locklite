@@ -59,10 +59,8 @@ export default function ProfileMenu(
         {/*</Typography>*/}
       </MenuItem>
       <Divider />
-      <MenuItem sx={{ px: 2, py: 1.5 }}>
-        <Typography variant="inherit" onClick={handleLogout}>
-          Logout
-        </Typography>
+      <MenuItem sx={{ px: 2, py: 1.5 }} onClick={handleLogout}>
+        <Typography variant="inherit">Logout</Typography>
       </MenuItem>
     </Menu>
   );
