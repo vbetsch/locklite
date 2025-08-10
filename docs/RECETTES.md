@@ -1,10 +1,8 @@
 # Cahier de recettes
 
-> Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
->
-> Projet : LockLite — Gestionnaire de mots de passe
->
 > Compétence RNCP : C2.3.1
+> 
+> Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
 
 [//]: # (TODO: Modify when we will have production environment -> PROD)
 
