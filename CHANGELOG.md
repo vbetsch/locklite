@@ -11,8 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [1.0.0]: https://github.com/vbetsch/locklite/releases/tag/v1.0.0
 
----
-
 ## [1.1.1] - 2025-08-08
 
 ### Fixed
@@ -24,8 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **[LOCKLITE-129]** List only the current user’s vaults — [#82](https://github.com/vbetsch/locklite/pull/82)
 
----
-
 ## [1.1.0] - 2025-08-08
 
 ### Added
@@ -36,8 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **[LOCKLITE-110]** Profile menu in the navbar — [#74](https://github.com/vbetsch/locklite/pull/74)
 - **[LOCKLITE-115]** Auth Guard in UI — [#75](https://github.com/vbetsch/locklite/pull/75)
 - **[LOCKLITE-109]** Auth Guard in API — [#76](https://github.com/vbetsch/locklite/pull/76)
-
----
 
 ## [1.0.0] - 2025-08-05
 
