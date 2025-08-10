@@ -15,10 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.1] - 2025-08-08
 
-### Changed
-
-- Users can now only access their own vaults.
-
 ### Fixed
 
 - **[LOCKLITE-130]** Create a vault that belongs to the current
