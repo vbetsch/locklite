@@ -17,7 +17,7 @@
 
 Ce document décrit les scénarios de tests et résultats attendus pour valider les fonctionnalités de LockLite, détecter
 les anomalies et prévenir les régressions.  
-Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
+Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 2. Environnements et données de test
 
@@ -43,6 +43,8 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 - **Outils** : Jest, ESLint, GitHub Actions
 
 ## 4. Matrice de couverture
+
+[//]: # (TODO: Ajouter des tests d'accessibilité)
 
 | ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
 |----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|

@@ -80,6 +80,7 @@ Pour chaque test en échec :
 5. Création d’une Pull Request avec revue par IA.
 6. Validation automatique par la CI (GitHub Actions).
 7. Fusion et déploiement.
+8. Reproduction du scénario en production.
 
 ### 5.2 Critères de validation
 
