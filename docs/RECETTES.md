@@ -54,7 +54,7 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 |----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
 | F0 | Documentation API         | `TC-F0`                                                   | `TS-F0.1`, `TS-F0.2` | —                     |
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`                       | —                    | `SE-HASH`, `SE-GUARD` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`        | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 5. Tests fonctionnels
 
@@ -69,7 +69,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.1 — Affichage des coffres-forts
 
@@ -87,7 +87,7 @@ peux voir leurs noms et leurs secrets
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.2 — Recherche de coffres-forts
 
@@ -106,7 +106,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 > Si aucun résultat n'est trouvé, un texte me l'indique
 
@@ -125,7 +125,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.3.B — Création de coffres-forts : déjà existant
 
@@ -143,7 +143,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.4 — Suppression de coffres-forts
 
@@ -160,7 +160,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F2.1.A — Connexion d'un utilisateur : succès
 
@@ -176,8 +176,8 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
 
@@ -194,10 +194,10 @@ identifiants valides
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
-### TC-F2.2 — Menu profil de l'utilisateur
+### TC-F2.2.A — Menu profil de l'utilisateur : affichage
 
 **Préconditions** : être connecté avec un utilisateur
 
@@ -210,7 +210,23 @@ identifiants valides
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
+
+### TC-F2.2.B — Menu profil de l'utilisateur : déconnexion
+
+**Préconditions** : être connecté avec un utilisateur
+
+**Étapes** :
+
+1. Se rendre sur `/ui/workspace`
+2. Cliquer sur l'icône profil de la barre de navigation
+3. Cliquer sur "se déconnecter"
+
+**Résultat attendu** : Je suis redirigé sur la page de login
+
+**Couverture** :
+
+- [x] test manuel
 
 ## 6. Tests structurels
 
@@ -223,8 +239,8 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
 
@@ -235,8 +251,8 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
 
@@ -247,8 +263,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ## 7. Tests de sécurité
 
@@ -260,7 +276,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-HASH — Hashage des mots de passe
 
@@ -270,8 +286,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ### SE-GUARD — Protection des routes
 
@@ -281,8 +297,8 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **Couverture** :
 
-- [ ] test manuel
-- [ ] tests unitaires
+- [x] test manuel
+- [x] tests unitaires
 
 ## 8. Procédure d’exécution
 
