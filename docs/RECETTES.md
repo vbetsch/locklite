@@ -81,7 +81,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 2. Attendre le chargement de l'affichage
 
 **Résultat attendu** : mes coffres-forts s'affichent correctement, je ne vois que les miens et il n'en manque aucun, je
-peux voir leurs noms et leurs secrets
+peux voir leurs noms, leurs secrets, et leurs membres
 
 > S'il n'y en a aucun, un texte explicite doit s'afficher
 
