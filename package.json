@@ -18,6 +18,7 @@
     "prisma:reset": "prisma migrate reset",
     "prisma:migrate": "prisma migrate dev --name",
     "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
     "prisma:seed": "tsx src/modules/api/infra/prisma/seed/seed.ts"
   },
   "dependencies": {
