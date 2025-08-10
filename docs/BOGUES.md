@@ -108,7 +108,7 @@ Pour chaque test en échec :
 ### Bug #001 – Zone cliquable du bouton Logout trop restreinte
 - Priorité : Mineur  
 - Catégorie : UX/Accessibilité  
-- Description : Le `onClick` était attaché au label au lieu de l’élément de liste ; cliquer à côté du texte ne déclenchait pas la déconnexion.  
+- Description : Le `onClick` était attaché au label au lieu de l’élément de liste, cliquer à côté du texte ne déclenchait pas la déconnexion.  
 - Cause racine : Gestionnaire d’événement positionné sur le mauvais composant MUI.  
 - Correction : Déplacer `onClick` sur `ListItem`/`ListItemButton`
 - Validation : vérification manuelle du déclenchement sur toute la zone.
@@ -128,7 +128,7 @@ Pour chaque test en échec :
 ### Bug #003 – Visibilité des coffres-forts entre utilisateurs
 - Priorité : Bloquant (Sécurité)  
 - Catégorie : Sécurité/Fonctionnelle  
-- Description : Les utilisateurs voyaient les coffres-forts de tout le monde ; de plus, un coffre-fort créé n’était pas relié à l’utilisateur courant.  
+- Description : Les utilisateurs voyaient les coffres-forts de tout le monde, de plus un coffre-fort créé n’était pas relié à l’utilisateur courant.  
 - Cause racine : Les requêtes ne sont pas filtrées par `userId` et absence de liaison propriétaire à la création.  
 - Correction :  
   - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.  
