@@ -54,7 +54,7 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 |----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
 | F0 | Documentation API         | `TC-F0`                                                   | `TS-F0.1`, `TS-F0.2` | —                     |
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`                       | —                    | `SE-HASH`, `SE-GUARD` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`        | —                    | `SE-HASH`, `SE-GUARD` |
 
 ## 5. Tests fonctionnels
 
@@ -197,7 +197,7 @@ identifiants valides
 - [ ] test manuel
 - [x] tests unitaires
 
-### TC-F2.2 — Menu profil de l'utilisateur
+### TC-F2.2.A — Menu profil de l'utilisateur : affichage
 
 **Préconditions** : être connecté avec un utilisateur
 
@@ -211,6 +211,21 @@ identifiants valides
 **Couverture** :
 
 - [ ] test manuel
+
+### TC-F2.2.B — Menu profil de l'utilisateur : déconnexion
+
+**Préconditions** : être connecté avec un utilisateur
+
+**Étapes** :
+
+1. Se rendre sur `/ui/workspace`
+2. Cliquer sur l'icône profil de la barre de navigation
+3. Cliquer sur "se déconnecter"
+
+**Résultat attendu** : Je suis redirigé sur la page de login, je ne peux pas me rendre sur `/ui/workspace`
+
+**Couverture** :
+
 
 ## 6. Tests structurels
 
