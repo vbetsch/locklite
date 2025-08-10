@@ -20,8 +20,8 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 
 ### Documentation
 
-- [Test Plan](docs/RECETTES.md)
-- [Defect Correction Plan](docs/BOGUES.md)
+- [Test Plan (C2.3.1)](docs/RECETTES.md)
+- [Defect Correction Plan (C2.3.2)](docs/BOGUES.md)
 
 ### Dependencies
 
