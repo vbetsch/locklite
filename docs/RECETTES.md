@@ -172,7 +172,7 @@ existe déjà
 2. Entrer l'email et le mot de passe de votre utilisateur
 3. Cliquer sur le bouton pour se connecter
 
-**Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône "profil" dans la barre de navigation
+**Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône du profil dans la barre de navigation
 
 **Couverture** :
 
@@ -204,9 +204,10 @@ identifiants valides
 **Étapes** :
 
 1. Se rendre sur `/ui/workspace`
-2. Cliquer sur l'icône profil de la barre de navigation
+2. Cliquer sur l'icône du profil de la barre de navigation
 
-**Résultat attendu** : Un menu s'ouvre affichant mon nom et un bouton pour me déconnecter.
+**Résultat attendu** : Un menu s'ouvre affichant mon nom et un bouton pour me déconnecter, l'icône représente mon avatar
+si j'ai un nom
 
 **Couverture** :
 
@@ -219,7 +220,7 @@ identifiants valides
 **Étapes** :
 
 1. Se rendre sur `/ui/workspace`
-2. Cliquer sur l'icône profil de la barre de navigation
+2. Cliquer sur l'icône du profil de la barre de navigation
 3. Cliquer sur "se déconnecter"
 
 **Résultat attendu** : Je suis redirigé sur la page de login
