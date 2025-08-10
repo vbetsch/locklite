@@ -1,8 +1,15 @@
 # Cahier de recettes
 
 > Compétence RNCP : C2.3.1
-> 
+>
 > Version : [`1.1.2`](https://github.com/vbetsch/locklite/releases/tag/v1.1.2)
+
+### Références
+
+- Schéma Prisma : [schema.prisma](../prisma/schema.prisma)
+- Configuration Jest : [jest.config.ts](../jest.config.ts)
+- Documentation API Swagger : http://localhost:3000/api/docs
+- Plan de correction des bogues : [BOGUES.md](BOGUES.md)
 
 [//]: # (TODO: Modify when we will have production environment -> PROD)
 
@@ -12,14 +19,7 @@ Ce document décrit les scénarios de tests et résultats attendus pour valider 
 les anomalies et prévenir les régressions.  
 Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
-## 2. Références
-
-- Schéma Prisma : [schema.prisma](../prisma/schema.prisma)
-- Configuration Jest : [jest.config.ts](../jest.config.ts)
-- Documentation API Swagger : http://localhost:3000/api/docs
-- Plan de correction des bogues : [BOGUES.md](BOGUES.md)
-
-## 3. Environnements et données de test
+## 2. Environnements et données de test
 
 [//]: # (TODO: PROD)
 
@@ -35,14 +35,14 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 
 - **Jeux de données** : coffres-forts et utilisateurs générés via seed Prisma avec la commande `npm run prisma:seed`
 
-## 4. Stratégie de test
+## 3. Stratégie de test
 
 - **Fonctionnels** : validation des parcours utilisateur
 - **Structurels** : conformité schémas API et contraintes DB
 - **Sécurité** : authentification, autorisations, stockage sécurisé
 - **Outils** : Jest, ESLint, GitHub Actions
 
-## 5. Matrice de couverture
+## 4. Matrice de couverture
 
 | ID | Fonctionnalité            | Tests fonctionnels                                        | Tests structurels    | Tests sécurité        |
 |----|---------------------------|-----------------------------------------------------------|----------------------|-----------------------|
@@ -50,7 +50,7 @@ Périmètre couvert : fonctionnalités MVP prévues pour le rendu du Bloc 2.
 | F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4` | `TS-F1.3`            | `SE-VAULTS`           |
 | F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2`                       | —                    | `SE-HASH`, `SE-GUARD` |
 
-## 6. Tests fonctionnels
+## 5. Tests fonctionnels
 
 ### TC-F0 — Affichage de la documentation API
 
@@ -206,7 +206,7 @@ identifiants valides
 
 - [ ] test manuel
 
-## 7. Tests structurels
+## 6. Tests structurels
 
 ### TS-F0.1 — Format des erreurs
 
@@ -244,7 +244,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 - [ ] test manuel
 - [ ] tests unitaires
 
-## 8. Tests de sécurité
+## 7. Tests de sécurité
 
 ### SE-VAULTS - Confidentialité des coffres-forts
 
@@ -278,7 +278,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 - [ ] test manuel
 - [ ] tests unitaires
 
-## 9. Procédure d’exécution
+## 8. Procédure d’exécution
 
 - **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
 
@@ -288,7 +288,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
   1. `npm install`
   2. `npm test`
 
-## 10. Critères de réussite
+## 9. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -298,14 +298,14 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
   - 80% de lignes
   - 80% de statements
 
-## 11. Traçabilité
+## 10. Traçabilité
 
 Chaque scénario est lié à :
 
 - Un ID unique (ex. `TC-F3.1`)
 - Des tests Jest reprenant cet ID
 
-## 12. Gestion des anomalies
+## 11. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
 - Respect du [Plan de correction des bogues](BOGUES.md).
