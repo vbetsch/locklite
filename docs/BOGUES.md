@@ -6,7 +6,7 @@
 
 [//]: # (TODO: Modify when we will have changelogs -> CHANGELOGS)
 
-## Références
+### Références
 
 - Cahier de recettes : [RECETTES.md](RECETTES.md)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
