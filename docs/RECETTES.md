@@ -177,7 +177,7 @@ existe déjà
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
 
@@ -195,7 +195,7 @@ identifiants valides
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TC-F2.2 — Menu profil de l'utilisateur
 
@@ -224,7 +224,7 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
 
@@ -236,7 +236,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
 
@@ -248,7 +248,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ## 7. Tests de sécurité
 
@@ -271,7 +271,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### SE-GUARD — Protection des routes
 
@@ -282,7 +282,7 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ## 8. Procédure d’exécution
 
