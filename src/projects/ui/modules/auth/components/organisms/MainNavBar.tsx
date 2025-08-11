@@ -4,6 +4,7 @@ import NavBar from '@ui/components/navigation/NavBar';
 import { CONSTANTS } from '@shared/config/constants';
 import { useSession } from 'next-auth/react';
 import { SessionStatus } from '@shared/auth/session-status.enum';
+import ProfileNavIcon from '@ui/modules/auth/components/molecules/ProfileNavIcon';
 
 export default function MainNavBar(): JSX.Element {
   const { data: session, status } = useSession();
@@ -12,6 +13,8 @@ export default function MainNavBar(): JSX.Element {
       title={CONSTANTS.APP_NAME}
       loading={status === SessionStatus.LOADING}
       authenticated={!!session?.user}
-    />
+    >
+      <ProfileNavIcon />
+    </NavBar>
   );
 }
