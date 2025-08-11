@@ -11,15 +11,15 @@
     "format:w": "prettier --write .",
     "test": "jest",
     "tests:units": "jest tests/units",
-    "tests:units:ui": "jest tests/units/modules/ui",
-    "tests:units:shared": "jest tests/units/modules/shared",
-    "tests:units:api": "jest tests/units/modules/api",
+    "tests:units:ui": "jest tests/units/projects/ui",
+    "tests:units:shared": "jest tests/units/projects/shared",
+    "tests:units:api": "jest tests/units/projects/api",
     "test:cov": "jest --coverage",
     "prisma:reset": "prisma migrate reset",
     "prisma:migrate": "prisma migrate dev --name",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "prisma:seed": "tsx src/modules/api/infra/prisma/seed/seed.ts"
+    "prisma:seed": "tsx src/projects/api/infra/prisma/seed/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

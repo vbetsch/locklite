@@ -3,8 +3,8 @@
 import React, { Suspense } from 'react';
 import type { JSX } from 'react';
 import PageContainer from '@ui/components/templates/PageContainer';
-import { SignInForm } from '@ui/components/auth/molecules/SignInForm';
-import CircularLoader from '@ui/components/common/CircularLoader';
+import { SignInForm } from '@ui/modules/auth/components/organisms/SignInForm';
+import CircularLoader from '@ui/components/loaders/CircularLoader';
 
 export default function SignInPage(): JSX.Element {
   return (
