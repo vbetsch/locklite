@@ -6,22 +6,21 @@ type LetterAvatarProps = {
   userName: string;
 };
 
+// Extract from https://mui.com/material-ui/react-avatar/#letter-avatars
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
   const stringToColor = (string: string): string => {
     let hash: number = 0;
-    let i: number;
 
-    for (i = 0; i < string.length; i += 1) {
+    for (let i: number = 0; i < string.length; i += 1) {
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
     let color: string = '#';
-
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    for (i = 0; i < 3; i += 1) {
+    for (let i: number = 0; i < 3; i += 1) {
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       const value: number = (hash >> (i * 8)) & 0xff;
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
@@ -33,11 +32,20 @@ export default function ColorfulLetterAvatar(
   const stringAvatar = (
     name: string
   ): { sx: { bgcolor: string }; children: string } => {
+    const parts: string[] = name.trim().split(' ').filter(Boolean);
+
+    let initials: string;
+    if (parts.length === 1) {
+      initials = parts[0][0].toUpperCase();
+    } else {
+      initials = `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    }
+
     return {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+      children: initials,
     };
   };
 
