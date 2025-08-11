@@ -1,9 +1,9 @@
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 
-export const returnSuccessResultMock = (
+export const returnSuccessResultMock = <Data>(
   data: Data
 ): Promise<RequestServiceOutputType<Data>> => {
-  const result: RequestServiceOutputType<TData> = {
+  const result: RequestServiceOutputType<Data> = {
     status: 200,
     data,
   };
