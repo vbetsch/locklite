@@ -15,6 +15,7 @@ import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
+import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 type VaultCardProps = {
   vault: VaultModelDto;
@@ -22,7 +23,7 @@ type VaultCardProps = {
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
-  const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
     null
