@@ -1,6 +1,6 @@
 import React from 'react';
 import type { JSX } from 'react';
-import NavBar from '@ui/components/navigation/molecules/NavBar';
+import NavBar from '@ui/components/navigation/organisms/NavBar';
 import { CONSTANTS } from '@shared/config/constants';
 import { useSession } from 'next-auth/react';
 import { SessionStatus } from '@shared/auth/session-status.enum';

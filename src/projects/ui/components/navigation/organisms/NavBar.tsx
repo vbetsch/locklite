@@ -1,7 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { AppBar, Toolbar, Typography } from '@mui/material';
-import ProfileNavIcon from '@ui/components/navigation/atoms/ProfileNavIcon';
+import ProfileNavIcon from '@ui/components/navigation/molecules/ProfileNavIcon';
 
 type NavBarProps = {
   title: string;
