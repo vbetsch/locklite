@@ -14,7 +14,7 @@ import { useApiCall } from '@ui/hooks/api/useApiCall';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/logs/ui.logger';
-import ConfirmationModal from '@ui/components/modals/molecules/ConfirmationModal';
+import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 
 type VaultCardProps = {
   vault: VaultModelDto;

@@ -4,7 +4,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Box, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
-import ProfileMenu from '@ui/components/menus/organisms/ProfileMenu';
+import ProfileMenu from '@ui/modules/auth/components/atoms/ProfileMenu';
 
 export default function ProfileNavIcon(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
