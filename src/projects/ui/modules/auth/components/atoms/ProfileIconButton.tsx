@@ -9,7 +9,9 @@ type ProfileIconProps = {
   userName: string | null;
 };
 
-export default function ProfileIcon(props: ProfileIconProps): JSX.Element {
+export default function ProfileIconButton(
+  props: ProfileIconProps
+): JSX.Element {
   return (
     <IconButton
       size="large"

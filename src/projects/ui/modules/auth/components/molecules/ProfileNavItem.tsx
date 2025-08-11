@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
 import ProfileMenu from '@ui/modules/auth/components/atoms/ProfileMenu';
-import ProfileIcon from '@ui/modules/auth/components/atoms/ProfileIcon';
+import ProfileIconButton from '@ui/modules/auth/components/atoms/ProfileIconButton';
 
 export default function ProfileNavItem(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -16,7 +16,7 @@ export default function ProfileNavItem(): JSX.Element {
   return (
     <Box>
       {/*TODO: Replace username by real current user name*/}
-      <ProfileIcon userName={'Hello World'} handleClick={handleMenu} />
+      <ProfileIconButton userName={'Hello World'} handleClick={handleMenu} />
       <ProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </Box>
   );
