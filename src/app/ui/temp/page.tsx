@@ -1,3 +1,6 @@
+'use client';
+
+import 'reflect-metadata';
 import React from 'react';
 import type { JSX } from 'react';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
