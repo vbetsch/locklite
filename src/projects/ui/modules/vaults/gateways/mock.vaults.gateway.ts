@@ -25,8 +25,10 @@ export class MockVaultsGateway implements IVaultsGateway {
     data: CreateVaultPayloadDto
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
     return await returnSuccessResultMock({
-      ...data,
-      id: 'new',
+      vaultCreated: {
+        ...data,
+        id: 'new',
+      },
     });
   }
 
