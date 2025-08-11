@@ -3,6 +3,7 @@ import { RequestServiceOutputType } from '@shared/requests/request-service-outpu
 import { GetUsersListDataDto } from '@shared/dto/output/data/get-users-list.data.dto';
 import { returnSuccessResultMock } from '@ui/mocks/returnSuccessResultMock';
 import { IUsersGateway } from '@ui/modules/users/gateways/abstract/users.gateway.interface';
+import { allUsersDataMock } from '@ui/modules/users/mocks/allUsers.data.mock';
 
 @injectable()
 export class MockUsersGateway implements IUsersGateway {
@@ -10,11 +11,7 @@ export class MockUsersGateway implements IUsersGateway {
     RequestServiceOutputType<GetUsersListDataDto>
   > {
     return await returnSuccessResultMock({
-      allUsers: [
-        { id: 'test1', email: 'test1@example.com' },
-        { id: 'test2', email: 'test2@example.com' },
-        { id: 'test3', email: 'test3@example.com' },
-      ],
+      allUsers: allUsersDataMock,
     });
   }
 }
