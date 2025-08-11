@@ -16,7 +16,7 @@ export default function ProfileNavItem(): JSX.Element {
   return (
     <Box>
       {/*TODO: Replace username by real current user name*/}
-      <ProfileIconButton userName={'Hello World'} handleClick={handleMenu} />
+      <ProfileIconButton userName={'beautiful boy'} handleClick={handleMenu} />
       <ProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </Box>
   );
