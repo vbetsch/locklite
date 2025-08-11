@@ -16,9 +16,11 @@ import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
+import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
 type VaultCardProps = {
-  vault: VaultModelDto;
+  // TODO: use VaultModelDto
+  vault: VaultWithMembersModelDto;
   refetchVaults: () => Promise<void>;
 };
 

@@ -5,9 +5,9 @@ import AddVaultModal from '@ui/modules/vaults/components/organisms/AddVaultModal
 import React, { useState } from 'react';
 import type { JSX } from 'react';
 import VaultsList from './VaultsList';
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
+import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
 export default function DynamicVaultsList(): JSX.Element {
   // TODO: use useVaults
@@ -15,7 +15,8 @@ export default function DynamicVaultsList(): JSX.Element {
   const [openAddModal, setOpenAddModal] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const filteredVaults: VaultModelDto[] = vaults.filter(v =>
+  // TODO: use VaultModelDto
+  const filteredVaults: VaultWithMembersModelDto[] = vaults.filter(v =>
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
