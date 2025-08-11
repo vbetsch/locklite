@@ -166,7 +166,7 @@ export default tseslint.config(
     },
 
     {
-      files: ['src/app/ui/**/*.{ts,tsx}', 'src/projects/ui/**/*.{ts,tsx}'],
+      files: ['src/app/ui/**/*.{ts,tsx}', 'src/modules/ui/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -178,7 +178,7 @@ export default tseslint.config(
     },
 
     {
-      files: ['src/app/api/**/*.{ts,tsx}', 'src/projects/api/**/*.{ts,tsx}'],
+      files: ['src/app/api/**/*.{ts,tsx}', 'src/modules/api/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',
@@ -190,7 +190,7 @@ export default tseslint.config(
     },
 
     {
-      files: ['src/projects/shared/**/*.{ts,tsx}'],
+      files: ['src/modules/shared/**/*.{ts,tsx}'],
       rules: {
         'no-restricted-imports': [
           'error',

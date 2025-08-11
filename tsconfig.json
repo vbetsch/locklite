@@ -29,9 +29,9 @@
     // Alias
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["./src/projects/api/*"],
-      "@ui/*": ["./src/projects/ui/*"],
-      "@shared/*": ["./src/projects/shared/*"],
+      "@api/*": ["./src/modules/api/*"],
+      "@ui/*": ["./src/modules/ui/*"],
+      "@shared/*": ["./src/modules/shared/*"],
       "@prisma/*": ["./prisma/*"],
       "@lib/*": ["./src/lib/*"]
     },
