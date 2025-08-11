@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import CircularLoader from '@ui/components/common/CircularLoader';
+import CircularLoader from '@ui/components/loaders/CircularLoader';
 
 describe('CircularLoader', () => {
   it('renders nothing when loading is false', (): void => {

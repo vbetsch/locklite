@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import ErrorMessage from '@ui/components/common/ErrorMessage';
+import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import { UiLogger } from '@ui/logs/ui.logger';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';

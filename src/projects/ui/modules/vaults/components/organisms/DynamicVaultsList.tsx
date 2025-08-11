@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material';
-import ErrorMessage from '@ui/components/common/ErrorMessage';
-import SearchBar from '@ui/components/common/SearchBar';
+import ErrorMessage from '@ui/components/errors/ErrorMessage';
+import SearchBar from '@ui/components/navigation/SearchBar';
 import AddVaultModal from '@ui/modules/vaults/components/organisms/AddVaultModal';
 import React, { useState } from 'react';
 import type { JSX } from 'react';

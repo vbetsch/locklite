@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { SessionStatus } from '@shared/auth/session-status.enum';
 import { RoutesEnum } from '@ui/router/routes.enum';
-import CircularLoader from '@ui/components/common/CircularLoader';
+import CircularLoader from '@ui/components/loaders/CircularLoader';
 import { Box } from '@mui/material';
 
 export function SignInForm(): JSX.Element | null {

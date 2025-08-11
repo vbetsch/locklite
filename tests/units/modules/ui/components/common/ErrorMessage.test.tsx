@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import ErrorMessage from '@ui/components/common/ErrorMessage';
+import ErrorMessage from '@ui/components/errors/ErrorMessage';
 
 describe('ErrorMessage', () => {
   it('renders nothing when error is null', (): void => {
