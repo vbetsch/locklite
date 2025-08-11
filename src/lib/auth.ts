@@ -3,7 +3,7 @@ import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@lib/prisma';
-import { RoutesEnum } from '@ui/router/routes.enum';
+import { RoutesEnum } from '@ui/routes.enum';
 import { SignInUseCase } from '@api/domain/usecases/auth/signin.usecase';
 import { container } from 'tsyringe';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
