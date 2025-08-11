@@ -76,6 +76,19 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       <CardHeader title={props.vault.label} />
       <CardContent>
         <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
+        {/*TODO: remove it*/}
+        {/* eslint-disable-next-line no-restricted-syntax */}
+        <ul>
+          {props.vault.members.map(member => (
+            // eslint-disable-next-line no-restricted-syntax
+            <li key={member.email}>
+              {/* eslint-disable-next-line no-restricted-syntax*/}
+              <span>{member.email}</span>
+              {/* eslint-disable-next-line no-restricted-syntax*/}
+              <span>{member.name}</span>
+            </li>
+          ))}
+        </ul>
       </CardContent>
       <CardActions>
         <Button
