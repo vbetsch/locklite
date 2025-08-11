@@ -8,7 +8,7 @@ export class MockUsersGateway {
   public async getUsersList(): Promise<
     RequestServiceOutputType<GetUsersListDataDto>
   > {
-    return returnSuccessResultMock({
+    return await returnSuccessResultMock({
       allUsers: [],
     });
   }
