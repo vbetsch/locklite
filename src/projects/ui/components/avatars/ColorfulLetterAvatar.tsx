@@ -1,15 +1,29 @@
 import React from 'react';
 import type { JSX } from 'react';
 import Avatar from '@mui/material/Avatar';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 type LetterAvatarProps = {
-  userName: string;
+  userName: string | null;
 };
 
 // Extract from https://mui.com/material-ui/react-avatar/#letter-avatars
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
+  if (!props.userName) {
+    return (
+      <Avatar>
+        <AccountCircle
+          sx={{
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </Avatar>
+    );
+  }
+
   const stringToColor = (string: string): string => {
     let hash: number = 0;
 
