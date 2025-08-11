@@ -15,7 +15,7 @@ import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import { UiLogger } from '@ui/logs/ui.logger';
-import { useApiCall } from '@ui/hooks/api/useApiCall';
+import { useApiCall } from '@ui/hooks/useApiCall';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import Form from 'next/form';

@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
-import { useApiFetch } from '@ui/hooks/api/useApiFetch';
+import { useApiFetch } from '@ui/hooks/useApiFetch';
 
 export function useVaults(): {
   vaults: VaultModelDto[];
