@@ -7,11 +7,11 @@ import {
   CardContent,
   CardHeader,
 } from '@mui/material';
-import VaultCardContentLine from '@ui/modules/vaults/atoms/VaultCardContentLine';
+import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
-import { VaultsGateway } from '@ui/gateways/vaults.gateway';
+import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/logs/ui.logger';
 import ConfirmationModal from '@ui/components/modals/molecules/ConfirmationModal';

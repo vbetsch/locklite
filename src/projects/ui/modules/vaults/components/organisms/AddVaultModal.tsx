@@ -11,7 +11,7 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { VaultsGateway } from '@ui/gateways/vaults.gateway';
+import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import ErrorMessage from '@ui/components/common/ErrorMessage';
 import { UiLogger } from '@ui/logs/ui.logger';

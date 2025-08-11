@@ -2,8 +2,8 @@ import React from 'react';
 import type { JSX } from 'react';
 import { Grid, Typography } from '@mui/material';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import VaultCard from '@ui/modules/vaults/molecules/VaultCard';
-import VaultSkeletons from '@ui/modules/vaults/molecules/VaultSkeletons';
+import VaultCard from '@ui/modules/vaults/components/molecules/VaultCard';
+import VaultSkeletons from '@ui/modules/vaults/components/molecules/VaultSkeletons';
 
 type VaultsListProps = {
   loading: boolean;
