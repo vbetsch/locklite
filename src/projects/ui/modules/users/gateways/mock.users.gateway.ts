@@ -1,7 +1,10 @@
 import { injectable } from 'tsyringe';
-import { MockRequestServiceOutputType } from '@ui/mocks/mock.request-service-output.type';
+import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
+import { GetUsersListDataDto } from '@shared/dto/output/data/get-users-list.data.dto';
 
 @injectable()
 export class MockUsersGateway {
-  public async getAllUsers(): Promise<MockRequestServiceOutputType> {}
+  public async getUsersList(): Promise<
+    RequestServiceOutputType<GetUsersListDataDto>
+  > {}
 }
