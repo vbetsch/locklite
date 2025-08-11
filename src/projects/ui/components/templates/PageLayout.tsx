@@ -2,7 +2,7 @@
 
 import React from 'react';
 import type { JSX } from 'react';
-import MainNavBar from '@ui/modules/auth/components/molecules/MainNavBar';
+import MainNavBar from '@ui/modules/auth/components/organisms/MainNavBar';
 import { Container } from '@mui/material';
 import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 
