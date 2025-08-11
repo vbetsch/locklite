@@ -5,9 +5,10 @@ import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.d
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 @injectable()
-export class VaultsGateway {
+export class VaultsGateway implements IVaultsGateway {
   public constructor(
     @inject(LockliteApiRequestService)
     private readonly _lockliteRequestService: LockliteApiRequestService
