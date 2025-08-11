@@ -7,7 +7,7 @@ import {
   CardContent,
   CardHeader,
 } from '@mui/material';
-import VaultCardContentLine from '@ui/components/vaults/atoms/VaultCardContentLine';
+import VaultCardContentLine from '@ui/modules/vaults/atoms/VaultCardContentLine';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
 import { useApiCall } from '@ui/hooks/api/useApiCall';
