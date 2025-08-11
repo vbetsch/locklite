@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import type { JSX } from 'react';
 import ProfileMenu from '@ui/modules/auth/components/atoms/ProfileMenu';
 
-export default function ProfileNavIcon(): JSX.Element {
+export default function ProfileNavItem(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>): void => {
