@@ -4,6 +4,7 @@ import { useApiFetch } from '@ui/hooks/useApiFetch';
 import { MockUsersGateway } from '@ui/modules/users/gateways/mock.users.gateway';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import type { GetUsersListDataDto } from '@shared/dto/output/data/get-users-list.data.dto';
+import type { IUsersGateway } from '@ui/modules/users/gateways/abstract/users.gateway.interface';
 
 export function useUsers(): {
   users: UserModelDto[];
@@ -11,7 +12,7 @@ export function useUsers(): {
   error: Error | null;
   refetch: () => Promise<void>;
 } {
-  const gateway: MockUsersGateway = container.resolve(MockUsersGateway);
+  const gateway: IUsersGateway = container.resolve(MockUsersGateway);
   const [users, setUsers] = useState<UserModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
 
