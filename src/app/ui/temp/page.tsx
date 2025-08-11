@@ -7,6 +7,7 @@ import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 
+// TODO: remove this page
 export default function TempPage(): JSX.Element {
   const { users, loading, error } = useUsers();
   return (
