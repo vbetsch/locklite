@@ -6,6 +6,7 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { useApiFetch } from '@ui/hooks/useApiFetch';
+import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 export function useVaults(): {
   vaults: VaultModelDto[];
@@ -13,7 +14,7 @@ export function useVaults(): {
   error: Error | null;
   refetch: () => Promise<void>;
 } {
-  const gateway: VaultsGateway = container.resolve(VaultsGateway);
+  const gateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [vaults, setVaults] = useState<VaultModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
 

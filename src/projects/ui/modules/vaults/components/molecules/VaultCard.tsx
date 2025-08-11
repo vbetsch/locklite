@@ -15,14 +15,17 @@ import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
+import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
+import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
 type VaultCardProps = {
-  vault: VaultModelDto;
+  // TODO: use VaultModelDto
+  vault: VaultWithMembersModelDto;
   refetchVaults: () => Promise<void>;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
-  const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
     null
@@ -73,6 +76,19 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       <CardHeader title={props.vault.label} />
       <CardContent>
         <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
+        {/*TODO: remove it*/}
+        {/* eslint-disable-next-line no-restricted-syntax */}
+        <ul>
+          {props.vault.members.map(member => (
+            // eslint-disable-next-line no-restricted-syntax
+            <li key={member.email}>
+              {/* eslint-disable-next-line no-restricted-syntax*/}
+              <span>{member.email}</span>
+              {/* eslint-disable-next-line no-restricted-syntax*/}
+              <span>{member.name}</span>
+            </li>
+          ))}
+        </ul>
       </CardContent>
       <CardActions>
         <Button

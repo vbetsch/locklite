@@ -20,6 +20,7 @@ import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.da
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 import Form from 'next/form';
 import { BusinessError } from '@shared/errors/business-error';
+import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -34,7 +35,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const [newSecret, setNewSecret] = useState<string>('');
   const [labelError, setLabelError] = useState<Error | null>(null);
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const vaultsGateway: VaultsGateway = container.resolve(VaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
 

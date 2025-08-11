@@ -1,13 +1,14 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { Grid, Typography } from '@mui/material';
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import VaultCard from '@ui/modules/vaults/components/molecules/VaultCard';
 import VaultSkeletons from '@ui/modules/vaults/components/molecules/VaultSkeletons';
+import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
 type VaultsListProps = {
   loading: boolean;
-  displayedVaults: VaultModelDto[];
+  // TODO: use VaultModelDto
+  displayedVaults: VaultWithMembersModelDto[];
   searchTerm: string;
   refetchVaults: () => Promise<void>;
 };
