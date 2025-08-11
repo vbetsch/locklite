@@ -17,10 +17,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     id: 'v2',
     label: 'Amazon Seller',
     secret: 'AmzS3ll3r!2024',
-    members: [
-      { email: 'charlie.davis@example.com' },
-      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
-    ],
+    members: [{ email: 'charlie.davis@example.com' }],
   },
   {
     id: 'v3',
@@ -35,18 +32,30 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     id: 'v4',
     label: 'Dropbox Storage',
     secret: 'Dr0pb0x!Safe',
-    members: [
-      { email: 'alice.smith@example.com', name: 'Alice Smith' },
-      { email: 'charlie.davis@example.com' },
-    ],
+    members: [{ email: 'alice.smith@example.com', name: 'Alice Smith' }],
   },
   {
     id: 'v5',
     label: 'Netflix Family',
     secret: 'N3tfLix#P@ss',
     members: [
+      { email: 'charlie.davis@example.com' },
       { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'alice.smith@example.com', name: 'Alice Smith' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+    ],
+  },
+  {
+    id: 'v6',
+    label: 'Netflix Family +',
+    secret: 'N3tfLix#P@ss+',
+    members: [
+      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'charlie.davis@example.com' },
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'alice.smith@example.com', name: 'Alice Smith' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
     ],
   },
 ];
