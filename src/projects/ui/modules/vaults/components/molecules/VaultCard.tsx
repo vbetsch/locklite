@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import type { JSX } from 'react';
 import {
-  AvatarGroup,
   Button,
   Card,
   CardActions,
@@ -18,8 +17,7 @@ import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
-import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
@@ -79,15 +77,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       <CardHeader title={props.vault.label} />
       <CardContent>
         <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
-        <AvatarGroup max={4}>
-          {props.vault.members.map(member =>
-            member.name ? (
-              <ColorfulLetterAvatar key={member.email} userName={member.name} />
-            ) : (
-              <AccountCircle key={member.email} />
-            )
-          )}
-        </AvatarGroup>
+        <VaultCardMembers members={props.vault.members} />
       </CardContent>
       <CardActions>
         <Button
