@@ -8,6 +8,7 @@ import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.pa
 import { returnSuccessResultMock } from '@ui/mocks/returnSuccessResultMock';
 import { StatusCodes } from 'http-status-codes';
 import { GetMyVaultsWithMembersDataDto } from '@shared/dto/output/data/get-my-vaults.with-members.data.dto';
+import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -15,7 +16,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
     return await returnSuccessResultMock({
-      myVaults: [],
+      myVaults: myVaultsDataMock,
     });
   }
 
