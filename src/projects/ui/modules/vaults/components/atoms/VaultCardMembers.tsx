@@ -4,6 +4,7 @@ import { AvatarGroup, Box, Typography } from '@mui/material';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import Avatar from '@mui/material/Avatar';
 
 type VaultCardMembersProps = {
   members: Omit<UserModelDto, 'id'>[];
@@ -29,7 +30,14 @@ export default function VaultCardMembers(
           member.name ? (
             <ColorfulLetterAvatar key={member.email} userName={member.name} />
           ) : (
-            <AccountCircle key={member.email} />
+            <Avatar key={member.email}>
+              <AccountCircle
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </Avatar>
           )
         )}
       </AvatarGroup>
