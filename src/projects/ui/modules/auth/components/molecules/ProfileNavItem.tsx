@@ -1,10 +1,10 @@
 'use client';
 
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
 import ProfileMenu from '@ui/modules/auth/components/atoms/ProfileMenu';
+import ProfileIcon from '@ui/modules/auth/components/atoms/ProfileIcon';
 
 export default function ProfileNavItem(): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -15,16 +15,8 @@ export default function ProfileNavItem(): JSX.Element {
 
   return (
     <Box>
-      <IconButton
-        size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenu}
-        color="inherit"
-      >
-        <AccountCircle />
-      </IconButton>
+      {/*TODO: Replace username by real current user name*/}
+      <ProfileIcon userName={'Hello World'} handleClick={handleMenu} />
       <ProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </Box>
   );
