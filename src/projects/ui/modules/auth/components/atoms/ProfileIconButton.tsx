@@ -2,7 +2,7 @@ import React from 'react';
 import type { JSX } from 'react';
 import { IconButton } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import LetterAvatar from '@ui/components/avatars/LetterAvatar';
+import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 
 type ProfileIconProps = {
   handleClick: (event: React.MouseEvent<HTMLElement>) => void;
@@ -22,7 +22,7 @@ export default function ProfileIconButton(
       color="inherit"
     >
       {props.userName ? (
-        <LetterAvatar userName={props.userName} />
+        <ColorfulLetterAvatar userName={props.userName} />
       ) : (
         <AccountCircle />
       )}
