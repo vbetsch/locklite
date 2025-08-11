@@ -37,8 +37,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
   }
 
-  // --- TODO: Implement following methods
-
+  // TODO: Migrate in getMyVaults
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {

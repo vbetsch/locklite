@@ -1,5 +1,6 @@
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
+// TODO: remove it
 export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
   {
     id: 'v1',

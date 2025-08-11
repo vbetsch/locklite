@@ -1,6 +1,6 @@
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 
-// TODO: To move in VaultModelDto
+// TODO: To migrate in VaultModelDto
 export type VaultWithMembersModelDto = {
   id: string;
   label: string;
