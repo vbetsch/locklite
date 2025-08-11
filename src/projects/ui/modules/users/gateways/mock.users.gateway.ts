@@ -6,5 +6,12 @@ import { GetUsersListDataDto } from '@shared/dto/output/data/get-users-list.data
 export class MockUsersGateway {
   public async getUsersList(): Promise<
     RequestServiceOutputType<GetUsersListDataDto>
-  > {}
+  > {
+    return {
+      status: 200,
+      data: {
+        allUsers: [],
+      },
+    };
+  }
 }
