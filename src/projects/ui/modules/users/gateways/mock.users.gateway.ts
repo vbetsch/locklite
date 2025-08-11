@@ -9,7 +9,11 @@ export class MockUsersGateway {
     RequestServiceOutputType<GetUsersListDataDto>
   > {
     return await returnSuccessResultMock({
-      allUsers: [],
+      allUsers: [
+        { id: 'test1', email: 'test1@example.com' },
+        { id: 'test2', email: 'test2@example.com' },
+        { id: 'test3', email: 'test3@example.com' },
+      ],
     });
   }
 }
