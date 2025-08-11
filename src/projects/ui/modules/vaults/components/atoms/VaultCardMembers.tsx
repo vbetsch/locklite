@@ -3,7 +3,7 @@ import type { JSX } from 'react';
 import { AvatarGroup } from '@mui/material';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import { avatarStyle } from '@ui/styles/avatar.style';
+import { avatarSystemStyle } from '@ui/styles/avatar.style';
 
 type VaultCardMembersProps = {
   members: Omit<UserModelDto, 'id'>[];
@@ -17,7 +17,7 @@ export default function VaultCardMembers(
       max={3}
       spacing={'medium'}
       sx={{
-        '& .MuiAvatarGroup-avatar': avatarStyle,
+        '& .MuiAvatarGroup-avatar': avatarSystemStyle,
       }}
     >
       {props.members.map(member => (

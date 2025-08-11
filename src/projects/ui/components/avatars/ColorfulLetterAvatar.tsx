@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '@mui/material/styles';
-import { avatarStyle } from '@ui/styles/avatar.style';
+import { avatarSxStyle } from '@ui/styles/avatar.style';
 
 type LetterAvatarProps = {
   userName: string | null;
@@ -16,7 +16,7 @@ export default function ColorfulLetterAvatar(
 ): JSX.Element {
   if (!props.userName) {
     return (
-      <Avatar sx={avatarStyle}>
+      <Avatar sx={avatarSxStyle}>
         <AccountCircle
           sx={{
             width: '100%',
@@ -60,7 +60,7 @@ export default function ColorfulLetterAvatar(
 
     return {
       sx: {
-        ...avatarStyle,
+        ...avatarSxStyle,
         bgcolor: stringToColor(name),
       },
       children: initials,
