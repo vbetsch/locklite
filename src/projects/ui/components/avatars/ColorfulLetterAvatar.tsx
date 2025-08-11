@@ -2,6 +2,8 @@ import React from 'react';
 import type { JSX } from 'react';
 import Avatar from '@mui/material/Avatar';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '@mui/material/styles';
 
 type LetterAvatarProps = {
   userName: string | null;
@@ -11,9 +13,11 @@ type LetterAvatarProps = {
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
+  const avatarSize: number = 32;
+
   if (!props.userName) {
     return (
-      <Avatar>
+      <Avatar sx={{ width: avatarSize, height: avatarSize }}>
         <AccountCircle
           sx={{
             width: '100%',
@@ -45,7 +49,7 @@ export default function ColorfulLetterAvatar(
 
   const stringAvatar = (
     name: string
-  ): { sx: { bgcolor: string }; children: string } => {
+  ): { sx: SxProps<Theme> | undefined; children: string } => {
     const parts: string[] = name.trim().split(' ').filter(Boolean);
 
     let initials: string;
@@ -58,6 +62,10 @@ export default function ColorfulLetterAvatar(
     return {
       sx: {
         bgcolor: stringToColor(name),
+        width: avatarSize,
+        height: avatarSize,
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        fontSize: avatarSize * 0.5,
       },
       children: initials,
     };
