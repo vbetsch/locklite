@@ -9,12 +9,10 @@ import ProfileNavIcon from '@ui/modules/auth/components/molecules/ProfileNavIcon
 export default function MainNavBar(): JSX.Element {
   const { data: session, status } = useSession();
   return (
-    <NavBar
-      title={CONSTANTS.APP_NAME}
-      loading={status === SessionStatus.LOADING}
-      authenticated={!!session?.user}
-    >
-      <ProfileNavIcon />
+    <NavBar title={CONSTANTS.APP_NAME}>
+      {status !== SessionStatus.LOADING && !!session?.user && (
+        <ProfileNavIcon />
+      )}
     </NavBar>
   );
 }

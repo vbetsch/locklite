@@ -5,8 +5,6 @@ import type { SharedChildrenProps } from '@shared/props/SharedChildrenProps';
 
 type NavBarProps = {
   title: string;
-  loading: boolean;
-  authenticated: boolean;
 } & SharedChildrenProps;
 
 export default function NavBar(props: NavBarProps): JSX.Element {
@@ -16,7 +14,7 @@ export default function NavBar(props: NavBarProps): JSX.Element {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           {props.title}
         </Typography>
-        {!props.loading && props.authenticated && props.children}
+        {props.children}
       </Toolbar>
     </AppBar>
   );
