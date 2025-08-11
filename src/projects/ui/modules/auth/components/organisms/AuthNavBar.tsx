@@ -10,8 +10,8 @@ export default function AuthNavBar(): JSX.Element {
   const { data: session, status } = useSession();
   return (
     <NavBar title={CONSTANTS.APP_NAME}>
-      {status !== SessionStatus.LOADING && !!session?.user && (
-        <ProfileNavItem />
+      {status !== SessionStatus.LOADING && session?.user && (
+        <ProfileNavItem currentUserName={session.user.name || null} />
       )}
     </NavBar>
   );

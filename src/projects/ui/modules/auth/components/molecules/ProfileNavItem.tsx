@@ -6,7 +6,13 @@ import type { JSX } from 'react';
 import ProfileMenu from '@ui/modules/auth/components/atoms/ProfileMenu';
 import ProfileIconButton from '@ui/modules/auth/components/atoms/ProfileIconButton';
 
-export default function ProfileNavItem(): JSX.Element {
+export type ProfileNavItemProps = {
+  currentUserName: string | null;
+};
+
+export default function ProfileNavItem(
+  props: ProfileNavItemProps
+): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>): void => {
@@ -15,8 +21,10 @@ export default function ProfileNavItem(): JSX.Element {
 
   return (
     <Box>
-      {/*TODO: Replace username by real current user name*/}
-      <ProfileIconButton userName={'beautiful boy'} handleClick={handleMenu} />
+      <ProfileIconButton
+        userName={props.currentUserName}
+        handleClick={handleMenu}
+      />
       <ProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </Box>
   );
