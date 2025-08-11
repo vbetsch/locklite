@@ -77,9 +77,15 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       <CardHeader title={props.vault.label} />
       <CardContent>
         <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
-        <VaultCardMembers members={props.vault.members} />
       </CardContent>
-      <CardActions>
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         <Button
           color={'error'}
           loading={deleteLoading}
@@ -87,6 +93,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         >
           Delete
         </Button>
+        <VaultCardMembers members={props.vault.members} />
       </CardActions>
     </Card>
   );
