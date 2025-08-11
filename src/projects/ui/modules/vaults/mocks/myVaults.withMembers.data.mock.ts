@@ -9,11 +9,8 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     members: [
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
     ],
   },
   {
