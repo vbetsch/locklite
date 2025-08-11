@@ -13,7 +13,7 @@ type LetterAvatarProps = {
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
-  const avatarSize: number = 32;
+  const avatarSize: number = 30;
 
   if (!props.userName) {
     return (

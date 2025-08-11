@@ -11,8 +11,21 @@ type VaultCardMembersProps = {
 export default function VaultCardMembers(
   props: VaultCardMembersProps
 ): JSX.Element {
+  const avatarSize: number = 30;
+
   return (
-    <AvatarGroup max={4}>
+    <AvatarGroup
+      max={3}
+      spacing={'medium'}
+      sx={{
+        '& .MuiAvatarGroup-avatar': {
+          width: avatarSize,
+          height: avatarSize,
+          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+          fontSize: avatarSize * 0.5,
+        },
+      }}
+    >
       {props.members.map(member => (
         <ColorfulLetterAvatar
           key={member.email}
