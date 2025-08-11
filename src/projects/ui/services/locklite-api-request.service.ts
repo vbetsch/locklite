@@ -3,7 +3,7 @@ import { RequestService } from '@shared/requests/request.service';
 import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { UiLogger } from '@ui/logs/ui.logger';
+import { UiLogger } from '@ui/ui.logger';
 import { HttpError } from '@shared/errors/http-error';
 import { BusinessError } from '@shared/errors/business-error';
 

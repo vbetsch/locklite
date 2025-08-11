@@ -1,5 +1,5 @@
 import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
-import { UiLogger } from '@ui/logs/ui.logger';
+import { UiLogger } from '@ui/ui.logger';
 
 interface ICompute {
   _compute(tag: LoggerTagEnum, message: string): string | void;

@@ -13,7 +13,7 @@ import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.pa
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
-import { UiLogger } from '@ui/logs/ui.logger';
+import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 
 type VaultCardProps = {

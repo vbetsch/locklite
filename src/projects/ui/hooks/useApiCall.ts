@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { UiLogger } from '@ui/logs/ui.logger';
+import { UiLogger } from '@ui/ui.logger';
 
 type UseApiCallOptions<TData, TInput = null> = {
   request: (input?: TInput) => Promise<RequestServiceOutputType<TData>>;

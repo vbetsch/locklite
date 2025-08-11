@@ -2,7 +2,7 @@ import React from 'react';
 import type { JSX } from 'react';
 import { Divider, Menu, MenuItem, Typography } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
-import { RoutesEnum } from '@ui/router/routes.enum';
+import { RoutesEnum } from '@ui/routes.enum';
 
 type ProfileMenuProps = {
   anchorEl: HTMLElement | null;
