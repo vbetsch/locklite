@@ -48,7 +48,7 @@ export default function ColorfulLetterAvatar(
 
   const stringAvatar = (
     name: string
-  ): { sx: SxProps<Theme> | undefined; children: string } => {
+  ): { sx: SxProps<Theme>; children: string } => {
     const parts: string[] = name.trim().split(' ').filter(Boolean);
 
     let initials: string;
