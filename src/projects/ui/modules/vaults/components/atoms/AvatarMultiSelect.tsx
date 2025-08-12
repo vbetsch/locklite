@@ -55,16 +55,12 @@ export default function AvatarMultiSelect(
       renderOption={(optionProps, option): JSX.Element => {
         const checked: boolean = selectedEmails.includes(option.email);
         return (
-          <ListItem {...optionProps} key={option.email} sx={{ gap: 1 }}>
-            <Checkbox key={option.email} checked={checked} />
-            <ListItemAvatar key={option.email}>
-              <ColorfulLetterAvatar
-                key={option.email}
-                userName={option.name || null}
-              />
+          <ListItem {...optionProps} sx={{ gap: 1 }}>
+            <Checkbox checked={checked} />
+            <ListItemAvatar>
+              <ColorfulLetterAvatar userName={option.name ?? null} />
             </ListItemAvatar>
             <ListItemText
-              key={option.email}
               primary={option.name ?? option.email}
               secondary={option.email}
             />
