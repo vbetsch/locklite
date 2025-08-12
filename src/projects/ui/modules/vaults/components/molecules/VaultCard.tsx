@@ -47,7 +47,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     },
     onError: err => {
       setConfirmOpen(false);
-      UiLogger.error(null, err);
+      UiLogger.error('Delete vault failed', err);
     },
   });
 
