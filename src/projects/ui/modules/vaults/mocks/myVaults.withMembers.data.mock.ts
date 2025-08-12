@@ -65,7 +65,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
   {
     id: 'v7',
     label: 'Only administrator',
-    secret: 'N3tfLix#P@ss+',
+    secret: 'Adm1n0nly$2024',
     members: [{ email: 'admin@example.com', name: 'Administrator' }],
   },
 ];
