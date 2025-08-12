@@ -11,6 +11,6 @@ export interface IVaultsGateway {
     input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>>;
   deleteVault(
-    input: HttpInputDto<CreateVaultParamsDto, null>
+    input: HttpInputDto<CreateVaultParamsDto>
   ): Promise<RequestServiceOutputType<number>>;
 }

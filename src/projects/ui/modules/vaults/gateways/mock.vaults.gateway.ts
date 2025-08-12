@@ -36,7 +36,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   }
 
   public async deleteVault(
-    input: HttpInputDto<CreateVaultParamsDto, null>
+    input: HttpInputDto<CreateVaultParamsDto>
   ): Promise<RequestServiceOutputType<number>> {
     console.log('deleteVault: ', input);
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
