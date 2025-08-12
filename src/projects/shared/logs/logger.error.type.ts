@@ -1,4 +1,4 @@
 export type LoggerErrorType = {
-  message: string | null;
+  message?: string;
   error?: unknown;
 };

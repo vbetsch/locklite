@@ -132,7 +132,7 @@ describe('ApiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    ApiLogger.error({ message: null, error: err });
+    ApiLogger.error({ error: err });
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 

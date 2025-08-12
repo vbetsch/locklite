@@ -91,7 +91,7 @@ describe('UiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    UiLogger.error({ message: null, error: err });
+    UiLogger.error({ error: err });
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 
