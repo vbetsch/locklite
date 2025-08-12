@@ -22,12 +22,23 @@ export default function VaultSkeletons(): JSX.Element {
       {Array.from({ length: 6 }).map((_, i) => (
         <Grid key={i} size={1}>
           <Card sx={{ bgcolor: 'background.paper' }}>
-            <CardHeader title={<Skeleton variant="text" width="80%" />} />
+            <CardHeader title={<Skeleton variant="text" width={'100%'} />} />
             <CardContent>
               <Skeleton variant="text" />
-              <Skeleton variant="text" width="60%" />
             </CardContent>
-            <CardActions />
+            <CardActions
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                paddingLeft: '1rem',
+                paddingRight: '1rem',
+              }}
+            >
+              <Skeleton variant="text" width={'30%'} />
+              <Skeleton variant="text" width={'30%'} />
+            </CardActions>
           </Card>
         </Grid>
       ))}
