@@ -10,6 +10,7 @@ import { StatusCodes } from 'http-status-codes';
 import { GetMyVaultsWithMembersDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.with-members.data.dto';
 import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.withMembers.data.mock';
+import { EditMembersParamsDto } from '@shared/dto/input/params/edit-members.params.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -39,7 +40,8 @@ export class MockVaultsGateway implements IVaultsGateway {
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
   }
 
-  // TODO: Migrate in getMyVaults
+  // --- TODO: Migrate in getMyVaults
+
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {
@@ -50,5 +52,13 @@ export class MockVaultsGateway implements IVaultsGateway {
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       3000
     );
+  }
+
+  public async editMembersOfVault(
+    params: EditMembersParamsDto
+  ): Promise<RequestServiceOutputType<number>> {
+    console.log('deleteVault: ', params);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    return await returnSuccessResultMock(StatusCodes.NO_CONTENT, 2500);
   }
 }
