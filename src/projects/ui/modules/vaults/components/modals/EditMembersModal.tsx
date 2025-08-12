@@ -33,7 +33,7 @@ export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
-  const { users: allUsers } = useUsers();
+  const { users: allUsers, loading: usersLoading } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
     props.vaultMembers
@@ -52,7 +52,7 @@ export default function EditMembersModal(
     setSelectedUsers([...next]);
   };
 
-  const { execute: editVaultMembers, loading } = useApiCall<
+  const { execute: editVaultMembers, loading: editMembersLoading } = useApiCall<
     number,
     HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
   >({
@@ -109,7 +109,11 @@ export default function EditMembersModal(
         </Box>
         <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type={'submit'} variant="contained" loading={loading}>
+          <Button
+            type={'submit'}
+            variant="contained"
+            loading={editMembersLoading || usersLoading}
+          >
             Edit
           </Button>
         </DialogActions>
