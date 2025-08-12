@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import Form from 'next/form';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
-import AvatarMultiSelect from '@ui/modules/vaults/components/molecules/AvatarMultiSelect';
+import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';

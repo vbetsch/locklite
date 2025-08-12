@@ -60,7 +60,7 @@ export default function AvatarMultiSelect(
             <ListItemAvatar key={option.email}>
               <ColorfulLetterAvatar
                 key={option.email}
-                userName={option.name ?? option.email}
+                userName={option.name || null}
               />
             </ListItemAvatar>
             <ListItemText
