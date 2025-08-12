@@ -3,7 +3,7 @@
 import 'reflect-metadata';
 import React from 'react';
 import type { JSX } from 'react';
-import AppDynamicVaultsList from '@ui/modules/vaults/components/organisms/AppDynamicVaultsList';
+import AppDynamicVaultsList from '@ui/modules/vaults/components/app/AppDynamicVaultsList';
 import PageContainer from '@ui/components/templates/PageContainer';
 
 export default function WorkspacePage(): JSX.Element {

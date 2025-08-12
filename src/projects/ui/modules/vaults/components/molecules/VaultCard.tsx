@@ -19,7 +19,7 @@ import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 import { useSession } from 'next-auth/react';
-import EditMembersModal from '@ui/modules/vaults/components/organisms/EditMembersModal';
+import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto

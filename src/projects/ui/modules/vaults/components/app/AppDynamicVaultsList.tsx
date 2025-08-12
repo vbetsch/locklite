@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from '@mui/material';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import SearchBar from '@ui/components/navigation/SearchBar';
-import AddVaultModal from '@ui/modules/vaults/components/organisms/AddVaultModal';
+import AddVaultModal from '@ui/modules/vaults/components/modals/AddVaultModal';
 import React, { useState } from 'react';
 import type { JSX } from 'react';
-import VaultsList from './VaultsList';
+import VaultsList from '../organisms/VaultsList';
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
