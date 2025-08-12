@@ -19,9 +19,9 @@ export default function VaultSkeletons(): JSX.Element {
       overflow={'auto'}
       height={'65vh'}
     >
-      {Array.from({ length: 6 }).map((_, i) => (
+      {Array.from({ length: 9 }).map((_, i) => (
         <Grid key={i} size={1}>
-          <Card sx={{ bgcolor: 'background.paper' }}>
+          <Card sx={{ bgcolor: 'background.paper', padding: '0.5rem' }}>
             <CardHeader title={<Skeleton variant="text" width={'100%'} />} />
             <CardContent>
               <Skeleton variant="text" />

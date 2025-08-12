@@ -66,6 +66,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     <Card
       sx={{
         bgcolor: 'background.paper',
+        padding: '0.5rem',
       }}
     >
       <ConfirmationModal
