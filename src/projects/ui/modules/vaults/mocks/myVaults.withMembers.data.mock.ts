@@ -7,6 +7,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     label: 'Google Account',
     secret: 'p@ssW0rd123!',
     members: [
+      { email: 'admin@example.com', name: 'Administrator' },
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
       { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
@@ -25,6 +26,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     secret: 'GhT0k3n$eCur3',
     members: [
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'admin@example.com', name: 'Administrator' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
     ],
   },
@@ -41,6 +43,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     members: [
       { email: 'charlie.davis@example.com' },
       { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'admin@example.com', name: 'Administrator' },
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
@@ -56,6 +59,13 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+      { email: 'admin@example.com', name: 'Administrator' },
     ],
+  },
+  {
+    id: 'v7',
+    label: 'Only administrator',
+    secret: 'N3tfLix#P@ss+',
+    members: [{ email: 'admin@example.com', name: 'Administrator' }],
   },
 ];
