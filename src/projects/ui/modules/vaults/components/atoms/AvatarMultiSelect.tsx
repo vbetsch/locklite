@@ -26,25 +26,15 @@ export default function AvatarMultiSelect(
 ): JSX.Element {
   const { allMembers, value, onChange, label } = props;
 
-  const selectedEmails: string[] = React.useMemo<string[]>(
-    () => value.map((u: Omit<UserModelDto, 'id'>): string => u.email),
-    [value]
-  );
-
   return (
     <Autocomplete
       multiple
       disableCloseOnSelect
       options={allMembers}
       value={value}
-      onChange={(_, next: Omit<UserModelDto, 'id'>[]): void => onChange(next)}
-      getOptionLabel={(option: Omit<UserModelDto, 'id'>): string =>
-        option.name ?? option.email
-      }
-      isOptionEqualToValue={(
-        o: Omit<UserModelDto, 'id'>,
-        v: Omit<UserModelDto, 'id'>
-      ): boolean => o.email === v.email}
+      onChange={(_, next): void => onChange(next)}
+      getOptionLabel={(option): string => option.name ?? option.email}
+      isOptionEqualToValue={(o, v): boolean => o.email === v.email}
       renderInput={(params): JSX.Element => (
         <TextField
           {...params}
@@ -52,11 +42,14 @@ export default function AvatarMultiSelect(
           placeholder="Search users"
         />
       )}
-      renderOption={(optionProps, option): JSX.Element => {
-        const checked: boolean = selectedEmails.includes(option.email);
+      renderOption={(optionProps, option, { selected }): JSX.Element => {
+        const { key, ...rest } = optionProps;
         return (
-          <ListItem {...optionProps} sx={{ gap: 1 }}>
-            <Checkbox checked={checked} />
+          <ListItem key={key as React.Key} {...rest} sx={{ gap: 1 }}>
+            <Checkbox
+              checked={selected}
+              onMouseDown={(e): void => e.preventDefault()}
+            />
             <ListItemAvatar>
               <ColorfulLetterAvatar userName={option.name ?? null} />
             </ListItemAvatar>
