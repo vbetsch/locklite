@@ -9,7 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
-export default function DynamicVaultsList(): JSX.Element {
+export default function AppDynamicVaultsList(): JSX.Element {
   // TODO: use useVaults
   const { vaults, loading, error, refetch } = useVaultsWithMembers();
   const [openAddVaultModal, setOpenAddVaultModal] = useState<boolean>(false);
