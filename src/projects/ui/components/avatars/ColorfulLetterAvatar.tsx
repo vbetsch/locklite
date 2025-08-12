@@ -1,15 +1,32 @@
 import React from 'react';
 import type { JSX } from 'react';
 import Avatar from '@mui/material/Avatar';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import type { SxProps } from '@mui/system';
+import type { Theme } from '@mui/material/styles';
+import { avatarSxStyle } from '@ui/styles/avatar.style';
 
 type LetterAvatarProps = {
-  userName: string;
+  userName: string | null;
 };
 
 // Extract from https://mui.com/material-ui/react-avatar/#letter-avatars
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
+  if (!props.userName) {
+    return (
+      <Avatar sx={avatarSxStyle}>
+        <AccountCircle
+          sx={{
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </Avatar>
+    );
+  }
+
   const stringToColor = (string: string): string => {
     let hash: number = 0;
 
@@ -31,7 +48,7 @@ export default function ColorfulLetterAvatar(
 
   const stringAvatar = (
     name: string
-  ): { sx: { bgcolor: string }; children: string } => {
+  ): { sx: SxProps<Theme>; children: string } => {
     const parts: string[] = name.trim().split(' ').filter(Boolean);
 
     let initials: string;
@@ -43,6 +60,7 @@ export default function ColorfulLetterAvatar(
 
     return {
       sx: {
+        ...avatarSxStyle,
         bgcolor: stringToColor(name),
       },
       children: initials,

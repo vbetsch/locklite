@@ -17,6 +17,8 @@ import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
+import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
+import { useSession } from 'next-auth/react';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
@@ -25,6 +27,7 @@ type VaultCardProps = {
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
+  const { data: session } = useSession();
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
@@ -76,21 +79,15 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       <CardHeader title={props.vault.label} />
       <CardContent>
         <VaultCardContentLine property={'Secret'} value={props.vault.secret} />
-        {/*TODO: remove it*/}
-        {/* eslint-disable-next-line no-restricted-syntax */}
-        <ul>
-          {props.vault.members.map(member => (
-            // eslint-disable-next-line no-restricted-syntax
-            <li key={member.email}>
-              {/* eslint-disable-next-line no-restricted-syntax*/}
-              <span>{member.email}</span>
-              {/* eslint-disable-next-line no-restricted-syntax*/}
-              <span>{member.name}</span>
-            </li>
-          ))}
-        </ul>
       </CardContent>
-      <CardActions>
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         <Button
           color={'error'}
           loading={deleteLoading}
@@ -98,6 +95,15 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         >
           Delete
         </Button>
+        <VaultCardMembers
+          members={
+            session?.user?.email
+              ? props.vault.members.filter(
+                  member => member.email !== session.user?.email
+                )
+              : props.vault.members
+          }
+        />
       </CardActions>
     </Card>
   );
