@@ -14,6 +14,13 @@ import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSe
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
+import { useApiCall } from '@ui/hooks/useApiCall';
+import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import { UiLogger } from '@ui/ui.logger';
+import { container } from 'tsyringe';
+import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
+import type { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
+import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
 
 type EditMembersModalProps = {
   vaultMembers: VaultMemberModelDto[];
@@ -25,7 +32,8 @@ type EditMembersModalProps = {
 export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
-  const { users: allUsers, loading } = useUsers();
+  const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
+  const { users: allUsers } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
     props.vaultMembers
@@ -44,9 +52,36 @@ export default function EditMembersModal(
     setSelectedUsers([...next]);
   };
 
+  const { execute: editVaultMembers, loading } = useApiCall<
+    number,
+    HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
+  >({
+    request: input => vaultsGateway.editVaultMembers(input!),
+    onSuccess: async () => {
+      handleClose();
+      await props.refreshVaults();
+    },
+    onError: err => {
+      setGlobalError(err);
+      UiLogger.error({ message: 'Edit members failed', error: err });
+    },
+  });
+
   const handleSubmit = async (): Promise<void> => {
-    await setGlobalError(null);
-    // await createVault({ label: newLabel, secret: newSecret });
+    setGlobalError(null);
+    await editVaultMembers({
+      params: {
+        id: 'v1',
+      },
+      payload: {
+        overrideMembers: [
+          {
+            email: 'hello@example.com',
+            name: 'hello',
+          },
+        ],
+      },
+    });
   };
 
   return (
