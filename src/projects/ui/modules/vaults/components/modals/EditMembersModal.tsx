@@ -74,12 +74,7 @@ export default function EditMembersModal(
         id: 'v1',
       },
       payload: {
-        overrideMembers: [
-          {
-            email: 'hello@example.com',
-            name: 'hello',
-          },
-        ],
+        overrideMembers: [...selectedUsers],
       },
     });
   };
