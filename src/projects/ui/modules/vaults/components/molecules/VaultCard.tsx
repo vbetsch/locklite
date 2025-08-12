@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
+import type { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
@@ -38,7 +38,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
-    CreateVaultParams
+    CreateVaultParamsDto
   >({
     request: params => vaultsGateway.deleteVault(params!),
     onSuccess: async () => {

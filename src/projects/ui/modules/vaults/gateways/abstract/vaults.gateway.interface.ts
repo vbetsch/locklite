@@ -1,8 +1,8 @@
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
-import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
-import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
+import type { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.data.dto';
+import type { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
 
 export interface IVaultsGateway {
   getMyVaults(): Promise<RequestServiceOutputType<GetMyVaultsDataDto>>;
@@ -10,6 +10,6 @@ export interface IVaultsGateway {
     data: CreateVaultPayloadDto
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>>;
   deleteVault(
-    params: CreateVaultParams
+    params: CreateVaultParamsDto
   ): Promise<RequestServiceOutputType<number>>;
 }

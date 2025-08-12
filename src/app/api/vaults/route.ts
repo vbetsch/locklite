@@ -6,8 +6,8 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/domain/usecases/vaults/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/domain/usecases/vaults/get-my-vaults.usecase';
 import { StatusCodes } from 'http-status-codes';
-import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
-import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import type { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
 

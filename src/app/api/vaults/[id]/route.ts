@@ -4,8 +4,8 @@ import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import { DeleteVaultUseCase } from '@api/domain/usecases/vaults/delete-vault.usecase';
-import type { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
-import type { HttpOptions } from '@shared/dto/input/options/abstract/http-options';
+import type { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
+import type { HttpOptionsDto } from '@shared/dto/input/options/abstract/http-options.dto';
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ import type { HttpOptions } from '@shared/dto/input/options/abstract/http-option
  */
 export async function DELETE(
   request: NextRequest,
-  options: HttpOptions<CreateVaultParams>
+  options: HttpOptionsDto<CreateVaultParamsDto>
 ): Promise<NextResponse> {
   const deleteVaultUseCase: DeleteVaultUseCase =
     container.resolve(DeleteVaultUseCase);
