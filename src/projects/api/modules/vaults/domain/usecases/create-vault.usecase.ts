@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import type { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
 import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
 import { Vault, User as UserModel } from '@prisma/generated';
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';

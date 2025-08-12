@@ -7,7 +7,7 @@ import type { JSX } from 'react';
 import VaultsList from '../organisms/VaultsList';
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
-import type { VaultWithMembersModelDto } from '@shared/modules/vaults/vault.with-members.model.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 export default function AppDynamicVaultsList(): JSX.Element {
   // TODO: use useVaults

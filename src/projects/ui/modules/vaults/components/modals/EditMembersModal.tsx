@@ -13,7 +13,7 @@ import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
-import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
 type EditMembersModalProps = {
   vaultMembers: VaultMemberModelDto[];

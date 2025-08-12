@@ -1,4 +1,4 @@
-import type { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
 
 /**
  * @swagger

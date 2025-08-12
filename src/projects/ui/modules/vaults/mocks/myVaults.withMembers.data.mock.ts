@@ -1,6 +1,6 @@
-import type { VaultWithMembersModelDto } from '@shared/modules/vaults/vault.with-members.model.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
-import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
 const currentUserFormatted: VaultMemberModelDto = {
   email: currentUserDataMock.email,

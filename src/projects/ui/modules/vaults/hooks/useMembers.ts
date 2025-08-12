@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
 export function useMembers(
   members: VaultMemberModelDto[]

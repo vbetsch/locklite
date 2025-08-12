@@ -5,7 +5,7 @@ import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import { avatarSystemStyle } from '@ui/styles/avatar.style';
 import Avatar from '@mui/material/Avatar';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
 type VaultCardMembersProps = {
   members: VaultMemberModelDto[];
