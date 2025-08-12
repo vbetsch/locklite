@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import type { SignInPayloadDto } from '@shared/dto/input/payloads/sign-in.payload.dto';
+import type { SignInPayloadDto } from '@shared/dto/input/payloads/auth/sign-in.payload.dto';
 import type { UsersRepository } from '@api/infra/repositories/users.repository';
 import type { HashService } from '@api/domain/services/hash.service';
 import type { UserAdapter } from '@api/app/adapters/user.adapter';

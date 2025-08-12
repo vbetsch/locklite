@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
-import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.payload.dto';
+import type { RegisterPayloadDto } from '@shared/dto/input/payloads/auth/register.payload.dto';
 import { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserAdapter } from '@api/app/adapters/user.adapter';
 import { UsersRepository } from '@api/infra/repositories/users.repository';

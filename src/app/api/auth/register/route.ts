@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
 import type { RegisterDataDto } from '@shared/dto/output/data/auth/register.data.dto';
-import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.payload.dto';
+import type { RegisterPayloadDto } from '@shared/dto/input/payloads/auth/register.payload.dto';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';

@@ -7,7 +7,7 @@ import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAlreadyExistsError } from '@api/domain/errors/vaults/vault-already-exists.error';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/domain/errors/vaults/vault-label-too-long.error';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
 import { CurrentUserService } from '@api/domain/services/current-user.service';
 
 @injectable()

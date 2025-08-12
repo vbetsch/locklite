@@ -4,7 +4,7 @@ import { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.
 import { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 @injectable()

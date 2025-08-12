@@ -7,7 +7,7 @@ import { RoutesEnum } from '@ui/routes.enum';
 import { SignInUseCase } from '@api/domain/usecases/auth/signin.usecase';
 import { container } from 'tsyringe';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import type { SignInPayloadDto } from '@shared/dto/input/payloads/sign-in.payload.dto';
+import type { SignInPayloadDto } from '@shared/dto/input/payloads/auth/sign-in.payload.dto';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),

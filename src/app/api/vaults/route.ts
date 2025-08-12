@@ -9,7 +9,7 @@ import { StatusCodes } from 'http-status-codes';
 import type { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.data.dto';
 import type { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
 import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
-import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
 
 /**
  * @swagger
