@@ -33,6 +33,7 @@ export default function EditMembersModal(
 
   const handleClose = (): void => {
     // setLabelError(null);
+    setSelectedUsers(props.vaultMembers);
     setGlobalError(null);
     // setNewLabel('');
     // setNewSecret('');
