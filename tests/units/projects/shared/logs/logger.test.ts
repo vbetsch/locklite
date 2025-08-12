@@ -116,7 +116,7 @@ describe('Logger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('oops');
-    Logger.error('an error occurred', err);
+    Logger.error({ message: 'an error occurred', error: err });
     expect(spyError).toHaveBeenCalledWith(
       `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.ERROR}: an error occurred${LoggerColorEnum.RESET}`,
       err
@@ -128,7 +128,7 @@ describe('Logger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('oops');
-    Logger.error(null, err);
+    Logger.error({ message: null, error: err });
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 

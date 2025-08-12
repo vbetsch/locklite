@@ -62,7 +62,7 @@ export async function handleApiRequest<Data>(
         );
       }
     } else {
-      ApiLogger.error('Error while handling API errors: ', error);
+      ApiLogger.error({ message: 'Error while handling API errors: ', error });
       httpError = new InternalServerError();
     }
     return NextResponse.json(

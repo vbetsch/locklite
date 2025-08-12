@@ -33,7 +33,7 @@ export function useApiCall<TData, TInput = null>({
           setError(err);
           onError?.(err);
         } else {
-          UiLogger.error('Unhandled API error:', err);
+          UiLogger.error({ message: 'Unhandled API error:', error: err });
         }
       } finally {
         setLoading(false);

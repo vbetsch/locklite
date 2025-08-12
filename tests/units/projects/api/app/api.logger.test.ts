@@ -120,7 +120,7 @@ describe('ApiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    ApiLogger.error('something broke', err);
+    ApiLogger.error({ message: 'something broke', error: err });
     expect(spyError).toHaveBeenCalledWith(
       `${LoggerColorEnum.ERROR}➔ ${LoggerTagEnum.ERROR}: something broke${LoggerColorEnum.RESET}`,
       err
@@ -132,7 +132,7 @@ describe('ApiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    ApiLogger.error(null, err);
+    ApiLogger.error({ message: null, error: err });
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 

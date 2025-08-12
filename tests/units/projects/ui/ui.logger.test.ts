@@ -82,7 +82,7 @@ describe('UiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    UiLogger.error('an error occurred', err);
+    UiLogger.error({ message: 'an error occurred', error: err });
     expect(spyError).toHaveBeenCalledWith('ERROR: an error occurred', err);
   });
 
@@ -91,7 +91,7 @@ describe('UiLogger', () => {
       .spyOn(console, 'error')
       .mockImplementation((): void => void 0);
     const err: Error = new Error('failure');
-    UiLogger.error(null, err);
+    UiLogger.error({ message: null, error: err });
     expect(spyError).toHaveBeenCalledWith(null, err);
   });
 
@@ -115,7 +115,7 @@ describe('UiLogger', () => {
     const err: Error = new Error('err');
 
     UiLogger.log('will not log');
-    UiLogger.error('will not error', err);
+    UiLogger.error({ message: 'will not error', error: err });
 
     expect(spyLog).toHaveBeenCalledTimes(1);
     expect(spyLog.mock.calls[0][0]).toBe(void 0);

@@ -17,15 +17,16 @@ export function handlePrismaError(error: PrismaErrorLike): HttpError {
       case 'P2000':
         return new RequestedValueTooLongError();
       default:
-        ApiLogger.error(
-          'PrismaClientKnownRequestError not handled with code ' + error.code
-        );
+        ApiLogger.error({
+          message:
+            'PrismaClientKnownRequestError not handled with code ' + error.code,
+        });
         return new InternalServerError();
     }
   }
   if (error.name === 'PrismaClientValidationError') {
     return new InvalidRequestDataError();
   }
-  ApiLogger.error('Error while handling prisma errors: ', error);
+  ApiLogger.error({ message: 'Error while handling prisma errors: ', error });
   return new InternalServerError();
 }

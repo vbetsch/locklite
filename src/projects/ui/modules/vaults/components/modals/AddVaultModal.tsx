@@ -63,7 +63,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       } else {
         setGlobalError(err);
       }
-      UiLogger.error('Create vault failed', err);
+      UiLogger.error({ message: 'Create vault failed', error: err });
     },
   });
 

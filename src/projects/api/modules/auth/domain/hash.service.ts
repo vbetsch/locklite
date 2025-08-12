@@ -21,7 +21,10 @@ export class HashService {
     try {
       return await this._hashString(str);
     } catch (error: unknown) {
-      ApiLogger.error('An error occurred while hashing string : ', error);
+      ApiLogger.error({
+        message: 'An error occurred while hashing string : ',
+        error,
+      });
       throw error;
     }
   }
@@ -33,7 +36,10 @@ export class HashService {
     try {
       return await this._compareTwoHashes(hashedInput, refValue);
     } catch (error: unknown) {
-      ApiLogger.error('An error occurred while comparing two hashes : ', error);
+      ApiLogger.error({
+        message: 'An error occurred while comparing two hashes : ',
+        error,
+      });
       throw error;
     }
   }
