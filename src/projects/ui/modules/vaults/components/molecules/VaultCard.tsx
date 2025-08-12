@@ -19,12 +19,12 @@ import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 import { useSession } from 'next-auth/react';
+import EditMembersModal from '@ui/modules/vaults/components/organisms/EditMembersModal';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
   vault: VaultWithMembersModelDto;
   refetchVaults: () => Promise<void>;
-  openEditMembersModal: () => void;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
@@ -34,6 +34,8 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
     null
   );
+  const [openEditMembersModal, setOpenEditMembersModal] =
+    useState<boolean>(false);
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
@@ -70,6 +72,12 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         padding: '0.5rem',
       }}
     >
+      <EditMembersModal
+        currentVault={props.vault}
+        open={openEditMembersModal}
+        onClose={() => setOpenEditMembersModal(false)}
+        refreshVaults={props.refetchVaults}
+      />
       <ConfirmationModal
         open={confirmOpen}
         onSubmit={handleConfirmDelete}
@@ -98,7 +106,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
           Delete
         </Button>
         <VaultCardMembers
-          clickOnMembers={props.openEditMembersModal}
+          clickOnMembers={() => setOpenEditMembersModal(true)}
           maxMembers={3}
           members={
             session?.user?.email

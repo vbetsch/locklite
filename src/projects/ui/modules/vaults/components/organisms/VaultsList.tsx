@@ -11,7 +11,6 @@ type VaultsListProps = {
   displayedVaults: VaultWithMembersModelDto[];
   searchTerm: string;
   refetchVaults: () => Promise<void>;
-  openEditMembersModal: () => void;
 };
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
@@ -35,11 +34,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
     >
       {props.displayedVaults.map(vault => (
         <Grid key={vault.id} size={1}>
-          <VaultCard
-            vault={vault}
-            refetchVaults={props.refetchVaults}
-            openEditMembersModal={props.openEditMembersModal}
-          />
+          <VaultCard vault={vault} refetchVaults={props.refetchVaults} />
         </Grid>
       ))}
     </Grid>

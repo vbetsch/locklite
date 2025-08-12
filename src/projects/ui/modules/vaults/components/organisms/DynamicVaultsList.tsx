@@ -8,14 +8,11 @@ import VaultsList from './VaultsList';
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
-import EditMembersModal from '@ui/modules/vaults/components/organisms/EditMembersModal';
 
 export default function DynamicVaultsList(): JSX.Element {
   // TODO: use useVaults
   const { vaults, loading, error, refetch } = useVaultsWithMembers();
   const [openAddVaultModal, setOpenAddVaultModal] = useState<boolean>(false);
-  const [openEditMembersModal, setOpenEditMembersModal] =
-    useState<boolean>(false);
 
   const [searchTerm, setSearchTerm] = useState('');
   // TODO: use VaultModelDto
@@ -30,14 +27,6 @@ export default function DynamicVaultsList(): JSX.Element {
         onClose={() => setOpenAddVaultModal(false)}
         refreshVaults={refetch}
       />
-      {vaults[0] && (
-        <EditMembersModal
-          currentVault={vaults[0]}
-          open={openEditMembersModal}
-          onClose={() => setOpenEditMembersModal(false)}
-          refreshVaults={refetch}
-        />
-      )}
       <Box
         sx={{
           display: 'flex',
@@ -72,7 +61,6 @@ export default function DynamicVaultsList(): JSX.Element {
         loading={loading}
         searchTerm={searchTerm}
         displayedVaults={filteredVaults}
-        openEditMembersModal={() => setOpenEditMembersModal(true)}
         refetchVaults={refetch}
       />
     </>
