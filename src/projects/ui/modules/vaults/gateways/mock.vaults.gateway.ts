@@ -19,7 +19,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async getMyVaults(): Promise<
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
-    return await returnSuccessResultMock({
+    return await returnSuccessResultMock<GetMyVaultsDataDto>({
       myVaults: myVaultsDataMock,
     });
   }
@@ -27,7 +27,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async createVault(
     input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
-    return await returnSuccessResultMock({
+    return await returnSuccessResultMock<CreateVaultDataDto>({
       vaultCreated: {
         ...input.payload,
         id: 'new',
@@ -39,14 +39,14 @@ export class MockVaultsGateway implements IVaultsGateway {
     input: HttpInputDto<CreateVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     console.log('deleteVault: ', input);
-    return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
+    return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT);
   }
 
   // TODO: Migrate in getMyVaults
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {
-    return await returnSuccessResultMock(
+    return await returnSuccessResultMock<GetMyVaultsWithMembersDataDto>(
       {
         myVaults: myVaultsWithMembersDataMock,
       },
@@ -62,6 +62,6 @@ export class MockVaultsGateway implements IVaultsGateway {
   }): Promise<RequestServiceOutputType<number>> {
     console.log('deleteVault: ', input.params, input.payload);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    return await returnSuccessResultMock(StatusCodes.NO_CONTENT, 2500);
+    return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT, 2500);
   }
 }

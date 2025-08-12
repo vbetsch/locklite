@@ -10,7 +10,7 @@ export class MockUsersGateway implements IUsersGateway {
   public async getUsersList(): Promise<
     RequestServiceOutputType<GetUsersListDataDto>
   > {
-    return await returnSuccessResultMock(
+    return await returnSuccessResultMock<GetUsersListDataDto>(
       {
         allUsers: allUsersDataMock,
       },
