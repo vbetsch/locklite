@@ -8,11 +8,14 @@ export abstract class Logger {
 
   protected static _compute(
     tag: LoggerTagEnum,
-    message: string,
+    message?: string,
     color?: LoggerColorEnum
   ): string | void {
     if (process.env.NODE_ENV !== 'development') return;
-    const content: string = `${this._prefix} ${tag}: ${message}`;
+    let content: string = `${this._prefix} ${tag}: `;
+    if (message) {
+      content += message;
+    }
     if (color) {
       return `${color}${content}${LoggerColorEnum.RESET}`;
     }
@@ -55,26 +58,18 @@ export abstract class Logger {
 
   public static error(args: LoggerErrorType): void {
     console.error(
-      args.message
-        ? this._compute(
-            LoggerTagEnum.ERROR,
-            args.message,
-            LoggerColorEnum.ERROR
-          )
-        : null,
+      this._compute(LoggerTagEnum.ERROR, args.message, LoggerColorEnum.ERROR),
       args.error
     );
   }
 
   public static critical(args: LoggerErrorType): void {
     console.error(
-      args.message
-        ? this._compute(
-            LoggerTagEnum.CRITICAL,
-            args.message,
-            LoggerColorEnum.ERROR
-          )
-        : null,
+      this._compute(
+        LoggerTagEnum.CRITICAL,
+        args.message,
+        LoggerColorEnum.ERROR
+      ),
       args.error
     );
   }
