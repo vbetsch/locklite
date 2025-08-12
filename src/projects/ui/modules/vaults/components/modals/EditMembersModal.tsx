@@ -12,11 +12,11 @@ import Form from 'next/form';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
 
 type EditMembersModalProps = {
-  vaultMembers: Omit<UserModelDto, 'id'>[];
+  vaultMembers: VaultMemberModelDto[];
   open: boolean;
   onClose: () => void;
   refreshVaults: () => Promise<void>;
@@ -27,9 +27,9 @@ export default function EditMembersModal(
 ): JSX.Element {
   const { users: allUsers, loading } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const [selectedUsers, setSelectedUsers] = useState<
-    Omit<UserModelDto, 'id'>[]
-  >(props.vaultMembers);
+  const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
+    props.vaultMembers
+  );
 
   const handleClose = (): void => {
     // setLabelError(null);
@@ -40,7 +40,7 @@ export default function EditMembersModal(
     props.onClose();
   };
 
-  const handleChange = (next: Omit<UserModelDto, 'id'>[]): void => {
+  const handleChange = (next: VaultMemberModelDto[]): void => {
     setSelectedUsers([...next]);
   };
 

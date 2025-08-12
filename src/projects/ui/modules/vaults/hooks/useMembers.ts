@@ -1,11 +1,11 @@
 'use client';
 
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { useSession } from 'next-auth/react';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
 
 export function useMembers(
-  members: Omit<UserModelDto, 'id'>[]
-): Omit<UserModelDto, 'id'>[] {
+  members: VaultMemberModelDto[]
+): VaultMemberModelDto[] {
   const { data: session } = useSession();
   return session?.user?.email
     ? members.filter(member => member.email !== session.user?.email)

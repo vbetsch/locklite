@@ -10,15 +10,15 @@ import {
   ListItemText,
   TextField,
 } from '@mui/material';
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
 
 export type AvatarMultiSelectProps = {
-  allMembers: Omit<UserModelDto, 'id'>[];
-  value: Omit<UserModelDto, 'id'>[];
+  allMembers: VaultMemberModelDto[];
+  value: VaultMemberModelDto[];
   label?: string;
-  onChange: (next: Omit<UserModelDto, 'id'>[]) => void;
+  onChange: (next: VaultMemberModelDto[]) => void;
 };
 
 export default function AvatarMultiSelect(

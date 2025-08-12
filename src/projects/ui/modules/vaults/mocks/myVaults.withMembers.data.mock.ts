@@ -1,8 +1,8 @@
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/vault.with-members.model.dto';
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
 
-const currentUserFormatted: Omit<UserModelDto, 'id'> = {
+const currentUserFormatted: VaultMemberModelDto = {
   email: currentUserDataMock.email,
   name: currentUserDataMock.name,
 };

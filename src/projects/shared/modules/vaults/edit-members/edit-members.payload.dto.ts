@@ -1,5 +1,5 @@
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/vault-member.model.dto';
 
 export type EditMembersPayloadDto = {
-  overrideMembers: Omit<UserModelDto, 'id'>[];
+  overrideMembers: VaultMemberModelDto[];
 };
