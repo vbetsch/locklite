@@ -12,7 +12,6 @@ import Form from 'next/form';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/molecules/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
-import { UiLogger } from '@ui/ui.logger';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
@@ -29,6 +28,9 @@ export default function EditMembersModal(
   // const { users: allUsers, loading, error, refetch } = useUsers();
   const { users: allUsers, loading } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
+  const [selectedUsers, setSelectedUsers] = useState<
+    Omit<UserModelDto, 'id'>[]
+  >(props.currentVault.members);
 
   const handleClose = (): void => {
     // setLabelError(null);
@@ -38,9 +40,8 @@ export default function EditMembersModal(
     props.onClose();
   };
 
-  const handleChange = (next: readonly Omit<UserModelDto, 'id'>[]): void => {
-    UiLogger.debug('Next: ' + next);
-    console.debug(next);
+  const handleChange = (next: Omit<UserModelDto, 'id'>[]): void => {
+    setSelectedUsers(next);
   };
 
   const handleSubmit = async (): Promise<void> => {
@@ -57,7 +58,7 @@ export default function EditMembersModal(
             allUsers={allUsers}
             onChange={handleChange}
             label={'Members'}
-            value={props.currentVault.members}
+            value={selectedUsers}
           />
         </DialogContent>
         <Box

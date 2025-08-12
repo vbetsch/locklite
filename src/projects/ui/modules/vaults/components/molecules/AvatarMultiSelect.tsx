@@ -18,7 +18,7 @@ export type AvatarMultiSelectProps = {
   readonly allUsers: readonly UserModelDto[];
   readonly value: Omit<UserModelDto, 'id'>[];
   readonly label?: string;
-  readonly onChange: (next: readonly Omit<UserModelDto, 'id'>[]) => void;
+  readonly onChange: (next: Omit<UserModelDto, 'id'>[]) => void;
 };
 
 export default function AvatarMultiSelect(
@@ -31,29 +31,13 @@ export default function AvatarMultiSelect(
     [value]
   );
 
-  const normalizedAllUsers: readonly Omit<UserModelDto, 'id'>[] = React.useMemo<
-    readonly Omit<UserModelDto, 'id'>[]
-  >(
-    () =>
-      allUsers.map(
-        (u: UserModelDto): Omit<UserModelDto, 'id'> => ({
-          email: u.email,
-          // eslint-disable-next-line no-undefined
-          name: u.name ?? undefined,
-        })
-      ),
-    [allUsers]
-  );
-
   return (
     <Autocomplete
       multiple
       disableCloseOnSelect
-      options={normalizedAllUsers}
+      options={allUsers}
       value={value}
-      onChange={(_, next: readonly Omit<UserModelDto, 'id'>[]): void =>
-        onChange(next)
-      }
+      onChange={(_, next: Omit<UserModelDto, 'id'>[]): void => onChange(next)}
       getOptionLabel={(option: Omit<UserModelDto, 'id'>): string =>
         option.name ?? option.email
       }
@@ -73,17 +57,21 @@ export default function AvatarMultiSelect(
         return (
           <ListItem {...optionProps} key={option.email} sx={{ gap: 1 }}>
             <Checkbox key={option.email} checked={checked} />
-            <ListItemAvatar>
-              <ColorfulLetterAvatar userName={option.name ?? option.email} />
+            <ListItemAvatar key={option.email}>
+              <ColorfulLetterAvatar
+                key={option.email}
+                userName={option.name ?? option.email}
+              />
             </ListItemAvatar>
             <ListItemText
+              key={option.email}
               primary={option.name ?? option.email}
               secondary={option.email}
             />
           </ListItem>
         );
       }}
-      renderTags={(selected): JSX.Element => (
+      renderValue={(selected): JSX.Element => (
         <VaultCardMembers
           maxMembers={3}
           members={selected}
