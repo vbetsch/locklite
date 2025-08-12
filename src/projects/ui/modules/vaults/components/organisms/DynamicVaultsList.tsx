@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import SearchBar from '@ui/components/navigation/SearchBar';
 import AddVaultModal from '@ui/modules/vaults/components/organisms/AddVaultModal';
@@ -38,10 +38,22 @@ export default function DynamicVaultsList(): JSX.Element {
         <Button
           startIcon={<AddIcon />}
           variant="contained"
-          sx={{ minWidth: 150 }}
+          sx={{
+            minWidth: { xs: 56, sm: 150 },
+            '& .MuiButton-startIcon': {
+              mr: { xs: 0, sm: 1 },
+            },
+          }}
           onClick={() => setOpenAddModal(true)}
         >
-          Add a vault
+          <Typography
+            variant={'button'}
+            sx={{
+              display: { xs: 'none', sm: 'inline' },
+            }}
+          >
+            Add a vault
+          </Typography>
         </Button>
       </Box>
       <ErrorMessage error={error} />
