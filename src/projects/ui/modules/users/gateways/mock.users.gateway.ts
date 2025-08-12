@@ -10,8 +10,12 @@ export class MockUsersGateway implements IUsersGateway {
   public async getUsersList(): Promise<
     RequestServiceOutputType<GetUsersListDataDto>
   > {
-    return await returnSuccessResultMock({
-      allUsers: allUsersDataMock,
-    });
+    return await returnSuccessResultMock(
+      {
+        allUsers: allUsersDataMock,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      5000
+    );
   }
 }
