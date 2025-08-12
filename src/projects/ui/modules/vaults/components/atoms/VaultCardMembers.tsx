@@ -20,6 +20,11 @@ export default function VaultCardMembers(
       spacing={'medium'}
       sx={{
         '& .MuiAvatarGroup-avatar': avatarSystemStyle,
+        cursor: 'pointer',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+        '&:hover': {
+          transform: 'scale(1.05)',
+        },
       }}
     >
       {props.members.length ? (
