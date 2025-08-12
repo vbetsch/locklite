@@ -13,6 +13,7 @@ import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 
 type EditMembersModalProps = {
   vaultMembers: Omit<UserModelDto, 'id'>[];
@@ -24,7 +25,6 @@ type EditMembersModalProps = {
 export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
-  // const { users: allUsers, loading, error, refetch } = useUsers();
   const { users: allUsers, loading } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<
@@ -54,7 +54,7 @@ export default function EditMembersModal(
       <Form action={handleSubmit}>
         <DialogContent>
           <AvatarMultiSelect
-            allUsers={allUsers}
+            allMembers={useMembers(allUsers)}
             onChange={handleChange}
             label={'Members'}
             value={selectedUsers}

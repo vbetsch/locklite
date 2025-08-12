@@ -15,18 +15,18 @@ import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 
 export type AvatarMultiSelectProps = {
-  readonly allUsers: readonly UserModelDto[];
-  readonly value: Omit<UserModelDto, 'id'>[];
-  readonly label?: string;
-  readonly onChange: (next: Omit<UserModelDto, 'id'>[]) => void;
+  allMembers: Omit<UserModelDto, 'id'>[];
+  value: Omit<UserModelDto, 'id'>[];
+  label?: string;
+  onChange: (next: Omit<UserModelDto, 'id'>[]) => void;
 };
 
 export default function AvatarMultiSelect(
   props: AvatarMultiSelectProps
 ): JSX.Element {
-  const { allUsers, value, onChange, label } = props;
+  const { allMembers, value, onChange, label } = props;
 
-  const selectedEmails: readonly string[] = React.useMemo<readonly string[]>(
+  const selectedEmails: string[] = React.useMemo<string[]>(
     () => value.map((u: Omit<UserModelDto, 'id'>): string => u.email),
     [value]
   );
@@ -35,7 +35,7 @@ export default function AvatarMultiSelect(
     <Autocomplete
       multiple
       disableCloseOnSelect
-      options={allUsers}
+      options={allMembers}
       value={value}
       onChange={(_, next: Omit<UserModelDto, 'id'>[]): void => onChange(next)}
       getOptionLabel={(option: Omit<UserModelDto, 'id'>): string =>
