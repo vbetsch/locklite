@@ -58,7 +58,6 @@ export default function EditMembersModal(
             onChange={handleChange}
             label={'Members'}
             value={props.currentVault.members}
-            maxDisplayed={3}
           />
         </DialogContent>
         <Box
