@@ -40,8 +40,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
   }
 
-  // --- TODO: Migrate in getMyVaults
-
+  // TODO: Migrate in getMyVaults
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {
@@ -54,6 +53,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     );
   }
 
+  // TODO: Migrate in abstract and implementations
   public async editMembersOfVault(
     params: EditMembersParamsDto
   ): Promise<RequestServiceOutputType<number>> {
