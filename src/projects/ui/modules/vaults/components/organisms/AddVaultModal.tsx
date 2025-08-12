@@ -117,7 +117,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
         >
           <ErrorMessage error={globalError} />
         </Box>
-        <DialogActions>
+        <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
           <Button onClick={handleClose}>Cancel</Button>
           <Button type={'submit'} variant="contained" loading={loading}>
             Create
