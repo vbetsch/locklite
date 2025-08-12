@@ -11,6 +11,7 @@ import { GetMyVaultsWithMembersDataDto } from '@shared/dto/output/data/vaults/ge
 import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.withMembers.data.mock';
 import { EditMembersParamsDto } from '@shared/dto/input/params/edit-members.params.dto';
+import { EditMembersPayloadDto } from '@shared/dto/input/payloads/vaults/edit-members.payload.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -54,10 +55,11 @@ export class MockVaultsGateway implements IVaultsGateway {
   }
 
   // TODO: Migrate in abstract and implementations
-  public async editMembersOfVault(
-    params: EditMembersParamsDto
-  ): Promise<RequestServiceOutputType<number>> {
-    console.log('deleteVault: ', params);
+  public async editMembersOfVault(input: {
+    params: EditMembersParamsDto;
+    payload: EditMembersPayloadDto;
+  }): Promise<RequestServiceOutputType<number>> {
+    console.log('deleteVault: ', input.params, input.payload);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT, 2500);
   }
