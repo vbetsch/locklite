@@ -18,9 +18,8 @@ import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
-import { useSession } from 'next-auth/react';
 import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
@@ -29,7 +28,6 @@ type VaultCardProps = {
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
-  const { data: session } = useSession();
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
@@ -37,9 +35,6 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
   );
   const [openEditMembersModal, setOpenEditMembersModal] =
     useState<boolean>(false);
-  const displayedMembers: Omit<UserModelDto, 'id'>[] = session?.user?.email
-    ? props.vault.members.filter(member => member.email !== session.user?.email)
-    : props.vault.members;
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
@@ -77,7 +72,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       }}
     >
       <EditMembersModal
-        vaultMembers={displayedMembers}
+        vaultMembers={useMembers(props.vault.members)}
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
         refreshVaults={props.refetchVaults}
@@ -112,7 +107,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         <VaultCardMembers
           clickOnMembers={() => setOpenEditMembersModal(true)}
           maxMembers={3}
-          members={displayedMembers}
+          members={useMembers(props.vault.members)}
         />
       </CardActions>
     </Card>
