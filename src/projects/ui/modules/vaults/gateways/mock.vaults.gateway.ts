@@ -43,8 +43,12 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {
-    return await returnSuccessResultMock({
-      myVaults: myVaultsWithMembersDataMock,
-    });
+    return await returnSuccessResultMock(
+      {
+        myVaults: myVaultsWithMembersDataMock,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      3000
+    );
   }
 }
