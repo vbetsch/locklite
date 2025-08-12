@@ -27,7 +27,7 @@ type VaultCardProps = {
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
