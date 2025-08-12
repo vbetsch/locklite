@@ -31,6 +31,7 @@ export default function DynamicVaultsList(): JSX.Element {
         refreshVaults={refetch}
       />
       <EditMembersModal
+        currentVault={vaults[0]}
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
         refreshVaults={refetch}
