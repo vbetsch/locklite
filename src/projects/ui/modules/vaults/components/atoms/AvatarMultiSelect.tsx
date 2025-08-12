@@ -10,7 +10,7 @@ import {
   ListItemText,
   TextField,
 } from '@mui/material';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 

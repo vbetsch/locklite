@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { SessionStatus } from '@shared/auth/session-status.enum';
+import { SessionStatus } from '@shared/modules/auth/session-status.enum';
 import { RoutesEnum } from '@ui/routes.enum';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
 import { Box } from '@mui/material';

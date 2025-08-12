@@ -8,7 +8,7 @@
  *       additionalProperties:
  *         $ref: '#/components/schemas/ProviderModelDto'
  */
-import type { ProviderModelDto } from '@shared/dto/models/provider.model.dto';
+import type { ProviderModelDto } from '@shared/modules/auth/dto/providers/provider.model.dto';
 
 export type ProvidersBodyDto = {
   [providerId: string]: ProviderModelDto;

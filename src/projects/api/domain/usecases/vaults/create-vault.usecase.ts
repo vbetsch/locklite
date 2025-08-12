@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
 import { Vault, User as UserModel } from '@prisma/generated';
 import { VaultAdapter } from '@api/app/adapters/vault.adapter';
@@ -7,7 +7,7 @@ import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAlreadyExistsError } from '@api/domain/errors/vaults/vault-already-exists.error';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/domain/errors/vaults/vault-label-too-long.error';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
 import { CurrentUserService } from '@api/domain/services/current-user.service';
 
 @injectable()

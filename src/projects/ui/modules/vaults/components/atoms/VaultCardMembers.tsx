@@ -2,7 +2,7 @@ import React from 'react';
 import type { JSX } from 'react';
 import { AvatarGroup } from '@mui/material';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { avatarSystemStyle } from '@ui/styles/avatar.style';
 import Avatar from '@mui/material/Avatar';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';

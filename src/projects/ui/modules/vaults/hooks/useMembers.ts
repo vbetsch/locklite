@@ -1,6 +1,6 @@
 'use client';
 
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { useSession } from 'next-auth/react';
 
 export function useMembers(

@@ -1,18 +1,18 @@
 import { injectable } from 'tsyringe';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import type { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
-import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
-import type { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.data.dto';
-import type { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
+import type { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
+import type { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
+import type { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
+import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
 import { returnSuccessResultMock } from '@ui/mocks/returnSuccessResultMock';
 import { StatusCodes } from 'http-status-codes';
-import { GetMyVaultsWithMembersDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.with-members.data.dto';
+import { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.with-members.data.dto';
 import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.withMembers.data.mock';
-import { EditMembersParamsDto } from '@shared/dto/input/params/edit-members.params.dto';
-import { EditMembersPayloadDto } from '@shared/dto/input/payloads/vaults/edit-members.payload.dto';
-import type { HttpInputDto } from '@shared/dto/input/abstract/http-input.dto';
+import { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
+import { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
+import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {

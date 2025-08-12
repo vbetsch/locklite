@@ -1,11 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
-import { SignInPayloadDto } from '@shared/dto/input/payloads/auth/sign-in.payload.dto';
+import { SignInPayloadDto } from '@shared/modules/auth/dto/sign-in/sign-in.payload.dto';
 import { UserAdapter } from '@api/app/adapters/user.adapter';
 import { UsersRepository } from '@api/infra/repositories/users.repository';
 import { HashService } from '@api/domain/services/hash.service';
 import { User } from '@prisma/generated';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 @injectable()
 export class SignInUseCase

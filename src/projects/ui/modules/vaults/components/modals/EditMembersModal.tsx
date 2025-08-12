@@ -12,7 +12,7 @@ import Form from 'next/form';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 
 type EditMembersModalProps = {

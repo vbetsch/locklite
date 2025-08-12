@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultDataDto } from '@shared/dto/output/data/vaults/create-vault.data.dto';
-import { GetMyVaultsDataDto } from '@shared/dto/output/data/vaults/get-my-vaults.data.dto';
+import { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/create-vault.payload.dto';
+import { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
-import type { HttpInputDto } from '@shared/dto/input/abstract/http-input.dto';
+import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 
 @injectable()
 export class VaultsGateway implements IVaultsGateway {

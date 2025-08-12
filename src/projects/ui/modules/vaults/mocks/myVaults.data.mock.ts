@@ -1,4 +1,4 @@
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
 
 export const myVaultsDataMock: VaultModelDto[] = [
   { id: 'v1', label: 'Google Account', secret: 'p@ssW0rd123!' },

@@ -1,4 +1,4 @@
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
 
 export const allUsersDataMock: UserModelDto[] = [

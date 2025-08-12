@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
-import type { RegisterPayloadDto } from '@shared/dto/input/payloads/auth/register.payload.dto';
-import { UserModelDto } from '@shared/dto/models/user.model.dto';
+import type { RegisterPayloadDto } from '@shared/modules/auth/dto/register/register.payload.dto';
+import { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { UserAdapter } from '@api/app/adapters/user.adapter';
 import { UsersRepository } from '@api/infra/repositories/users.repository';
 import { User } from '@prisma/generated';

@@ -2,7 +2,7 @@ import { HttpError } from '@shared/errors/http-error';
 import { StatusCodes } from 'http-status-codes';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
+import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import { ApiLogger } from '@api/app/logs/api.logger';
 import { InternalServerError } from '@api/app/errors/internal-server.error';
 import { BusinessError } from '@shared/errors/business-error';

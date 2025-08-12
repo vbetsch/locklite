@@ -1,5 +1,5 @@
 import type { IUseCase } from '@api/domain/usecases/abstract/usecase.interface';
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
 import { inject, injectable } from 'tsyringe';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAdapter } from '@api/app/adapters/vault.adapter';

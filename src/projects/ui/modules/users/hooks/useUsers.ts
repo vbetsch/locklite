@@ -2,8 +2,8 @@ import { container } from 'tsyringe';
 import { useState } from 'react';
 import { useApiFetch } from '@ui/hooks/useApiFetch';
 import { MockUsersGateway } from '@ui/modules/users/gateways/mock.users.gateway';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import type { GetUsersListDataDto } from '@shared/dto/output/data/auth/get-users-list.data.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import type { GetUsersListDataDto } from '@shared/modules/users/get-users-list.data.dto';
 import type { IUsersGateway } from '@ui/modules/users/gateways/abstract/users.gateway.interface';
 
 export function useUsers(): {

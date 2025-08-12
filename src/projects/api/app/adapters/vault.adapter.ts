@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import { VaultModelDto } from '@shared/dto/models/vault.model.dto';
+import { VaultModelDto } from '@shared/modules/vaults/vault.model.dto';
 import { Vault } from '@prisma/generated';
 import { IAdapter } from '@api/app/adapters/abstract/adapter.interface';
 

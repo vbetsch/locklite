@@ -4,8 +4,8 @@ import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/helpers/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import { DeleteVaultUseCase } from '@api/domain/usecases/vaults/delete-vault.usecase';
-import type { CreateVaultParamsDto } from '@shared/dto/input/params/create-vault.params.dto';
-import type { HttpOptionsDto } from '@shared/dto/input/options/abstract/http-options.dto';
+import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
+import type { HttpOptionsDto } from '@shared/dto/input/http-options.dto';
 
 /**
  * @swagger
