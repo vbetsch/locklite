@@ -13,9 +13,24 @@ import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.w
 import { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
 import { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
+  private readonly _currentVaults: VaultWithMembersModelDto[] = [];
+
+  public constructor() {
+    this._currentVaults = myVaultsWithMembersDataMock;
+  }
+
+  private _getVaultById(vaultId: string): VaultWithMembersModelDto | null {
+    return this._currentVaults.find(vault => vault.id === vaultId) || null;
+  }
+
+  private _getVaultIndex(vaultId: string): number {
+    return this._currentVaults.findIndex(vault => vault.id === vaultId);
+  }
+
   public async getMyVaults(): Promise<
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
@@ -48,7 +63,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   > {
     return await returnSuccessResultMock<GetMyVaultsWithMembersDataDto>(
       {
-        myVaults: myVaultsWithMembersDataMock,
+        myVaults: this._currentVaults,
       },
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       3000
@@ -56,11 +71,22 @@ export class MockVaultsGateway implements IVaultsGateway {
   }
 
   // TODO: Migrate in abstract and implementations
-  public async editMembersOfVault(input: {
+  public async editVaultMembers(input: {
     params: EditMembersParamsDto;
     payload: EditMembersPayloadDto;
   }): Promise<RequestServiceOutputType<number>> {
     console.log('deleteVault: ', input.params, input.payload);
+    const vaultFound: VaultWithMembersModelDto | null = this._getVaultById(
+      input.params.id
+    );
+    if (!vaultFound) {
+      console.warn('[MOCK] editVaultMembers: vault not found');
+    } else {
+      this._currentVaults[this._getVaultIndex(input.params.id)] = {
+        ...vaultFound,
+        members: [...input.payload.overrideMembers],
+      };
+    }
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT, 2500);
   }
