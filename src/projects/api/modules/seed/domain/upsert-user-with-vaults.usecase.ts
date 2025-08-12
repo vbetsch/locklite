@@ -27,7 +27,6 @@ export class UpsertUserWithVaultsUseCase
 
     return await this._usersRepository.createOrUpdate({
       email: input.email,
-      // eslint-disable-next-line no-undefined
       name: input.name || undefined,
       password: passwordHash,
     });

@@ -9,7 +9,6 @@ export class UserAdapter implements IAdapter<User, UserModelDto> {
     return {
       id: entity.id,
       email: entity.email,
-      // eslint-disable-next-line no-undefined
       name: entity.name || undefined,
     };
   }

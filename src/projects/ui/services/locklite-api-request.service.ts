@@ -14,7 +14,6 @@ export class LockliteApiRequestService extends RequestService {
   private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
-      // eslint-disable-next-line no-undefined
       data: undefined as unknown as Data,
     };
   }

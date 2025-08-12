@@ -23,7 +23,6 @@ export function useApiCall<TData, TInput = null>({
   const execute: (input?: TInput) => Promise<void> = useCallback(
     async (input?: TInput): Promise<void> => {
       setLoading(true);
-      // eslint-disable-next-line no-undefined
       setError(undefined);
       try {
         const output: RequestServiceOutputType<TData> = await request(input);

@@ -63,7 +63,6 @@ export default tseslint.config(
         'default-case': 'warn',
         'import/no-unresolved': 'error',
         'no-inline-comments': 'warn',
-        'no-undefined': 'warn',
         'no-var': 'error',
         'prefer-const': ['error', { destructuring: 'all' }],
         'require-await': 'error',
