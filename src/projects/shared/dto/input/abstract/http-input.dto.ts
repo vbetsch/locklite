@@ -1,4 +1,4 @@
-export type HttpInputDto<TParams, TPayload = null> = {
+export type HttpInputDto<TParams, TPayload> = {
   params: TParams;
   payload: TPayload;
 };

@@ -33,7 +33,7 @@ export class VaultsGateway implements IVaultsGateway {
   }
 
   public async deleteVault(
-    input: HttpInputDto<CreateVaultParamsDto>
+    input: HttpInputDto<CreateVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     return await this._lockliteRequestService.delete<number>(
       '/vaults/' + input.params.id
