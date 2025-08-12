@@ -1,6 +1,6 @@
 import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
 import { LoggerColorEnum } from '@shared/logs/logger-color.enum';
-import { ApiLogger } from '@api/app/logs/api.logger';
+import { ApiLogger } from '@api/app/api.logger';
 
 interface ICompute {
   _compute(

@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import { HashService } from '@api/domain/services/hash.service';
-import { ApiLogger } from '@api/app/logs/api.logger';
+import { HashService } from '@api/modules/auth/domain/hash.service';
+import { ApiLogger } from '@api/app/api.logger';
 
 jest.mock('bcrypt', (): unknown => ({
   hash: jest.fn(),

@@ -3,13 +3,13 @@ import type { Mock } from 'jest-mock';
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from 'next-auth/jwt';
 import { getServerSession } from 'next-auth';
-import { ApiLogger } from '@api/app/logs/api.logger';
+import { ApiLogger } from '@api/app/api.logger';
 import { UnauthorizedError } from '@api/app/errors/unauthorized.error';
 import { BusinessError } from '@shared/errors/business-error';
 import { HttpError } from '@shared/errors/http-error';
 import { InternalServerError } from '@api/app/errors/internal-server.error';
 import { NextResponse } from 'next/server';
-import { handleApiRequest } from '@api/app/helpers/handle-api-request';
+import { handleApiRequest } from '@api/app/handle-api-request';
 
 jest.mock('next-auth/jwt', () => ({
   getToken: jest.fn(),
@@ -19,7 +19,7 @@ jest.mock('next-auth', () => ({
   getServerSession: jest.fn(),
 }));
 
-jest.mock('@api/app/logs/api.logger', () => ({
+jest.mock('@api/app/api.logger', () => ({
   ApiLogger: { error: jest.fn() },
 }));
 

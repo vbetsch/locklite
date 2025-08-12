@@ -1,5 +1,5 @@
 import { handlePrismaError } from '@api/infra/prisma/helpers/handle-prisma-errors';
-import type { PrismaErrorLike } from '@api/infra/prisma/types/prisma-error-like.type';
+import type { PrismaErrorLike } from '@api/infra/prisma/prisma-error-like.type';
 
 export async function handlePrismaRequest<T>(
   callback: () => Promise<T>

@@ -1,11 +1,11 @@
-import type { PrismaErrorLike } from '@api/infra/prisma/types/prisma-error-like.type';
+import type { PrismaErrorLike } from '@api/infra/prisma/prisma-error-like.type';
 import type { HttpError } from '@shared/errors/http-error';
 import { InternalServerError } from '@api/app/errors/internal-server.error';
 import { ResourceAlreadyExistsError } from '@api/infra/prisma/errors/resource-already-exists.error';
 import { ResourceNotFoundError } from '@api/infra/prisma/errors/resource-not-found.error';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { InvalidRequestDataError } from '@api/infra/prisma/errors/invalid-request-data.error';
-import { ApiLogger } from '@api/app/logs/api.logger';
+import { ApiLogger } from '@api/app/api.logger';
 
 export function handlePrismaError(error: PrismaErrorLike): HttpError {
   if (error.name === 'PrismaClientKnownRequestError') {

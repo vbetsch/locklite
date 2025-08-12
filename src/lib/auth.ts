@@ -4,7 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@lib/prisma';
 import { RoutesEnum } from '@ui/routes.enum';
-import { SignInUseCase } from '@api/domain/usecases/auth/signin.usecase';
+import { SignInUseCase } from '@api/modules/auth/domain/usecases/signin.usecase';
 import { container } from 'tsyringe';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import type { SignInPayloadDto } from '@shared/modules/auth/dto/sign-in/sign-in.payload.dto';
