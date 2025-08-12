@@ -12,6 +12,7 @@ import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.withMembers.data.mock';
 import { EditMembersParamsDto } from '@shared/dto/input/params/edit-members.params.dto';
 import { EditMembersPayloadDto } from '@shared/dto/input/payloads/vaults/edit-members.payload.dto';
+import type { HttpInputDto } from '@shared/dto/input/abstract/http-input.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -24,20 +25,20 @@ export class MockVaultsGateway implements IVaultsGateway {
   }
 
   public async createVault(
-    payload: CreateVaultPayloadDto
+    input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
     return await returnSuccessResultMock({
       vaultCreated: {
-        ...payload,
+        ...input.payload,
         id: 'new',
       },
     });
   }
 
   public async deleteVault(
-    params: CreateVaultParamsDto
+    input: HttpInputDto<CreateVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
-    console.log('deleteVault: ', params);
+    console.log('deleteVault: ', input);
     return await returnSuccessResultMock(StatusCodes.NO_CONTENT);
   }
 
