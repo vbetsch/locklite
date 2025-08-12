@@ -9,6 +9,8 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
 type VaultCardMembersProps = {
   members: Omit<UserModelDto, 'id'>[];
+  maxMembers: number;
+  clickOnMembers: () => void;
 };
 
 export default function VaultCardMembers(
@@ -16,8 +18,9 @@ export default function VaultCardMembers(
 ): JSX.Element {
   return (
     <AvatarGroup
-      max={3}
+      max={props.maxMembers}
       spacing={'medium'}
+      onClick={props.clickOnMembers}
       sx={{
         '& .MuiAvatarGroup-avatar': avatarSystemStyle,
         cursor: 'pointer',

@@ -24,6 +24,7 @@ type VaultCardProps = {
   // TODO: use VaultModelDto
   vault: VaultWithMembersModelDto;
   refetchVaults: () => Promise<void>;
+  openEditMembersModal: () => void;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
@@ -97,6 +98,8 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
           Delete
         </Button>
         <VaultCardMembers
+          clickOnMembers={props.openEditMembersModal}
+          maxMembers={3}
           members={
             session?.user?.email
               ? props.vault.members.filter(
