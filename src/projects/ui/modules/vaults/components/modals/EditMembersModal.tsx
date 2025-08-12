@@ -13,10 +13,9 @@ import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
 
 type EditMembersModalProps = {
-  currentVault: VaultWithMembersModelDto;
+  vaultMembers: Omit<UserModelDto, 'id'>[];
   open: boolean;
   onClose: () => void;
   refreshVaults: () => Promise<void>;
@@ -30,7 +29,7 @@ export default function EditMembersModal(
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<
     Omit<UserModelDto, 'id'>[]
-  >(props.currentVault.members);
+  >(props.vaultMembers);
 
   const handleClose = (): void => {
     // setLabelError(null);
@@ -41,7 +40,7 @@ export default function EditMembersModal(
   };
 
   const handleChange = (next: Omit<UserModelDto, 'id'>[]): void => {
-    setSelectedUsers(next);
+    setSelectedUsers([...next]);
   };
 
   const handleSubmit = async (): Promise<void> => {

@@ -20,6 +20,7 @@ import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-mem
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 import { useSession } from 'next-auth/react';
 import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
+import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
@@ -36,6 +37,9 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
   );
   const [openEditMembersModal, setOpenEditMembersModal] =
     useState<boolean>(false);
+  const displayedMembers: Omit<UserModelDto, 'id'>[] = session?.user?.email
+    ? props.vault.members.filter(member => member.email !== session.user?.email)
+    : props.vault.members;
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
@@ -73,7 +77,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       }}
     >
       <EditMembersModal
-        currentVault={props.vault}
+        vaultMembers={displayedMembers}
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
         refreshVaults={props.refetchVaults}
@@ -108,13 +112,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         <VaultCardMembers
           clickOnMembers={() => setOpenEditMembersModal(true)}
           maxMembers={3}
-          members={
-            session?.user?.email
-              ? props.vault.members.filter(
-                  member => member.email !== session.user?.email
-                )
-              : props.vault.members
-          }
+          members={displayedMembers}
         />
       </CardActions>
     </Card>
