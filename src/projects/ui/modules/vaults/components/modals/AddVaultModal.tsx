@@ -21,6 +21,7 @@ import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/vaults/cr
 import Form from 'next/form';
 import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
+import type { HttpInputDto } from '@shared/dto/input/abstract/http-input.dto';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -49,9 +50,9 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
 
   const { execute: createVault, loading } = useApiCall<
     CreateVaultDataDto,
-    CreateVaultPayloadDto
+    HttpInputDto<null, CreateVaultPayloadDto>
   >({
-    request: payload => vaultsGateway.createVault(payload!),
+    request: input => vaultsGateway.createVault(input!),
     onSuccess: async () => {
       handleClose();
       await props.refreshVaults();
@@ -68,7 +69,13 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
 
   const handleSubmit = async (): Promise<void> => {
     setGlobalError(null);
-    await createVault({ label: newLabel, secret: newSecret });
+    await createVault({
+      params: null,
+      payload: {
+        label: newLabel,
+        secret: newSecret,
+      },
+    });
   };
 
   useEffect(() => {

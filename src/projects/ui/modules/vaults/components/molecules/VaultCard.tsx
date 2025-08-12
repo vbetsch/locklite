@@ -20,6 +20,7 @@ import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-mem
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
 import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
+import type { HttpInputDto } from '@shared/dto/input/abstract/http-input.dto';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
@@ -38,7 +39,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
-    CreateVaultParamsDto
+    HttpInputDto<CreateVaultParamsDto, null>
   >({
     request: params => vaultsGateway.deleteVault(params!),
     onSuccess: async () => {
@@ -58,7 +59,12 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
 
   const handleConfirmDelete = async (): Promise<void> => {
     if (vaultToDelete) {
-      await deleteVault({ id: vaultToDelete.id });
+      await deleteVault({
+        params: {
+          id: vaultToDelete.id,
+        },
+        payload: null,
+      });
     } else {
       setConfirmOpen(false);
     }
