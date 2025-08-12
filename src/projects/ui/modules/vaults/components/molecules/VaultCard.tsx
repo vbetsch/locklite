@@ -96,9 +96,13 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
           Delete
         </Button>
         <VaultCardMembers
-          members={props.vault.members.filter(
-            member => member.email !== session?.user?.email
-          )}
+          members={
+            session?.user?.email
+              ? props.vault.members.filter(
+                  member => member.email !== session.user?.email
+                )
+              : props.vault.members
+          }
         />
       </CardActions>
     </Card>
