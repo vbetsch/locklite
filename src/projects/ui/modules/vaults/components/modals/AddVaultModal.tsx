@@ -17,7 +17,6 @@ import { UiLogger } from '@ui/ui.logger';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import type { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
-import Form from 'next/form';
 import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
