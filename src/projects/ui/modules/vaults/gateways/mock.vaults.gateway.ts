@@ -14,6 +14,7 @@ import { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-m
 import { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { EditMembersDataDto } from '@shared/modules/vaults/edit-members/edit-members.data.dto';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -75,20 +76,28 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async editVaultMembers(input: {
     params: EditMembersParamsDto;
     payload: EditMembersPayloadDto;
-  }): Promise<RequestServiceOutputType<number>> {
-    console.log('deleteVault: ', input.params, input.payload);
+  }): Promise<RequestServiceOutputType<EditMembersDataDto>> {
+    console.log('editVaultMembers: ', input.params, input.payload);
     const vaultFound: VaultWithMembersModelDto | null = this._getVaultById(
       input.params.id
     );
     if (!vaultFound) {
-      console.warn('[MOCK] editVaultMembers: vault not found');
-    } else {
-      this._currentVaults[this._getVaultIndex(input.params.id)] = {
-        ...vaultFound,
-        members: [...input.payload.overrideMembers],
-      };
+      throw new Error('[MOCK] editVaultMembers: vault not found');
     }
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT, 2500);
+    const vaultEdited: VaultWithMembersModelDto = {
+      ...vaultFound,
+      members: [...input.payload.overrideMembers],
+    };
+    this._currentVaults[this._getVaultIndex(input.params.id)] = {
+      ...vaultFound,
+      members: [...input.payload.overrideMembers],
+    };
+    return await returnSuccessResultMock<EditMembersDataDto>(
+      {
+        vaultEdited,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      2500
+    );
   }
 }

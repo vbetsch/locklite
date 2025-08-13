@@ -22,6 +22,7 @@ import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import type { EditMembersDataDto } from '@shared/modules/vaults/edit-members/edit-members.data.dto';
 
 type EditMembersModalProps = {
   vault: VaultWithMembersModelDto;
@@ -53,16 +54,13 @@ export default function EditMembersModal(
   };
 
   const { execute: editVaultMembers, loading: editMembersLoading } = useApiCall<
-    number,
+    EditMembersDataDto,
     HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
   >({
     request: input => vaultsGateway.editVaultMembers(input!),
-    onSuccess: () => {
+    onSuccess: data => {
       handleClose();
-      props.setVault({
-        ...props.vault,
-        members: [...selectedUsers],
-      });
+      props.setVault(data.vaultEdited);
     },
     onError: err => {
       setGlobalError(err);
