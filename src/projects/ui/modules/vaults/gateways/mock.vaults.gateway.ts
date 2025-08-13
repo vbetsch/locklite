@@ -15,6 +15,7 @@ import { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { EditMembersDataDto } from '@shared/modules/vaults/edit-members/edit-members.data.dto';
+import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
 
 @injectable()
 export class MockVaultsGateway implements IVaultsGateway {
@@ -86,12 +87,9 @@ export class MockVaultsGateway implements IVaultsGateway {
     }
     const vaultEdited: VaultWithMembersModelDto = {
       ...vaultFound,
-      members: [...input.payload.overrideMembers],
+      members: [...input.payload.overrideMembers, currentUserDataMock],
     };
-    this._currentVaults[this._getVaultIndex(input.params.id)] = {
-      ...vaultFound,
-      members: [...input.payload.overrideMembers],
-    };
+    this._currentVaults[this._getVaultIndex(input.params.id)] = vaultEdited;
     return await returnSuccessResultMock<EditMembersDataDto>(
       {
         vaultEdited,
