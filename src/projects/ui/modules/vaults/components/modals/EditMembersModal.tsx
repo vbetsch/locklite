@@ -80,37 +80,36 @@ export default function EditMembersModal(
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
       <DialogTitle>Share vault</DialogTitle>
-      <Form action={handleSubmit}>
-        <DialogContent>
-          <AvatarMultiSelect
-            allMembers={useMembers(allUsers)}
-            onChange={handleChange}
-            label={'Members'}
-            value={selectedUsers}
-          />
-        </DialogContent>
-        <Box
-          sx={{
-            paddingLeft: 3,
-            height: 15,
-            width: '100%',
-            overflowWrap: 'break-word',
-            wordBreak: 'break-word',
-          }}
+      <DialogContent>
+        <AvatarMultiSelect
+          allMembers={useMembers(allUsers)}
+          onChange={handleChange}
+          label={'Members'}
+          value={selectedUsers}
+        />
+      </DialogContent>
+      <Box
+        sx={{
+          paddingLeft: 3,
+          height: 15,
+          width: '100%',
+          overflowWrap: 'break-word',
+          wordBreak: 'break-word',
+        }}
+      >
+        <ErrorMessage error={globalError} />
+      </Box>
+      <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          type={'submit'}
+          variant="contained"
+          loading={editMembersLoading || usersLoading}
+          onClick={handleSubmit}
         >
-          <ErrorMessage error={globalError} />
-        </Box>
-        <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button
-            type={'submit'}
-            variant="contained"
-            loading={editMembersLoading || usersLoading}
-          >
-            Edit
-          </Button>
-        </DialogActions>
-      </Form>
+          Edit
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
