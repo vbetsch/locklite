@@ -41,11 +41,8 @@ export default function EditMembersModal(
     useState<VaultMemberModelDto[]>(vaultMembers);
 
   const handleClose = (): void => {
-    // setLabelError(null);
     setSelectedUsers(vaultMembers);
     setGlobalError(null);
-    // setNewLabel('');
-    // setNewSecret('');
     props.onClose();
   };
 
