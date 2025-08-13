@@ -78,7 +78,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
       }}
     >
       <EditMembersModal
-        vaultMembers={useMembers(props.vault.members)}
+        vault={props.vault}
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
         refreshVaults={props.refetchVaults}

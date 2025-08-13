@@ -21,9 +21,10 @@ import { container } from 'tsyringe';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 import type { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
 import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 type EditMembersModalProps = {
-  vaultMembers: VaultMemberModelDto[];
+  vault: VaultWithMembersModelDto;
   open: boolean;
   onClose: () => void;
   refreshVaults: () => Promise<void>;
@@ -32,16 +33,16 @@ type EditMembersModalProps = {
 export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
+  const vaultMembers: VaultMemberModelDto[] = useMembers(props.vault.members);
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
   const { users: allUsers, loading: usersLoading } = useUsers();
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
-    props.vaultMembers
-  );
+  const [selectedUsers, setSelectedUsers] =
+    useState<VaultMemberModelDto[]>(vaultMembers);
 
   const handleClose = (): void => {
     // setLabelError(null);
-    setSelectedUsers(props.vaultMembers);
+    setSelectedUsers(vaultMembers);
     setGlobalError(null);
     // setNewLabel('');
     // setNewSecret('');
@@ -71,7 +72,7 @@ export default function EditMembersModal(
     setGlobalError(null);
     await editVaultMembers({
       params: {
-        id: 'v1',
+        id: props.vault.id,
       },
       payload: {
         overrideMembers: [...selectedUsers],
