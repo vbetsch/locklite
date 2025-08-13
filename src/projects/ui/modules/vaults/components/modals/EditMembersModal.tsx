@@ -72,7 +72,7 @@ export default function EditMembersModal(
     setGlobalError(null);
     await editVaultMembers({
       params: {
-        id: props.vault.id,
+        vaultId: props.vault.id,
       },
       payload: {
         overrideMembers: [...selectedUsers],

@@ -36,7 +36,7 @@ export class VaultsGateway implements IVaultsGateway {
     input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     return await this._lockliteRequestService.delete<number>(
-      '/vaults/' + input.params.id
+      '/vaults/' + input.params.vaultId
     );
   }
 }

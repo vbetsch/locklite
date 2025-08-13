@@ -70,7 +70,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async deleteVault(
     input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
-    mockVaults = mockVaults.filter(vault => vault.id !== input.params.id);
+    mockVaults = mockVaults.filter(vault => vault.id !== input.params.vaultId);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT, 3000);
   }
@@ -94,7 +94,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     payload: EditMembersPayloadDto;
   }): Promise<RequestServiceOutputType<EditMembersDataDto>> {
     const vaultFound: VaultWithMembersModelDto | null = this._getVaultById(
-      input.params.id
+      input.params.vaultId
     );
     if (!vaultFound) {
       throw new Error('[MOCK] editVaultMembers: vault not found');
@@ -103,7 +103,7 @@ export class MockVaultsGateway implements IVaultsGateway {
       ...vaultFound,
       members: [...input.payload.overrideMembers, currentUserDataMock],
     };
-    mockVaults[this._getVaultIndex(input.params.id)] = vaultEdited;
+    mockVaults[this._getVaultIndex(input.params.vaultId)] = vaultEdited;
     return await returnSuccessResultMock<EditMembersDataDto>(
       {
         vaultEdited,

@@ -62,7 +62,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     if (vaultToDelete) {
       await deleteVault({
         params: {
-          id: vaultToDelete.id,
+          vaultId: vaultToDelete.id,
         },
         payload: null,
       });
