@@ -3,7 +3,7 @@ import { LockliteApiRequestService } from '@ui/services/locklite-api-request.ser
 import { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
 import { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
+import { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
 import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
@@ -33,7 +33,7 @@ export class VaultsGateway implements IVaultsGateway {
   }
 
   public async deleteVault(
-    input: HttpInputDto<CreateVaultParamsDto, null>
+    input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     return await this._lockliteRequestService.delete<number>(
       '/vaults/' + input.params.id

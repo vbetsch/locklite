@@ -4,7 +4,7 @@ import type { RequestServiceOutputType } from '@shared/requests/request-service-
 import type { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
 import type { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
 import type { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
-import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
+import type { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
 import { returnSuccessResultMock } from '@ui/mocks/returnSuccessResultMock';
 import { StatusCodes } from 'http-status-codes';
 import { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.with-members.data.dto';
@@ -68,7 +68,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   }
 
   public async deleteVault(
-    input: HttpInputDto<CreateVaultParamsDto, null>
+    input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     mockVaults = mockVaults.filter(vault => vault.id !== input.params.id);
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers

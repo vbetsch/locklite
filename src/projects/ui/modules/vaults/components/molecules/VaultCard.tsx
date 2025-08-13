@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from '@mui/material';
 import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
-import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
+import type { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
@@ -40,7 +40,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
-    HttpInputDto<CreateVaultParamsDto, null>
+    HttpInputDto<DeleteVaultParamsDto, null>
   >({
     request: params => vaultsGateway.deleteVault(params!),
     onSuccess: () => {
