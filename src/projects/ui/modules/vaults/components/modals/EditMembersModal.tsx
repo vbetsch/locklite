@@ -83,7 +83,7 @@ export default function EditMembersModal(
   const globalLoading: boolean = editMembersLoading || props.usersLoading;
 
   return (
-    <Dialog open={props.open} onClose={handleSubmit} fullWidth maxWidth="xs">
+    <Dialog open={props.open} fullWidth maxWidth="xs">
       <DialogTitle>Share vault</DialogTitle>
       <DialogContent sx={{ paddingTop: '10px !important' }}>
         {globalLoading ? (
