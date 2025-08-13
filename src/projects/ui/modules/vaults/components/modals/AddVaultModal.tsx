@@ -90,48 +90,51 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
       <DialogTitle>Add a vault</DialogTitle>
-      <Form action={handleSubmit}>
-        <DialogContent>
-          <TextField
-            inputRef={labelInputRef}
-            margin="dense"
-            label="Label"
-            fullWidth
-            required
-            value={newLabel}
-            onChange={e => setNewLabel(e.target.value)}
-            error={!!globalError || !!labelError}
-            helperText={labelError ? labelError.message : ''}
-          />
-          <TextField
-            error={!!globalError}
-            margin="dense"
-            label="Secret"
-            fullWidth
-            required
-            value={newSecret}
-            onChange={e => setNewSecret(e.target.value)}
-            sx={{ mt: 2 }}
-          />
-        </DialogContent>
-        <Box
-          sx={{
-            paddingLeft: 3,
-            height: 15,
-            width: '100%',
-            overflowWrap: 'break-word',
-            wordBreak: 'break-word',
-          }}
+      <DialogContent>
+        <TextField
+          inputRef={labelInputRef}
+          margin="dense"
+          label="Label"
+          fullWidth
+          required
+          value={newLabel}
+          onChange={e => setNewLabel(e.target.value)}
+          error={!!globalError || !!labelError}
+          helperText={labelError ? labelError.message : ''}
+        />
+        <TextField
+          error={!!globalError}
+          margin="dense"
+          label="Secret"
+          fullWidth
+          required
+          value={newSecret}
+          onChange={e => setNewSecret(e.target.value)}
+          sx={{ mt: 2 }}
+        />
+      </DialogContent>
+      <Box
+        sx={{
+          paddingLeft: 3,
+          height: 15,
+          width: '100%',
+          overflowWrap: 'break-word',
+          wordBreak: 'break-word',
+        }}
+      >
+        <ErrorMessage error={globalError} />
+      </Box>
+      <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          type={'submit'}
+          variant="contained"
+          loading={loading}
+          onClick={handleSubmit}
         >
-          <ErrorMessage error={globalError} />
-        </Box>
-        <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type={'submit'} variant="contained" loading={loading}>
-            Create
-          </Button>
-        </DialogActions>
-      </Form>
+          Create
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
