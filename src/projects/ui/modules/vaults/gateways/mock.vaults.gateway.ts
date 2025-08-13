@@ -46,6 +46,7 @@ export class MockVaultsGateway implements IVaultsGateway {
       vaultCreated: {
         ...input.payload,
         id: 'new',
+        members: [],
       },
     });
   }

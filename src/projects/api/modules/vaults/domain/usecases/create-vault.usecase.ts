@@ -9,6 +9,7 @@ import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-v
 import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
 import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
 import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
+import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
 export class CreateVaultUseCase
@@ -48,7 +49,9 @@ export class CreateVaultUseCase
     }
   }
 
-  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
+  public async handle(
+    input: CreateVaultPayloadDto
+  ): Promise<VaultWithMembersModelDto> {
     const currentUser: UserModel = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
     const vaultCreated: Vault = await this._createVaultInDatabase(
