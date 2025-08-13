@@ -10,12 +10,7 @@ import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMem
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 export default function AppDynamicVaultsList(): JSX.Element {
-  const {
-    vaults: initialVaults,
-    loading,
-    error,
-    refetch,
-  } = useVaultsWithMembers();
+  const { vaults: initialVaults, loading, error } = useVaultsWithMembers();
   const [openAddVaultModal, setOpenAddVaultModal] = useState<boolean>(false);
   const [localVaults, setLocalVaults] = useState<VaultWithMembersModelDto[]>(
     []
@@ -39,6 +34,12 @@ export default function AppDynamicVaultsList(): JSX.Element {
       prevVaults.map(vault =>
         vault.id === editedVault.id ? editedVault : vault
       )
+    );
+  };
+
+  const deleteVault = (deletedVault: VaultWithMembersModelDto): void => {
+    setLocalVaults(prevVaults =>
+      prevVaults.filter(vault => vault.id !== deletedVault.id)
     );
   };
 
@@ -83,8 +84,8 @@ export default function AppDynamicVaultsList(): JSX.Element {
         loading={loading}
         searchTerm={searchTerm}
         displayedVaults={filteredVaults}
-        refetchVaults={refetch}
         editVault={editVault}
+        deleteVault={deleteVault}
       />
     </>
   );

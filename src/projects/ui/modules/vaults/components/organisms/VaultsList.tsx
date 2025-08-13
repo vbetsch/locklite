@@ -10,8 +10,8 @@ type VaultsListProps = {
   loading: boolean;
   displayedVaults: VaultWithMembersModelDto[];
   searchTerm: string;
-  refetchVaults: () => Promise<void>;
   editVault: (vault: VaultWithMembersModelDto) => void;
+  deleteVault: (vault: VaultWithMembersModelDto) => void;
 };
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
@@ -40,7 +40,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
           <VaultCard
             vault={vault}
             setVault={props.editVault}
-            refetchVaults={props.refetchVaults}
+            deleteVault={props.deleteVault}
             allUsers={allUsers}
             usersLoading={usersLoading}
           />

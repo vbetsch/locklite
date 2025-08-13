@@ -8,7 +8,6 @@ import {
   CardHeader,
 } from '@mui/material';
 import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
-import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
 import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
@@ -26,7 +25,7 @@ import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 type VaultCardProps = {
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
-  refetchVaults: () => Promise<void>;
+  deleteVault: (vault: VaultWithMembersModelDto) => void;
   allUsers: UserModelDto[];
   usersLoading: boolean;
 };
@@ -34,9 +33,8 @@ type VaultCardProps = {
 export default function VaultCard(props: VaultCardProps): JSX.Element {
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [vaultToDelete, setVaultToDelete] = useState<VaultModelDto | null>(
-    null
-  );
+  const [vaultToDelete, setVaultToDelete] =
+    useState<VaultWithMembersModelDto | null>(null);
   const [openEditMembersModal, setOpenEditMembersModal] =
     useState<boolean>(false);
 
@@ -45,9 +43,9 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     HttpInputDto<CreateVaultParamsDto, null>
   >({
     request: params => vaultsGateway.deleteVault(params!),
-    onSuccess: async () => {
+    onSuccess: () => {
       setConfirmOpen(false);
-      await props.refetchVaults();
+      if (vaultToDelete) props.deleteVault(vaultToDelete);
     },
     onError: err => {
       setConfirmOpen(false);
@@ -55,7 +53,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     },
   });
 
-  const handleDeleteClick = (vault: VaultModelDto): void => {
+  const handleDeleteClick = (vault: VaultWithMembersModelDto): void => {
     setVaultToDelete(vault);
     setConfirmOpen(true);
   };
