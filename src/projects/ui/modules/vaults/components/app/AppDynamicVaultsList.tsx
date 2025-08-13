@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import SearchBar from '@ui/components/navigation/SearchBar';
 import AddVaultModal from '@ui/modules/vaults/components/modals/AddVaultModal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { JSX } from 'react';
 import VaultsList from '../organisms/VaultsList';
 import AddIcon from '@mui/icons-material/Add';
@@ -11,14 +11,34 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
 
 export default function AppDynamicVaultsList(): JSX.Element {
   // TODO: use useVaults
-  const { vaults, loading, error, refetch } = useVaultsWithMembers();
+  const {
+    vaults: initialVaults,
+    loading,
+    error,
+    refetch,
+  } = useVaultsWithMembers();
   const [openAddVaultModal, setOpenAddVaultModal] = useState<boolean>(false);
+  const [localVaults, setLocalVaults] = useState<VaultWithMembersModelDto[]>(
+    []
+  );
+
+  useEffect(() => {
+    setLocalVaults(initialVaults);
+  }, [initialVaults]);
 
   const [searchTerm, setSearchTerm] = useState('');
   // TODO: use VaultModelDto
-  const filteredVaults: VaultWithMembersModelDto[] = vaults.filter(v =>
+  const filteredVaults: VaultWithMembersModelDto[] = localVaults.filter(v =>
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const editVault = (editedVault: VaultWithMembersModelDto): void => {
+    setLocalVaults(prevVaults =>
+      prevVaults.map(vault =>
+        vault.id === editedVault.id ? editedVault : vault
+      )
+    );
+  };
 
   return (
     <>
@@ -62,6 +82,7 @@ export default function AppDynamicVaultsList(): JSX.Element {
         searchTerm={searchTerm}
         displayedVaults={filteredVaults}
         refetchVaults={refetch}
+        editVault={editVault}
       />
     </>
   );

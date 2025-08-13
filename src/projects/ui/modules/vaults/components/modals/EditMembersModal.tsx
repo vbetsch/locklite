@@ -25,11 +25,11 @@ import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 type EditMembersModalProps = {
   vault: VaultWithMembersModelDto;
+  setVault: (vault: VaultWithMembersModelDto) => void;
   open: boolean;
   onClose: () => void;
   allUsers: UserModelDto[];
   usersLoading: boolean;
-  refreshVaults: () => Promise<void>;
 };
 
 export default function EditMembersModal(
@@ -57,9 +57,12 @@ export default function EditMembersModal(
     HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
   >({
     request: input => vaultsGateway.editVaultMembers(input!),
-    onSuccess: async () => {
+    onSuccess: () => {
       handleClose();
-      await props.refreshVaults();
+      props.setVault({
+        ...props.vault,
+        members: [...selectedUsers],
+      });
     },
     onError: err => {
       setGlobalError(err);

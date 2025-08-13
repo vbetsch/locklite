@@ -26,6 +26,7 @@ import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 type VaultCardProps = {
   // TODO: use VaultModelDto
   vault: VaultWithMembersModelDto;
+  setVault: (vault: VaultWithMembersModelDto) => void;
   refetchVaults: () => Promise<void>;
   allUsers: UserModelDto[];
   usersLoading: boolean;
@@ -82,9 +83,9 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     >
       <EditMembersModal
         vault={props.vault}
+        setVault={props.setVault}
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
-        refreshVaults={props.refetchVaults}
         allUsers={props.allUsers}
         usersLoading={props.usersLoading}
       />
