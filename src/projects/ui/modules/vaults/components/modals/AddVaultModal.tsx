@@ -110,6 +110,12 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
           value={newSecret}
           onChange={e => setNewSecret(e.target.value)}
           sx={{ mt: 2 }}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              void handleSubmit();
+            }
+          }}
         />
       </DialogContent>
       <Box
