@@ -36,28 +36,37 @@ export class MockVaultsGateway implements IVaultsGateway {
   public async getMyVaults(): Promise<
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
-    return await returnSuccessResultMock<GetMyVaultsDataDto>({
-      myVaults: myVaultsDataMock,
-    });
+    return await returnSuccessResultMock<GetMyVaultsDataDto>(
+      {
+        myVaults: myVaultsDataMock,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      4000
+    );
   }
 
   public async createVault(
     input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
-    return await returnSuccessResultMock<CreateVaultDataDto>({
-      vaultCreated: {
-        ...input.payload,
-        id: 'new',
-        members: [],
+    return await returnSuccessResultMock<CreateVaultDataDto>(
+      {
+        vaultCreated: {
+          ...input.payload,
+          id: 'new',
+          members: [],
+        },
       },
-    });
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      1500
+    );
   }
 
   public async deleteVault(
     input: HttpInputDto<CreateVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     console.log('deleteVault: ', input);
-    return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT);
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    return await returnSuccessResultMock<number>(StatusCodes.NO_CONTENT, 3000);
   }
 
   // TODO: Migrate in getMyVaults
