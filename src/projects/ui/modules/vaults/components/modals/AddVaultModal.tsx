@@ -40,8 +40,6 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
-  const [vaultCreated, setVaultCreated] =
-    useState<VaultWithMembersModelDto | null>(null);
 
   const handleClose = (): void => {
     setLabelError(null);
@@ -58,8 +56,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     request: input => vaultsGateway.createVault(input!),
     onSuccess: data => {
       handleClose();
-      if (vaultCreated) props.addVault(vaultCreated);
-      setVaultCreated(data.vaultCreated);
+      props.addVault(data.vaultCreated);
     },
     onError: err => {
       if (err instanceof BusinessError && err.message.includes('label')) {
