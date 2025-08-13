@@ -4,6 +4,7 @@ import { Grid, Typography } from '@mui/material';
 import VaultCard from '@ui/modules/vaults/components/molecules/VaultCard';
 import VaultSkeletons from '@ui/modules/vaults/components/molecules/VaultSkeletons';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { useUsers } from '@ui/modules/users/hooks/useUsers';
 
 type VaultsListProps = {
   loading: boolean;
@@ -14,6 +15,8 @@ type VaultsListProps = {
 };
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
+  const { users: allUsers, loading: usersLoading } = useUsers();
+
   if (props.loading) return <VaultSkeletons />;
 
   if (props.displayedVaults.length === 0)
@@ -34,7 +37,12 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
     >
       {props.displayedVaults.map(vault => (
         <Grid key={vault.id} size={1}>
-          <VaultCard vault={vault} refetchVaults={props.refetchVaults} />
+          <VaultCard
+            vault={vault}
+            refetchVaults={props.refetchVaults}
+            allUsers={allUsers}
+            usersLoading={usersLoading}
+          />
         </Grid>
       ))}
     </Grid>

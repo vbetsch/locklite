@@ -21,11 +21,14 @@ import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembe
 import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 type VaultCardProps = {
   // TODO: use VaultModelDto
   vault: VaultWithMembersModelDto;
   refetchVaults: () => Promise<void>;
+  allUsers: UserModelDto[];
+  usersLoading: boolean;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
@@ -82,6 +85,8 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         open={openEditMembersModal}
         onClose={() => setOpenEditMembersModal(false)}
         refreshVaults={props.refetchVaults}
+        allUsers={props.allUsers}
+        usersLoading={props.usersLoading}
       />
       <ConfirmationModal
         open={confirmOpen}

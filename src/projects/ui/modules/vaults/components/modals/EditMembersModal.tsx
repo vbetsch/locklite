@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
-import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
@@ -22,11 +21,14 @@ import type { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/e
 import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 type EditMembersModalProps = {
   vault: VaultWithMembersModelDto;
   open: boolean;
   onClose: () => void;
+  allUsers: UserModelDto[];
+  usersLoading: boolean;
   refreshVaults: () => Promise<void>;
 };
 
@@ -34,9 +36,8 @@ export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
-  const { users: allUsers, loading: usersLoading } = useUsers();
   const vaultMembers: VaultMemberModelDto[] = useMembers(props.vault.members);
-  const allMembers: VaultMemberModelDto[] = useMembers(allUsers);
+  const allMembers: VaultMemberModelDto[] = useMembers(props.allUsers);
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] =
     useState<VaultMemberModelDto[]>(vaultMembers);
@@ -78,7 +79,7 @@ export default function EditMembersModal(
     });
   };
 
-  const globalLoading: boolean = editMembersLoading || usersLoading;
+  const globalLoading: boolean = editMembersLoading || props.usersLoading;
 
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
