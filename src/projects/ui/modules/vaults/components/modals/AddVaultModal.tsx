@@ -22,11 +22,12 @@ import Form from 'next/form';
 import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 type AddVaultModalProps = {
   open: boolean;
   onClose: () => void;
-  refreshVaults: () => Promise<void>;
+  addVault: (vault: VaultWithMembersModelDto) => void;
 };
 
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
@@ -39,6 +40,8 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
+  const [vaultCreated, setVaultCreated] =
+    useState<VaultWithMembersModelDto | null>(null);
 
   const handleClose = (): void => {
     setLabelError(null);
@@ -53,9 +56,10 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     HttpInputDto<null, CreateVaultPayloadDto>
   >({
     request: input => vaultsGateway.createVault(input!),
-    onSuccess: async () => {
+    onSuccess: data => {
       handleClose();
-      await props.refreshVaults();
+      if (vaultCreated) props.addVault(vaultCreated);
+      setVaultCreated(data.vaultCreated);
     },
     onError: err => {
       if (err instanceof BusinessError && err.message.includes('label')) {

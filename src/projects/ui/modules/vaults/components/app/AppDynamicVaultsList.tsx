@@ -32,6 +32,10 @@ export default function AppDynamicVaultsList(): JSX.Element {
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const addVault = (vaultCreated: VaultWithMembersModelDto): void => {
+    setLocalVaults(prevVaults => [...prevVaults, vaultCreated]);
+  };
+
   const editVault = (editedVault: VaultWithMembersModelDto): void => {
     setLocalVaults(prevVaults =>
       prevVaults.map(vault =>
@@ -45,7 +49,7 @@ export default function AppDynamicVaultsList(): JSX.Element {
       <AddVaultModal
         open={openAddVaultModal}
         onClose={() => setOpenAddVaultModal(false)}
-        refreshVaults={refetch}
+        addVault={addVault}
       />
       <Box
         sx={{
