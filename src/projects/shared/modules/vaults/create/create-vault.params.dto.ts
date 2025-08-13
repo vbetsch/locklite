@@ -1,3 +1,3 @@
-import type { IdParamsDto } from '@shared/dto/input/id.params.dto';
-
-export type CreateVaultParamsDto = {} & IdParamsDto;
+export type CreateVaultParamsDto = {
+  vaultId: string;
+};
