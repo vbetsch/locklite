@@ -21,6 +21,7 @@ import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gatew
 import type { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
 import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import CircularLoader from '@ui/components/loaders/CircularLoader';
 
 type EditMembersModalProps = {
   vault: VaultWithMembersModelDto;
@@ -32,9 +33,10 @@ type EditMembersModalProps = {
 export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
-  const vaultMembers: VaultMemberModelDto[] = useMembers(props.vault.members);
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
   const { users: allUsers, loading: usersLoading } = useUsers();
+  const vaultMembers: VaultMemberModelDto[] = useMembers(props.vault.members);
+  const allMembers: VaultMemberModelDto[] = useMembers(allUsers);
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] =
     useState<VaultMemberModelDto[]>(vaultMembers);
@@ -76,16 +78,31 @@ export default function EditMembersModal(
     });
   };
 
+  const globalLoading: boolean = editMembersLoading || usersLoading;
+
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
       <DialogTitle>Share vault</DialogTitle>
-      <DialogContent>
-        <AvatarMultiSelect
-          allMembers={useMembers(allUsers)}
-          onChange={handleChange}
-          label={'Members'}
-          value={selectedUsers}
-        />
+      <DialogContent sx={{ paddingTop: '10px !important' }}>
+        {globalLoading ? (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <CircularLoader loading={globalLoading} />
+          </Box>
+        ) : (
+          <AvatarMultiSelect
+            allMembers={allMembers}
+            onChange={handleChange}
+            label={'Members'}
+            value={selectedUsers}
+          />
+        )}
       </DialogContent>
       <Box
         sx={{
@@ -99,12 +116,14 @@ export default function EditMembersModal(
         <ErrorMessage error={globalError} />
       </Box>
       <DialogActions sx={{ padding: '0 1.5rem 1.5rem 1.5rem' }}>
-        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose} disabled={globalLoading}>
+          Cancel
+        </Button>
         <Button
           type={'submit'}
           variant="contained"
-          loading={editMembersLoading || usersLoading}
           onClick={handleSubmit}
+          disabled={globalLoading}
         >
           Edit
         </Button>
