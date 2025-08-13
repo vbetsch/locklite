@@ -10,7 +10,6 @@ import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMem
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 export default function AppDynamicVaultsList(): JSX.Element {
-  // TODO: use useVaults
   const {
     vaults: initialVaults,
     loading,
@@ -27,7 +26,6 @@ export default function AppDynamicVaultsList(): JSX.Element {
   }, [initialVaults]);
 
   const [searchTerm, setSearchTerm] = useState('');
-  // TODO: use VaultModelDto
   const filteredVaults: VaultWithMembersModelDto[] = localVaults.filter(v =>
     v.label.toLowerCase().includes(searchTerm.toLowerCase())
   );

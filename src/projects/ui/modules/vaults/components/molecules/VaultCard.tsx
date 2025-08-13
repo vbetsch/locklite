@@ -24,7 +24,6 @@ import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 type VaultCardProps = {
-  // TODO: use VaultModelDto
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
   refetchVaults: () => Promise<void>;

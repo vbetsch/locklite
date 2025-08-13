@@ -8,7 +8,6 @@ import { useUsers } from '@ui/modules/users/hooks/useUsers';
 
 type VaultsListProps = {
   loading: boolean;
-  // TODO: use VaultModelDto
   displayedVaults: VaultWithMembersModelDto[];
   searchTerm: string;
   refetchVaults: () => Promise<void>;
