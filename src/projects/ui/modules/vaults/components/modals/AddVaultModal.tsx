@@ -11,7 +11,6 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import { UiLogger } from '@ui/ui.logger';
@@ -23,6 +22,7 @@ import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -37,7 +37,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const [newSecret, setNewSecret] = useState<string>('');
   const [labelError, setLabelError] = useState<Error | null>(null);
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
 

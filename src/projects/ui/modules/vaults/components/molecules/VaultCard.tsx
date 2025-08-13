@@ -10,7 +10,6 @@ import {
 import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
 import type { CreateVaultParamsDto } from '@shared/modules/vaults/create/create-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
-import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
@@ -21,6 +20,7 @@ import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersMo
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 
 type VaultCardProps = {
   vault: VaultWithMembersModelDto;
@@ -31,7 +31,7 @@ type VaultCardProps = {
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
-  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] =
     useState<VaultWithMembersModelDto | null>(null);
