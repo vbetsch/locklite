@@ -37,14 +37,14 @@ export default function EditMembersModal(
   props: EditMembersModalProps
 ): JSX.Element {
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
-  const vaultMembers: VaultMemberModelDto[] = useMembers(props.vault.members);
   const allMembers: VaultMemberModelDto[] = useMembers(props.allUsers);
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const [selectedUsers, setSelectedUsers] =
-    useState<VaultMemberModelDto[]>(vaultMembers);
+  const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
+    useMembers(props.vault.members)
+  );
 
   const handleClose = (): void => {
-    setSelectedUsers(vaultMembers);
+    // setSelectedUsers(vaultMembers);
     setGlobalError(null);
     props.onClose();
   };
