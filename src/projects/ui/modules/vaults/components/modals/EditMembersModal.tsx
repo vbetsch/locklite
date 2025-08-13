@@ -8,7 +8,6 @@ import {
   Box,
   Button,
 } from '@mui/material';
-import Form from 'next/form';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
 import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
