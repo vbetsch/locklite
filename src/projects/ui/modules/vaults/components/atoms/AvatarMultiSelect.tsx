@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { JSX } from 'react';
 import {
   Autocomplete,
@@ -24,24 +24,58 @@ export type AvatarMultiSelectProps = {
 export default function AvatarMultiSelect(
   props: AvatarMultiSelectProps
 ): JSX.Element {
-  const { allMembers, value, onChange, label } = props;
+  const [selectedMembers, setSelectedMembers] = useState<VaultMemberModelDto[]>(
+    props.allMembers
+  );
+
+  const onChange = (members: VaultMemberModelDto[]): void => {
+    setSelectedMembers([...members]);
+    props.onChange(members);
+  };
 
   return (
     <Autocomplete
       multiple
       disableCloseOnSelect
-      options={allMembers}
-      value={value}
+      options={props.allMembers}
+      value={props.value}
       onChange={(_, next): void => onChange(next)}
       getOptionLabel={(option): string => option.name ?? option.email}
       isOptionEqualToValue={(o, v): boolean => o.email === v.email}
-      renderInput={(params): JSX.Element => (
-        <TextField
-          {...params}
-          label={label ?? 'Select members'}
-          placeholder="Search users"
-        />
-      )}
+      renderInput={(params): JSX.Element => {
+        if (selectedMembers.length === 0)
+          return (
+            <TextField
+              {...params}
+              label={props.label ?? 'Select members'}
+              placeholder="TODO"
+              helperText="TODO"
+              error={true}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'warning.main',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-error': {
+                  color: 'warning.main',
+                },
+                '& .MuiFormHelperText-root.Mui-error': {
+                  color: 'warning.main',
+                },
+              }}
+            />
+          );
+        else
+          return (
+            <TextField
+              {...params}
+              label={props.label ?? 'Select members'}
+              placeholder="Search users"
+              helperText="Click to select members"
+            />
+          );
+      }}
       renderOption={(optionProps, option, { selected }): JSX.Element => {
         const { key, ...rest } = optionProps;
         return (
