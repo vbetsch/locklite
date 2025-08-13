@@ -48,8 +48,8 @@ export default function AvatarMultiSelect(
             <TextField
               {...params}
               label={props.label ?? 'Select members'}
-              placeholder="TODO"
-              helperText="TODO"
+              placeholder="Search users"
+              helperText="Only you will have access to this vault"
               error={true}
               sx={{
                 '& .MuiOutlinedInput-root': {
