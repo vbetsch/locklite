@@ -79,7 +79,7 @@ export default function EditMembersModal(
 
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
-      <DialogTitle>Edit members</DialogTitle>
+      <DialogTitle>Share vault</DialogTitle>
       <Form action={handleSubmit}>
         <DialogContent>
           <AvatarMultiSelect
