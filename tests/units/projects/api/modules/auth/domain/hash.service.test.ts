@@ -77,10 +77,10 @@ describe('HashService', () => {
         .mockImplementation((): void => void 0);
 
       await expect(service.hash(input)).rejects.toThrow(thrown);
-      expect(loggerSpy).toHaveBeenCalledWith(
-        'An error occurred while hashing string : ',
-        thrown
-      );
+      expect(loggerSpy).toHaveBeenCalledWith({
+        message: 'An error occurred while hashing string : ',
+        error: thrown,
+      });
 
       loggerSpy.mockRestore();
     });
@@ -120,10 +120,10 @@ describe('HashService', () => {
         .mockImplementation((): void => void 0);
 
       await expect(service.compare(data, ref)).rejects.toThrow(thrown);
-      expect(loggerSpy).toHaveBeenCalledWith(
-        'An error occurred while comparing two hashes : ',
-        thrown
-      );
+      expect(loggerSpy).toHaveBeenCalledWith({
+        message: 'An error occurred while comparing two hashes : ',
+        error: thrown,
+      });
 
       loggerSpy.mockRestore();
     });

@@ -57,9 +57,9 @@ describe('handlePrismaError', () => {
 
     const result: unknown = handlePrismaError(error);
 
-    expect(spy).toHaveBeenCalledWith(
-      'PrismaClientKnownRequestError not handled with code P1234'
-    );
+    expect(spy).toHaveBeenCalledWith({
+      message: 'PrismaClientKnownRequestError not handled with code P1234',
+    });
     expect(result).toBeInstanceOf(InternalServerError);
   });
 
@@ -84,10 +84,10 @@ describe('handlePrismaError', () => {
 
     const result: unknown = handlePrismaError(error);
 
-    expect(spy).toHaveBeenCalledWith(
-      'Error while handling prisma errors: ',
-      error
-    );
+    expect(spy).toHaveBeenCalledWith({
+      message: 'Error while handling prisma errors: ',
+      error,
+    });
     expect(result).toBeInstanceOf(InternalServerError);
   });
 });

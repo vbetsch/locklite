@@ -173,10 +173,10 @@ describe('handleApiRequest', () => {
       callback: mockCallback,
     });
 
-    expect(ApiLogger.error).toHaveBeenCalledWith(
-      'Error while handling API errors: ',
-      error
-    );
+    expect(ApiLogger.error).toHaveBeenCalledWith({
+      error: error,
+      message: 'Error while handling API errors: ',
+    });
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: { message: new InternalServerError().message } },
       { status: new InternalServerError().status }
