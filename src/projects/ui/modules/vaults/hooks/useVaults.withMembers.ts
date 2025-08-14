@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 import { useApiFetch } from '@ui/hooks/useApiFetch';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import type { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.with-members.data.dto';
+import type { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.with-members.data.dto';
 
 // TODO: remove it
 export function useVaultsWithMembers(): {

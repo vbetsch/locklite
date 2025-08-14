@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/handle-api-request';
 import { StatusCodes } from 'http-status-codes';
 import { DeleteVaultUseCase } from '@api/modules/vaults/domain/usecases/delete-vault.usecase';
-import type { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
+import type { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
 import type { HttpOptionsDto } from '@shared/dto/input/http-options.dto';
 
 /**

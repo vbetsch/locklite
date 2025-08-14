@@ -17,14 +17,14 @@ import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import { UiLogger } from '@ui/ui.logger';
 import { container } from 'tsyringe';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
-import type { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
-import type { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
+import type { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
+import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
-import type { EditMembersDataDto } from '@shared/modules/vaults/edit-members/edit-members.data.dto';
+import type { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
 
-type EditMembersModalProps = {
+type ShareVaultModalProps = {
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
   open: boolean;
@@ -33,8 +33,8 @@ type EditMembersModalProps = {
   usersLoading: boolean;
 };
 
-export default function EditMembersModal(
-  props: EditMembersModalProps
+export default function ShareVaultModal(
+  props: ShareVaultModalProps
 ): JSX.Element {
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
   const allMembers: VaultMemberModelDto[] = useMembers(props.allUsers);
@@ -54,8 +54,8 @@ export default function EditMembersModal(
   };
 
   const { execute: editVaultMembers, loading: editMembersLoading } = useApiCall<
-    EditMembersDataDto,
-    HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
+    ShareVaultDataDto,
+    HttpInputDto<ShareVaultParamsDto, ShareVaultPayloadDto>
   >({
     request: input => vaultsGateway.editVaultMembers(input!),
     onSuccess: data => {

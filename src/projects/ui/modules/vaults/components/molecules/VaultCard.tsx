@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from '@mui/material';
 import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
-import type { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
+import type { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { container } from 'tsyringe';
 import { UiLogger } from '@ui/ui.logger';
@@ -16,7 +16,7 @@ import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
-import EditMembersModal from '@ui/modules/vaults/components/modals/EditMembersModal';
+import ShareVaultModal from '@ui/modules/vaults/components/modals/ShareVaultModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
@@ -35,7 +35,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] =
     useState<VaultWithMembersModelDto | null>(null);
-  const [openEditMembersModal, setOpenEditMembersModal] =
+  const [openShareVaultModal, setOpenShareVaultModal] =
     useState<boolean>(false);
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
@@ -78,11 +78,11 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         padding: '0.5rem',
       }}
     >
-      <EditMembersModal
+      <ShareVaultModal
         vault={props.vault}
         setVault={props.setVault}
-        open={openEditMembersModal}
-        onClose={() => setOpenEditMembersModal(false)}
+        open={openShareVaultModal}
+        onClose={() => setOpenShareVaultModal(false)}
         allUsers={props.allUsers}
         usersLoading={props.usersLoading}
       />
@@ -114,7 +114,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
           Delete
         </Button>
         <VaultCardMembers
-          clickOnMembers={() => setOpenEditMembersModal(true)}
+          clickOnMembers={() => setOpenShareVaultModal(true)}
           maxMembers={3}
           members={useMembers(props.vault.members)}
         />

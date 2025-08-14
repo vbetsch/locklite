@@ -1,5 +1,5 @@
 import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
-export type EditMembersPayloadDto = {
+export type ShareVaultPayloadDto = {
   overrideMembers: VaultMemberModelDto[];
 };

@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
-import { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
+import { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
-import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
+import { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 

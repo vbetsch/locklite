@@ -1,20 +1,20 @@
 import { injectable } from 'tsyringe';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import type { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
-import type { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
-import type { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
-import type { DeleteVaultParamsDto } from '@shared/modules/vaults/delete/delete-vault.params.dto';
+import type { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
+import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
+import type { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import type { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
 import { returnSuccessResultMock } from '@ui/mocks/returnSuccessResultMock';
 import { StatusCodes } from 'http-status-codes';
-import { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.with-members.data.dto';
+import { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.with-members.data.dto';
 import { myVaultsDataMock } from '@ui/modules/vaults/mocks/myVaults.data.mock';
 import { myVaultsWithMembersDataMock } from '@ui/modules/vaults/mocks/myVaults.withMembers.data.mock';
-import { EditMembersParamsDto } from '@shared/modules/vaults/edit-members/edit-members.params.dto';
-import { EditMembersPayloadDto } from '@shared/modules/vaults/edit-members/edit-members.payload.dto';
+import { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
+import { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import { EditMembersDataDto } from '@shared/modules/vaults/edit-members/edit-members.data.dto';
+import { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
 import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
 
 let mockVaults: VaultWithMembersModelDto[] = myVaultsWithMembersDataMock;
@@ -90,9 +90,9 @@ export class MockVaultsGateway implements IVaultsGateway {
 
   // TODO: Migrate in abstract and implementations
   public async editVaultMembers(input: {
-    params: EditMembersParamsDto;
-    payload: EditMembersPayloadDto;
-  }): Promise<RequestServiceOutputType<EditMembersDataDto>> {
+    params: ShareVaultParamsDto;
+    payload: ShareVaultPayloadDto;
+  }): Promise<RequestServiceOutputType<ShareVaultDataDto>> {
     const vaultFound: VaultWithMembersModelDto | null = this._getVaultById(
       input.params.vaultId
     );
@@ -104,7 +104,7 @@ export class MockVaultsGateway implements IVaultsGateway {
       members: [...input.payload.overrideMembers, currentUserDataMock],
     };
     mockVaults[this._getVaultIndex(input.params.vaultId)] = vaultEdited;
-    return await returnSuccessResultMock<EditMembersDataDto>(
+    return await returnSuccessResultMock<ShareVaultDataDto>(
       {
         vaultEdited,
       },

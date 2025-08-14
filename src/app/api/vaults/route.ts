@@ -6,10 +6,10 @@ import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dt
 import { CreateVaultUseCase } from '@api/modules/vaults/domain/usecases/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/modules/vaults/domain/usecases/get-my-vaults.usecase';
 import { StatusCodes } from 'http-status-codes';
-import type { CreateVaultDataDto } from '@shared/modules/vaults/create/create-vault.data.dto';
-import type { GetMyVaultsDataDto } from '@shared/modules/vaults/get-my-vaults/get-my-vaults.data.dto';
+import type { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
 import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
-import type { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
+import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 /**

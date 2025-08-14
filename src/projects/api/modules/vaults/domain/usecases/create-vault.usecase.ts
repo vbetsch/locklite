@@ -7,7 +7,7 @@ import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
 import { VaultAlreadyExistsError } from '@api/modules/vaults/app/errors/vault-already-exists.error';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
-import { CreateVaultPayloadDto } from '@shared/modules/vaults/create/create-vault.payload.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
 import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
