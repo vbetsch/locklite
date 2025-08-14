@@ -101,7 +101,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     }
     const vaultEdited: VaultWithMembersModelDto = {
       ...vaultFound,
-      members: [...input.payload.overrideMembers, currentUserDataMock],
+      members: [...input.payload.sharedWithMembers, currentUserDataMock],
     };
     mockVaults[this._getVaultIndex(input.params.vaultId)] = vaultEdited;
     return await returnSuccessResultMock<ShareVaultDataDto>(

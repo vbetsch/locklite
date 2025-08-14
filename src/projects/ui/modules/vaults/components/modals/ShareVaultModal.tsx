@@ -75,7 +75,7 @@ export default function ShareVaultModal(
         vaultId: props.vault.id,
       },
       payload: {
-        overrideMembers: [...selectedUsers],
+        sharedWithMembers: [...selectedUsers],
       },
     });
   };
