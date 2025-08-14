@@ -19,14 +19,12 @@ import VaultCardMembers from '@ui/modules/vaults/components/core/atoms/VaultCard
 import ShareVaultModal from '@ui/modules/vaults/components/modals/ShareVaultModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 
 type VaultCardProps = {
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
   deleteVault: (vault: VaultWithMembersModelDto) => void;
-  allUsers: UserModelDto[];
   usersLoading: boolean;
 };
 
@@ -83,7 +81,6 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         setVault={props.setVault}
         open={openShareVaultModal}
         onClose={() => setOpenShareVaultModal(false)}
-        allUsers={props.allUsers}
         usersLoading={props.usersLoading}
       />
       <ConfirmationModal

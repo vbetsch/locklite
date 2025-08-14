@@ -21,23 +21,25 @@ import type { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share
 import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
-import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import type { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
+import type { UsersStoreState } from '@ui/modules/users/stores/users.store';
+import { usersStore } from '@ui/modules/users/stores/users.store';
+import { useStore } from '@ui/stores/hooks/useStore';
 
 type ShareVaultModalProps = {
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
   open: boolean;
   onClose: () => void;
-  allUsers: UserModelDto[];
   usersLoading: boolean;
 };
 
 export default function ShareVaultModal(
   props: ShareVaultModalProps
 ): JSX.Element {
+  const usersState: UsersStoreState = useStore(usersStore);
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
-  const allMembers: VaultMemberModelDto[] = useMembers(props.allUsers);
+  const allMembers: VaultMemberModelDto[] = useMembers(usersState.allUsers);
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
     useMembers(props.vault.members)

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { JSX } from 'react';
 import { Grid, Typography } from '@mui/material';
 import VaultCard from '@ui/modules/vaults/components/core/molecules/VaultCard';
 import VaultSkeletons from '@ui/modules/vaults/components/core/molecules/VaultSkeletons';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
+import { usersStore } from '@ui/modules/users/stores/users.store';
 
 type VaultsListProps = {
   loading: boolean;
@@ -16,6 +17,12 @@ type VaultsListProps = {
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
   const { users: allUsers, loading: usersLoading } = useUsers();
+
+  useEffect(() => {
+    usersStore.setState({
+      allUsers: allUsers,
+    });
+  }, [allUsers]);
 
   if (props.loading) return <VaultSkeletons />;
 
@@ -41,7 +48,6 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
             vault={vault}
             setVault={props.editVault}
             deleteVault={props.deleteVault}
-            allUsers={allUsers}
             usersLoading={usersLoading}
           />
         </Grid>
