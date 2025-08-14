@@ -66,7 +66,7 @@ clean:
 .PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate reset seed clean
 
 # Aliases
-run: up dev
+run: dev
 checks: lint tests
 reset_db: reset seed
 ci: lint coverage build
