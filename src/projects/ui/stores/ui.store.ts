@@ -1,7 +1,9 @@
 'use client';
 
-import type { IStore } from './store';
-import { createStore } from './store';
+// TODO: to delete
+
+import type { IStore } from '@ui/stores/interfaces/store.interface';
+import { createStore } from '@ui/stores/hooks/createStore';
 
 export type UiState = {
   readonly thisIsString: string;
