@@ -4,13 +4,11 @@ import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 
 export type UsersStoreState = {
   allUsers: UserModelDto[];
-  currentUser: UserModelDto | null;
   usersLoading: boolean;
 };
 
 const initialUiState: UsersStoreState = {
   allUsers: [],
-  currentUser: null,
   usersLoading: false,
 };
 
