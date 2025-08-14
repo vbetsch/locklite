@@ -24,6 +24,12 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
     });
   }, [allUsers]);
 
+  useEffect(() => {
+    usersStore.setState({
+      usersLoading: usersLoading,
+    });
+  }, [usersLoading]);
+
   if (props.loading) return <VaultSkeletons />;
 
   if (props.displayedVaults.length === 0)
@@ -48,7 +54,6 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
             vault={vault}
             setVault={props.editVault}
             deleteVault={props.deleteVault}
-            usersLoading={usersLoading}
           />
         </Grid>
       ))}

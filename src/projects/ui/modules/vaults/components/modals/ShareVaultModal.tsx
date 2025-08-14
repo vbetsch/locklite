@@ -31,7 +31,6 @@ type ShareVaultModalProps = {
   setVault: (vault: VaultWithMembersModelDto) => void;
   open: boolean;
   onClose: () => void;
-  usersLoading: boolean;
 };
 
 export default function ShareVaultModal(
@@ -81,7 +80,7 @@ export default function ShareVaultModal(
     });
   };
 
-  const globalLoading: boolean = editMembersLoading || props.usersLoading;
+  const globalLoading: boolean = editMembersLoading || usersState.usersLoading;
 
   return (
     <Dialog open={props.open} fullWidth maxWidth="xs">

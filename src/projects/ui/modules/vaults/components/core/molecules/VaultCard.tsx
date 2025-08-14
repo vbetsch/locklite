@@ -25,7 +25,6 @@ type VaultCardProps = {
   vault: VaultWithMembersModelDto;
   setVault: (vault: VaultWithMembersModelDto) => void;
   deleteVault: (vault: VaultWithMembersModelDto) => void;
-  usersLoading: boolean;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
@@ -81,7 +80,6 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
         setVault={props.setVault}
         open={openShareVaultModal}
         onClose={() => setOpenShareVaultModal(false)}
-        usersLoading={props.usersLoading}
       />
       <ConfirmationModal
         open={confirmOpen}
