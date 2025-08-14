@@ -11,7 +11,7 @@ import {
   TextField,
 } from '@mui/material';
 import ColorfulLetterAvatar from '@ui/components/avatars/ColorfulLetterAvatar';
-import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
+import VaultCardMembers from '@ui/modules/vaults/components/core/atoms/VaultCardMembers';
 import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 
 export type AvatarMultiSelectProps = {

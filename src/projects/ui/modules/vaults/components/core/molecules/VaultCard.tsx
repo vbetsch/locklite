@@ -7,7 +7,7 @@ import {
   CardContent,
   CardHeader,
 } from '@mui/material';
-import VaultCardContentLine from '@ui/modules/vaults/components/atoms/VaultCardContentLine';
+import VaultCardContentLine from '@ui/modules/vaults/components/core/atoms/VaultCardContentLine';
 import type { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
 import { container } from 'tsyringe';
@@ -15,7 +15,7 @@ import { UiLogger } from '@ui/ui.logger';
 import ConfirmationModal from '@ui/components/modals/ConfirmationModal';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import VaultCardMembers from '@ui/modules/vaults/components/atoms/VaultCardMembers';
+import VaultCardMembers from '@ui/modules/vaults/components/core/atoms/VaultCardMembers';
 import ShareVaultModal from '@ui/modules/vaults/components/modals/ShareVaultModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';

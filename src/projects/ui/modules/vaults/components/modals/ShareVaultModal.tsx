@@ -9,7 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import ErrorMessage from '@ui/components/errors/ErrorMessage';
-import AvatarMultiSelect from '@ui/modules/vaults/components/atoms/AvatarMultiSelect';
+import AvatarMultiSelect from '@ui/modules/vaults/components/core/atoms/AvatarMultiSelect';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
 import { useApiCall } from '@ui/hooks/useApiCall';
@@ -44,7 +44,6 @@ export default function ShareVaultModal(
   );
 
   const handleClose = (): void => {
-    // setSelectedUsers(vaultMembers);
     setGlobalError(null);
     props.onClose();
   };

@@ -1,8 +1,8 @@
 import React from 'react';
 import type { JSX } from 'react';
 import { Grid, Typography } from '@mui/material';
-import VaultCard from '@ui/modules/vaults/components/molecules/VaultCard';
-import VaultSkeletons from '@ui/modules/vaults/components/molecules/VaultSkeletons';
+import VaultCard from '@ui/modules/vaults/components/core/molecules/VaultCard';
+import VaultSkeletons from '@ui/modules/vaults/components/core/molecules/VaultSkeletons';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 
