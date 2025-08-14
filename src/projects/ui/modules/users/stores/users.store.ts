@@ -7,10 +7,10 @@ export type UsersStoreState = {
   usersLoading: boolean;
 };
 
-const initialUiState: UsersStoreState = {
+const initialState: UsersStoreState = {
   allUsers: [],
   usersLoading: false,
 };
 
 export const usersStore: IStore<UsersStoreState> =
-  createStore<UsersStoreState>(initialUiState);
+  createStore<UsersStoreState>(initialState);
