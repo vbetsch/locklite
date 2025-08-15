@@ -4,12 +4,11 @@
 
 [//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
 
-[//]: # (TODO: Modify when we will have changelogs -> CHANGELOGS)
-
 ### Références
 
 - Cahier de recettes : [RECETTES.md](RECETTES.md)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
+- Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 
 ## 1. Objectif
 
@@ -97,10 +96,7 @@ Pour chaque test en échec :
   - % d’anomalies corrigées dans les délais.
   - Nombre de régressions post-correction.
   - Évolution des anomalies critiques.
-
-[//]: # (TODO: CHANGELOGS)
-
-[//]: # (- **Journal de versions** mis à jour pour chaque correctif.)
+- **Journal de versions** mis à jour pour chaque correctif.
 
 ## 7. Exemples représentatifs
 
