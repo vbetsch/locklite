@@ -6,7 +6,7 @@ You have to install these softwares before starting :
 
 - [**Docker** Engine](https://docs.docker.com/engine/install/)
 - [**Docker** Compose](https://docs.docker.com/compose/install/)
-- [**NodeJS** (v.22.17.1)](https://nodejs.org/en/blog/release/v22.17.1)
+- [**NodeJS** v.22.17.1](https://nodejs.org/en/blog/release/v22.17.1)
 
 ### Table of contents
 
@@ -22,7 +22,7 @@ We recommend using a WSL for this project. If so, please follow the [Linux](#lin
 
 ### A. Requirements
 
-1. Create a `.env` file by copying the example file `.env.example` file. These values are only for the local
+1. Create a `.env` file by copying the example file [.env.example](../.env.example) file. These values are only for the local
    environment, you can modify it if you want.
 
 2. Start docker services with the following command
@@ -89,7 +89,7 @@ npm run prisma:seed
 
 ### A. Requirements
 
-1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
+1. Create a `.env` file by copying the example file [.env.example](../.env.example) file. You can modify it if you want.
 
 2. Start docker services with the following command
 
@@ -155,7 +155,7 @@ npm run prisma:seed
 
 ### A. Requirements
 
-1. Create a `.env` file by copying the example file `.env.example` file. You can modify it if you want.
+1. Create a `.env` file by copying the example file [.env.example](../.env.example) file. You can modify it if you want.
 
 2. Start docker services with the following command
 
