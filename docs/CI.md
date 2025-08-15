@@ -5,6 +5,7 @@
 ### Ressources
 
 - [Pipeline Github](../.github/workflows/ci.yml)
+- [Configuration NodeJS](../package.json) (inclus les commandes npm)
 
 ## 1) Objectif
 
