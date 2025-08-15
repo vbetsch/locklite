@@ -20,19 +20,16 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
 
-### Resources
+### Documentation
 
-- [Continuous Integration](../.github/workflows/ci.yml) (C2.1.2)
-
+- [Installation guide](INSTALL.md)
+- [Continuous Integration](CI.md) (C2.1.2) 
+- [Changelogs](CHANGELOG.md) (C2.2.4)
+- [Test Plan](ACCEPTANCE.md) (C2.3.1)
+- [Defect Correction Plan](BUGS.md) (C2.3.2)
+- 
 ### References
 
 - [Github repository](https://github.com/vbetsch/locklite)
 - [All releases](https://github.com/vbetsch/locklite/releases) (C2.2.4)
 - [Last release](https://github.com/vbetsch/locklite/releases/latest) (C2.2.4)
-
-### Documentation
-
-- [Installation guide](INSTALL.md)
-- [Changelogs](CHANGELOG.md) (C2.2.4)
-- [Test Plan](RECETTES.md) (C2.3.1)
-- [Defect Correction Plan](BOGUES.md) (C2.3.2)
