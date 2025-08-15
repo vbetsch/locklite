@@ -9,7 +9,7 @@
 - Schéma Prisma : [schema.prisma](../prisma/schema.prisma)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
 - Documentation API Swagger : http://localhost:3000/api/docs
-- Plan de correction des bogues : [BOGUES.md](BOGUES.md)
+- Plan de correction des bogues : [BUGS.md](BUGS.md)
 
 [//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
 
@@ -366,4 +366,4 @@ Chaque scénario est lié à :
 ## 11. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
-- Respect du [Plan de correction des bogues](BOGUES.md).
+- Respect du [Plan de correction des bogues](BUGS.md).
