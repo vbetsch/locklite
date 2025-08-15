@@ -1,4 +1,4 @@
 /node_modules/
 /dist/
 /.github/release_template.md
-README.md
+docs/README.md
