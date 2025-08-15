@@ -1,4 +1,4 @@
-# Installation guide (EN)
+# Installation guide
 
 ### Dependencies
 

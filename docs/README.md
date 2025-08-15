@@ -22,7 +22,7 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 
 ### Documentation
 
-- [Installation guide](INSTALL.md)
+- [Installation guide](INSTALL.md) (EN)
 - [Continuous Integration](CI.md) (C2.1.2)
 - [Changelogs](CHANGELOG.md) (C2.2.4)
 - [Test Plan](ACCEPTANCE.md) (C2.3.1)
