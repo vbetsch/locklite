@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                           |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|------------------------------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                        |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`                              |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           |
 
 ## 5. Tests fonctionnels
 
@@ -351,6 +351,42 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 - [ ] test manuel
 - [ ] tests unitaires
+
+### SE-F1.5-A — Partager un coffre-fort : Accès refusé
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : un non-membre ne peut ni lire, ni modifier, ni lister, ni supprimer le vault.
+
+**Security tags** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-B — Partager un coffre-fort : Révocation
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : un ex-membre ne peut plus rien faire immédiatement
+
+**Security tags** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-C — Partager un coffre-fort : Non-orphelin
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : impossible de se retirer soi même d'un vault
+
+**Security tags** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
 
 ## 8. Procédure d’exécution
 
