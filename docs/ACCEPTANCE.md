@@ -226,7 +226,7 @@ existe déjà
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
 identifiants valides
 
-**Security tags** : `OWASP-A04:2021`
+**Securité** : `OWASP-A04:2021`
 
 **Couverture** :
 
@@ -274,7 +274,7 @@ si j'ai un nom
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "error", vérifier qu'ils
 contiennent bien tous un objet `error` contenant un attribut `message`
 
-**Security tags** : `OWASP-A03:2021`
+**Securité** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -288,7 +288,7 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "data", vérifier qu'ils
 contiennent bien tous un objet `data` contenant les informations à transmettre
 
-**Security tags** : `OWASP-A03:2021`
+**Securité** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -302,7 +302,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 **Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255
 caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
 
-**Security tags** : `OWASP-A03:2021`
+**Securité** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -317,7 +317,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **Vérification** : inspection de la base de données: les coffres-forts sont bien liés à un seul et unique userId
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -329,7 +329,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
 
-**Security tags** : `OWASP-A07:2021`
+**Securité** : `OWASP-A07:2021`
 
 **Couverture** :
 
@@ -342,7 +342,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **Vérification** : sans être connecté, essayer de se rendre sur `/ui/workspace`, je dois être redirigé vers `/ui/login`
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -355,7 +355,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 **Vérification** : sans être connecté, faire appel à `GET /vaults` pour obtenir la liste des coffres-forts utilisateur.
 Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les data retournées.
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -368,7 +368,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** : un non-membre ne peut ni lire, ni modifier, ni lister, ni supprimer le vault.
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -380,7 +380,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** : un ex-membre ne peut plus rien faire immédiatement
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -392,7 +392,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** : impossible de se retirer soi même d'un vault
 
-**Security tags** : `OWASP-A01:2021`
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
