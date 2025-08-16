@@ -293,8 +293,8 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255 caractères, le
-coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255
+caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
 
 **Couverture** :
 
