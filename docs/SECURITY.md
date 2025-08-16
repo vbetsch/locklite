@@ -143,7 +143,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
-- Logger centralisé utilisé côtés API et UI.
+- Logger centralisé utilisé à la fois côté API, et à la fois côté UI.
 - Journaux natifs de Next.js pour toutes les routes.
 
 ### Mesures prévues
