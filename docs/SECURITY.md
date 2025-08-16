@@ -111,7 +111,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
-- Authentification centralisée avec le provider Credentials de NextAuth
+- Authentification centralisée avec NextAuth
 - Mots de passe maîtres hashés avec bcrypt.
 - Messages d’erreur neutres pour éviter l’énumération des comptes.
 
