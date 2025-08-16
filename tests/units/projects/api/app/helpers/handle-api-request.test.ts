@@ -108,7 +108,7 @@ describe('handleApiRequest', () => {
     );
   });
 
-  it('throws UnauthorizedError when no session (SE-GUARD)', async (): Promise<void> => {
+  it('throws UnauthorizedError when no session (SE-GUARD-API)', async (): Promise<void> => {
     (getToken as jest.Mock).mockResolvedValue({});
     (getServerSession as jest.Mock).mockResolvedValue(null);
 
