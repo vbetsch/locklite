@@ -6,8 +6,6 @@ Ce document présente les mesures de sécurité mises en place et planifiées da
 2021**.  
 L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
----
-
 ## A01:2021 – Broken Access Control
 
 ### Mesures déjà mises en place
@@ -24,8 +22,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Définir et appliquer des droits : lecture seule, édition, suppression (ACL)
 
----
-
 ## A02:2021 – Cryptographic Failures
 
 ### Mesures déjà mises en place
@@ -40,8 +36,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures restant à mettre en œuvre
 
 - Définir et documenter la stratégie de chiffrement (algorithme, gestion des clés, rotation).
-
----
 
 ## A03:2021 – Injection
 
@@ -58,8 +52,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures restant à mettre en œuvre
 
 - Ajouter une validation centralisée des données entrantes côté API (ex. zod, class-validator).
-
----
 
 ## A04:2021 – Insecure Design
 
@@ -79,8 +71,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Définir une politique de mot de passe stricte.
 
----
-
 ## A05:2021 – Security Misconfiguration
 
 ### Mesures déjà mises en place
@@ -99,8 +89,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Vérifier et fermer les endpoints non utilisés.
 
----
-
 ## A06:2021 – Vulnerable and Outdated Components
 
 ### Mesures déjà mises en place
@@ -116,8 +104,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures restant à mettre en œuvre
 
 - Définir une politique de mise à jour automatisée et validée en CI/CD.
-
----
 
 ## A07:2021 – Identification and Authentication Failures
 
@@ -135,8 +121,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Ajout d’une limitation du nombre de tentatives de connexion.
 
----
-
 ## A08:2021 – Software and Data Integrity Failures
 
 ### Mesures déjà mises en place
@@ -153,8 +137,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Signature des commits de release pour renforcer l’intégrité.
 
----
-
 ## A09:2021 – Security Logging and Monitoring Failures
 
 ### Mesures déjà mises en place
@@ -169,8 +151,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures restant à mettre en œuvre
 
 - Définir les événements critiques à journaliser (échecs d’authentification, accès refusés, erreurs serveur).
-
----
 
 ## A10:2021 – Server-Side Request Forgery (SSRF)
 
@@ -187,4 +167,3 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Définir une stratégie de filtrage et de validation des URLs côté serveur.
 
----
