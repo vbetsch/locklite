@@ -10,8 +10,8 @@
 
 ## Objectif
 
-Ce document présente les mesures de sécurité mises en place et planifiées dans LockLite, en lien avec le **Top 10 OWASP
-2021**.  
+Ce document présente les mesures de sécurité mises en place et planifiées dans LockLite, en lien avec le [Top 10 OWASP
+2021](https://owasp.org/www-project-top-ten/).  
 L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ## A01:2021 – Broken Access Control
