@@ -226,6 +226,8 @@ existe déjà
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
 identifiants valides
 
+**Security tags** : `OWASP-A04:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -272,6 +274,8 @@ si j'ai un nom
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "error", vérifier qu'ils
 contiennent bien tous un objet `error` contenant un attribut `message`
 
+**Security tags** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -284,6 +288,8 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "data", vérifier qu'ils
 contiennent bien tous un objet `data` contenant les informations à transmettre
 
+**Security tags** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -295,6 +301,8 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255
 caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+
+**Security tags** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -320,6 +328,8 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 **But** : vérifier la sécurité du stockage des mots de passe maîtres
 
 **Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
+
+**Security tags** : `OWASP-A07:2021`
 
 **Couverture** :
 
