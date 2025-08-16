@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité        |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           |
 
 ## 5. Tests fonctionnels
 
@@ -162,7 +162,7 @@ existe déjà
 
 - [ ] test manuel
 
-### TC-F1.5 — Modifier les membres d'un coffre-fort
+### TC-F1.5 — Partager un coffre-fort
 
 **Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
@@ -226,6 +226,8 @@ existe déjà
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
 identifiants valides
 
+**Securité** : `OWASP-A04:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -272,6 +274,8 @@ si j'ai un nom
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "error", vérifier qu'ils
 contiennent bien tous un objet `error` contenant un attribut `message`
 
+**Securité** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -284,6 +288,8 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "data", vérifier qu'ils
 contiennent bien tous un objet `data` contenant les informations à transmettre
 
+**Securité** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -293,8 +299,10 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255 caractères, le
-coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255
+caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+
+**Securité** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -307,8 +315,9 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données → mes coffres-forts sont liés à mon userId (tous et uniquement les
-miens)
+**Vérification** : inspection de la base de données: les coffres-forts sont bien liés à un seul et unique userId
+
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -320,21 +329,74 @@ miens)
 
 **Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
 
+**Securité** : `OWASP-A07:2021`
+
 **Couverture** :
 
 - [ ] test manuel
 - [ ] tests unitaires
 
-### SE-GUARD — Protection des routes
+### SE-GUARD-UI — Protection des routes : front-end
 
 **But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
 
 **Vérification** : sans être connecté, essayer de se rendre sur `/ui/workspace`, je dois être redirigé vers `/ui/login`
 
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-GUARD-API — Protection des routes : back-end
+
+**But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
+
+**Vérification** : sans être connecté, faire appel à `GET /vaults` pour obtenir la liste des coffres-forts utilisateur.
+Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les data retournées.
+
+**Securité** : `OWASP-A01:2021`
+
 **Couverture** :
 
 - [ ] test manuel
 - [ ] tests unitaires
+
+### SE-F1.5-A — Partager un coffre-fort : Accès refusé
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : un non-membre ne peut ni lire, ni modifier, ni lister, ni supprimer le vault.
+
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-B — Partager un coffre-fort : Révocation
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : un ex-membre ne peut plus rien faire immédiatement
+
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-C — Partager un coffre-fort : Non-orphelin
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : impossible de se retirer soi même d'un vault
+
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
 
 ## 8. Procédure d’exécution
 
