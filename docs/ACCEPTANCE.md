@@ -50,11 +50,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 [//]: # (Ajouter des tests d'accessibilité)
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité        |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                           |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                        |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`                              |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API` |
 
 ## 5. Tests fonctionnels
 
@@ -326,16 +326,34 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 - [ ] test manuel
 - [ ] tests unitaires
 
-### SE-GUARD — Protection des routes
+### SE-GUARD-UI — Protection des routes : front-end
 
 **But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
 
 **Vérification** : sans être connecté, essayer de se rendre sur `/ui/workspace`, je dois être redirigé vers `/ui/login`
 
+**Security tags** : `OWASP-A01:2021`
+
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+
+[//]: # (- [ ] tests unitaires)
+
+### SE-GUARD-API — Protection des routes : back-end
+
+**But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
+
+**Vérification** : sans être connecté, faire appel à `GET /vaults` pour obtenir la liste des coffres-forts utilisateur.
+Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les data retournées.
+
+**Security tags** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+[//]: # (- [ ] tests unitaires)
 
 ## 8. Procédure d’exécution
 
