@@ -4,6 +4,7 @@
 
 ### Références
 
+- Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 
 ## Objectif
@@ -17,15 +18,12 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures déjà mises en place
 
 - Chaque coffre-fort est lié à un seul et unique identifiant utilisateur.
-- Tests de recette pour vérifier la relation entre utilisateurs et coffres-forts.
+- Des tests de recette vérifient la relation entre utilisateurs et coffres-forts en base de données.
 
 ### Mesures prévues
 
 - Mise en place du partage de coffre-forts via une relation many-to-many (version ultérieure).
 - Introduction d’un contrôle d’accès basé sur les rôles (RBAC).
-
-### Mesures restant à mettre en œuvre
-
 - Définir et appliquer des droits : lecture seule, édition, suppression (ACL)
 
 ## A02:2021 – Cryptographic Failures
@@ -36,12 +34,8 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Mise en place du chiffrement des secrets utilisateurs (prochaine itération).
+- Mise en place du chiffrement des secrets utilisateurs (prochainement).
 - Chiffrement des usernames (email/identifiant) dans une version ultérieure.
-
-### Mesures restant à mettre en œuvre
-
-- Définir et documenter la stratégie de chiffrement (algorithme, gestion des clés, rotation).
 
 ## A03:2021 – Injection
 
@@ -54,10 +48,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Recettes de tests validant la longueur maximale des entrées (les noms des coffres-forts ne doivent pas dépasser 255
   caractères).
-
-### Mesures restant à mettre en œuvre
-
-- Ajouter une validation centralisée des données entrantes côté API (ex. zod, class-validator).
+- Ajouter une validation centralisée des données entrantes côté API (par exemple zod ou class-validator).
 
 ## A04:2021 – Insecure Design
 
@@ -90,10 +81,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Durcissement des en-têtes HTTP via un module de sécurisation adapté.
 - Documentation de la configuration de sécurité (authentification, sessions, cookies).
-
-### Mesures restant à mettre en œuvre
-
-- Vérifier et fermer les endpoints non utilisés.
 
 ## A06:2021 – Vulnerable and Outdated Components
 
@@ -130,7 +117,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures prévues
 
 - Protection de la branche `develop` également.
-- Validation de l’intégrité des dépendances avec `npm audit`.
+- Définir une politique de mise à jour automatisée et validée en CI/CD.
 
 ## A09:2021 – Security Logging and Monitoring Failures
 
@@ -141,7 +128,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Mise en place d’un outil de supervision (ex. Sentry).
+- Mise en place d’un outil de supervision (par exemple Sentry).
 - Définir les événements critiques à journaliser (échecs d’authentification, accès refusés, erreurs serveur).
 
 ## A10:2021 – Server-Side Request Forgery (SSRF)
@@ -151,11 +138,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Aucun champ URL manipulé par l’utilisateur.
 - Pas d’appels sortants sensibles dans la première version.
 
-### Mesures prévues
-
-- Validation stricte des URLs lors de l’introduction du champ "URL".
-
 ### Mesures restant à mettre en œuvre
 
-- Définir une stratégie de filtrage et de validation des URLs côté serveur.
-
+- Validation stricte des URLs lors de l’introduction du champ "URL".
