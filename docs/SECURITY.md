@@ -149,6 +149,9 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures prévues
 
 - Mise en place d’un outil de supervision (par exemple Sentry).
+
+### Mesures restantes à intégrer
+
 - Définir les événements critiques à journaliser (échecs d’authentification, accès refusés, erreurs serveur).
 
 ## A10:2021 – Server-Side Request Forgery (SSRF)
