@@ -2,6 +2,12 @@
 
 > Compétence RNCP : C2.2.3
 
+### Références
+
+- Journal de versions : [CHANGELOG.md](CHANGELOG.md)
+
+## Objectif
+
 Ce document présente les mesures de sécurité mises en place et planifiées dans LockLite, en lien avec le **Top 10 OWASP
 2021**.  
 L’objectif est de garantir l’évolutivité et la sécurité du code source.
@@ -99,10 +105,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures prévues
 
 - Mise en place de Dependabot pour la gestion proactive des dépendances.
-- Intégration régulière de `npm audit`.
-
-### Mesures restant à mettre en œuvre
-
 - Définir une politique de mise à jour automatisée et validée en CI/CD.
 
 ## A07:2021 – Identification and Authentication Failures
@@ -114,10 +116,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Messages d’erreur neutres pour éviter l’énumération des comptes.
 
 ### Mesures prévues
-
-- Audit futur des configurations NextAuth.
-
-### Mesures restant à mettre en œuvre
 
 - Ajout d’une limitation du nombre de tentatives de connexion.
 
@@ -131,25 +129,19 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
+- Protection de la branche `develop` également.
 - Validation de l’intégrité des dépendances avec `npm audit`.
-
-### Mesures restant à mettre en œuvre
-
-- Signature des commits de release pour renforcer l’intégrité.
 
 ## A09:2021 – Security Logging and Monitoring Failures
 
 ### Mesures déjà mises en place
 
-- Logger centralisé (classe abstraite `Logger`) utilisé côté API et UI.
+- Logger centralisé utilisé côtés API et UI.
 - Journaux natifs de Next.js pour toutes les routes.
 
 ### Mesures prévues
 
 - Mise en place d’un outil de supervision (ex. Sentry).
-
-### Mesures restant à mettre en œuvre
-
 - Définir les événements critiques à journaliser (échecs d’authentification, accès refusés, erreurs serveur).
 
 ## A10:2021 – Server-Side Request Forgery (SSRF)
@@ -161,7 +153,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Validation stricte des URLs lors de l’introduction de fonctionnalités de type “webhooks” ou intégrations externes.
+- Validation stricte des URLs lors de l’introduction du champ "URL".
 
 ### Mesures restant à mettre en œuvre
 
