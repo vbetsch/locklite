@@ -12,17 +12,17 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
-- Chaque vault est lié à un seul et unique `userId`.
-- Tests de recette pour vérifier l’unicité du lien vault ↔ user.
+- Chaque coffre-fort est lié à un seul et unique identifiant utilisateur.
+- Tests de recette pour vérifier la relation entre utilisateurs et coffres-forts.
 
 ### Mesures prévues
 
-- Mise en place du partage de vaults via une relation many-to-many (version ultérieure).
+- Mise en place du partage de coffre-forts via une relation many-to-many (version ultérieure).
 - Introduction d’un contrôle d’accès basé sur les rôles (RBAC).
 
 ### Mesures restant à mettre en œuvre
 
-- Définir et appliquer des règles fines de droits : lecture seule, édition, suppression.
+- Définir et appliquer des droits : lecture seule, édition, suppression (ACL)
 
 ---
 
@@ -52,7 +52,8 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Recettes de tests validant la longueur maximale des entrées (ex. vault name ≤ 255 caractères).
+- Recettes de tests validant la longueur maximale des entrées (les noms des coffres-forts ne doivent pas dépasser 255
+  caractères).
 
 ### Mesures restant à mettre en œuvre
 
@@ -71,7 +72,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Mise en place d’un mécanisme anti-brute force (limitation des tentatives).
+- Mise en place d’un mécanisme anti-brute force (limite de tentatives de connexion).
 - Ajout progressif de la gestion des rôles (RBAC).
 
 ### Mesures restant à mettre en œuvre
@@ -104,4 +105,86 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
-- Adoption du versioning
+- Adoption du versioning SemVer.
+- Journal de versions avec une catégorie dédiée aux correctifs de sécurité.
+
+### Mesures prévues
+
+- Mise en place de Dependabot pour la gestion proactive des dépendances.
+- Intégration régulière de `npm audit`.
+
+### Mesures restant à mettre en œuvre
+
+- Définir une politique de mise à jour automatisée et validée en CI/CD.
+
+---
+
+## A07:2021 – Identification and Authentication Failures
+
+### Mesures déjà mises en place
+
+- Authentification centralisée avec NextAuth (provider Credentials).
+- Mots de passe hashés avec bcrypt.
+- Messages d’erreur neutres pour éviter l’énumération des comptes.
+
+### Mesures prévues
+
+- Audit futur des configurations NextAuth.
+
+### Mesures restant à mettre en œuvre
+
+- Ajout d’une limitation du nombre de tentatives de connexion.
+
+---
+
+## A08:2021 – Software and Data Integrity Failures
+
+### Mesures déjà mises en place
+
+- CI via GitHub Actions avec tests, linter et build obligatoires.
+- Déploiement (CD) déclenché uniquement si la CI est validée.
+- Branche `main` protégée par des règles de merge strictes.
+
+### Mesures prévues
+
+- Validation de l’intégrité des dépendances avec `npm audit`.
+
+### Mesures restant à mettre en œuvre
+
+- Signature des commits de release pour renforcer l’intégrité.
+
+---
+
+## A09:2021 – Security Logging and Monitoring Failures
+
+### Mesures déjà mises en place
+
+- Logger centralisé (classe abstraite `Logger`) utilisé côté API et UI.
+- Journaux natifs de Next.js pour toutes les routes.
+
+### Mesures prévues
+
+- Mise en place d’un outil de supervision (ex. Sentry).
+
+### Mesures restant à mettre en œuvre
+
+- Définir les événements critiques à journaliser (échecs d’authentification, accès refusés, erreurs serveur).
+
+---
+
+## A10:2021 – Server-Side Request Forgery (SSRF)
+
+### Mesures déjà mises en place
+
+- Aucun champ URL manipulé par l’utilisateur.
+- Pas d’appels sortants sensibles dans la première version.
+
+### Mesures prévues
+
+- Validation stricte des URLs lors de l’introduction de fonctionnalités de type “webhooks” ou intégrations externes.
+
+### Mesures restant à mettre en œuvre
+
+- Définir une stratégie de filtrage et de validation des URLs côté serveur.
+
+---
