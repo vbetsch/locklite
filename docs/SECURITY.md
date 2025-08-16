@@ -52,7 +52,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Ajouter une validation centralisée des données entrantes côté API (par exemple zod ou class-validator).
 - Ajouter des tests d'injections dans le cahier de recettes
 
-### Mesures restant à mettre en œuvre
+### Mesures restantes à intégrer
 
 - Interdire l'usage de `dangerouslySetInnerHTML`
 
@@ -70,7 +70,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Mise en place d’un mécanisme anti-brute force (limite de tentatives de connexion).
 - Ajout progressif de la gestion des rôles (RBAC).
 
-### Mesures restant à mettre en œuvre
+### Mesures restantes à intégrer
 
 - Définir une politique de mot de passe stricte (pour les mots de passe maîtres).
 - Vérifier que les cookies de session soient sécurisés (`HttpOnly`, `Secure`, `SameSite=strict`).
@@ -91,7 +91,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Mise en place d'une authentification sur le Swagger
 - Désactivation du Swagger en production
 
-### Mesures restant à mettre en œuvre
+### Mesures restantes à intégrer
 
 - Durcissement des en-têtes HTTP via un module de sécurisation adapté.
 
@@ -122,7 +122,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
   mots de passe maîtres
 - Réinitisation possible du mot de passe maître utilisateur
 
-### Mesures restant à mettre en œuvre
+### Mesures restantes à intégrer
 
 - Ajouter une authentification multifactorielle
 
@@ -158,6 +158,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Aucun champ URL manipulé par l’utilisateur.
 - Pas d’appels sortants sensibles dans la première version.
 
-### Mesures restant à mettre en œuvre
+### Mesures restantes à intégrer
 
 - Validation stricte des URLs lors de l’introduction du champ "URL".
