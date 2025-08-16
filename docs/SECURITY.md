@@ -87,10 +87,13 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Durcissement des en-têtes HTTP via un module de sécurisation adapté.
 - Mise en place de différents environnements (par exemple develop, staging et production)
 - Mise en place d'une authentification sur le Swagger
 - Désactivation du Swagger en production
+
+### Mesures restant à mettre en œuvre
+
+- Durcissement des en-têtes HTTP via un module de sécurisation adapté.
 
 ## A06:2021 – Vulnerable and Outdated Components
 
