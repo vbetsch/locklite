@@ -162,7 +162,7 @@ existe déjà
 
 - [ ] test manuel
 
-### TC-F1.5 — Modifier les membres d'un coffre-fort
+### TC-F1.5 — Partager un coffre-fort
 
 **Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
