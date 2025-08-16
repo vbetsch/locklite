@@ -120,7 +120,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - Ajout d’une limitation du nombre de tentatives de connexion.
 - Ajouter une politique de mots de passe (longueur, minuscules, majuscules, chiffres, caractères spéciaux etc) pour les
   mots de passe maîtres
-- Réinitisation possible du mot de passe maître utilisateur
+- Réinitialisation possible du mot de passe maître utilisateur
 
 ### Mesures restantes à intégrer
 
