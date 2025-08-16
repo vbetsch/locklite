@@ -307,8 +307,9 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données → mes coffres-forts sont liés à mon userId (tous et uniquement les
-miens)
+**Vérification** : inspection de la base de données: les coffres-forts sont bien liés à un seul et unique userId
+
+**Security tags** : `OWASP-A01:2021`
 
 **Couverture** :
 
