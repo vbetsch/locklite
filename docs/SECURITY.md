@@ -44,12 +44,17 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Utilisation de Prisma (ORM) qui protège nativement contre les injections SQL.
 - TypeScript strict et DTO partagés entre UI et API.
+- Recettes de tests validant la longueur maximale des entrées (les noms des coffres-forts ne doivent pas dépasser 255
+  caractères).
 
 ### Mesures prévues
 
-- Recettes de tests validant la longueur maximale des entrées (les noms des coffres-forts ne doivent pas dépasser 255
-  caractères).
 - Ajouter une validation centralisée des données entrantes côté API (par exemple zod ou class-validator).
+- Ajouter des tests d'injections dans le cahier de recettes
+
+### Mesures restant à mettre en œuvre
+
+- Interdire l'usage de `dangerouslySetInnerHTML`
 
 ## A04:2021 – Insecure Design
 
@@ -67,7 +72,9 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures restant à mettre en œuvre
 
-- Définir une politique de mot de passe stricte.
+- Définir une politique de mot de passe stricte (pour les mots de passe maîtres).
+- Vérifier que les cookies de session soient sécurisés (`HttpOnly`, `Secure`, `SameSite=strict`).
+- Ajouter une authentification multifactorielle
 
 ## A05:2021 – Security Misconfiguration
 
@@ -81,7 +88,9 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures prévues
 
 - Durcissement des en-têtes HTTP via un module de sécurisation adapté.
-- Documentation de la configuration de sécurité (authentification, sessions, cookies).
+- Mise en place de différents environnements (par exemple develop, staging et production)
+- Mise en place d'une authentification sur le Swagger
+- Désactivation du Swagger en production
 
 ## A06:2021 – Vulnerable and Outdated Components
 
@@ -100,24 +109,31 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 ### Mesures déjà mises en place
 
 - Authentification centralisée avec NextAuth (provider Credentials).
-- Mots de passe hashés avec bcrypt.
+- Mots de passe maîtres hashés avec bcrypt.
 - Messages d’erreur neutres pour éviter l’énumération des comptes.
 
 ### Mesures prévues
 
 - Ajout d’une limitation du nombre de tentatives de connexion.
+- Ajouter une politique de mots de passe (longueur, minuscules, majuscules, chiffres, caractères spéciaux etc) pour les
+  mots de passe maîtres
+- Réinitisation possible du mot de passe maître utilisateur
+
+### Mesures restant à mettre en œuvre
+
+- Ajouter une authentification multifactorielle
 
 ## A08:2021 – Software and Data Integrity Failures
 
 ### Mesures déjà mises en place
 
 - CI via GitHub Actions avec tests, linter et build obligatoires.
-- Déploiement (CD) déclenché uniquement si la CI est validée.
 - Branche `main` protégée par des règles de merge strictes.
 
 ### Mesures prévues
 
 - Protection de la branche `develop` également.
+- Déploiement (CD) déclenché uniquement si la CI est validée.
 - Définir une politique de mise à jour automatisée et validée en CI/CD.
 
 ## A09:2021 – Security Logging and Monitoring Failures
