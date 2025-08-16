@@ -338,8 +338,6 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 - [ ] test manuel
 
-[//]: # (- [ ] tests unitaires)
-
 ### SE-GUARD-API — Protection des routes : back-end
 
 **But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
@@ -352,8 +350,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 **Couverture** :
 
 - [ ] test manuel
-
-[//]: # (- [ ] tests unitaires)
+- [ ] tests unitaires
 
 ## 8. Procédure d’exécution
 
