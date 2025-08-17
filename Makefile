@@ -26,7 +26,7 @@ build: node_modules
 	npm run build
 
 start: node_modules
-		npm run start
+	npm run start
 
 lint: node_modules
 	npm run lint
