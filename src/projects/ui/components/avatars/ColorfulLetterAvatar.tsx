@@ -45,6 +45,7 @@ export default function ColorfulLetterAvatar(
     let hash: number = 0;
 
     for (let i: number = 0; i < string.length; i += 1) {
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
