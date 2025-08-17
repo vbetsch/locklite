@@ -1,0 +1,23 @@
+name: Accessibility
+on:
+  pull_request:
+#    branches: [ main ]
+    branches: [ '**' ]
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: |
+          nohup npm start > /dev/null 2>&1 &
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3000/ui > /dev/null; then break; fi
+            sleep 1
+          done
+      - run: npm run a11y:pa11y
