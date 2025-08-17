@@ -24,7 +24,7 @@ les régressions, garantir la qualité et sécuriser les fusions vers les branch
 
 ## 3) Déclencheurs
 
-- **pull_request → `main`, `develop`**  
+- **pull_request sur `main` et `develop`**  
   Chaque PR vers `main` ou `develop` déclenche le pipeline complet (lint, tests, build).  
   La fusion est autorisée uniquement si tous les jobs passent au vert.
 
@@ -38,7 +38,7 @@ les régressions, garantir la qualité et sécuriser les fusions vers les branch
 ## 5) Séquences d’intégration
 
 L’intégration se fait en trois **jobs indépendants** exécutés en parallèle sur chaque PR.  
-L’ordre logique est : Lint → Tests → Build (même si parallélisé par GitHub Actions).
+L’ordre logique est : lint, tests, build (même si parallélisé par GitHub Actions).
 
 ### 5.1) Job `linter:eslint`
 
@@ -77,7 +77,7 @@ L’ordre logique est : Lint → Tests → Build (même si parallélisé par Git
 
 ## 7) Gestion des défaillances
 
-- **Lint en échec** : correction locale puis nouveau push → relance automatique du job.
+- **Lint en échec** : correction locale puis nouveau push déclenche une relance automatique du job.
 - **Tests en échec** : correction des tests ou du code, vérification locale (`npm run test`) puis push.
 - **Build en échec** : correction de configuration ou de code, test du build local (`npm run build`) puis push.
 
