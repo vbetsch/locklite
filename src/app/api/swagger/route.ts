@@ -2,7 +2,7 @@ import { createSwaggerSpec } from 'next-swagger-doc';
 import { NextResponse } from 'next/server';
 import { CONSTANTS } from '@shared/config/constants';
 
-export function GET(): NextResponse | null {
+export function GET(): NextResponse {
   const spec: object = createSwaggerSpec({
     apiFolder: 'src/app/api',
     schemaFolders: ['src/projects/shared/dto'],
