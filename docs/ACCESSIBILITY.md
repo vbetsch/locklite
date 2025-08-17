@@ -35,8 +35,6 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ### Automatisables
 
-* Intégration d’**Axe-core** dans les tests (via Jest + Testing Library).
-* Audit d'accessibilité avec **Lighthouse CI** dans GitHub Actions.
 * Vérification automatique des contrastes de couleurs.
 * Vérification de la hiérarchie des titres (`h1`, `h2` etc).
 * Vérification de la présence des attributs `alt` sur toutes les images.
