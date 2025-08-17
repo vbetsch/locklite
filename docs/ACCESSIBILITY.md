@@ -10,7 +10,7 @@
 ## 1. Objet et périmètre
 
 Ce document présente les actions prévues et mises en œuvre pour rendre l’application **LockLite** accessible aux
-personnes en situation de handicap, conformément au **RGAA niveau AA**.  
+personnes en situation de handicap, conformément au [RGAA niveau AA](https://accessibilite.numerique.gouv.fr/).  
 Deux catégories sont suivies :
 
 - **À mettre en place** : mesures planifiées mais pas encore réalisées.
