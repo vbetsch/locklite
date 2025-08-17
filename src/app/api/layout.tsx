@@ -18,6 +18,14 @@ export const metadata: Metadata = {
  *     description: Manage password vault entries and encryption.
  */
 
-export default function ApiLayout(props: SharedLayoutProps): JSX.Element {
-  return <>{props.children}</>;
+export default function RootLayout({
+  children,
+}: SharedLayoutProps): JSX.Element {
+  return (
+    // eslint-disable-next-line no-restricted-syntax
+    <html lang="en">
+      {/* eslint-disable-next-line no-restricted-syntax */}
+      <body>{children}</body>
+    </html>
+  );
 }
