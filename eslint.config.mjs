@@ -45,8 +45,7 @@ export default tseslint.config(
       },
       rules: {
         ...jsxA11y.configs.recommended.rules,
-        'react/jsx-uses-react': 'off',
-        'react/react-in-jsx-scope': 'off',
+
         /* Ban unsafe casts */
         'no-restricted-syntax': [
           'error',
