@@ -51,7 +51,7 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
-## 5. Non applicables
+## 5. Critères non applicables
 
 Certains critères du RGAA ne concernent pas l’application LockLite dans son état actuel :
 
