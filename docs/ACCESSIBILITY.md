@@ -38,16 +38,16 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Intégration d’**Axe-core** dans les tests (via Jest + Testing Library).
 * Audit d'accessibilité avec **Lighthouse CI** dans GitHub Actions.
 * Vérification automatique des contrastes de couleurs.
-* Vérification de la hiérarchie des titres (`h1`, `h2` …).
+* Vérification de la hiérarchie des titres (`h1`, `h2` etc).
 * Vérification de la présence des attributs `alt` sur toutes les images.
-* Vérification de l’association `label` ↔ `input` dans les formulaires.
+* Vérification de l’association `label`/`input` dans les formulaires.
 * Vérification des rôles ARIA valides et cohérents.
 
 ### Non automatisables
 
 * Vérification de la bonne navigation clavier seule (menus, modales, dialogues MUI).
 * Vérification manuelle de la pertinence des textes alternatifs (`alt`, labels).
-* Vérification de l’ordre de lecture logique (tabulation ↔ visuel ↔ sémantique).
+* Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
