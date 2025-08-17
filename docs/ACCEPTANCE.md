@@ -398,7 +398,11 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 - [ ] test manuel
 
-## 8. Procédure d’exécution
+## 8. Tests d'accessibilité
+
+TODO
+
+## 9. Procédure d’exécution
 
 - **CI** : pipeline GitHub Actions (lint, tests avec rapport de couverture, build)
 
@@ -408,7 +412,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
   1. `npm install`
   2. `npm test`
 
-## 9. Critères de réussite
+## 10. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -418,14 +422,14 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
   - 80% de lignes
   - 80% de statements
 
-## 10. Traçabilité
+## 11. Traçabilité
 
 Chaque scénario est lié à :
 
 - Un ID unique (ex. `TC-F3.1`)
 - Des tests Jest reprenant cet ID
 
-## 11. Gestion des anomalies
+## 12. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
 - Respect du [Plan de correction des bogues](BUGS.md).
