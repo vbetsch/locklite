@@ -3,10 +3,6 @@ import { NextResponse } from 'next/server';
 import { CONSTANTS } from '@shared/config/constants';
 
 export function GET(): NextResponse | null {
-  if (process.env.NODE_ENV === 'production') {
-    return null;
-  }
-
   const spec: object = createSwaggerSpec({
     apiFolder: 'src/app/api',
     schemaFolders: ['src/projects/shared/dto'],
