@@ -69,7 +69,7 @@ clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset seed clean
+.PHONY: up down dev build start lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset seed clean
 
 # Aliases
 run: up dev
@@ -77,4 +77,4 @@ checks: lint tests
 reset_db: reset seed
 ci: lint coverage build
 a11y: tests-pa11y
-.PHONY: run checks ci a11y
+.PHONY: run checks reset_db ci a11y
