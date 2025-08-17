@@ -327,7 +327,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **But** : vérifier la sécurité du stockage des mots de passe maîtres
 
-**Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
+**Vérification** : inspection de la base de données, aucun mot de passe ne doit être en clair
 
 **Securité** : `OWASP-A07:2021`
 
@@ -400,7 +400,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 ## 8. Procédure d’exécution
 
-- **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
+- **CI** : pipeline GitHub Actions (lint, tests avec rapport de couverture, build)
 
 ### Tests unitaires
 
