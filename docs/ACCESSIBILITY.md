@@ -24,6 +24,9 @@ Le référentiel choisi est le **RGAA 4.1 niveau AA** (Référentiel Général d
 le référentiel officiel imposé par la législation française pour la conformité des applications
 web, reconnu au niveau européen.
 
+Le RGAA est la déclinaison française du standard international **WCAG 2.1 niveau AA** (Web Content Accessibility
+Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
+
 ## 3. Actions à mettre en place
 
 ### Automatisables
