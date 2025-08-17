@@ -72,5 +72,6 @@ Certains critères du RGAA ne concernent pas l’application dans son état actu
 ## 7. Critères de réussite
 
 - Couverture RGAA AA sur 100% des pages et composants critiques.
-- Score ≥ 90% sur Lighthouse accessibilité.
 - Validation intégrale des recettes manuelles d’accessibilité.
+
+[//]: # (TODO: - Score ≥ 90% sur Lighthouse accessibilité.)
