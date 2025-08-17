@@ -46,15 +46,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 4. Matrice de couverture
 
-[//]: # (TODO: ACCESSIBILITY)
-
-[//]: # (Ajouter des tests d'accessibilité)
-
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     | Tests accessibilité                                   |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|-------------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-ZOOM`, `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-ZOOM`, `AC-F2.1`, `AC-F2.2`                       |
 
 ## 5. Tests fonctionnels
 
@@ -398,7 +394,120 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 - [ ] test manuel
 
-## 8. Procédure d’exécution
+## 8. Tests d'accessibilité
+
+### AC-ZOOM — Lisibilité à 200% de zoom
+
+**But** : vérifier que l’interface reste lisible et utilisable après un zoom navigateur à 200%.
+
+**Vérification** :
+
+- Activer le zoom du navigateur à 200%.
+- Les textes, champs de formulaire et boutons restent visibles sans recoupement ni perte d’information.
+- La navigation au clavier reste possible (aucun élément inaccessible).
+- Aucune barre de défilement horizontale inutile n’apparaît.
+
+**Accessibilité** : `RGAA-10.11`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.1 — Affichage des coffres-forts : navigation clavier
+
+**But** : vérifier que la liste des coffres-forts est accessible uniquement au clavier.
+
+**Vérification** :
+
+[//]: # (TODO: ajouter 'editer' dans les actions)
+
+- Naviguer avec `Tab` et `Shift+Tab`, chaque coffre-fort est atteignable.
+- Les actions (supprimer, modifier les membres) sont activables avec `Entrée` ou `Espace`.
+
+**Accessibilité** : `RGAA-9.2`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.2 — Recherche de coffres-forts : libellé et focus
+
+**But** : vérifier que la barre de recherche est correctement étiquetée et utilisable au clavier.
+
+**Vérification** :
+
+- La zone de recherche possède un `label` ou un `aria-label` explicite.
+- L’ordre de tabulation permet d’y accéder logiquement après la navigation principale.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-12.8`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.3 — Création et modification de coffres-forts : pertinence des labels
+
+**But** : vérifier que les champs de formulaire sont correctement associés à leurs libellés.
+
+**Vérification** :
+
+- Chaque champ (`nom`, `mot de passe`) possède un `label` associé.
+- Les messages d’erreur sont lisibles par un lecteur d’écran (ex. via `aria-describedby`).
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-11.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.4 — Suppression et partage de coffres-forts : confirmation accessible
+
+**But** : vérifier que les dialogues de confirmation sont accessibles.
+
+**Vérification** :
+
+- Le focus est placé automatiquement dans la modale ouverte.
+- La fermeture est possible avec la touche `Échap`.
+- Les boutons de confirmation/annulation sont atteignables au clavier.
+
+**Accessibilité** : `RGAA-12.7`, `RGAA-7.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.1 — Connexion utilisateur : lisibilité et ordre de lecture
+
+**But** : vérifier que les champs de connexion sont accessibles.
+
+**Vérification** :
+
+- Le champ email est étiqueté avec le mot "email".
+- Le champ mot de passe est étiqueté correctement et son contenu est masqué.
+- L’ordre de tabulation suit l’ordre visuel : email, mot de passe, bouton de connexion.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-9.2`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.2 — Menu profil : pertinence des intitulés
+
+**But** : vérifier que les intitulés sont clairs et accessibles au lecteur d’écran.
+
+**Vérification** :
+
+- L’icône de profil possède un `aria-label` explicite "Open profile menu".
+- Le bouton de déconnexion est lisible et activable au clavier.
+
+**Accessibilité** : `RGAA-12.8`, `RGAA-6.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+## 9. Procédure d’exécution
 
 - **CI** : pipeline GitHub Actions (lint, tests avec rapport de couverture, build)
 
@@ -408,7 +517,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
   1. `npm install`
   2. `npm test`
 
-## 9. Critères de réussite
+## 10. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -418,14 +527,14 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
   - 80% de lignes
   - 80% de statements
 
-## 10. Traçabilité
+## 11. Traçabilité
 
 Chaque scénario est lié à :
 
 - Un ID unique (ex. `TC-F3.1`)
 - Des tests Jest reprenant cet ID
 
-## 11. Gestion des anomalies
+## 12. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
 - Respect du [Plan de correction des bogues](BUGS.md).
