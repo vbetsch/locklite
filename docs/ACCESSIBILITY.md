@@ -29,7 +29,12 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ## 3. Actions mises en place
 
-*(aucune pour l’instant)*
+### Non automatisables
+
+* Vérification de la bonne navigation clavier seule (menus, modales, dialogues MUI).
+* Vérification manuelle de la pertinence des textes alternatifs (`alt`, labels).
+* Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
+* Vérification de la compréhension des intitulés de boutons et liens.
 
 ## 4. Actions à mettre en place
 
@@ -43,10 +48,6 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ### Non automatisables
 
-* Vérification de la bonne navigation clavier seule (menus, modales, dialogues MUI).
-* Vérification manuelle de la pertinence des textes alternatifs (`alt`, labels).
-* Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
-* Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
 ## 5. Critères non applicables
