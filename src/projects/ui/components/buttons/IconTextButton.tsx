@@ -8,7 +8,7 @@ type IconButtonProps = {
   onClick: () => void;
 };
 
-export default function IconButton(props: IconButtonProps): JSX.Element {
+export default function IconTextButton(props: IconButtonProps): JSX.Element {
   return (
     <Button
       startIcon={props.icon}

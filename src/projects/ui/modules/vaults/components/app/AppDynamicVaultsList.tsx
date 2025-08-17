@@ -8,7 +8,7 @@ import VaultsList from '@ui/modules/vaults/components/core/organisms/VaultsList'
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import IconButton from '@ui/components/buttons/IconButton';
+import IconTextButton from '@ui/components/buttons/IconTextButton';
 
 export default function AppDynamicVaultsList(): JSX.Element {
   const { vaults: initialVaults, loading, error } = useVaultsWithMembers();
@@ -59,7 +59,7 @@ export default function AppDynamicVaultsList(): JSX.Element {
         }}
       >
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <IconButton
+        <IconTextButton
           icon={<AddIcon />}
           text={'Add a vault'}
           onClick={() => setOpenAddVaultModal(true)}
