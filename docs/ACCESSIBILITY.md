@@ -34,7 +34,7 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
-* Vérification automatique des contrastes de couleurs.
+* Vérification des contrastes de couleurs.
 
 ### Automatisées
 
