@@ -46,7 +46,8 @@ tests-api: tests-shared
 tests-ui: tests-shared
 	npm run tests:units:ui
 
-tests-pa11y: build start
+tests-pa11y: node_modules
+	@curl -f http://localhost:3000/ui > /dev/null 2>&1 || (echo "❌ Server is not running on http://localhost:3000. Please build and start it with 'npm run start'" && exit 1)
 	npm run a11y:pa11y
 
 coverage: node_modules
