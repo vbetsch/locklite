@@ -17,7 +17,7 @@
     },
     {
       "url": "http://localhost:3000/ui/workspace",
-      "screenCapture": "03-workspace-authenticated.png",
+      "screenCapture": "02-workspace-authenticated.png",
       "actions": [
         "navigate to http://localhost:3000/ui/login",
         "wait for element input[type='email'] to be visible",
