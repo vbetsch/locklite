@@ -60,5 +60,4 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 - Couverture RGAA AA sur 100% des pages et composants critiques.
 - Score ≥ 90% sur Lighthouse accessibilité.
-- Validation des recettes manuelles d’accessibilité.
-- Documentation mise à jour (migration des actions de « À mettre en place » vers « Mis en place »).
+- Validation intégrale des recettes manuelles d’accessibilité.
