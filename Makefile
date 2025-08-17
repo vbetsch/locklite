@@ -46,7 +46,7 @@ tests-api: tests-shared
 tests-ui: tests-shared
 	npm run tests:units:ui
 
-tests-a11y: build start
+tests-pa11y: build start
 	npm run a11y:pa11y
 
 coverage: node_modules
@@ -69,11 +69,12 @@ clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate reset seed clean
+.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset seed clean
 
 # Aliases
 run: up dev
 checks: lint tests
 reset_db: reset seed
 ci: lint coverage build
-.PHONY: run checks ci
+a11y: tests-pa11y
+.PHONY: run checks ci a11y
