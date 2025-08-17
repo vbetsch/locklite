@@ -46,11 +46,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 4. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     | Tests accessibilité                        |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|--------------------------------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                          |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-F2.1`, `AC-F2.2`                       |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     | Tests accessibilité                                   |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|-------------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-ZOOM`, `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-ZOOM`, `AC-F2.1`, `AC-F2.2`                       |
 
 ## 5. Tests fonctionnels
 
@@ -395,6 +395,23 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 - [ ] test manuel
 
 ## 8. Tests d'accessibilité
+
+### AC-ZOOM — Lisibilité à 200% de zoom
+
+**But** : vérifier que l’interface reste lisible et utilisable après un zoom navigateur à 200%.
+
+**Vérification** :
+
+- Activer le zoom du navigateur à 200%.
+- Les textes, champs de formulaire et boutons restent visibles sans recoupement ni perte d’information.
+- La navigation au clavier reste possible (aucun élément inaccessible).
+- Aucune barre de défilement horizontale inutile n’apparaît.
+
+**Accessibilité** : `RGAA-10.11`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
 
 ### AC-F1.1 — Affichage des coffres-forts : navigation clavier
 
