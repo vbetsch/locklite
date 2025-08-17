@@ -77,5 +77,6 @@ run: up dev
 checks: lint tests
 reset_db: reset seed
 ci: lint coverage build
+build_start: build start
 a11y: tests-pa11y
 .PHONY: run checks reset_db ci a11y
