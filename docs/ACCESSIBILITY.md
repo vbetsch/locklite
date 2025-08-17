@@ -27,7 +27,11 @@ web, reconnu au niveau européen.
 Le RGAA est la déclinaison française du standard international **WCAG 2.1 niveau AA** (Web Content Accessibility
 Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 
-## 3. Actions à mettre en place
+## 3. Actions mises en place
+
+*(aucune pour l’instant)*
+
+## 4. Actions à mettre en place
 
 ### Automatisables
 
@@ -47,16 +51,22 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
-## 4. Actions mises en place
+## 5. Non applicables
 
-*(aucune pour l’instant)*
+Certains critères du RGAA ne concernent pas l’application LockLite dans son état actuel :
 
-## 5. Procédure d’exécution
+- Absence de contenus multimédias synchronisés (vidéo, audio) : critères sur sous-titrage, transcription et
+  audiodescription non applicables.
+- Absence de captcha ou équivalents : critères sur les alternatives accessibles aux captchas non applicables.
+- Absence de contenus en mouvement, clignotants ou animés : critères relatifs au contrôle de ces contenus non
+  applicables.
+
+## 6. Procédure d’exécution
 
 - **CI/CD** : exécution automatique des audits (Axe + Lighthouse CI) à chaque Pull Request sur la branche `main`.
 - **Recettes manuelles** : ajoutées dans le cahier de recettes au fil du développement, par fonctionnalité.
 
-## 6. Critères de réussite
+## 7. Critères de réussite
 
 - Couverture RGAA AA sur 100% des pages et composants critiques.
 - Score ≥ 90% sur Lighthouse accessibilité.
