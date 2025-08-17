@@ -400,7 +400,99 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 ## 8. Tests d'accessibilité
 
-TODO
+### AC-F1.1 — Affichage des coffres-forts : navigation clavier
+
+**But** : vérifier que la liste des coffres-forts est accessible uniquement au clavier.
+
+**Vérification** :
+
+[//]: # (TODO: ajouter 'editer' dans les actions)
+
+- Naviguer avec `Tab` et `Shift+Tab`, chaque coffre-fort est atteignable.
+- Les actions (supprimer, modifier les membres) sont activables avec `Entrée` ou `Espace`.
+
+**Accessibilité** : `RGAA-9.2`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.2 — Recherche de coffres-forts : libellé et focus
+
+**But** : vérifier que la barre de recherche est correctement étiquetée et utilisable au clavier.
+
+**Vérification** :
+
+- La zone de recherche possède un `label` ou un `aria-label` explicite.
+- L’ordre de tabulation permet d’y accéder logiquement après la navigation principale.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-12.8`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.3 — Création et modification de coffres-forts : pertinence des labels
+
+**But** : vérifier que les champs de formulaire sont correctement associés à leurs libellés.
+
+**Vérification** :
+
+- Chaque champ (`nom`, `mot de passe`) possède un `label` associé.
+- Les messages d’erreur sont lisibles par un lecteur d’écran (ex. via `aria-describedby`).
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-11.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.4 — Suppression et partage de coffres-forts : confirmation accessible
+
+**But** : vérifier que les dialogues de confirmation sont accessibles.
+
+**Vérification** :
+
+- Le focus est placé automatiquement dans la modale ouverte.
+- La fermeture est possible avec la touche `Échap`.
+- Les boutons de confirmation/annulation sont atteignables au clavier.
+
+**Accessibilité** : `RGAA-12.7`, `RGAA-7.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.1 — Connexion utilisateur : lisibilité et ordre de lecture
+
+**But** : vérifier que les champs de connexion sont accessibles.
+
+**Vérification** :
+
+- Le champ email est étiqueté avec le mot "email".
+- Le champ mot de passe est étiqueté correctement et son contenu est masqué.
+- L’ordre de tabulation suit l’ordre visuel : email, mot de passe, bouton de connexion.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-9.2`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.2 — Menu profil : pertinence des intitulés
+
+**But** : vérifier que les intitulés sont clairs et accessibles au lecteur d’écran.
+
+**Vérification** :
+
+- L’icône de profil possède un `aria-label` explicite "Open profile menu".
+- Le bouton de déconnexion est lisible et activable au clavier.
+
+**Accessibilité** : `RGAA-12.8`, `RGAA-6.1`
+
+**Couverture** :
+
+- [ ] test manuel
 
 ## 9. Procédure d’exécution
 
