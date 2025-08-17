@@ -10,7 +10,21 @@ type LetterAvatarProps = {
   userName: string | null;
 };
 
-// Extract from https://mui.com/material-ui/react-avatar/#letter-avatars
+const ACCESSIBLE_COLORS: string[] = [
+  '#1976d2',
+  '#388e3c',
+  '#f57c00',
+  '#7b1fa2',
+  '#c2185b',
+  '#00796b',
+  '#5d4037',
+  '#455a64',
+  '#e64a19',
+  '#303f9f',
+  '#689f38',
+  '#fbc02d',
+];
+
 export default function ColorfulLetterAvatar(
   props: LetterAvatarProps
 ): JSX.Element {
@@ -27,7 +41,7 @@ export default function ColorfulLetterAvatar(
     );
   }
 
-  const stringToColor = (string: string): string => {
+  const stringToAccessibleColor = (string: string): string => {
     let hash: number = 0;
 
     for (let i: number = 0; i < string.length; i += 1) {
@@ -35,15 +49,8 @@ export default function ColorfulLetterAvatar(
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    let color: string = '#';
-    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-    for (let i: number = 0; i < 3; i += 1) {
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      const value: number = (hash >> (i * 8)) & 0xff;
-      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      color += `00${value.toString(16)}`.slice(-2);
-    }
-    return color;
+    const colorIndex: number = Math.abs(hash) % ACCESSIBLE_COLORS.length;
+    return ACCESSIBLE_COLORS[colorIndex];
   };
 
   const stringAvatar = (
@@ -61,7 +68,8 @@ export default function ColorfulLetterAvatar(
     return {
       sx: {
         ...avatarSxStyle,
-        bgcolor: stringToColor(name),
+        bgcolor: stringToAccessibleColor(name),
+        color: '#ffffff',
       },
       children: initials,
     };

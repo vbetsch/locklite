@@ -43,16 +43,13 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de la présence des attributs `alt` sur toutes les images.
 * Vérification de l’association `label`/`input` dans les formulaires.
 * Vérification des rôles ARIA valides et cohérents.
+* Vérification automatique des contrastes de couleurs.
 
 ## 4. Actions à mettre en place
 
 ### Non automatisables
 
 * Vérification de la hiérarchie des titres (`h1`, `h2` etc).
-
-### Automatisables
-
-* Vérification automatique des contrastes de couleurs.
 
 ## 5. Critères non applicables
 
@@ -72,5 +69,6 @@ Certains critères du RGAA ne concernent pas l’application dans son état actu
 ## 7. Critères de réussite
 
 - Couverture RGAA AA sur 100% des pages et composants critiques.
-- Score ≥ 90% sur Lighthouse accessibilité.
 - Validation intégrale des recettes manuelles d’accessibilité.
+
+[//]: # (TODO: - Score ≥ 90% sur Lighthouse accessibilité.)

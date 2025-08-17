@@ -25,6 +25,9 @@ dev: node_modules
 build: node_modules
 	npm run build
 
+start: node_modules
+	npm run start
+
 lint: node_modules
 	npm run lint
 
@@ -42,6 +45,10 @@ tests-api: tests-shared
 
 tests-ui: tests-shared
 	npm run tests:units:ui
+
+tests-pa11y: node_modules
+	@curl -f http://localhost:3000/ui > /dev/null 2>&1 || (echo "❌ Server is not running on http://localhost:3000. Please build and start it with 'npm run start'" && exit 1)
+	npm run a11y:pa11y
 
 coverage: node_modules
 	npm run test:cov
@@ -63,11 +70,13 @@ clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build lint format tests tests-shared tests-api tests-ui coverage migrate reset seed clean
+.PHONY: up down dev build start lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset seed clean
 
 # Aliases
 run: up dev
 checks: lint tests
 reset_db: reset seed
 ci: lint coverage build
-.PHONY: run checks ci
+build_start: build start
+a11y: tests-pa11y
+.PHONY: run checks reset_db ci a11y
