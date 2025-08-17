@@ -61,7 +61,7 @@ Certains critères du RGAA ne concernent pas l’application dans son état actu
 
 ## 6. Procédure d’exécution
 
-- **CI/CD** : exécution automatique des audits (Axe + Lighthouse CI) à chaque Pull Request sur la branche `main`.
+- **CI/CD** : exécution automatique des audits à chaque Pull Request sur la branche `main`.
 - **Recettes manuelles** : ajoutées dans le cahier de recettes au fil du développement, par fonctionnalité.
 
 ## 7. Critères de réussite
