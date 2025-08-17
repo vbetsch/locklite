@@ -20,12 +20,12 @@ Les actions non automatisables sont couvertes par les recettes.
 
 ## 2. Référentiel choisi
 
-Le référentiel choisi est le **RGAA 4.1 niveau AA** (Référentiel Général d’Amélioration de l’Accessibilité) car il est
+Le référentiel choisi est le **RGAA 4.1 niveau AA** (_Référentiel Général d’Amélioration de l’Accessibilité_) car il est
 le référentiel officiel imposé par la législation française pour la conformité des applications
 web, reconnu au niveau européen.
 
-Le RGAA est la déclinaison française du standard international **WCAG 2.1 niveau AA** (Web Content Accessibility
-Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
+Le RGAA est la déclinaison française du standard international **WCAG 2.1 niveau AA** (_Web Content Accessibility
+Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ## 3. Actions mises en place
 
