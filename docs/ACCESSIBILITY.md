@@ -37,15 +37,18 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
+### Automatisables
+
+* Vérification de la hiérarchie des titres (`h1`, `h2` etc).
+* Vérification de la présence des attributs `alt` sur toutes les images.
+* Vérification de l’association `label`/`input` dans les formulaires.
+* Vérification des rôles ARIA valides et cohérents.
+
 ## 4. Actions à mettre en place
 
 ### Automatisables
 
 * Vérification automatique des contrastes de couleurs.
-* Vérification de la hiérarchie des titres (`h1`, `h2` etc).
-* Vérification de la présence des attributs `alt` sur toutes les images.
-* Vérification de l’association `label`/`input` dans les formulaires.
-* Vérification des rôles ARIA valides et cohérents.
 
 ## 5. Critères non applicables
 
