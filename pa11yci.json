@@ -1,0 +1,17 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "standard": "WCAG2AA",
+    "wait": 1000,
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+      ]
+    }
+  },
+  "urls": [
+    "http://localhost:3000/login",
+    "http://localhost:3000/workspace"
+  ]
+}

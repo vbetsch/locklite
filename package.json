@@ -19,7 +19,8 @@
     "prisma:migrate": "prisma migrate dev --name",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
-    "prisma:seed": "tsx src/projects/api/infra/prisma/seed/seed.ts"
+    "prisma:seed": "tsx src/projects/api/infra/prisma/seed/seed.ts",
+    "a11y:pa11y": "pa11y-ci"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
