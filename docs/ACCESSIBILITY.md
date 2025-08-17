@@ -53,7 +53,7 @@ Guidelines). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ## 5. Critères non applicables
 
-Certains critères du RGAA ne concernent pas l’application LockLite dans son état actuel :
+Certains critères du RGAA ne concernent pas l’application dans son état actuel :
 
 - Absence de contenus multimédias synchronisés (vidéo, audio) : critères sur sous-titrage, transcription et
   audiodescription non applicables.
