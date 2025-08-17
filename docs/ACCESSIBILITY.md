@@ -39,6 +39,7 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ### Automatisables
 
+* Vérification automatique des contrastes de couleurs.
 * Vérification que chaque titre (`h1`, `h2` etc) possède du contenu
 * Vérification de la présence des attributs `alt` sur toutes les images.
 * Vérification de l’association `label`/`input` dans les formulaires.
@@ -49,10 +50,6 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 ### Non automatisables
 
 * Vérification de la hiérarchie des titres (`h1`, `h2` etc).
-
-### Automatisables
-
-* Vérification automatique des contrastes de couleurs.
 
 ## 5. Critères non applicables
 
