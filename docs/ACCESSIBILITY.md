@@ -46,6 +46,10 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ## 4. Actions à mettre en place
 
+### Non automatisables
+
+* Vérification de la hiérarchie des titres (`h1`, `h2` etc).
+
 ### Automatisables
 
 * Vérification automatique des contrastes de couleurs.
