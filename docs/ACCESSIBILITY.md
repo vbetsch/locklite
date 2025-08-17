@@ -13,8 +13,8 @@ Ce document présente les actions prévues et mises en œuvre pour rendre l’ap
 personnes en situation de handicap, conformément au [RGAA niveau AA](https://accessibilite.numerique.gouv.fr/).  
 Deux catégories sont suivies :
 
-- **À mettre en place** : mesures planifiées mais pas encore réalisées.
 - **Mis en place** : mesures déjà mises en place soit dans l'application, soit dans les processus.
+- **À mettre en place** : mesures planifiées mais pas encore réalisées.
 
 Les actions non automatisables sont couvertes par les recettes.
 
@@ -35,6 +35,7 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification manuelle de la pertinence des textes alternatifs (`alt`, labels).
 * Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
 * Vérification de la compréhension des intitulés de boutons et liens.
+* Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
 ## 4. Actions à mettre en place
 
@@ -45,10 +46,6 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 * Vérification de la présence des attributs `alt` sur toutes les images.
 * Vérification de l’association `label`/`input` dans les formulaires.
 * Vérification des rôles ARIA valides et cohérents.
-
-### Non automatisables
-
-* Vérification de la lisibilité à 200% de zoom sans perte d’information.
 
 ## 5. Critères non applicables
 
