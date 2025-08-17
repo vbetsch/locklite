@@ -5,15 +5,17 @@ import type { JSX } from 'react';
 import PageContainer from '@ui/components/templates/PageContainer';
 import { SignInForm } from '@ui/modules/auth/components/organisms/SignInForm';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
-import { Alert } from '@mui/material';
+import { Alert, Typography } from '@mui/material';
 
 export default function SignInPage(): JSX.Element {
   return (
     <PageContainer title={'Login'}>
       <Alert variant="filled" severity="error">
-        {/* eslint-disable-next-line no-restricted-syntax */}
-        This application is <b>fictitious</b>. We strongly recommend that you do
-        not enter your real login details.
+        This application is{' '}
+        <Typography component="span" fontWeight="bold">
+          fictitious
+        </Typography>
+        . We strongly recommend that you do not enter your real login details.
       </Alert>
       <Suspense fallback={<CircularLoader loading />}>
         <SignInForm />
