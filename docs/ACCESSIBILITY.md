@@ -16,8 +16,6 @@ Deux catégories sont suivies :
 - **Mis en place** : mesures déjà mises en place soit dans l'application, soit dans les processus.
 - **À mettre en place** : mesures planifiées mais pas encore réalisées.
 
-Les actions non automatisables sont couvertes par les recettes.
-
 ## 2. Référentiel choisi
 
 Le référentiel choisi est le **RGAA 4.1 niveau AA** (_Référentiel Général d’Amélioration de l’Accessibilité_) car il est
@@ -29,27 +27,31 @@ Guidelines_). Le respect du RGAA assure donc également la conformité aux WCAG.
 
 ## 3. Actions mises en place
 
-### Non automatisables
+### Non automatisées
 
 * Vérification de la bonne navigation clavier seule (menus, modales, dialogues MUI).
 * Vérification manuelle de la pertinence des textes alternatifs (`alt`, labels).
 * Vérification de l’ordre de lecture logique (tabulation/visuel/sémantique).
 * Vérification de la compréhension des intitulés de boutons et liens.
 * Vérification de la lisibilité à 200% de zoom sans perte d’information.
+* Vérification des contrastes de couleurs.
 
-### Automatisables
+### Automatisées
 
 * Vérification que chaque titre (`h1`, `h2` etc) possède du contenu
 * Vérification de la présence des attributs `alt` sur toutes les images.
 * Vérification de l’association `label`/`input` dans les formulaires.
 * Vérification des rôles ARIA valides et cohérents.
-* Vérification automatique des contrastes de couleurs.
 
 ## 4. Actions à mettre en place
 
 ### Non automatisables
 
 * Vérification de la hiérarchie des titres (`h1`, `h2` etc).
+
+### Automatisables
+
+* Vérification automatique des contrastes de couleurs.
 
 ## 5. Critères non applicables
 
