@@ -20,7 +20,7 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx src/projects/api/infra/prisma/seed/seed.ts",
-    "a11y:pa11y": "pa11y-ci --config pa11yci.json"
+    "a11y:pa11y": "pa11y-ci --config tests/a11y/pa11yci.json"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
