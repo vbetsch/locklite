@@ -25,6 +25,9 @@ dev: node_modules
 build: node_modules
 	npm run build
 
+start: node_modules
+		npm run start
+
 lint: node_modules
 	npm run lint
 
@@ -42,6 +45,9 @@ tests-api: tests-shared
 
 tests-ui: tests-shared
 	npm run tests:units:ui
+
+tests-a11y: build start
+	npm run a11y:pa11y
 
 coverage: node_modules
 	npm run test:cov
