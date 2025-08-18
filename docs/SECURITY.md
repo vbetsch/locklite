@@ -89,7 +89,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures prévues
 
-- Mise en place d'une authentification sur le Swagger
+- Mise en place d'une authentification sur l'API
 
 ### Mesures restantes à intégrer
 
