@@ -4,6 +4,7 @@
 
 ### Références
 
+- Intégration continue : [INTEGRATION.md](INTEGRATION.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
