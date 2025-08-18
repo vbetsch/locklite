@@ -4,6 +4,8 @@
 
 > Compétence RNCP : C2.1.1
 
+[//]: # (TODO: Add when we will have sentry -> SENTRY)
+
 [//]: # (TODO: Add when we will have lighthouse -> LIGHTHOUSE)
 
 ### Références
@@ -25,10 +27,10 @@ reste fiable, maintenable et performant.
 
 ### 2.1 Code et maintenabilité
 
-- **Langage** : TypeScript avec compilation stricte (tsconfig en mode strict).
-- **Normes** : ESLint (analyse statique), Prettier (formatage automatique).
-- **Couverture de tests** : seuil minimum fixé à 80% (unitaires).
-- **Documentation** technique associée (Swagger pour l’API et README).
+- **Langage** : TypeScript avec compilation stricte (_tsconfig en mode strict_).
+- **Normes** : ESLint (_analyse statique_), Prettier (_formatage automatique_).
+- **Couverture de tests** : seuil minimum fixé à 80% (_unitaires_).
+- **Documentation** technique associée (_Swagger pour l’API et README_).
 - Gestion des **dépendances** sécurisée et mise à jour régulière.
 
 ### 2.2 Processus de vérification
@@ -67,9 +69,11 @@ reste fiable, maintenable et performant.
 ## 5. Fiabilité des déploiements
 
 - Chaque déploiement est associé à un commit et un tag Git.
-- Rollback en moins de 5 minutes possible via revert Git + redeploiement Vercel.
-- Health check automatique exposé sur /api/health.
-- Suivi des logs et alertes via Sentry.
+- Rollback en moins de 5 minutes possible via revert Git + redéploiement Vercel.
+
+[//]: # (TODO: SENTRY)
+
+[//]: # (- Suivi des logs et alertes via Sentry.)
 
 ## 6. Traçabilité
 
