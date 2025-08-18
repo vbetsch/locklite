@@ -26,7 +26,7 @@ export default tseslint.config(
     ...compat.extends('plugin:react/recommended'),
 
     {
-      ignores: ['*', '!src/**', 'src/app/sentry-example-page', 'src/app/api/sentry-example-api', '!tests/**'],
+      ignores: ['*', '!src/**', '!tests/**'],
     },
 
     {
