@@ -4,7 +4,7 @@ import type { RegisterPayloadDto } from '@shared/dto/input/payloads/register.pay
 import { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { UserAdapter } from '@api/app/adapters/user.adapter';
 import { UsersRepository } from '@api/infra/repositories/users.repository';
-import { User } from '@prisma/generated';
+import { User } from '@prisma/client';
 import { HashService } from '@api/domain/services/hash.service';
 import { UserAlreadyExistsError } from '@api/domain/errors/auth/user-already-exists.error';
 

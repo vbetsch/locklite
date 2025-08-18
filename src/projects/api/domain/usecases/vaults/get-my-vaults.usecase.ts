@@ -3,7 +3,7 @@ import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { inject, injectable } from 'tsyringe';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAdapter } from '@api/app/adapters/vault.adapter';
-import { Vault, User } from '@prisma/generated';
+import { Vault, User } from '@prisma/client';
 import { CurrentUserService } from '@api/domain/services/current-user.service';
 
 @injectable()

@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
 import { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
-import { Vault, User as UserModel } from '@prisma/generated';
+import { Vault, User as UserModel } from '@prisma/client';
 import { VaultAdapter } from '@api/app/adapters/vault.adapter';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { VaultAlreadyExistsError } from '@api/domain/errors/vaults/vault-already-exists.error';

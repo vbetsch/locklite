@@ -4,7 +4,7 @@ import { SignInPayloadDto } from '@shared/dto/input/payloads/sign-in.payload.dto
 import { UserAdapter } from '@api/app/adapters/user.adapter';
 import { UsersRepository } from '@api/infra/repositories/users.repository';
 import { HashService } from '@api/domain/services/hash.service';
-import { User } from '@prisma/generated';
+import { User } from '@prisma/client';
 import { UserModelDto } from '@shared/dto/models/user.model.dto';
 
 @injectable()

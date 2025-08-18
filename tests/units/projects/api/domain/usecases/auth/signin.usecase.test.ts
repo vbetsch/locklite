@@ -3,7 +3,7 @@ import type { SignInPayloadDto } from '@shared/dto/input/payloads/sign-in.payloa
 import type { UsersRepository } from '@api/infra/repositories/users.repository';
 import type { HashService } from '@api/domain/services/hash.service';
 import type { UserAdapter } from '@api/app/adapters/user.adapter';
-import type { User } from '@prisma/generated';
+import type { User } from '@prisma/client';
 import type { UserModelDto } from '@shared/dto/models/user.model.dto';
 import { SignInUseCase } from '@api/domain/usecases/auth/signin.usecase';
 

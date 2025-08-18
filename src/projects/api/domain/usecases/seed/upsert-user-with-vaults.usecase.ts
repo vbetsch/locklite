@@ -1,6 +1,6 @@
 import type { IUseCaseWithInput } from '@api/domain/usecases/abstract/usecase.with-input.interface';
 import type { UserTypeSeed } from '@api/infra/prisma/seed/types/user.type.seed';
-import type { User, Vault } from '@prisma/generated';
+import type { User, Vault } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
 import { VaultsRepository } from '@api/infra/repositories/vaults.repository';
 import { HashService } from '@api/domain/services/hash.service';
