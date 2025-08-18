@@ -192,7 +192,7 @@ existe déjà
 **Étapes** :
 
 1. Se rendre sur `/ui/login`
-2. Entrer l'email et le mot de passe de votre utilisateur
+2. Entrer l'email et le mot de passe maître de votre utilisateur
 3. Cliquer sur le bouton pour se connecter
 
 **Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône du profil dans la barre de navigation
@@ -316,7 +316,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **But** : vérifier la sécurité du stockage des mots de passe maîtres
 
-**Vérification** : inspection de la base de données, aucun mot de passe ne doit être en clair
+**Vérification** : inspection de la base de données, aucun mot de passe maître ne doit être en clair
 
 **Securité** : `OWASP-A07:2021`
 
@@ -444,7 +444,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** :
 
-- Chaque champ (`nom`, `mot de passe`) possède un `label` associé.
+- Chaque champ (nom, mot de passe) possède un `label` associé.
 - Les messages d’erreur sont lisibles par un lecteur d’écran (ex. via `aria-describedby`).
 
 **Accessibilité** : `RGAA-4.1`, `RGAA-11.1`
