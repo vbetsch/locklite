@@ -1,13 +1,15 @@
-import type {NextConfig} from 'next';
-
-const nextConfig: NextConfig = {
-  output: 'standalone',
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+    typedRoutes: true
+  },
   typescript: {
     ignoreBuildErrors: false
   },
   eslint: {
     ignoreDuringBuilds: false
   }
-};
+}
 
-export default nextConfig;
+module.exports = nextConfig
