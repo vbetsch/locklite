@@ -1,69 +1,84 @@
-# Déploiement continu
+# Manuel de déploiement
 
-> Compétence RNCP : C2.1.1
+> Compétence RNCP : C2.4.1
 
 ### Références
 
-- Intégration continue : [INTEGRATION.md](INTEGRATION.md)
+- Déploiement continu : [CD.md](CD.md)
+
+### Ressources
+
+- Variables d'environnement : [.env.example](../.env.example)
+- Migrations Prisma : [migrations](../prisma/migrations)
 
 ## 1. Objectif
 
-Garantir que l’application **LockLite** puisse être déployée automatiquement, de manière fiable et traçable, sur les
-différents environnements.  
-Le protocole s’intègre dans le cycle de développement afin d’assurer la qualité, la performance et la stabilité du
-logiciel.
+Ce manuel décrit les étapes nécessaires pour déployer l’application **LockLite** sur les différents environnements.  
+Il assure la traçabilité des choix techniques et permet à n'importe qui de reproduire le déploiement dans un cadre
+maîtrisé.
 
-## 2. Environnements de déploiement
+## 2. Technologies utilisées
 
-Chaque environnement possède une base de données dédiée et indépendante, ce qui permet d’éviter tout conflit de données.
+- **Langage** : TypeScript (compilé avec tsc en mode strict)
+- **Framework** : Next.js (App Router)
+- **Serveur d’application** : Vercel (hébergement et déploiement automatisé)
+- **Base de données** : PostgreSQL (hébergée sur Neon)
+- **ORM** : Prisma (gestion des migrations et du schéma)
+- **Gestion des sources** : Git + GitHub (workflow GitFlow simplifié)
+- **Intégration / déploiement** : Vercel bot (déploiement continu) et GitHub Actions (CI complémentaire)
+- **Sécurité des secrets** : variables d’environnement stockées dans GitHub et Vercel
 
-- **Développement** : déploiements éphémères déclenchés lors de la fusion d'une branche de développement. Utilisé par les développeurs pour
-  valider leur travail en conditions réelles. _Accessible uniquement aux membres du projet via authentification Vercel._
-- **Préproduction (preview)** : déploiements automatiques de la branche `develop`. Permet de valider l’ensemble des
-  fonctionnalités avant une release. _Accessible uniquement aux membres du projet via authentification Vercel._
-- **Production** : déploiements automatiques de la branche `main`. Environnement stable pour
-  les utilisateurs finaux. _Accessible publiquement._
+## 3. Pré-requis
 
-## 3. Outils mobilisés
+- Compte GitHub connecté à Vercel
+- Projet configuré sur Vercel avec trois environnements distincts : development, preview, production
+- Bases PostgreSQL distinctes sur Neon (une par environnement)
+- Variables d’environnement définies dans Vercel
 
-- **Compilateur / Langage** : TypeScript (_`tsc` en mode strict_).
-- **Framework / Serveur d’application** : Next.js (_hébergé sur Vercel_).
-- **Base de données** : PostgreSQL (_hébergée sur Neon_) avec ORM Prisma.
-- **Gestion des sources** : GitHub (_branches nommées selon un Gitflow simplifié_).
-- **Intégration / déploiement** : Vercel (_bot intégré à GitHub_).
-- **Qualité** : ESLint, Prettier, Jest (_tests unitaires et d’intégration_).
-- **Sécurité** : GitGuardian (_vérification des secrets_).
+## 4. Processus de déploiement
 
-## 4. Séquences de déploiement
+### 4.1 Déploiement en environnement de développement
 
-1. **Création de branche** : un développeur ouvre une branche à partir de `develop`.
-2. **Pull Request vers `develop`** :
-   - Vérification automatique : lint, tests unitaires, build, déploiement éphémère.
-   - Si un échec survient, alors des corrections sont réalisées avant le merge.
+1. Créer une branche depuis `develop`
+2. Développer et committer les changements
+3. Pousser la branche sur GitHub
+4. Ouvrir une pull request vers `develop`
+   * Vercel déclenche automatiquement un déploiement éphémère
+   * L’URL est visible dans la pull request
 
-3. **Merge dans `develop`** :
-   - Déclenche un déploiement automatique sur l’environnement **préproduction**.
-   - Tests manuels et recettes utilisateurs exécutés sur cet environnement.
+### 4.2 Déploiement en préproduction (preview)
 
-4. **Release** :
-   - Rédaction d’une release note.
-   - Validation finale de toutes les recettes sur préproduction.
-   - Merge de `develop` vers `main`.
+1. Une fois la pull request validée et mergée dans develop, Vercel déploie automatiquement sur l’environnement
+**preview**
+2. Les tests automatisés (CI GitHub) et manuels sont réalisés sur cet environnement
+3. Si les recettes sont validées, une release est préparée
 
-5. **Déploiement en production** :
-   - Déploiement automatique via Vercel.
-   - Vérification post-déploiement.
-   - Publication de la release officielle.
+### 4.3 Déploiement en production
 
-6. **Rollback (si nécessaire)** :
-   - Revert Git sur `main`.
-   - Redeploiement immédiat de la version précédente sur Vercel.
+1. Préparer une release sur GitHub : créer un nouveau tag (vX.Y.Z) et mettre à jour la documentation
+2. Merger la branche `develop` dans `main`
+3. Le merge déclenche automatiquement le déploiement **production** sur Vercel
+4. Vérifier le déploiement : connexion, création d’un coffre-fort, recherche
 
-## 5. Conclusion
+### 4.4 Rollback
 
-Ce protocole assure :
+En cas d’échec en production :
 
-- Un **cycle complet de CI/CD** (tests automatiques + déploiement Vercel).
-- La **séparation stricte des environnements**.
-- Une **qualité logicielle mesurable** (tests, lint, recettes).
-- Des **garde-fous opérationnels** (rollback, contrôle des secrets).
+1. Identifier le commit fautif
+2. Effectuer un revert sur la branche `main`
+3. Vercel redéploie automatiquement la version corrigée
+4. Les correctifs sont développés dans une nouvelle branche et repassent par `develop`
+
+## 5. Traçabilité
+
+- Chaque déploiement est associé à un commit Git et un tag
+- L’historique est consultable dans GitHub (commits, pull requests, releases) et dans Vercel (logs et statuts de
+  déploiement)
+- Les changements de base de données sont versionnés par les migrations Prisma
+
+## 6. Résumé des bonnes pratiques
+
+- **Ne jamais committer de secrets** : utilisation obligatoire des variables d’environnement
+- Ne jamais merger sur main sans validation complète en préproduction
+- Vérifier systématiquement l'environnement de production après déploiement
+- Documenter chaque release avant de la déployer en production

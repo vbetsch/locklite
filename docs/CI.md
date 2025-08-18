@@ -4,7 +4,7 @@
 
 ### Références
 
-- Déploiement continu : [DEPLOYMENT.md](DEPLOYMENT.md)
+- Déploiement continu : [CD.md](CD.md)
 
 ### Ressources
 
