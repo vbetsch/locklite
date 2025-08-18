@@ -11,8 +11,6 @@
 - Documentation API Swagger : http://localhost:3000/api/docs
 - Plan de correction des bogues : [BUGS.md](BUGS.md)
 
-[//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
-
 [//]: # (TODO: Modify when we will have production environment -> PROD)
 
 ## 1. Objet et périmètre

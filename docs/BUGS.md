@@ -2,13 +2,12 @@
 
 > Compétence RNCP : C2.3.2
 
-[//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
-
 ### Références
 
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
+- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
 
 ## 1. Objectif
 
@@ -55,10 +54,7 @@ Chaque anomalie est consignée dans l’outil de suivi interne sous le format :
 - **Fonctionnelle** : non-respect d’une spécification.
 - **Technique** : problème de performance, compatibilité ou sécurité.
 - **Régression** : fonctionnalité précédemment validée qui échoue.
-
-[//]: # (TODO: ACCESSIBILITY)
-
-[//]: # (- **Accessibilité** : non-conformité avec le référentiel retenu ...)
+- **Accessibilité** : non-conformité avec le référentiel RGAA niveau AA
 
 ## 4. Analyse des points d’amélioration
 
