@@ -16,10 +16,9 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    '^@prisma/(.*)$': '<rootDir>/prisma/$1',
-    '^@api/(.*)$': '<rootDir>/src/modules/api/$1',
-    '^@ui/(.*)$': '<rootDir>/src/modules/ui/$1',
-    '^@shared/(.*)$': '<rootDir>/src/modules/shared/$1',
+    '^@api/(.*)$': '<rootDir>/src/projects/api/$1',
+    '^@ui/(.*)$': '<rootDir>/src/projects/ui/$1',
+    '^@shared/(.*)$': '<rootDir>/src/projects/shared/$1',
     '^@lib/(.*)$': '<rootDir>/src/lib/$1',
   },
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],

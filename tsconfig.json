@@ -29,10 +29,9 @@
     // Alias
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["./src/modules/api/*"],
-      "@ui/*": ["./src/modules/ui/*"],
-      "@shared/*": ["./src/modules/shared/*"],
-      "@prisma/*": ["./prisma/*"],
+      "@api/*": ["./src/projects/api/*"],
+      "@ui/*": ["./src/projects/ui/*"],
+      "@shared/*": ["./src/projects/shared/*"],
       "@lib/*": ["./src/lib/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],

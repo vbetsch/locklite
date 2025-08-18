@@ -1,0 +1,71 @@
+import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
+
+// TODO: remove it
+export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
+  {
+    id: 'v1',
+    label: 'Google Account',
+    secret: 'p@ssW0rd123!',
+    members: [
+      { email: 'admin@example.com', name: 'Administrator' },
+      { email: 'alice.smith@example.com', name: 'Alice Smith' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+    ],
+  },
+  {
+    id: 'v2',
+    label: 'Amazon Seller',
+    secret: 'AmzS3ll3r!2024',
+    members: [{ email: 'charlie.davis@example.com' }],
+  },
+  {
+    id: 'v3',
+    label: 'GitHub Repo',
+    secret: 'GhT0k3n$eCur3',
+    members: [
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'admin@example.com', name: 'Administrator' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+    ],
+  },
+  {
+    id: 'v4',
+    label: 'Dropbox Storage',
+    secret: 'Dr0pb0x!Safe',
+    members: [{ email: 'alice.smith@example.com', name: 'Alice Smith' }],
+  },
+  {
+    id: 'v5',
+    label: 'Netflix Family',
+    secret: 'N3tfLix#P@ss',
+    members: [
+      { email: 'charlie.davis@example.com' },
+      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'admin@example.com', name: 'Administrator' },
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'alice.smith@example.com', name: 'Alice Smith' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+    ],
+  },
+  {
+    id: 'v6',
+    label: 'Netflix Family +',
+    secret: 'N3tfLix#P@ss+',
+    members: [
+      { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
+      { email: 'charlie.davis@example.com' },
+      { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
+      { email: 'alice.smith@example.com', name: 'Alice Smith' },
+      { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
+      { email: 'admin@example.com', name: 'Administrator' },
+    ],
+  },
+  {
+    id: 'v7',
+    label: 'Only administrator',
+    secret: 'Adm1n0nly$2024',
+    members: [{ email: 'admin@example.com', name: 'Administrator' }],
+  },
+];

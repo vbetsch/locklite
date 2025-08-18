@@ -19,11 +19,11 @@ jobs:
 
       - name: Ensure file exists
         run: |
-          test -f docs/RECETTES.md
+          test -f docs/ACCEPTANCE.md
 
-      - name: Upload RECETTES.md to release assets
+      - name: Upload ACCEPTANCE.md to release assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ github.event.release.tag_name }}
         run: |
-          gh release upload "$TAG" "docs/RECETTES.md" --clobber
+          gh release upload "$TAG" "docs/ACCEPTANCE.md" --clobber
