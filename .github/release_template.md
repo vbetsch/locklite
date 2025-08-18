@@ -2,8 +2,7 @@
 
 | Environment | Status | Deployment Date | URL |
 |------------:|:------:|:---------------:|:----|
-| Development |        |                 |     |
-|     Staging |        |                 |     |
+|     Preview |        |                 |     |
 |  Production |        |                 |     |
 
 ### Test Status
