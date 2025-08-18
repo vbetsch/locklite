@@ -4,7 +4,7 @@
 
 ### Références
 
-- Intégration continue : [INTEGRATION.md](INTEGRATION.md)
+- Intégration continue : [CI.md](CI.md)
 
 ## 1. Objectif
 

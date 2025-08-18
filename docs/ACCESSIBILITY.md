@@ -11,7 +11,7 @@
 
 [//]: # (TODO: CI)
 
-[//]: # (- Intégration Continue : [INTEGRATION.md]&#40;INTEGRATION.md&#41;)
+[//]: # (- Intégration Continue : [CI.md]&#40;CI.md&#41;)
 
 ## 1. Objet et périmètre
 
