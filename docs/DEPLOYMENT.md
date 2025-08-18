@@ -1,5 +1,11 @@
 # Manuel de déploiement
 
+> Compétence RNCP : C2.4.1
+
+### Références
+
+- Déploiement continu : [CD.md](CD.md)
+
 ## 1. Objectif
 
 Ce manuel décrit les étapes nécessaires pour déployer l’application **LockLite** sur ses différents environnements (
