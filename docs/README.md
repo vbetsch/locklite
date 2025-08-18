@@ -23,6 +23,7 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ### Documentation
 
 - [Installation guide](INSTALL.md) - EN
+- [Quality and Performance Criteria](CRITERIA.md) - FR (C2.1.1)
 - [Continuous Deployment](CD.md) - FR (C2.1.1)
 - [Continuous Integration](CI.md) - FR (C2.1.2)
 - [Security measures](SECURITY.md) - FR (C2.2.3)

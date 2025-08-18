@@ -1,5 +1,11 @@
 # Critères de qualité et de performance
 
+> Compétence RNCP : C2.1.1
+
+### Références
+
+- Déploiement continue : [CD.md](CD.md)
+
 ## 1. Objectif
 
 Garantir que l’application **LockLite** respecte des standards élevés de qualité logicielle, de performance et de
