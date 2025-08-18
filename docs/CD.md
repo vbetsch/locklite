@@ -1,3 +1,5 @@
+[Revenir au README](README.md)
+
 # Déploiement continu
 
 > Compétence RNCP : C2.1.1
@@ -6,6 +8,7 @@
 
 - Intégration continue : [CI.md](CI.md)
 - Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
+- Critères de qualité et de performance : [CRITERIA.md](CRITERIA.md)
 
 ## 1. Objectif
 
