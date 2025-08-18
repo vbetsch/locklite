@@ -8,7 +8,7 @@ export function middleware(request: NextRequest): NextResponse {
     process.env.NODE_ENV === 'production' &&
     (pathname.startsWith('/api/swagger') || pathname.startsWith('/api/docs'))
   ) {
-    return new NextResponse(null, { status: 404 });
+    return NextResponse.rewrite(new URL('/404', request.url));
   }
 
   return NextResponse.next();
