@@ -84,12 +84,12 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - TypeScript configuré en mode strict.
 - ESLint et Prettier appliqués en continu.
 - Sessions gérées par JWT avec un secret dédié.
+- Mise en place de différents environnements (preview et production)
+- Désactivation du Swagger en production
 
 ### Mesures prévues
 
-- Mise en place de différents environnements (par exemple develop, staging et production)
-- Mise en place d'une authentification sur le Swagger
-- Désactivation du Swagger en production
+- Mise en place d'une authentification sur l'API
 
 ### Mesures restantes à intégrer
 

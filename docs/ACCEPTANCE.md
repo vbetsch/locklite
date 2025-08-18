@@ -11,8 +11,6 @@
 - Documentation API Swagger : http://localhost:3000/api/docs
 - Plan de correction des bogues : [BUGS.md](BUGS.md)
 
-[//]: # (TODO: Modify when we will have production environment -> PROD)
-
 ## 1. Objet et périmètre
 
 Ce document décrit les scénarios de tests et résultats attendus pour valider les fonctionnalités de LockLite, détecter
@@ -21,19 +19,16 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 2. Environnements et données de test
 
-[//]: # (TODO: PROD)
+* Les tests des recettes sont réalisés sur l'environnement de pré-prod (_preview_) qui possède sa propre base de
+  données.
+* Seule l'équipe de développement a accès à cet environnement.
+* Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de
+  développement par défaut (seed), soit leur propre jeu de données.
+* Les développements ne sont pas poussés en production tant que les recettes ne sont pas toutes validées.
 
-[//]: # (- **Environnements** : développement local, CI GitHub Actions, production &#40;Vercel&#41;)
-
-- **Environnements** : développement local, CI GitHub Actions
-
-- **Comptes de test** :
-
+- **Comptes de test** (pre-prod) :
   - `admin@example.com` / `admin`
-
   - `user@example.com` / `user`
-
-- **Jeux de données** : coffres-forts et utilisateurs générés via seed Prisma avec la commande `npm run prisma:seed`
 
 ## 3. Stratégie de test
 
@@ -214,7 +209,7 @@ existe déjà
 **Étapes** :
 
 1. Se rendre sur `/ui/login`
-2. Entrer un email et/ou un mot de passe erronés
+2. Entrer un email et/ou un mot de passe erroné
 3. Cliquer sur le bouton pour se connecter
 
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
@@ -384,7 +379,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **But** : sécuriser l'accès aux vaults
 
-**Vérification** : impossible de se retirer soi même d'un vault
+**Vérification** : impossible de se retirer soi-même d'un vault
 
 **Securité** : `OWASP-A01:2021`
 
@@ -507,13 +502,8 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 ## 9. Procédure d’exécution
 
-- **CI** : pipeline GitHub Actions (lint, tests avec rapport de couverture, build)
-
-### Tests unitaires
-
-- **Local** :
-  1. `npm install`
-  2. `npm test`
+- **Automatisée** : la CI lance les tests unitaires, il est également possible de les exécuter en environnement local
+- **Manuelle** : les recettes sont toutes au minimum testées manuellement
 
 ## 10. Critères de réussite
 
