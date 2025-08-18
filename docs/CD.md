@@ -5,6 +5,7 @@
 ### Références
 
 - Intégration continue : [CI.md](CI.md)
+- Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 1. Objectif
 
