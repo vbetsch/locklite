@@ -23,9 +23,7 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
   données.
 * Seule l'équipe de développement a accès à cet environnement.
 * Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de
-  développement par
-  défaut (seed),
-  soit leur propre jeu de données.
+  développement par défaut (seed), soit leur propre jeu de données.
 * Les développements ne sont pas poussés en production tant que les recettes ne sont pas toutes validées.
 
 - **Comptes de test** (pre-prod) :
