@@ -13,7 +13,6 @@ Sentry.init({
       delete event.request.headers.cookie;
     }
     if (event.user) {
-      // @ts-ignore
       delete event.user.email;
     }
     return event;
