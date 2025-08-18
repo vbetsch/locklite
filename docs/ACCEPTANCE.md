@@ -11,8 +11,6 @@
 - Documentation API Swagger : http://localhost:3000/api/docs
 - Plan de correction des bogues : [BUGS.md](BUGS.md)
 
-[//]: # (TODO: Modify when we will have production environment -> PROD)
-
 ## 1. Objet et périmètre
 
 Ce document décrit les scénarios de tests et résultats attendus pour valider les fonctionnalités de LockLite, détecter
@@ -21,19 +19,17 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 2. Environnements et données de test
 
-[//]: # (TODO: PROD)
+* Les tests des recettes sont réalisés sur l'environnement de pré-prod (_preview_) qui possède sa propre base de
+  données.
+* Seule l'équipe de développement a accès à cet environnement.
+* Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de développement par
+  défaut (seed),
+  soit leur propre jeu de données.
+* Les développements ne sont pas poussés en production tant que les recettes ne sont pas toutes validées.
 
-[//]: # (- **Environnements** : développement local, CI GitHub Actions, production &#40;Vercel&#41;)
-
-- **Environnements** : développement local, CI GitHub Actions
-
-- **Comptes de test** :
-
+- **Comptes de test** (pre-prod) :
   - `admin@example.com` / `admin`
-
   - `user@example.com` / `user`
-
-- **Jeux de données** : coffres-forts et utilisateurs générés via seed Prisma avec la commande `npm run prisma:seed`
 
 ## 3. Stratégie de test
 
