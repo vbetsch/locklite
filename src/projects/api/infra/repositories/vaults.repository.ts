@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import { Vault } from '@prisma/generated';
+import { Vault } from '@prisma/client';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
 import prisma from '@lib/prisma';
 import { SharedUuidRecord } from '@api/infra/records/shared/shared-uuid.record';

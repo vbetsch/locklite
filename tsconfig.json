@@ -32,7 +32,6 @@
       "@api/*": ["./src/projects/api/*"],
       "@ui/*": ["./src/projects/ui/*"],
       "@shared/*": ["./src/projects/shared/*"],
-      "@prisma/*": ["./prisma/*"],
       "@lib/*": ["./src/lib/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
