@@ -1,18 +1,29 @@
-// This file configures the initialization of Sentry on the server.
-// The config you add here will be used whenever the server handles a request.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
 import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
-  dsn: 'https://f9e4cf5db334399828d75af7a13ff36c@o4509867063246848.ingest.us.sentry.io/4509867076354048',
-
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
-  tracesSampleRate: 1,
-
-  // Enable logs to be sent to Sentry
-  enableLogs: true,
-
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
-  debug: false,
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.VERCEL_ENV ?? 'development',
+  tracesSampleRate: 0.2,
+  tracesSampler: (ctx) => {
+    const env = process.env.VERCEL_ENV ?? 'development';
+    if (env !== 'production') return 1.0;
+    const name = ctx.transactionContext?.name ?? '';
+    if (name.includes('/api/auth')) return 1.0;
+    if (name.startsWith('GET /api/') || name.startsWith('POST /api/')) return 0.5;
+    if (ctx.parentSampled) return 1.0;
+    return 0.2;
+  },
+  beforeSend(event) {
+    if (event.request?.headers) {
+      delete event.request.headers.authorization;
+      delete event.request.headers.cookie;
+      // @ts-ignore
+      delete event.request.headers['set-cookie'];
+    }
+    if (event.user) {
+      // @ts-ignore
+      delete event.user.email;
+    }
+    return event;
+  }
 });
