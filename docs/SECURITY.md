@@ -84,6 +84,8 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
+- Analyse automatique du repository pour détecter les fuites de secrets (GitGuardian).
+- Blocage des merges si un secret sensible est détecté.
 - Configuration par défaut de Next.js et NextAuth.
 - TypeScript configuré en mode strict.
 - ESLint et Prettier appliqués en continu.
@@ -116,6 +118,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
+- Intégration de GitGuardian pour prévenir toute fuite de secrets avant un déploiement.
 - Authentification centralisée avec NextAuth
 - Mots de passe maîtres hashés avec bcrypt.
 - Messages d’erreur neutres pour éviter l’énumération des comptes.
