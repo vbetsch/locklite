@@ -42,7 +42,7 @@ maîtrisé.
 
 1. Créer une branche depuis `develop`
 2. Développer et committer les changements
-3. Pousser la branche vers GitHub
+3. Pousser la branche sur GitHub
 4. Ouvrir une pull request vers `develop`  
    → Vercel déclenche automatiquement un déploiement éphémère  
    → L’URL est visible dans la pull request
