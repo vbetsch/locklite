@@ -4,9 +4,11 @@
 
 ### Références
 
+- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
-- Intégration Continue : [CI.md](INTEGRATION.md)
+- Intégration Continue : [INTEGRATION.md](INTEGRATION.md)
+- Déploiement Continue : [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## Objectif
 

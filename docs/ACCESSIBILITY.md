@@ -6,11 +6,12 @@
 
 ### Références
 
-[//]: # (TODO: CI)
-
+- Mesures de sécurité : [SECURITY.md](SECURITY.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 
-[//]: # (- Intégration Continue : [CI.md]&#40;CI.md&#41;)
+[//]: # (TODO: CI)
+
+[//]: # (- Intégration Continue : [INTEGRATION.md]&#40;INTEGRATION.md&#41;)
 
 ## 1. Objet et périmètre
 
