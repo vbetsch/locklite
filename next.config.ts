@@ -7,7 +7,15 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: false
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/ui',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
