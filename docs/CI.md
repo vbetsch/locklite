@@ -1,6 +1,12 @@
+[Revenir au README](README.md)
+
 # Intégration continue
 
 > Compétence RNCP : C2.1.2
+
+### Références
+
+- Déploiement continu : [CD.md](CD.md)
 
 ### Ressources
 
@@ -103,7 +109,7 @@ L’ordre logique est : lint, tests, build (même si parallélisé par GitHub Ac
 
 - **Base de données éphémère** : non incluse dans ce workflow.
 - **Artefacts** : non publiés (possibilité d’ajouter un export de build ou des rapports de couverture).
-- **Déploiement** : non inclus (un workflow séparé pourra gérer les déploiements Vercel).
+- **Déploiement** : indépendant (un bot est chargé du déploiement continu, il ne dépend pas du résultat de la CI).
 
 ## 12) Références opérationnelles
 

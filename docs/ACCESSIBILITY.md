@@ -1,3 +1,5 @@
+[Revenir au README](README.md)
+
 # Mesures d'accessibilité
 
 > Compétence RNCP : C2.2.3
@@ -6,9 +8,10 @@
 
 ### Références
 
-[//]: # (TODO: CI)
-
+- Mesures de sécurité : [SECURITY.md](SECURITY.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
+
+[//]: # (TODO: CI)
 
 [//]: # (- Intégration Continue : [CI.md]&#40;CI.md&#41;)
 

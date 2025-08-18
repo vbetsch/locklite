@@ -1,12 +1,16 @@
+[Revenir au README](README.md)
+
 # Mesures de sécurité
 
 > Compétence RNCP : C2.2.3
 
 ### Références
 
+- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 - Intégration Continue : [CI.md](CI.md)
+- Déploiement Continue : [CD.md](CD.md)
 
 ## Objectif
 
@@ -80,16 +84,19 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
+- Analyse automatique du repository pour détecter les fuites de secrets (GitGuardian).
+- Blocage des merges si un secret sensible est détecté.
 - Configuration par défaut de Next.js et NextAuth.
 - TypeScript configuré en mode strict.
 - ESLint et Prettier appliqués en continu.
 - Sessions gérées par JWT avec un secret dédié.
+- Politiques de rotation des secrets.
+- Mise en place de différents environnements (preview et production)
+- Désactivation du Swagger en production
 
 ### Mesures prévues
 
-- Mise en place de différents environnements (par exemple develop, staging et production)
-- Mise en place d'une authentification sur le Swagger
-- Désactivation du Swagger en production
+- Mise en place d'une authentification sur l'API
 
 ### Mesures restantes à intégrer
 
@@ -111,6 +118,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 ### Mesures déjà mises en place
 
+- Intégration de GitGuardian pour prévenir toute fuite de secrets avant un déploiement.
 - Authentification centralisée avec NextAuth
 - Mots de passe maîtres hashés avec bcrypt.
 - Messages d’erreur neutres pour éviter l’énumération des comptes.

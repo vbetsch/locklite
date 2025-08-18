@@ -20,18 +20,21 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
 
+### References
+
+- [Github repository](https://github.com/vbetsch/locklite)
+- [All releases](https://github.com/vbetsch/locklite/releases) (C2.2.4)
+- [Last release](https://github.com/vbetsch/locklite/releases/latest) (C2.2.4)
+
 ### Documentation
 
 - [Installation guide](INSTALL.md) - EN
+- [Quality and Performance Criteria](CRITERIA.md) - FR (C2.1.1)
+- [Continuous Deployment](CD.md) - FR (C2.1.1)
 - [Continuous Integration](CI.md) - FR (C2.1.2)
 - [Security measures](SECURITY.md) - FR (C2.2.3)
 - [Accessibility measures](ACCESSIBILITY.md) - FR (C2.2.3)
 - [Changelogs](CHANGELOG.md) - EN (C2.2.4)
 - [Test Plan](ACCEPTANCE.md) - FR (C2.3.1)
 - [Defect Correction Plan](BUGS.md) - FR (C2.3.2)
-
-### References
-
-- [Github repository](https://github.com/vbetsch/locklite)
-- [All releases](https://github.com/vbetsch/locklite/releases) (C2.2.4)
-- [Last release](https://github.com/vbetsch/locklite/releases/latest) (C2.2.4)
+- [Deployment Guide](DEPLOYMENT.md) - FR (C2.4.1)
