@@ -22,7 +22,8 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 * Les tests des recettes sont réalisés sur l'environnement de pré-prod (_preview_) qui possède sa propre base de
   données.
 * Seule l'équipe de développement a accès à cet environnement.
-* Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de développement par
+* Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de
+  développement par
   défaut (seed),
   soit leur propre jeu de données.
 * Les développements ne sont pas poussés en production tant que les recettes ne sont pas toutes validées.
@@ -503,13 +504,8 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 ## 9. Procédure d’exécution
 
-- **CI** : pipeline GitHub Actions (lint, tests avec rapport de couverture, build)
-
-### Tests unitaires
-
-- **Local** :
-  1. `npm install`
-  2. `npm test`
+- **Automatisée** : la CI lance les tests unitaires, il est également possible de les exécuter en environnement local
+- **Manuelle** : les recettes sont toutes au minimum testées manuellement
 
 ## 10. Critères de réussite
 
