@@ -8,7 +8,7 @@
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 - Intégration Continue : [CI.md](CI.md)
-- Déploiement Continue : [CI.md](CD.md)
+- Déploiement Continue : [CD.md](CD.md)
 
 ## Objectif
 
