@@ -11,7 +11,6 @@
 - Variables d'environnement : [.env.example](../.env.example)
 - Migrations Prisma : [migrations](../prisma/migrations)
 
-
 ## 1. Objectif
 
 Ce manuel décrit les étapes nécessaires pour déployer l’application **LockLite** sur les différents environnements.  
@@ -43,13 +42,14 @@ maîtrisé.
 1. Créer une branche depuis `develop`
 2. Développer et committer les changements
 3. Pousser la branche sur GitHub
-4. Ouvrir une pull request vers `develop`  
-   → Vercel déclenche automatiquement un déploiement éphémère  
-   → L’URL est visible dans la pull request
+4. Ouvrir une pull request vers `develop`
+   * Vercel déclenche automatiquement un déploiement éphémère
+   * L’URL est visible dans la pull request
 
 ### 4.2 Déploiement en préproduction (preview)
 
-1. Une fois la pull request validée et mergée dans develop, Vercel déploie automatiquement sur l’environnement **preview**
+1. Une fois la pull request validée et mergée dans develop, Vercel déploie automatiquement sur l’environnement
+**preview**
 2. Les tests automatisés (CI GitHub) et manuels sont réalisés sur cet environnement
 3. Si les recettes sont validées, une release est préparée
 
