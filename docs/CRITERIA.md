@@ -4,9 +4,15 @@
 
 > Compétence RNCP : C2.1.1
 
+[//]: # (TODO: Add when we will have lighthouse -> LIGHTHOUSE)
+
 ### Références
 
 - Déploiement continue : [CD.md](CD.md)
+- Mesures de sécurité : [SECURITY.md](SECURITY.md)
+- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
+- Journal de versions : [CHANGELOG.md](CHANGELOG.md)
+- Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 
 ## 1. Objectif
 
@@ -19,15 +25,15 @@ reste fiable, maintenable et performant.
 
 ### 2.1 Code et maintenabilité
 
-- Langage : TypeScript avec compilation stricte (tsconfig en mode strict).
-- Normes : ESLint (analyse statique), Prettier (formatage automatique).
-- Couverture de tests : seuil minimum fixé à 80% (unitaires, intégration, end-to-end).
-- Documentation technique associée (Swagger pour l’API, README pour les modules critiques).
-- Gestion des dépendances sécurisée et mise à jour régulière.
+- **Langage** : TypeScript avec compilation stricte (tsconfig en mode strict).
+- **Normes** : ESLint (analyse statique), Prettier (formatage automatique).
+- **Couverture de tests** : seuil minimum fixé à 80% (unitaires).
+- **Documentation** technique associée (Swagger pour l’API et README).
+- Gestion des **dépendances** sécurisée et mise à jour régulière.
 
 ### 2.2 Processus de vérification
 
-- Tests automatisés exécutés à chaque Pull Request.
+- Tests automatisés exécutés à chaque pull request.
 - Analyse des secrets et dépendances sensibles avec GitGuardian et npm audit.
 - Revue de code obligatoire avant tout merge.
 
@@ -40,45 +46,38 @@ reste fiable, maintenable et performant.
   - FCP (First Contentful Paint) < 1,8s
   - CLS (Cumulative Layout Shift) < 0,1
   - INP (Interaction to Next Paint) < 200ms
-- Audit régulier avec Lighthouse en préproduction.
 - Lazy-loading des composants lourds et optimisation des assets.
+
+[//]: # (TODO: LIGHTHOUSE)
+
+[//]: # (- Audit régulier avec Lighthouse en préproduction.)
 
 ### 3.2 Back-end (API + Prisma + PostgreSQL)
 
-- Temps de réponse API : < 300ms (p95).
+- Temps de réponse API : < 300ms.
 - Taux d’erreurs 5xx : < 1%.
 - Connexions base de données gérées avec un pool Prisma (évite surcharge).
 - Migrations Prisma validées et testées avant passage en production.
 
-## 4. Sécurité
+## 4. Sécurité et Accessibilité
 
-- Authentification : NextAuth, cookies sécurisés (`Secure`, `HttpOnly`, `SameSite=Lax`).
-- Mots de passe hashés avec bcrypt.
-- Politiques de rotation des secrets (Vercel / GitHub).
-- OWASP Top 10 pris en compte (ex : protections CSRF, XSS, injection SQL).
-- En-têtes HTTP de sécurité activés (CSP, X-Frame-Options, Referrer-Policy).
+- Locklite suit les recommandations de sécurité du top 10 OWASP (_voir les [Mesures de sécurité](SECURITY.md)_)
+- Locklite suit le référentiel d'accessibilité RGAA (_voir les [Mesures d'accessibilité](ACCESSIBILITY.md)_)
 
-## 5. Accessibilité et conformité
-
-- Référentiel appliqué : RGAA niveau AA.
-- Score minimal d’accessibilité Lighthouse : 95/100.
-- Navigation clavier complète et contrastes vérifiés.
-- Tests manuels sur les composants critiques (formulaires, navigation).
-
-## 6. Fiabilité des déploiements
+## 5. Fiabilité des déploiements
 
 - Chaque déploiement est associé à un commit et un tag Git.
 - Rollback en moins de 5 minutes possible via revert Git + redeploiement Vercel.
 - Health check automatique exposé sur /api/health.
 - Suivi des logs et alertes via Sentry.
 
-## 7. Traçabilité
+## 6. Traçabilité
 
-- Historique des releases publié sur GitHub (CHANGELOG, SECURITY, ACCESSIBILITY).
+- Journal de versions et historique de releases publiés sur GitHub.
 - Suivi des migrations et schémas de base de données via Prisma.
 - Suivi des anomalies et corrections via cahier de recettes et tickets associés.
 
-## 8. Résumé
+## 7. Résumé
 
 Ces critères permettent de :
 
@@ -86,5 +85,3 @@ Ces critères permettent de :
 - Surveiller la **performance utilisateur** (front et back),
 - Garantir la **sécurité et l’accessibilité**,
 - Assurer la **fiabilité du déploiement** et la traçabilité des évolutions.
-
-Ils répondent directement aux exigences du projet et aux critères d’évaluation de la compétence C2.1.1.
