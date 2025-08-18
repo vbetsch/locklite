@@ -2,6 +2,10 @@
 
 > Compétence RNCP : C2.1.2
 
+### Références
+
+- [Déploiement continu](DEPLOYMENT.md)
+
 ### Ressources
 
 - [Pipeline Github](../.github/workflows/ci.yml)
