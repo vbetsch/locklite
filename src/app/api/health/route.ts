@@ -1,18 +1,18 @@
-import * as Sentry from '@sentry/nextjs';
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 
-const checkInId: string = Sentry.captureCheckIn({
-  monitorSlug: 'locklite-health',
-  status: 'in_progress',
-});
+const prisma: PrismaClient = new PrismaClient();
 
-Sentry.captureCheckIn({
-  checkInId,
-  monitorSlug: 'locklite-health',
-  status: 'ok',
-});
+export async function GET(): Promise<NextResponse> {
+  const t0: number = Date.now();
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    const latency: number = Date.now() - t0;
+    return NextResponse.json({ ok: true, db: true, latency }, { status: 200 });
+  } catch {
+    return NextResponse.json({ ok: false, db: false }, { status: 503 });
+  }
+}
 
-Sentry.captureCheckIn({
-  checkInId,
-  monitorSlug: 'locklite-health',
-  status: 'error',
-});
+export const runtime: 'nodejs' | 'edge' | 'experimental-edge' | undefined =
+  'nodejs';
