@@ -1,40 +1,39 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import * as Sentry from '@sentry/nextjs';
 
 const prisma: PrismaClient = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
-  const checkInId: string = Sentry.captureCheckIn(
-    {
-      monitorSlug: 'locklite-health',
-      status: 'in_progress',
-    },
-    {
-      schedule: {
-        type: 'crontab',
-        value: '0 12 * * *',
-      },
-      checkinMargin: 5,
-      maxRuntime: 30,
-    }
-  );
+  // eslint-disable-next-line @typescript-eslint/typedef
+  const Sentry = await import('@sentry/nextjs');
+
+  const checkInId: string = Sentry.captureCheckIn({
+    monitorSlug: 'locklite-health',
+    status: 'in_progress',
+  });
+
   const t0: number = Date.now();
+
   try {
     await prisma.$queryRaw`SELECT 1`;
     const latency: number = Date.now() - t0;
+
     Sentry.captureCheckIn({
       checkInId,
       monitorSlug: 'locklite-health',
       status: 'ok',
     });
+
     return NextResponse.json({ ok: true, db: true, latency }, { status: 200 });
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error);
+
     Sentry.captureCheckIn({
       checkInId,
       monitorSlug: 'locklite-health',
       status: 'error',
     });
+
     return NextResponse.json({ ok: false, db: false }, { status: 503 });
   }
 }
