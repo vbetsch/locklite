@@ -6,8 +6,13 @@ Sentry.init({
   profilesSampleRate: 1.0,
   replaysOnErrorSampleRate: 1.0,
   replaysSessionSampleRate: 0.1,
-  integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration(),
+  ],
 });
 
+// eslint-disable-next-line @typescript-eslint/typedef
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+// eslint-disable-next-line @typescript-eslint/typedef
 export const onRequestError = Sentry.captureRequestError;

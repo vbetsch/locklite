@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import * as Sentry from '@sentry/nextjs';
 
 const prisma: PrismaClient = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
-  // eslint-disable-next-line @typescript-eslint/typedef
-  const Sentry = await import('@sentry/nextjs');
-
   const checkInId: string = Sentry.captureCheckIn({
     monitorSlug: 'locklite-health',
     status: 'in_progress',
