@@ -4,8 +4,6 @@
 
 > Compétence RNCP : C2.1.1
 
-[//]: # (TODO: Add when we will have sentry -> SENTRY)
-
 [//]: # (TODO: Add when we will have lighthouse -> LIGHTHOUSE)
 
 ### Références
@@ -70,10 +68,7 @@ reste fiable, maintenable et performant.
 
 - Chaque déploiement est associé à un commit et un tag Git.
 - Rollback en moins de 5 minutes possible via revert Git + redéploiement Vercel.
-
-[//]: # (TODO: SENTRY)
-
-[//]: # (- Suivi des logs et alertes via Sentry.)
+- Suivi des logs et alertes via un outil de monitoring (Sentry).
 
 ## 6. Traçabilité
 
