@@ -11,3 +11,11 @@ Sentry.init({
     Sentry.replayIntegration(),
   ],
 });
+
+export const onRouterTransitionStart: (
+  href: string,
+  navigationType: string
+) => void = Sentry.captureRouterTransitionStart;
+
+// eslint-disable-next-line @typescript-eslint/typedef
+export const onRequestError = Sentry.captureRequestError;
