@@ -23,3 +23,10 @@ export const onRouterTransitionStart: (
   href: string,
   navigationType: string
 ) => void = Sentry.captureRouterTransitionStart;
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function onCLS(): void {}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function onINP(): void {}
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function onLCP(): void {}
