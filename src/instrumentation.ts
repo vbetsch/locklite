@@ -1,7 +1,8 @@
-import * as Sentry from '@sentry/nextjs';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export async function register(): Promise<void> {}
-
-// eslint-disable-next-line @typescript-eslint/typedef
-export const onRequestError = Sentry.captureRequestError;
+export async function register(): Promise<void> {
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    await import('../sentry.server.config');
+  }
+  if (process.env.NEXT_RUNTIME === 'edge') {
+    await import('../sentry.edge.config');
+  }
+}

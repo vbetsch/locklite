@@ -18,7 +18,6 @@ const nextConfig: NextConfig = {
     ];
   },
   productionBrowserSourceMaps: true,
-  experimental: { clientInstrumentationHook: true },
 };
 
 export default withSentryConfig(nextConfig, {
