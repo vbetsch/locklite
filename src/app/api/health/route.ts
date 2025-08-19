@@ -5,10 +5,20 @@ import * as Sentry from '@sentry/nextjs';
 const prisma: PrismaClient = new PrismaClient();
 
 export async function GET(): Promise<NextResponse> {
-  const checkInId: string = Sentry.captureCheckIn({
-    monitorSlug: 'locklite-health',
-    status: 'in_progress',
-  });
+  const checkInId: string = Sentry.captureCheckIn(
+    {
+      monitorSlug: 'locklite-health',
+      status: 'in_progress',
+    },
+    {
+      schedule: {
+        type: 'crontab',
+        value: '0 12 * * *',
+      },
+      checkinMargin: 5,
+      maxRuntime: 30,
+    }
+  );
   const t0: number = Date.now();
   try {
     await prisma.$queryRaw`SELECT 1`;
