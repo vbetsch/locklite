@@ -46,3 +46,6 @@ next-env.d.ts
 
 # pa11y
 /*.png
+
+# Sentry Config File
+.env.sentry

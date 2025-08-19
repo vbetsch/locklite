@@ -1,12 +1,13 @@
+import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   typescript: {
-    ignoreBuildErrors: false
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: false
+    ignoreDuringBuilds: false,
   },
   async rewrites() {
     return [
@@ -16,6 +17,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  productionBrowserSourceMaps: true,
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  release: process.env.SENTRY_RELEASE ? { name: process.env.SENTRY_RELEASE } : undefined,
+  silent: true,
+  widenClientFileUpload: true,
+});
