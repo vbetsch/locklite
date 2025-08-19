@@ -153,10 +153,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Logger centralisé utilisé à la fois côté API, et à la fois côté UI.
 - Journaux natifs de Next.js pour toutes les routes.
-
-### Mesures prévues
-
-- Mise en place d’un outil de supervision (par exemple Sentry).
+- Mise en place d’un outil de supervision (Sentry).
 
 ### Mesures restantes à intégrer
 
