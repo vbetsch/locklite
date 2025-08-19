@@ -14,4 +14,5 @@ export async function GET(): Promise<NextResponse> {
   }
 }
 
-export const runtime: string = 'nodejs';
+export const runtime: 'nodejs' | 'edge' | 'experimental-edge' | undefined =
+  'nodejs';
