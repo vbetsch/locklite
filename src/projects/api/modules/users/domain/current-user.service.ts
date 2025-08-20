@@ -1,10 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 import { getServerSession, Session } from 'next-auth';
-import { authOptions } from '@lib/auth';
-import { UsersRepository } from '@api/modules/users/infra/users.repository';
-import { User as UserModel } from '@prisma/generated';
-import { UnauthorizedError } from '@api/app/errors/unauthorized.error';
-import { ImpossibleCaseError } from '@api/domain/impossible-case.error';
 
 @injectable()
 export class CurrentUserService {

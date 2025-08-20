@@ -11,6 +11,7 @@ export default function SearchBar(props: SearchBarProps): JSX.Element {
   return (
     <TextField
       fullWidth
+      label="Search"
       placeholder="Search…"
       value={props.searchTerm}
       onChange={e => props.setSearchTerm(e.target.value)}

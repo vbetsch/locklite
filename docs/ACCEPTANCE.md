@@ -1,3 +1,5 @@
+[Revenir au README](README.md)
+
 # Cahier de recettes
 
 > Compétence RNCP : C2.3.1
@@ -9,11 +11,7 @@
 - Schéma Prisma : [schema.prisma](../prisma/schema.prisma)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
 - Documentation API Swagger : http://localhost:3000/api/docs
-- Plan de correction des bogues : [BOGUES.md](BOGUES.md)
-
-[//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
-
-[//]: # (TODO: Modify when we will have production environment -> PROD)
+- Plan de correction des bogues : [BUGS.md](BUGS.md)
 
 ## 1. Objet et périmètre
 
@@ -23,19 +21,16 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 2. Environnements et données de test
 
-[//]: # (TODO: PROD)
+* Les tests des recettes sont réalisés sur l'environnement de pré-prod (_preview_) qui possède sa propre base de
+  données.
+* Seule l'équipe de développement a accès à cet environnement.
+* Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de
+  développement par défaut (seed), soit leur propre jeu de données.
+* Les développements ne sont pas poussés en production tant que les recettes ne sont pas toutes validées.
 
-[//]: # (- **Environnements** : développement local, CI GitHub Actions, production &#40;Vercel&#41;)
-
-- **Environnements** : développement local, CI GitHub Actions
-
-- **Comptes de test** :
-
+- **Comptes de test** (pre-prod) :
   - `admin@example.com` / `admin`
-
   - `user@example.com` / `user`
-
-- **Jeux de données** : coffres-forts et utilisateurs générés via seed Prisma avec la commande `npm run prisma:seed`
 
 ## 3. Stratégie de test
 
@@ -46,15 +41,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 4. Matrice de couverture
 
-[//]: # (TODO: ACCESSIBILITY)
-
-[//]: # (Ajouter des tests d'accessibilité)
-
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité        |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|-----------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`           |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD` |
+| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     | Tests accessibilité                                   |
+|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|-------------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-ZOOM`, `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-ZOOM`, `AC-F2.1`, `AC-F2.2`                       |
 
 ## 5. Tests fonctionnels
 
@@ -162,7 +153,7 @@ existe déjà
 
 - [ ] test manuel
 
-### TC-F1.5 — Modifier les membres d'un coffre-fort
+### TC-F1.5 — Partager un coffre-fort
 
 **Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
@@ -203,7 +194,7 @@ existe déjà
 **Étapes** :
 
 1. Se rendre sur `/ui/login`
-2. Entrer l'email et le mot de passe de votre utilisateur
+2. Entrer l'email et le mot de passe maître de votre utilisateur
 3. Cliquer sur le bouton pour se connecter
 
 **Résultat attendu** : je suis redirigé sur l'espace de travail et je vois l'icône du profil dans la barre de navigation
@@ -220,11 +211,13 @@ existe déjà
 **Étapes** :
 
 1. Se rendre sur `/ui/login`
-2. Entrer un email et/ou un mot de passe erronés
+2. Entrer un email et/ou un mot de passe erroné
 3. Cliquer sur le bouton pour se connecter
 
 **Résultat attendu** : je ne suis pas redirigé sur l'espace de travail, une erreur m'indique que je n'ai pas entré des
 identifiants valides
+
+**Securité** : `OWASP-A04:2021`
 
 **Couverture** :
 
@@ -272,6 +265,8 @@ si j'ai un nom
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "error", vérifier qu'ils
 contiennent bien tous un objet `error` contenant un attribut `message`
 
+**Securité** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -284,6 +279,8 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Vérification** : se rendre dans les schémas de la documentation API, déplier les DTO de type "data", vérifier qu'ils
 contiennent bien tous un objet `data` contenant les informations à transmettre
 
+**Securité** : `OWASP-A03:2021`
+
 **Couverture** :
 
 - [ ] test manuel
@@ -293,8 +290,10 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **But** : vérifier que les contraintes de base de données sont respectées
 
-**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255 caractères, le
-coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+**Vérification** : être connecté avec un utilisateur, créer ou modifier un coffre-fort avec un libellé de plus de 255
+caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que le libellé est trop long
+
+**Securité** : `OWASP-A03:2021`
 
 **Couverture** :
 
@@ -307,8 +306,9 @@ coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît m'indiquant que 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données → mes coffres-forts sont liés à mon userId (tous et uniquement les
-miens)
+**Vérification** : inspection de la base de données: les coffres-forts sont bien liés à un seul et unique userId
+
+**Securité** : `OWASP-A01:2021`
 
 **Couverture** :
 
@@ -318,35 +318,196 @@ miens)
 
 **But** : vérifier la sécurité du stockage des mots de passe maîtres
 
-**Vérification** : inspection de la base de données → aucun mot de passe ne doit être en clair
+**Vérification** : inspection de la base de données, aucun mot de passe maître ne doit être en clair
+
+**Securité** : `OWASP-A07:2021`
 
 **Couverture** :
 
 - [ ] test manuel
 - [ ] tests unitaires
 
-### SE-GUARD — Protection des routes
+### SE-GUARD-UI — Protection des routes : front-end
 
 **But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
 
 **Vérification** : sans être connecté, essayer de se rendre sur `/ui/workspace`, je dois être redirigé vers `/ui/login`
 
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-GUARD-API — Protection des routes : back-end
+
+**But** : Vérifier que toutes les routes protégées exigent une authentification valide avant traitement.
+
+**Vérification** : sans être connecté, faire appel à `GET /vaults` pour obtenir la liste des coffres-forts utilisateur.
+Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les data retournées.
+
+**Securité** : `OWASP-A01:2021`
+
 **Couverture** :
 
 - [ ] test manuel
 - [ ] tests unitaires
 
-## 8. Procédure d’exécution
+### SE-F1.5-A — Partager un coffre-fort : Accès refusé
 
-- **CI** : pipeline GitHub Actions → lint, tests avec rapport de couverture, build
+**But** : sécuriser l'accès aux vaults
 
-### Tests unitaires
+**Vérification** : un non-membre ne peut ni lire, ni modifier, ni lister, ni supprimer le vault.
 
-- **Local** :
-  1. `npm install`
-  2. `npm test`
+**Securité** : `OWASP-A01:2021`
 
-## 9. Critères de réussite
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-B — Partager un coffre-fort : Révocation
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : un ex-membre ne peut plus rien faire immédiatement
+
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### SE-F1.5-C — Partager un coffre-fort : Non-orphelin
+
+**But** : sécuriser l'accès aux vaults
+
+**Vérification** : impossible de se retirer soi-même d'un vault
+
+**Securité** : `OWASP-A01:2021`
+
+**Couverture** :
+
+- [ ] test manuel
+
+## 8. Tests d'accessibilité
+
+### AC-ZOOM — Lisibilité à 200% de zoom
+
+**But** : vérifier que l’interface reste lisible et utilisable après un zoom navigateur à 200%.
+
+**Vérification** :
+
+- Activer le zoom du navigateur à 200%.
+- Les textes, champs de formulaire et boutons restent visibles sans recoupement ni perte d’information.
+- La navigation au clavier reste possible (aucun élément inaccessible).
+- Aucune barre de défilement horizontale inutile n’apparaît.
+
+**Accessibilité** : `RGAA-10.11`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.1 — Affichage des coffres-forts : navigation clavier
+
+**But** : vérifier que la liste des coffres-forts est accessible uniquement au clavier.
+
+**Vérification** :
+
+[//]: # (TODO: ajouter 'editer' dans les actions)
+
+- Naviguer avec `Tab` et `Shift+Tab`, chaque coffre-fort est atteignable.
+- Les actions (supprimer, modifier les membres) sont activables avec `Entrée` ou `Espace`.
+
+**Accessibilité** : `RGAA-9.2`, `RGAA-12.6`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.2 — Recherche de coffres-forts : libellé et focus
+
+**But** : vérifier que la barre de recherche est correctement étiquetée et utilisable au clavier.
+
+**Vérification** :
+
+- La zone de recherche possède un `label` ou un `aria-label` explicite.
+- L’ordre de tabulation permet d’y accéder logiquement après la navigation principale.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-12.8`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.3 — Création et modification de coffres-forts : pertinence des labels
+
+**But** : vérifier que les champs de formulaire sont correctement associés à leurs libellés.
+
+**Vérification** :
+
+- Chaque champ (nom, mot de passe) possède un `label` associé.
+- Les messages d’erreur sont lisibles par un lecteur d’écran (ex. via `aria-describedby`).
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-11.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F1.4 — Suppression et partage de coffres-forts : confirmation accessible
+
+**But** : vérifier que les dialogues de confirmation sont accessibles.
+
+**Vérification** :
+
+- Le focus est placé automatiquement dans la modale ouverte.
+- La fermeture est possible avec la touche `Échap`.
+- Les boutons de confirmation/annulation sont atteignables au clavier.
+
+**Accessibilité** : `RGAA-12.7`, `RGAA-7.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.1 — Connexion utilisateur : lisibilité et ordre de lecture
+
+**But** : vérifier que les champs de connexion sont accessibles.
+
+**Vérification** :
+
+- Le champ email est étiqueté avec le mot "email".
+- Le champ mot de passe est étiqueté correctement et son contenu est masqué.
+- L’ordre de tabulation suit l’ordre visuel : email, mot de passe, bouton de connexion.
+
+**Accessibilité** : `RGAA-4.1`, `RGAA-9.2`
+
+**Couverture** :
+
+- [ ] test manuel
+
+### AC-F2.2 — Menu profil : pertinence des intitulés
+
+**But** : vérifier que les intitulés sont clairs et accessibles au lecteur d’écran.
+
+**Vérification** :
+
+- L’icône de profil possède un `aria-label` explicite "Open profile menu".
+- Le bouton de déconnexion est lisible et activable au clavier.
+
+**Accessibilité** : `RGAA-12.8`, `RGAA-6.1`
+
+**Couverture** :
+
+- [ ] test manuel
+
+## 9. Procédure d’exécution
+
+- **Automatisée** : la CI lance les tests unitaires, il est également possible de les exécuter en environnement local
+- **Manuelle** : les recettes sont toutes au minimum testées manuellement
+
+## 10. Critères de réussite
 
 - 100 % des scénarios critiques passent
 - 0 anomalie bloquante ouverte
@@ -356,14 +517,14 @@ miens)
   - 80% de lignes
   - 80% de statements
 
-## 10. Traçabilité
+## 11. Traçabilité
 
 Chaque scénario est lié à :
 
 - Un ID unique (ex. `TC-F3.1`)
 - Des tests Jest reprenant cet ID
 
-## 11. Gestion des anomalies
+## 12. Gestion des anomalies
 
 - Création d'un ticket "bug" contenant l'ID du scénario dans l'outil de suivi.
-- Respect du [Plan de correction des bogues](BOGUES.md).
+- Respect du [Plan de correction des bogues](BUGS.md).

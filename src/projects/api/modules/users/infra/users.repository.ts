@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
-import { User } from '@prisma/generated';
+import { User } from '@prisma/client';
 import prisma from '@lib/prisma';
 import { UserEmailRecord } from '@api/modules/users/infra/records/user-email.record';
 import { CreateUserRecord } from '@api/modules/users/infra/records/create-user.record';

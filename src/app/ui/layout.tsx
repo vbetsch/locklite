@@ -5,6 +5,7 @@ import type { SharedLayoutProps } from '@shared/props/SharedLayoutProps';
 import { CONSTANTS } from '@shared/config/constants';
 import ClientProviders from '@ui/providers/ClientProviders';
 import PageLayout from '@ui/components/templates/PageLayout';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: {
@@ -20,6 +21,7 @@ export default function RootLayout(props: SharedLayoutProps): JSX.Element {
     <html lang="en" style={{ height: '100%' }}>
       {/* eslint-disable-next-line no-restricted-syntax */}
       <body style={{ height: '100%', margin: 0 }}>
+        <SpeedInsights />
         <ClientProviders>
           <PageLayout>{props.children}</PageLayout>
         </ClientProviders>

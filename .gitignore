@@ -43,3 +43,9 @@ next-env.d.ts
 
 # prisma
 /prisma/generated
+
+# pa11y
+/*.png
+
+# Sentry Config File
+.env.sentry

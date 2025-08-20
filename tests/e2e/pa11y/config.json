@@ -1,0 +1,32 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "standard": "WCAG2AA",
+    "wait": 1000,
+    "chromeLaunchConfig": {
+      "args": [
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+      ]
+    }
+  },
+  "urls": [
+    {
+      "url": "http://localhost:3000/ui/login",
+      "screenCapture": "01-login-page.png"
+    },
+    {
+      "url": "http://localhost:3000/ui/workspace",
+      "screenCapture": "02-workspace-authenticated.png",
+      "actions": [
+        "navigate to http://localhost:3000/ui/login",
+        "wait for element input[type='email'] to be visible",
+        "set field input[type='email'] to admin@example.com",
+        "set field input[type='password'] to admin",
+        "click element button[type='submit']",
+        "wait for url to not be http://localhost:3000/ui/login",
+        "navigate to http://localhost:3000/ui/workspace"
+      ]
+    }
+  ]
+}

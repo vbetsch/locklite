@@ -1,4 +1,5 @@
-/node_modules/
+/.idea/
+/next/
+/coverage/
 /dist/
-/.github/release_template.md
-README.md
+/node_modules/

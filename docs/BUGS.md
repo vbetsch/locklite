@@ -1,15 +1,16 @@
+[Revenir au README](README.md)
+
 # Plan de correction des bogues
 
 > Compétence RNCP : C2.3.2
 
-[//]: # (TODO: Modify when we will have accessibility reference -> ACCESSIBILITY)
-
-[//]: # (TODO: Modify when we will have changelogs -> CHANGELOGS)
-
 ### Références
 
-- Cahier de recettes : [RECETTES.md](RECETTES.md)
+- Intégration continue : [CI.md](CI.md)
+- Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
 - Configuration Jest : [jest.config.ts](../jest.config.ts)
+- Journal de versions : [CHANGELOG.md](CHANGELOG.md)
+- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
 
 ## 1. Objectif
 
@@ -56,10 +57,7 @@ Chaque anomalie est consignée dans l’outil de suivi interne sous le format :
 - **Fonctionnelle** : non-respect d’une spécification.
 - **Technique** : problème de performance, compatibilité ou sécurité.
 - **Régression** : fonctionnalité précédemment validée qui échoue.
-
-[//]: # (TODO: ACCESSIBILITY)
-
-[//]: # (- **Accessibilité** : non-conformité avec le référentiel retenu ...)
+- **Accessibilité** : non-conformité avec le référentiel RGAA niveau AA
 
 ## 4. Analyse des points d’amélioration
 
@@ -80,7 +78,8 @@ Pour chaque test en échec :
 5. Création d’une Pull Request avec revue par IA.
 6. Validation automatique par la CI (GitHub Actions).
 7. Fusion et déploiement.
-8. Reproduction du scénario en production.
+8. Reproduction du scénario en pré-production.
+9. Reproduction du scénario en production (_pour les cas critiques_).
 
 ### 5.2 Critères de validation
 
@@ -97,42 +96,48 @@ Pour chaque test en échec :
   - % d’anomalies corrigées dans les délais.
   - Nombre de régressions post-correction.
   - Évolution des anomalies critiques.
-
-[//]: # (TODO: CHANGELOGS)
-
-[//]: # (- **Journal de versions** mis à jour pour chaque correctif.)
+- **Journal de versions** mis à jour pour chaque correctif.
 
 ## 7. Exemples représentatifs
 
-> Les anomalies ci-dessous illustrent l’application de ce plan. Les autres sont consignées dans l’outil de suivi interne.
+> Les anomalies ci-dessous illustrent l’application de ce plan. Les autres sont consignées dans l’outil de suivi
+> interne.
 
 ### Bug #001 – Zone cliquable du bouton Logout trop restreinte
-- Priorité : Mineur  
-- Catégorie : UX/Accessibilité  
-- Description : Le `onClick` était attaché au label au lieu de l’élément de liste, cliquer à côté du texte ne déclenchait pas la déconnexion.  
-- Cause racine : Gestionnaire d’événement positionné sur le mauvais composant MUI.  
+
+- Priorité : Mineur
+- Catégorie : UX/Accessibilité
+- Description : Le `onClick` était attaché au label au lieu de l’élément de liste, cliquer à côté du texte ne
+  déclenchait pas la déconnexion.
+- Cause racine : Gestionnaire d’événement positionné sur le mauvais composant MUI.
 - Correction : Déplacer `onClick` sur `ListItem`/`ListItemButton`
 - Validation : vérification manuelle du déclenchement sur toute la zone.
 
 ---
 
 ### Bug #002 – Incohérences de nommage dans la documentation API
-- Priorité : Majeur  
-- Catégorie : Technique/Documentation  
-- Description : Les noms exposés dans la documentation (OpenAPI/Swagger) ne correspondaient pas toujours aux objets réellement retournés.  
-- Cause racine : Divergence entre DTO/schema et la génération de doc.  
-- Correction : Aligner les schémas OpenAPI avec les DTO réels, régénérer la doc  
+
+- Priorité : Majeur
+- Catégorie : Technique/Documentation
+- Description : Les noms exposés dans la documentation (OpenAPI/Swagger) ne correspondaient pas toujours aux objets
+  réellement retournés.
+- Cause racine : Divergence entre DTO/schema et la génération de doc.
+- Correction : Aligner les schémas OpenAPI avec les DTO réels, régénérer la doc
 - Validation : Documentation régénérée et relue
 
 ---
 
 ### Bug #003 – Visibilité des coffres-forts entre utilisateurs
-- Priorité : Bloquant (Sécurité)  
-- Catégorie : Sécurité/Fonctionnelle  
-- Description : Les utilisateurs voyaient les coffres-forts de tout le monde, de plus un coffre-fort créé n’était pas relié à l’utilisateur courant.  
-- Cause racine : Les requêtes ne sont pas filtrées par `userId` et absence de liaison propriétaire à la création.  
-- Correction :  
-  - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.  
-  - Création : relier le coffre-fort au propriétaire au moment de l’insert.  
-  - Ajouter des tests unitaires : un utilisateur A ne doit jamais voir/éditer les coffres-forts de B, création doit lier le `ownerId`.  
-- Validation : Tests unitaires OK (list/read/update/delete), vérification manuelle en recette avec deux comptes distincts.
+
+- Priorité : Bloquant (Sécurité)
+- Catégorie : Sécurité/Fonctionnelle
+- Description : Les utilisateurs voyaient les coffres-forts de tout le monde, de plus un coffre-fort créé n’était pas
+  relié à l’utilisateur courant.
+- Cause racine : Les requêtes ne sont pas filtrées par `userId` et absence de liaison propriétaire à la création.
+- Correction :
+  - Lecture : filtrer systématiquement par `userId` côté serveur et non côté client.
+  - Création : relier le coffre-fort au propriétaire au moment de l’insert.
+  - Ajouter des tests unitaires : un utilisateur A ne doit jamais voir/éditer les coffres-forts de B, création doit lier
+    le `ownerId`.
+- Validation : Tests unitaires OK (list/read/update/delete), vérification manuelle en recette avec deux comptes
+  distincts.
