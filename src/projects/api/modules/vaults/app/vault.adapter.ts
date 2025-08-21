@@ -10,7 +10,7 @@ export class VaultAdapter implements IAdapter<Vault, VaultWithMembersModelDto> {
       id: entity.uuid,
       label: entity.label,
       secret: entity.secret,
-      members: [],
+      members: entity.members,
     };
   }
 

@@ -21,6 +21,19 @@ export class VaultsRepository {
             },
           },
         },
+        include: {
+          members: {
+            include: {
+              user: {
+                select: {
+                  id: true,
+                  name: true,
+                  email: true,
+                },
+              },
+            },
+          },
+        },
         orderBy: { createdAt: 'desc' },
       })
     );
