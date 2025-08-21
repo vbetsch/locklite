@@ -86,7 +86,3 @@ En cas d’incident majeur :
 2. Restaurer la base depuis la sauvegarde réalisée avant migration.
 3. Rejouer les tests de validation.
 4. Consigner l’incident et ouvrir une tâche de correction.
-
-## 7. Journalisation des mises à jour
-
-Chaque mise à jour doit être consignée dans le **journal de version** selon la procédure.

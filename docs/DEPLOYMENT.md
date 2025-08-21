@@ -61,7 +61,7 @@ maîtrisé.
 1. Préparer une release sur GitHub : créer un nouveau tag (vX.Y.Z) et mettre à jour la documentation
 2. Merger la branche `develop` dans `main`
 3. Le merge déclenche automatiquement le déploiement **production** sur Vercel
-4. Vérifier le déploiement : connexion, création d’un coffre-fort, recherche
+4. Vérifier le déploiement : connexion, création et recherche de coffres-forts.
 
 ### 4.4 Rollback
 
