@@ -11,6 +11,10 @@
 - Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 
+### Ressources
+
+- Variables d'environnement : [.env.example](../.env.example)
+
 ## 1. Objet
 
 Ce document décrit la procédure de mise à jour de l’application LockLite afin de garantir la continuité de service,
