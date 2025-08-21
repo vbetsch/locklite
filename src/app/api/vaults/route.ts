@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/handle-api-request';
-import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
 import { CreateVaultUseCase } from '@api/modules/vaults/domain/usecases/create-vault.usecase';
 import { GetMyVaultsUseCase } from '@api/modules/vaults/domain/usecases/get-my-vaults.usecase';
 import { StatusCodes } from 'http-status-codes';
@@ -47,7 +46,8 @@ export async function GET(
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
-      const myVaults: VaultModelDto[] = await getMyVaultsUseCase.handle();
+      const myVaults: VaultWithMembersModelDto[] =
+        await getMyVaultsUseCase.handle();
       const response: GetMyVaultsDataDto = { myVaults };
       return response;
     },
