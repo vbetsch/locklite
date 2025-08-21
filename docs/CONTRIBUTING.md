@@ -34,7 +34,7 @@ l’intégrité des données et la sécurité lors du passage d’une version N 
   npm ci
   ```
 
-4. Lancer les tests unitaires et d’intégration :
+4. Lancer les tests unitaires :
 
   ```shell
   npm test

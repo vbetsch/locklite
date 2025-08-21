@@ -35,7 +35,7 @@ Chaque environnement possède une base de données dédiée et indépendante, ce
 - **Base de données** : PostgreSQL (_hébergée sur Neon_) avec ORM Prisma.
 - **Gestion des sources** : GitHub (_branches nommées selon un Gitflow simplifié_).
 - **Intégration / déploiement** : Vercel (_bot intégré à GitHub_).
-- **Qualité** : ESLint, Prettier, Jest (_tests unitaires et d’intégration_).
+- **Qualité** : ESLint, Prettier, Jest (_tests unitaires_).
 - **Sécurité** : GitGuardian (_vérification des secrets_).
 
 ## 4. Séquences de déploiement
