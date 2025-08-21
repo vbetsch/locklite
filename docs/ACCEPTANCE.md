@@ -21,7 +21,7 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 2. Environnements et données de test
 
-* Les tests des recettes sont réalisés sur l'environnement de pré-prod (_preview_) qui possède sa propre base de
+* Les tests des recettes sont réalisés sur l'environnement de préproduction qui possède sa propre base de
   données.
 * Seule l'équipe de développement a accès à cet environnement.
 * Les développeurs peuvent également reproduire les tests sur leur environnement local, avec soit les données de

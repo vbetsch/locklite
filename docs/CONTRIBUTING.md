@@ -69,7 +69,7 @@ l’intégration en préproduction.
 
 ## 5. Vérifications post-merge
 
-- Recette manuelle sur l’environnement de préproduction :
+- Recettes manuelles sur l’environnement de préproduction :
   - Connexion (NextAuth).
   - Création et lecture de coffre-fort.
   - Recherche.

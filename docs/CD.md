@@ -23,7 +23,7 @@ Chaque environnement possède une base de données dédiée et indépendante, ce
 
 - **Développement** : déploiements éphémères déclenchés lors de la fusion d'une branche de développement. Utilisé par les développeurs pour
   valider leur travail en conditions réelles. _Accessible uniquement aux membres du projet via authentification Vercel._
-- **Préproduction (preview)** : déploiements automatiques de la branche `develop`. Permet de valider l’ensemble des
+- **Préproduction** : déploiements automatiques de la branche `develop`. Permet de valider l’ensemble des
   fonctionnalités avant une release. _Accessible uniquement aux membres du projet via authentification Vercel._
 - **Production** : déploiements automatiques de la branche `main`. Environnement stable pour
   les utilisateurs finaux. _Accessible publiquement._

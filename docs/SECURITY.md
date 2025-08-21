@@ -91,7 +91,7 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - ESLint et Prettier appliqués en continu.
 - Sessions gérées par JWT avec un secret dédié.
 - Politiques de rotation des secrets.
-- Mise en place de différents environnements (preview et production)
+- Mise en place de différents environnements (développement, préproduction et production)
 - Désactivation du Swagger en production
 
 ### Mesures prévues
