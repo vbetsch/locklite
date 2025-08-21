@@ -10,28 +10,36 @@ datasource db {
 // --- Business ---
 
 model Vault {
-  uuid      String   @id @default(uuid())
-  label     String   @db.VarChar(255)
+  uuid      String        @id @default(uuid())
+  label     String        @db.VarChar(255)
   secret    String
-  createdAt DateTime @default(now())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now())
+  members   VaultMember[]
+}
 
+model VaultMember {
+  id      String @id @default(cuid())
+  vaultId String
+  userId  String
+
+  vault Vault @relation(fields: [vaultId], references: [uuid], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([vaultId, userId])
+  @@index([vaultId])
   @@index([userId])
 }
 
 // --- Next Auth ---
 
 model User {
-  id       String    @id @default(cuid())
-  name     String?
-  email    String    @unique
-  password String
-  accounts Account[]
-  sessions Session[]
-
-  // Business
-  vaults Vault[]
+  id               String        @id @default(cuid())
+  name             String?
+  email            String        @unique
+  password         String
+  accounts         Account[]
+  sessions         Session[]
+  vaultMemberships VaultMember[]
 }
 
 model Account {
