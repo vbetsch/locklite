@@ -1,3 +1,5 @@
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
+
 /**
  * @swagger
  * components:
@@ -20,4 +22,5 @@
 export type CreateVaultPayloadDto = {
   label: string;
   secret: string;
+  members: VaultMemberModelDto[];
 };

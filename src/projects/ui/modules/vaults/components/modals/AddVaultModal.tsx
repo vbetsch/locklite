@@ -25,6 +25,11 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
 import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
 import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
 import { useStore } from '@ui/stores/hooks/useStore';
+import AvatarMultiSelect from '@ui/modules/vaults/components/core/atoms/AvatarMultiSelect';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
+import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
+import type { UsersStoreState } from '@ui/modules/users/stores/users.store';
+import { usersStore } from '@ui/modules/users/stores/users.store';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -34,6 +39,7 @@ type AddVaultModalProps = {
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const delayToFocusFirstInput: number = 100;
 
+  const usersState: UsersStoreState = useStore(usersStore);
   const vaultsState: VaultsStoreState = useStore(vaultsStore);
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
@@ -42,13 +48,20 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
+  const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>([]);
+  const allMembers: VaultMemberModelDto[] = useMembers(usersState.allUsers);
 
   const handleClose = (): void => {
+    setSelectedUsers([]);
     setLabelError(null);
     setGlobalError(null);
     setNewLabel('');
     setNewSecret('');
     props.onClose();
+  };
+
+  const handleChange = (next: VaultMemberModelDto[]): void => {
+    setSelectedUsers(next);
   };
 
   const addVault = (vaultCreated: VaultWithMembersModelDto): void => {
@@ -83,6 +96,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       payload: {
         label: newLabel,
         secret: newSecret,
+        members: selectedUsers,
       },
     });
   };
@@ -98,10 +112,16 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   return (
     <Dialog open={props.open} onClose={handleClose} fullWidth maxWidth="xs">
       <DialogTitle>Add a vault</DialogTitle>
-      <DialogContent>
+      <DialogContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 4,
+          mt: 2,
+        }}
+      >
         <TextField
           inputRef={labelInputRef}
-          margin="dense"
           label="Label"
           fullWidth
           required
@@ -112,19 +132,23 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
         />
         <TextField
           error={!!globalError}
-          margin="dense"
           label="Secret"
           fullWidth
           required
           value={newSecret}
           onChange={e => setNewSecret(e.target.value)}
-          sx={{ mt: 2 }}
           onKeyDown={e => {
             if (e.key === 'Enter') {
               e.preventDefault();
               void handleSubmit();
             }
           }}
+        />
+        <AvatarMultiSelect
+          allMembers={allMembers}
+          onChange={handleChange}
+          label={'Members'}
+          value={selectedUsers}
         />
       </DialogContent>
       <Box
