@@ -7,86 +7,83 @@
 ### Références
 
 - Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
-- Critères de qualité et de performance : [CRITERIA.md](CRITERIA.md)
-- Mesures d'accessibilité : [ACCESSIBILITY.md](ACCESSIBILITY.md)
+- Manuel d’utilisation : [USAGE.md](USAGE.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
-
-### Ressources
-
-- Variables d'environnement : [.env.example](../.env.example)
 
 ## 1. Objet
 
-Ce document décrit la procédure de mise à jour de l’application LockLite afin de garantir la continuité de service,
-l’intégrité des données et la sécurité lors du passage d’une version N à une version N+1.
+Ce document décrit la procédure à suivre pour mettre à jour le code source de LockLite.  
+Il s’adresse aux développeurs et définit le workflow de contribution, depuis la création d’un ticket jusqu’à
+l’intégration en préproduction.
 
 ## 2. Pré-requis
 
-- Accès au dépôt Git du projet.
-- Accès à l’infrastructure d’hébergement (Vercel) et aux bases de données PostgreSQL (Neon).
-- Droits administrateur pour gérer la base de données et les variables d’environnement.
-- Sauvegarde complète et validée de la base de données et des secrets.
-- Node.js et npm installés dans les environnements concernés.
+- Accès au dépôt GitHub du projet.
+- Connaissance du workflow Git utilisé (`feature` → `develop` → `main`).
+- Environnement de développement configuré (Node.js, npm).
+- Respect des conventions de commits, branches et pull requests.
 
 ## 3. Étapes préparatoires
 
-1. Vérifier les dépendances dans `package.json` et intégrer les correctifs de sécurité proposés (via Dependabot).
-2. Effectuer une sauvegarde de la base PostgreSQL et des variables d’environnement.
-3. Mettre à jour les dépendances localement avec la commande :
-
-  ```shell
-  npm ci
-  ```
-
-4. Lancer les tests unitaires :
-
-  ```shell
-  npm test
-  ```
-
-5. Compiler le projet :
-
-  ```shell
-  npm run build
-  ```
+1. Création d’un ticket dans l’outil de gestion de projet
+2. Analyse, refinement et conception
+3. Assignation du ticket à un développeur.
+4. Création de la branche de développement à partir de `develop` en suivant la
+   convention [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow)
 
 ## 4. Procédure de mise à jour
 
-1. Récupérer la nouvelle version depuis Git :
+1. **Développement sur une branche dédiée**
 
-  ```shell
-  git fetch --all
-  git checkout <tag_version>
-  ```
+- Implémenter la fonctionnalité ou le correctif.
+- Effectuer des commits clairs et précis liés au ticket.
 
-2. Installer les dépendances :
+2. **Création d’une _Pull Request_ vers `develop`**
 
-```shell
-  npm ci
-  ```
+- Inclure le numéro du ticket, une description claire et les labels nécessaires.
 
-3. Appliquer les migrations Prisma :
+3. **Exécution automatique de la CI/CD**
 
-  ```shell
-  npm run prisma:migrate:deploy
-  ```
+- Linter : `npm run lint`
+- Tests unitaires : `npm test`
+- Build : `npm run build`
+- Déploiement automatique sur Vercel en environnement de développement
+- Sécurité : scan GitGuardian pour détection de secrets
 
-4. Déployer la nouvelle version (pipeline GitHub Actions, Vercel).
-5. Vérifier que le déploiement s’est bien effectué.
+4. **Corrections si la CI échoue**
 
-## 5. Vérifications post-déploiement
+- Le développeur est responsable de faire passer tous les tests.
 
-- Contrôler les parcours critiques : connexion, création et recherche de coffres-forts.
-- Vérifier les métriques de performance (Web Vitals) conformes aux seuils projet
-- Contrôler l’accessibilité : points clés RGAA AA sur les écrans principaux.
-- Surveiller les logs et alertes dans Sentry (absence d'erreurs).
-- Vérifier l’état de la base après migration.
+5. **Revue de code**
 
-## 6. Procédure de rollback
+- Les reviewers (tech lead ou lead dev) valident ou demandent des corrections.
+- Si un reviewer bloque, le cycle recommence jusqu’à validation.
 
-En cas d’incident majeur :
+6. **Merge dans `develop`**
 
-1. Restaurer la version précédente (git revert).
-2. Restaurer la base depuis la sauvegarde réalisée avant migration.
-3. Rejouer les tests de validation.
-4. Consigner l’incident et ouvrir une tâche de correction.
+- Une fois validée, la PR est mergée.
+- Le merge déclenche un déploiement sur l’environnement de préproduction.
+
+## 5. Vérifications post-merge
+
+- Recette manuelle sur l’environnement de préproduction :
+  - Connexion (NextAuth).
+  - Création et lecture de coffre-fort.
+  - Recherche.
+- Vérification des métriques (Web Vitals).
+- Vérification de l’accessibilité (RGAA AA).
+- Logs et alertes dans Sentry (absence d’erreurs).
+
+## 6. Rollback en cas de problème
+
+- Si la fonctionnalité introduit un bug critique :
+  1. Revert la _Pull Request_ sur `develop`.
+  2. Ouvrir un ticket correctif.
+  3. Implémenter la correction sur une nouvelle branche.
+
+## 7. Bonnes pratiques
+
+- Respecter les conventions de nommage des branches et commits.
+- Ne jamais committer de secrets (GitGuardian assure un contrôle automatique).
+- Écrire du code lisible, testé et conforme aux règles ESLint + Prettier.
+- Associer systématiquement les changements à un ticket pour assurer la traçabilité.  
