@@ -7,6 +7,7 @@ import { VaultLabelRecord } from '@api/modules/vaults/infra/records/vault-label.
 import { CreateVaultRecord } from '@api/modules/vaults/infra/records/create-vault.record';
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
 import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
+import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
 
 @injectable()
 export class VaultsRepository {
@@ -39,18 +40,27 @@ export class VaultsRepository {
     );
   }
 
-  public async createWithMember(record: CreateVaultRecord): Promise<Vault> {
+  public async createWithMembers(
+    record: CreateVaultWithMembersRecord
+  ): Promise<Vault> {
     return await handlePrismaRequest<Vault>(() =>
-      prisma.vault.create({
-        data: {
-          label: record.label,
-          secret: record.secret,
-          members: {
-            create: {
-              userId: record.userId,
-            },
+      prisma.$transaction(async tx => {
+        // eslint-disable-next-line @typescript-eslint/typedef
+        const vault = await tx.vault.create({
+          data: {
+            label: record.label,
+            secret: record.secret,
           },
-        },
+        });
+
+        await tx.vaultMember.createMany({
+          data: record.userIds.map(userId => ({
+            vaultId: vault.uuid,
+            userId: userId,
+          })),
+        });
+
+        return vault;
       })
     );
   }
