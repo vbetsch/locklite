@@ -51,7 +51,7 @@ l’intégrité des données et la sécurité lors du passage d’une version N 
 1. Récupérer la nouvelle version depuis Git :
 
   ```shell
-  npm fetch --all
+  git fetch --all
   git checkout <tag_version>
   ```
 
@@ -72,10 +72,10 @@ l’intégrité des données et la sécurité lors du passage d’une version N 
 
 ## 5. Vérifications post-déploiement
 
-- Contrôler les parcours critiques : connexion, création et suppression de coffres-forts.
-- Vérifier les métriques de performance.
-- Contrôler l’accessibilité (RGAA niveau AA).
-- Surveiller les logs et alertes dans Sentry.
+- Contrôler les parcours critiques : connexion, création et recherche de coffres-forts.
+- Vérifier les métriques de performance (Web Vitals) conformes aux seuils projet
+- Contrôler l’accessibilité : points clés RGAA AA sur les écrans principaux.
+- Surveiller les logs et alertes dans Sentry (absence d'erreurs).
 - Vérifier l’état de la base après migration.
 
 ## 6. Procédure de rollback
