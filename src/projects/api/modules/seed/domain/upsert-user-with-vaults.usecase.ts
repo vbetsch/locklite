@@ -32,26 +32,43 @@ export class UpsertUserWithVaultsUseCase
     });
   }
 
-  private async _createVaults(
+  private async _createOrShareVaults(
     user: User,
     vaults: ReadonlyArray<VaultTypeSeed>
   ): Promise<void> {
-    const existingVaults: ReadonlyArray<Vault> =
+    const existingUserVaults: ReadonlyArray<Vault> =
       await this._vaultsRepository.findByUserId({
         userId: user.id,
       });
 
-    if (existingVaults.length === 0) {
-      await this._vaultsRepository.createMany({
-        userId: user.id,
-        vaults: vaults,
-      });
+    if (existingUserVaults.length > 0) {
+      return;
+    }
+
+    for (const vaultData of vaults) {
+      const existingVault: Vault | null =
+        await this._vaultsRepository.findByLabel({
+          label: vaultData.label,
+        });
+
+      if (existingVault) {
+        await this._vaultsRepository.addMemberToVault({
+          vaultId: existingVault.uuid,
+          userId: user.id,
+        });
+      } else {
+        await this._vaultsRepository.createWithMembers({
+          label: vaultData.label,
+          secret: vaultData.secret,
+          userIds: [user.id],
+        });
+      }
     }
   }
 
   public async handle(input: UserTypeSeed): Promise<User> {
     const user: User = await this._createUser(input);
-    await this._createVaults(user, input.vaults);
+    await this._createOrShareVaults(user, input.vaults);
     return user;
   }
 }

@@ -6,8 +6,8 @@ import { SharedUuidRecord } from '@api/infra/shared-uuid.record';
 import { VaultLabelRecord } from '@api/modules/vaults/infra/records/vault-label.record';
 import { CreateVaultRecord } from '@api/modules/vaults/infra/records/create-vault.record';
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
-import type { VaultTypeSeed } from '@api/modules/seed/app/types/vault.type.seed';
-import { CreateManyVaultsRecord } from '@api/modules/vaults/infra/records/create-many-vaults.record';
+import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
+import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
 
 @injectable()
 export class VaultsRepository {
@@ -15,7 +15,11 @@ export class VaultsRepository {
     return await handlePrismaRequest<Vault[]>(() =>
       prisma.vault.findMany({
         where: {
-          userId: record.userId,
+          members: {
+            some: {
+              userId: record.userId,
+            },
+          },
         },
         orderBy: { createdAt: 'desc' },
       })
@@ -36,15 +40,55 @@ export class VaultsRepository {
     );
   }
 
-  public async createMany(record: CreateManyVaultsRecord): Promise<void> {
-    await prisma.vault.createMany({
-      data: record.vaults.map((v: VaultTypeSeed) => ({
-        label: v.label,
-        secret: v.secret,
-        userId: record.userId,
-      })),
-      skipDuplicates: true,
-    });
+  public async createWithMembers(
+    record: CreateVaultWithMembersRecord
+  ): Promise<Vault> {
+    return await handlePrismaRequest<Vault>(() =>
+      prisma.$transaction(async tx => {
+        // eslint-disable-next-line @typescript-eslint/typedef
+        const vault = await tx.vault.create({
+          data: {
+            label: record.label,
+            secret: record.secret,
+          },
+        });
+
+        await tx.vaultMember.createMany({
+          data: record.userIds.map(userId => ({
+            vaultId: vault.uuid,
+            userId: userId,
+          })),
+        });
+
+        return vault;
+      })
+    );
+  }
+
+  public async addMemberToVault(record: AddMemberRecord): Promise<void> {
+    await handlePrismaRequest(() =>
+      prisma.vaultMember.upsert({
+        where: {
+          vaultId_userId: {
+            vaultId: record.vaultId,
+            userId: record.userId,
+          },
+        },
+        update: {},
+        create: {
+          vaultId: record.vaultId,
+          userId: record.userId,
+        },
+      })
+    );
+  }
+
+  public async findByLabel(record: VaultLabelRecord): Promise<Vault | null> {
+    return await handlePrismaRequest<Vault | null>(() =>
+      prisma.vault.findFirst({
+        where: { label: record.label },
+      })
+    );
   }
 
   public async delete(record: SharedUuidRecord): Promise<void> {
