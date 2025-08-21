@@ -6,6 +6,7 @@
 
 ### Références
 
+- Manuel de mise à jour : [CONTRIBUTING.md](CONTRIBUTING.md)
 - Déploiement continu : [CD.md](CD.md)
 
 ### Ressources
@@ -45,22 +46,22 @@ maîtrisé.
 2. Développer et committer les changements
 3. Pousser la branche sur GitHub
 4. Ouvrir une pull request vers `develop`
-   * Vercel déclenche automatiquement un déploiement éphémère
-   * L’URL est visible dans la pull request
 
-### 4.2 Déploiement en préproduction (preview)
+* Vercel déclenche automatiquement un déploiement éphémère
+* L’URL est visible dans la pull request
 
-1. Une fois la pull request validée et mergée dans develop, Vercel déploie automatiquement sur l’environnement
-**preview**
+### 4.2 Déploiement en préproduction
+
+1. Une fois la pull request validée et mergée dans develop, Vercel déclenche automatiquement un déploiement
 2. Les tests automatisés (CI GitHub) et manuels sont réalisés sur cet environnement
-3. Si les recettes sont validées, une release est préparée
+3. Si les recettes sont validées, une release pourra alors se faire au moment venu
 
 ### 4.3 Déploiement en production
 
 1. Préparer une release sur GitHub : créer un nouveau tag (vX.Y.Z) et mettre à jour la documentation
 2. Merger la branche `develop` dans `main`
 3. Le merge déclenche automatiquement le déploiement **production** sur Vercel
-4. Vérifier le déploiement : connexion, création d’un coffre-fort, recherche
+4. Vérifier le déploiement : fonctionnalités principales et monitoring
 
 ### 4.4 Rollback
 
@@ -73,7 +74,7 @@ En cas d’échec en production :
 
 ## 5. Traçabilité
 
-- Chaque déploiement est associé à un commit Git et un tag
+- Chaque déploiement est associé à un commit et une branche Git
 - L’historique est consultable dans GitHub (commits, pull requests, releases) et dans Vercel (logs et statuts de
   déploiement)
 - Les changements de base de données sont versionnés par les migrations Prisma

@@ -91,12 +91,12 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 - ESLint et Prettier appliqués en continu.
 - Sessions gérées par JWT avec un secret dédié.
 - Politiques de rotation des secrets.
-- Mise en place de différents environnements (preview et production)
+- Mise en place de différents environnements (développement, préproduction et production)
 - Désactivation du Swagger en production
 
 ### Mesures prévues
 
-- Mise en place d'une authentification sur l'API
+- Mise en place d'une authentification sur l'API (Bearer Authentication)
 
 ### Mesures restantes à intégrer
 
@@ -108,9 +108,6 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Adoption du versioning SemVer.
 - Journal de versions avec une catégorie dédiée aux correctifs de sécurité.
-
-### Mesures prévues
-
 - Mise en place de Dependabot pour la gestion proactive des dépendances.
 - Définir une politique de mise à jour automatisée et validée en CI/CD.
 
@@ -140,12 +137,12 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - CI via GitHub Actions avec tests, linter et build obligatoires.
 - Branche `main` protégée par des règles de merge strictes.
+- Définir une politique de mise à jour automatisée et validée en CI/CD.
 
 ### Mesures prévues
 
 - Protection de la branche `develop` également.
 - Déploiement (CD) déclenché uniquement si la CI est validée.
-- Définir une politique de mise à jour automatisée et validée en CI/CD.
 
 ## A09:2021 – Security Logging and Monitoring Failures
 

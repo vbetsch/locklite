@@ -23,7 +23,7 @@ Chaque environnement possède une base de données dédiée et indépendante, ce
 
 - **Développement** : déploiements éphémères déclenchés lors de la fusion d'une branche de développement. Utilisé par les développeurs pour
   valider leur travail en conditions réelles. _Accessible uniquement aux membres du projet via authentification Vercel._
-- **Préproduction (preview)** : déploiements automatiques de la branche `develop`. Permet de valider l’ensemble des
+- **Préproduction** : déploiements automatiques de la branche `develop`. Permet de valider l’ensemble des
   fonctionnalités avant une release. _Accessible uniquement aux membres du projet via authentification Vercel._
 - **Production** : déploiements automatiques de la branche `main`. Environnement stable pour
   les utilisateurs finaux. _Accessible publiquement._
@@ -35,7 +35,7 @@ Chaque environnement possède une base de données dédiée et indépendante, ce
 - **Base de données** : PostgreSQL (_hébergée sur Neon_) avec ORM Prisma.
 - **Gestion des sources** : GitHub (_branches nommées selon un Gitflow simplifié_).
 - **Intégration / déploiement** : Vercel (_bot intégré à GitHub_).
-- **Qualité** : ESLint, Prettier, Jest (_tests unitaires et d’intégration_).
+- **Qualité** : ESLint, Prettier, Jest (_tests unitaires_).
 - **Sécurité** : GitGuardian (_vérification des secrets_).
 
 ## 4. Séquences de déploiement
