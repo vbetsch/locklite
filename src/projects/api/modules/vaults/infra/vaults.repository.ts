@@ -41,17 +41,10 @@ export class VaultsRepository {
   }
 
   public async createMany(record: CreateManyVaultsRecord): Promise<void> {
-    const createdVaults: Vault[] = await prisma.vault.createManyAndReturn({
-      data: record.vaults.map((vault: VaultTypeSeed) => ({
-        label: vault.label,
-        secret: vault.secret,
-      })),
-      skipDuplicates: true,
-    });
-
-    await prisma.vaultMember.createMany({
-      data: createdVaults.map(vault => ({
-        vaultId: vault.uuid,
+    await prisma.vault.createMany({
+      data: record.vaults.map((v: VaultTypeSeed) => ({
+        label: v.label,
+        secret: v.secret,
         userId: record.userId,
       })),
       skipDuplicates: true,
