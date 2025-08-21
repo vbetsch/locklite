@@ -74,7 +74,7 @@ En cas d’échec en production :
 
 ## 5. Traçabilité
 
-- Chaque déploiement est associé à un commit Git et un tag
+- Chaque déploiement est associé à un commit et une branche Git
 - L’historique est consultable dans GitHub (commits, pull requests, releases) et dans Vercel (logs et statuts de
   déploiement)
 - Les changements de base de données sont versionnés par les migrations Prisma
