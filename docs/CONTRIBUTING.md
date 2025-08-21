@@ -29,7 +29,10 @@ l’intégration en préproduction.
 2. Analyse, refinement et conception
 3. Assignation du ticket à un développeur.
 4. Création de la branche de développement à partir de `develop` en suivant la
-   convention [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow)
+   convention [Gitflow](https://www.atlassian.com/fr/git/tutorials/comparing-workflows/gitflow-workflow), en prefixant
+   par le projet concerné et en incluant le numéro du ticket de la manière suivante :
+   - `api/feature/52-add-users`
+   - `ui/hotfix/103-button-alignment`
 
 ## 4. Procédure de mise à jour
 
