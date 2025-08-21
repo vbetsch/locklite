@@ -82,7 +82,7 @@ l’intégrité des données et la sécurité lors du passage d’une version N 
 
 En cas d’incident majeur :
 
-1. Restaurer la version précédente (revert).
+1. Restaurer la version précédente (git revert).
 2. Restaurer la base depuis la sauvegarde réalisée avant migration.
 3. Rejouer les tests de validation.
 4. Consigner l’incident et ouvrir une tâche de correction.
