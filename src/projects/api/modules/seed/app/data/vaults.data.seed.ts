@@ -1,4 +1,3 @@
-// vaults.data.mock.ts
 import type { VaultTypeSeed } from '@api/modules/seed/app/types/vault.type.seed';
 
 export const vaultsDataSeed: Record<string, VaultTypeSeed> = {
