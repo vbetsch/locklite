@@ -1,7 +1,7 @@
 import { injectable } from 'tsyringe';
-import { Vault } from '@prisma/generated';
 import { IAdapter } from '@api/app/adapter.interface';
 import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { Vault } from '@prisma/client';
 
 @injectable()
 export class VaultAdapter implements IAdapter<Vault, VaultWithMembersModelDto> {

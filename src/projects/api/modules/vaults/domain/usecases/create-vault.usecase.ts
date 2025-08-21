@@ -1,4 +1,15 @@
 import { inject, injectable } from 'tsyringe';
+import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
+import { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
+import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
+import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
+import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
+import { VaultAlreadyExistsError } from '@api/modules/vaults/app/errors/vault-already-exists.error';
+import { User, Vault } from '@prisma/client';
+import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
+import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
+import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
 export class CreateVaultUseCase
@@ -41,7 +52,7 @@ export class CreateVaultUseCase
   public async handle(
     input: CreateVaultPayloadDto
   ): Promise<VaultWithMembersModelDto> {
-    const currentUser: UserModel = await this._currentUserService.get();
+    const currentUser: User = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
     const vaultCreated: Vault = await this._createVaultInDatabase(
       input,

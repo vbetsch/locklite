@@ -1,4 +1,12 @@
 import { inject, injectable } from 'tsyringe';
+import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
+import { RegisterPayloadDto } from '@shared/modules/auth/dto/register/register.payload.dto';
+import { UserModelDto } from '@shared/modules/users/user.model.dto';
+import { UsersRepository } from '@api/modules/users/infra/users.repository';
+import { HashService } from '@api/modules/auth/domain/hash.service';
+import { UserAdapter } from '@api/modules/users/app/user.adapter';
+import { UserAlreadyExistsError } from '@api/modules/users/app/errors/user-already-exists.error';
+import { User } from '@prisma/client';
 
 @injectable()
 export class RegisterUseCase

@@ -1,4 +1,11 @@
 import { inject, injectable } from 'tsyringe';
+import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
+import { UserTypeSeed } from '@api/modules/seed/app/types/user.type.seed';
+import { User, Vault } from '@prisma/client';
+import { HashService } from '@api/modules/auth/domain/hash.service';
+import { UsersRepository } from '@api/modules/users/infra/users.repository';
+import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
+import { VaultTypeSeed } from '@api/modules/seed/app/types/vault.type.seed';
 
 @injectable()
 export class UpsertUserWithVaultsUseCase

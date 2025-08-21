@@ -1,4 +1,10 @@
 import { inject, injectable } from 'tsyringe';
+import { IUseCase } from '@api/domain/usecases/usecase.interface';
+import { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
+import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
+import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
+import { User, Vault } from '@prisma/client';
+import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 
 @injectable()
 export class GetMyVaultsUseCase implements IUseCase<VaultModelDto[]> {
