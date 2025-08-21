@@ -52,6 +52,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const allMembers: VaultMemberModelDto[] = useMembers(usersState.allUsers);
 
   const handleClose = (): void => {
+    setSelectedUsers([]);
     setLabelError(null);
     setGlobalError(null);
     setNewLabel('');
