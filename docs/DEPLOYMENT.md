@@ -6,6 +6,7 @@
 
 ### Références
 
+- Manuel de mise à jour : [CONTRIBUTING.md](CONTRIBUTING.md)
 - Déploiement continu : [CD.md](CD.md)
 
 ### Ressources
