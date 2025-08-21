@@ -1,4 +1,11 @@
-import type { VaultWithMembersModelDto } from '@shared/dto/models/vault.with-members.model.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { currentUserDataMock } from '@ui/modules/users/mocks/currentUser.data.mock';
+import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-member.model.dto';
+
+const currentUserFormatted: VaultMemberModelDto = {
+  email: currentUserDataMock.email,
+  name: currentUserDataMock.name,
+};
 
 // TODO: remove it
 export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
@@ -7,7 +14,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     label: 'Google Account',
     secret: 'p@ssW0rd123!',
     members: [
-      { email: 'admin@example.com', name: 'Administrator' },
+      currentUserFormatted,
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
       { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
@@ -26,7 +33,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     secret: 'GhT0k3n$eCur3',
     members: [
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
-      { email: 'admin@example.com', name: 'Administrator' },
+      currentUserFormatted,
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
     ],
   },
@@ -43,7 +50,7 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
     members: [
       { email: 'charlie.davis@example.com' },
       { email: 'diana.wilson@example.com', name: 'Diana Wilson' },
-      { email: 'admin@example.com', name: 'Administrator' },
+      currentUserFormatted,
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
@@ -59,13 +66,13 @@ export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
       { email: 'edward.taylor@example.com', name: 'Edward Taylor' },
       { email: 'alice.smith@example.com', name: 'Alice Smith' },
       { email: 'bob.johnson@example.com', name: 'Bob Johnson' },
-      { email: 'admin@example.com', name: 'Administrator' },
+      currentUserFormatted,
     ],
   },
   {
     id: 'v7',
-    label: 'Only administrator',
+    label: 'Only current user',
     secret: 'Adm1n0nly$2024',
-    members: [{ email: 'admin@example.com', name: 'Administrator' }],
+    members: [currentUserFormatted],
   },
 ];

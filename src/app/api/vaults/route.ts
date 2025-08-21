@@ -1,15 +1,16 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import { container } from 'tsyringe';
-import { handleApiRequest } from '@api/app/helpers/handle-api-request';
-import type { VaultModelDto } from '@shared/dto/models/vault.model.dto';
-import { CreateVaultUseCase } from '@api/domain/usecases/vaults/create-vault.usecase';
-import { GetMyVaultsUseCase } from '@api/domain/usecases/vaults/get-my-vaults.usecase';
+import { handleApiRequest } from '@api/app/handle-api-request';
+import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
+import { CreateVaultUseCase } from '@api/modules/vaults/domain/usecases/create-vault.usecase';
+import { GetMyVaultsUseCase } from '@api/modules/vaults/domain/usecases/get-my-vaults.usecase';
 import { StatusCodes } from 'http-status-codes';
-import type { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
-import type { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
-import type { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
-import type { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import type { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import type { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
+import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
+import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 /**
  * @swagger
@@ -107,7 +108,7 @@ export async function POST(
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
-      const vaultCreated: VaultModelDto =
+      const vaultCreated: VaultWithMembersModelDto =
         await createVaultUseCase.handle(payload);
       const response: CreateVaultDataDto = { vaultCreated };
       return response;

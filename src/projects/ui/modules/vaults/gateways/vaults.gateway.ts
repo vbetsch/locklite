@@ -1,11 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
-import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
+import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 
 @injectable()
 export class VaultsGateway implements IVaultsGateway {
@@ -23,19 +24,19 @@ export class VaultsGateway implements IVaultsGateway {
   }
 
   public async createVault(
-    data: CreateVaultPayloadDto
+    input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
     return await this._lockliteRequestService.post<CreateVaultDataDto>(
       '/vaults',
-      data
+      input.payload
     );
   }
 
   public async deleteVault(
-    params: CreateVaultParams
+    input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
     return await this._lockliteRequestService.delete<number>(
-      '/vaults/' + params.id
+      '/vaults/' + input.params.vaultId
     );
   }
 }

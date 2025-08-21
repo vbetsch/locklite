@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { RequestService } from '@shared/requests/request.service';
-import { HttpResponseDto } from '@shared/dto/output/responses/abstract/http.response.dto';
+import { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import { StatusCodes } from 'http-status-codes';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
 import { UiLogger } from '@ui/ui.logger';
@@ -14,7 +14,6 @@ export class LockliteApiRequestService extends RequestService {
   private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
     return {
       status: StatusCodes.NO_CONTENT,
-      // eslint-disable-next-line no-undefined
       data: undefined as unknown as Data,
     };
   }
@@ -24,7 +23,7 @@ export class LockliteApiRequestService extends RequestService {
       error instanceof Error
         ? error.message
         : 'An error occurred while parsing locklite API response';
-    UiLogger.error(`${message}: `, error);
+    UiLogger.error({ message: `${message}: `, error });
     throw new Error(message);
   }
 
@@ -53,7 +52,10 @@ export class LockliteApiRequestService extends RequestService {
       throw new HttpError(responseBody.error.message, response.status);
     }
     this._errorMessage = 'An error occurred while parsing locklite API call.';
-    UiLogger.error(`${this._errorMessage} Response: `, responseBody);
+    UiLogger.error({
+      message: `${this._errorMessage} Response: `,
+      error: responseBody,
+    });
     throw new Error(this._errorMessage);
   }
 
