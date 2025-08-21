@@ -18,7 +18,7 @@ model Vault {
 }
 
 model VaultMember {
-  id      String @id @default(cuid())
+  uuid    String @id @default(uuid())
   vaultId String
   userId  String
 
