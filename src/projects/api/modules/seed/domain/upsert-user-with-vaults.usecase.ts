@@ -47,21 +47,25 @@ export class UpsertUserWithVaultsUseCase
 
     for (const vaultData of vaults) {
       const existingVault: Vault | null =
-        await this._vaultsRepository.findByLabel(vaultData.label);
+        await this._vaultsRepository.findByLabel({ label: vaultData.label });
 
       if (existingVault) {
         try {
-          await this._vaultsRepository.addMemberToVault(
-            existingVault.uuid,
-            user.id
-          );
+          await this._vaultsRepository.addMemberToVault({
+            vaultId: existingVault.uuid,
+            userId: user.id,
+          });
         } catch {
           console.log(
             `User ${user.email} is already a member of vault ${vaultData.label}`
           );
         }
       } else {
-        await this._vaultsRepository.createWithMember(vaultData, user.id);
+        await this._vaultsRepository.createWithMember({
+          label: vaultData.label,
+          secret: vaultData.secret,
+          userid: user.id,
+        });
       }
     }
   }

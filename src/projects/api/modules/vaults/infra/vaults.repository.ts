@@ -6,7 +6,7 @@ import { SharedUuidRecord } from '@api/infra/shared-uuid.record';
 import { VaultLabelRecord } from '@api/modules/vaults/infra/records/vault-label.record';
 import { CreateVaultRecord } from '@api/modules/vaults/infra/records/create-vault.record';
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
-import type { VaultTypeSeed } from '@api/modules/seed/app/types/vault.type.seed';
+import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
 
 @injectable()
 export class VaultsRepository {
@@ -39,18 +39,15 @@ export class VaultsRepository {
     );
   }
 
-  public async createWithMember(
-    vault: VaultTypeSeed,
-    userId: string
-  ): Promise<Vault> {
+  public async createWithMember(record: CreateVaultRecord): Promise<Vault> {
     return await handlePrismaRequest<Vault>(() =>
       prisma.vault.create({
         data: {
-          label: vault.label,
-          secret: vault.secret,
+          label: record.label,
+          secret: record.secret,
           members: {
             create: {
-              userId: userId,
+              userId: record.userId,
             },
           },
         },
@@ -58,31 +55,28 @@ export class VaultsRepository {
     );
   }
 
-  public async addMemberToVault(
-    vaultId: string,
-    userId: string
-  ): Promise<void> {
+  public async addMemberToVault(record: AddMemberRecord): Promise<void> {
     await handlePrismaRequest(() =>
       prisma.vaultMember.upsert({
         where: {
           vaultId_userId: {
-            vaultId: vaultId,
-            userId: userId,
+            vaultId: record.vaultId,
+            userId: record.userId,
           },
         },
         update: {},
         create: {
-          vaultId: vaultId,
-          userId: userId,
+          vaultId: record.vaultId,
+          userId: record.userId,
         },
       })
     );
   }
 
-  public async findByLabel(label: string): Promise<Vault | null> {
+  public async findByLabel(record: VaultLabelRecord): Promise<Vault | null> {
     return await handlePrismaRequest<Vault | null>(() =>
       prisma.vault.findFirst({
-        where: { label },
+        where: { label: record.label },
       })
     );
   }
