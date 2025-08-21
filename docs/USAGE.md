@@ -20,7 +20,7 @@ passe.
 Vous devez vous prémunir d'un mot de passe maître LockLite, si ce n'est pas déjà le cas je vous invite à contacter votre
 administrateur.
 
-## 2. Connexion à l’application
+## 3. Connexion à l’application
 
 [//]: # (Ici on part du principe que l'application est déployée en intranet, ce qui n'est pas le cas pour ce MVP)
 
@@ -28,15 +28,15 @@ administrateur.
 2. Saisir votre email et le mot de passe maître que vous a fourni votre administrateur.
 3. En cas d’oubli de mot de passe, utiliser la procédure prévue par votre administrateur.
 
-## 3. Tableau de bord
+## 4. Tableau de bord
 
-Une fois connecté, vous accéder au tableau de bord LockLite :
+Une fois connecté, vous accédez au tableau de bord LockLite :
 
 - Aperçu des coffres-forts auxquels vous avez accès.
 - Barre de recherche pour filtrer les coffres-forts affichés
 - Bouton pour créer un nouveau coffre-fort
 
-## 4. Gestion des coffres-forts
+## 5. Gestion des coffres-forts
 
 ### Créer un coffre-fort
 
@@ -47,25 +47,25 @@ Une fois connecté, vous accéder au tableau de bord LockLite :
 ### Supprimer un coffre-fort
 
 1. Choisir le coffre-fort à supprimer.
-2. Cliquer sur **Delete**.
-3. Confirmer l’action (suppression définitive). Vous pouvez annuler.
+2. Cliquer sur le bouton **Delete** de celui-ci.
+3. Confirmer l’action (suppression définitive).
 
 [//]: # (TODO: SHARE)
 [//]: # (## 6. Partage de coffres-forts)
 
-## 5. Déconnexion
+## 6. Déconnexion
 
 - Cliquer sur l’icône de profil en haut à droite.
 - Cliquer sur  **Logout**.
 - Pour des raisons de sécurité, toujours se déconnecter après usage, surtout sur un poste partagé.
 
-## 6. Bonnes pratiques de sécurité
+## 7. Bonnes pratiques de sécurité
 
 - Ne **jamais** partager vos identifiants de connexion.
 - Ne pas enregistrer vos mots de passe LockLite en clair ailleurs (post-it, fichiers texte, etc.).
 - Signaler immédiatement toute anomalie ou suspicion d’accès non autorisé à l’administrateur.
 
-## 7. Support
+## 8. Support
 
 En cas de problème ou de question :
 
