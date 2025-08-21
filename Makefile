@@ -53,29 +53,32 @@ tests-pa11y: node_modules
 coverage: node_modules
 	npm run test:cov
 
-migrate: up
+migrate: node_modules up
 	@if [ -z "$(MIGRATION_NAME)" ]; then \
 	  echo "Error: MIGRATION_NAME is required"; \
 	  exit 1; \
 	fi
 	npm run prisma:migrate "$(MIGRATION_NAME)"
 
-reset: up
+reset: node_modules up
 	npm run prisma:reset
 
-seed: up
+generate: node_modules up
+	npm run prisma:generate
+
+seed: node_modules up
 	npm run prisma:seed
 
 clean:
 	rm -rf .next node_modules package-lock.json
 	npm install
 
-.PHONY: up down dev build start lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset seed clean
+.PHONY: up down dev build start lint format tests tests-shared tests-api tests-ui tests-pa11y coverage migrate reset generate seed clean
 
 # Aliases
 run: dev
 checks: lint tests
-reset_db: reset seed
+reset_db: reset generate seed
 ci: lint coverage build
 build_start: build start
 a11y: tests-pa11y
