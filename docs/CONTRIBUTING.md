@@ -7,7 +7,7 @@
 ### Références
 
 - Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
-- Manuel d’utilisation : [USAGE.md](USAGE.md)
+- Manuel d’utilisation : [USAGE.md](USER.md)
 - Journal de versions : [CHANGELOG.md](CHANGELOG.md)
 
 ## 1. Objet

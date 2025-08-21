@@ -39,4 +39,4 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 - [Defect Correction Plan](BUGS.md) - FR (C2.3.2)
 - [Contributing Guide](CONTRIBUTING.md) - FR (C2.4.1)
 - [Deployment Guide](DEPLOYMENT.md) - FR (C2.4.1)
-- [User Guide](USAGE.md) - FR (C2.4.1)
+- [User Guide](USER.md) - FR (C2.4.1)
