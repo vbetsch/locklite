@@ -38,7 +38,7 @@ l’intégration en préproduction.
 - Implémenter la fonctionnalité ou le correctif.
 - Effectuer des commits clairs et précis liés au ticket.
 
-2. **Création d’une _Pull Request_ vers `develop`**
+2. **Création d’une pull request vers `develop`**
 
 - Inclure le numéro du ticket, une description claire et les labels nécessaires.
 
@@ -77,7 +77,7 @@ l’intégration en préproduction.
 ## 6. Rollback en cas de problème
 
 - Si la fonctionnalité introduit un bug critique :
-  1. Revert la _Pull Request_ sur `develop`.
+  1. Revert la pull request sur `develop`.
   2. Ouvrir un ticket correctif.
   3. Implémenter la correction sur une nouvelle branche.
 
