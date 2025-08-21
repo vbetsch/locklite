@@ -1,4 +1,11 @@
 import 'reflect-metadata';
+import type { UsersRepository } from '@api/modules/users/infra/users.repository';
+import type { HashService } from '@api/modules/auth/domain/hash.service';
+import type { UserAdapter } from '@api/modules/users/app/user.adapter';
+import { SignInUseCase } from '@api/modules/auth/domain/usecases/signin.usecase';
+import type { User } from '@prisma/client';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import type { SignInPayloadDto } from '@shared/modules/auth/dto/sign-in/sign-in.payload.dto';
 
 describe('SignInUseCase', () => {
   let usersRepository: UsersRepository;
