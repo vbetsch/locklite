@@ -20,7 +20,8 @@ administrateur.
 [//]: # (Ici on part du principe que l'application est déployée en intranet, ce qui n'est pas le cas pour ce MVP)
 
 1. Accéder à l’URL fournie par votre administrateur (exemple : `https://locklite.mondomaine.com`).
-2. Saisir votre email et le mot de passe maître que vous a fourni votre administrateur, puis cliquer sur **Sign in** _(Se connecter)_.
+2. Saisir votre email et le mot de passe maître que vous a fourni votre administrateur, puis cliquer sur **Sign in** _(
+   Se connecter)_.
 3. En cas d’oubli de mot de passe, utiliser la procédure prévue par votre administrateur.
 
 ## 4. Tableau de bord
@@ -35,8 +36,11 @@ Une fois connecté, vous accédez au tableau de bord LockLite :
 
 ### Créer un coffre-fort
 
+[//]: # (Cette version MVP de cette application est fictive donc il est fortement recommandé de ne pas mettre de réels identifiants)
+
 1. Cliquer sur **Add a vault** _(Ajouter un coffre-fort)_.
-2. Entrer un label _(nom)_ et un secret. Le secret peut être un mot de passe, une clé d'accès, un code à 6 chiffres, etc.
+2. Entrer un label _(nom)_ et un secret. Le secret peut être un mot de passe, une clé d'accès, un code à 6 chiffres,
+   etc.
 3. Cliquer sur créer pour valider : le coffre-fort est visible dans le tableau de bord.
 
 ### Supprimer un coffre-fort
@@ -46,6 +50,7 @@ Une fois connecté, vous accédez au tableau de bord LockLite :
 3. Confirmer l’action (suppression définitive).
 
 [//]: # (TODO: SHARE)
+
 [//]: # (## 6. Partage de coffres-forts)
 
 ## 6. Déconnexion
