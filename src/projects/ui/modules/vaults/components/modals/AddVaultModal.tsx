@@ -61,7 +61,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   };
 
   const handleChange = (next: VaultMemberModelDto[]): void => {
-    setSelectedUsers([...next]);
+    setSelectedUsers(next);
   };
 
   const addVault = (vaultCreated: VaultWithMembersModelDto): void => {
