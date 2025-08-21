@@ -8,6 +8,7 @@ import { usersStore } from '@ui/modules/users/stores/users.store';
 import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
 import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
 import { useStore } from '@ui/stores/hooks/useStore';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 type VaultsListProps = {
   loading: boolean;
@@ -17,6 +18,10 @@ type VaultsListProps = {
 export default function VaultsList(props: VaultsListProps): JSX.Element {
   const { users: allUsers, loading: usersLoading } = useUsers();
   const vaultsState: VaultsStoreState = useStore(vaultsStore);
+
+  const filteredVaults: VaultWithMembersModelDto[] = vaultsState.vaults.filter(
+    vault => vault.label.toLowerCase().includes(props.searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     usersStore.setState({
@@ -32,7 +37,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
 
   if (props.loading) return <VaultSkeletons />;
 
-  if (vaultsState.vaults.length === 0)
+  if (filteredVaults.length === 0)
     return (
       <Typography>
         {props.searchTerm ? 'No vaults match your search' : 'No results found'}
@@ -48,7 +53,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
       overflow={'auto'}
       height={'65vh'}
     >
-      {vaultsState.vaults.map(vault => (
+      {filteredVaults.map(vault => (
         <Grid key={vault.id} size={1}>
           <VaultCard vault={vault} />
         </Grid>
