@@ -15,7 +15,11 @@ export class VaultsRepository {
     return await handlePrismaRequest<Vault[]>(() =>
       prisma.vault.findMany({
         where: {
-          userId: record.userId,
+          members: {
+            some: {
+              userId: record.userId,
+            },
+          },
         },
         orderBy: { createdAt: 'desc' },
       })
