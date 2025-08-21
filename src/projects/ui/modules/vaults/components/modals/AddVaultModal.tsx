@@ -20,18 +20,21 @@ import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/cre
 import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
-import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
+import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
+import { useStore } from '@ui/stores/hooks/useStore';
 
 type AddVaultModalProps = {
   open: boolean;
   onClose: () => void;
-  addVault: (vault: VaultWithMembersModelDto) => void;
 };
 
 export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const delayToFocusFirstInput: number = 100;
 
+  const vaultsState: VaultsStoreState = useStore(vaultsStore);
   const [newLabel, setNewLabel] = useState<string>('');
   const [newSecret, setNewSecret] = useState<string>('');
   const [labelError, setLabelError] = useState<Error | null>(null);
@@ -48,6 +51,12 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     props.onClose();
   };
 
+  const addVault = (vaultCreated: VaultWithMembersModelDto): void => {
+    vaultsStore.setState({
+      vaults: [...vaultsState.vaults, vaultCreated],
+    });
+  };
+
   const { execute: createVault, loading } = useApiCall<
     CreateVaultDataDto,
     HttpInputDto<null, CreateVaultPayloadDto>
@@ -55,7 +64,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
     request: input => vaultsGateway.createVault(input!),
     onSuccess: data => {
       handleClose();
-      props.addVault(data.vaultCreated);
+      addVault(data.vaultCreated);
     },
     onError: err => {
       if (err instanceof BusinessError && err.message.includes('label')) {

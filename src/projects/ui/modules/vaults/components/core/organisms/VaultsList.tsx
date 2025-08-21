@@ -3,20 +3,20 @@ import type { JSX } from 'react';
 import { Grid, Typography } from '@mui/material';
 import VaultCard from '@ui/modules/vaults/components/core/molecules/VaultCard';
 import VaultSkeletons from '@ui/modules/vaults/components/core/molecules/VaultSkeletons';
-import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { useUsers } from '@ui/modules/users/hooks/useUsers';
 import { usersStore } from '@ui/modules/users/stores/users.store';
+import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
+import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
+import { useStore } from '@ui/stores/hooks/useStore';
 
 type VaultsListProps = {
   loading: boolean;
-  displayedVaults: VaultWithMembersModelDto[];
   searchTerm: string;
-  editVault: (vault: VaultWithMembersModelDto) => void;
-  deleteVault: (vault: VaultWithMembersModelDto) => void;
 };
 
 export default function VaultsList(props: VaultsListProps): JSX.Element {
   const { users: allUsers, loading: usersLoading } = useUsers();
+  const vaultsState: VaultsStoreState = useStore(vaultsStore);
 
   useEffect(() => {
     usersStore.setState({
@@ -32,7 +32,7 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
 
   if (props.loading) return <VaultSkeletons />;
 
-  if (props.displayedVaults.length === 0)
+  if (vaultsState.vaults.length === 0)
     return (
       <Typography>
         {props.searchTerm ? 'No vaults match your search' : 'No results found'}
@@ -48,13 +48,9 @@ export default function VaultsList(props: VaultsListProps): JSX.Element {
       overflow={'auto'}
       height={'65vh'}
     >
-      {props.displayedVaults.map(vault => (
+      {vaultsState.vaults.map(vault => (
         <Grid key={vault.id} size={1}>
-          <VaultCard
-            vault={vault}
-            setVault={props.editVault}
-            deleteVault={props.deleteVault}
-          />
+          <VaultCard vault={vault} />
         </Grid>
       ))}
     </Grid>

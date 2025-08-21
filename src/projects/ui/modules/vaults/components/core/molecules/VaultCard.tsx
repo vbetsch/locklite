@@ -20,20 +20,28 @@ import ShareVaultModal from '@ui/modules/vaults/components/modals/ShareVaultModa
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
+import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
+import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
+import { useStore } from '@ui/stores/hooks/useStore';
 
 type VaultCardProps = {
   vault: VaultWithMembersModelDto;
-  setVault: (vault: VaultWithMembersModelDto) => void;
-  deleteVault: (vault: VaultWithMembersModelDto) => void;
 };
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
+  const vaultsState: VaultsStoreState = useStore(vaultsStore);
   const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] =
     useState<VaultWithMembersModelDto | null>(null);
   const [openShareVaultModal, setOpenShareVaultModal] =
     useState<boolean>(false);
+
+  const removeVault = (deletedVault: VaultWithMembersModelDto): void => {
+    vaultsStore.setState({
+      vaults: vaultsState.vaults.filter(vault => vault.id !== deletedVault.id),
+    });
+  };
 
   const { execute: deleteVault, loading: deleteLoading } = useApiCall<
     number,
@@ -42,7 +50,7 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     request: params => vaultsGateway.deleteVault(params!),
     onSuccess: () => {
       setConfirmOpen(false);
-      if (vaultToDelete) props.deleteVault(vaultToDelete);
+      if (vaultToDelete) removeVault(vaultToDelete);
     },
     onError: err => {
       setConfirmOpen(false);
@@ -77,7 +85,6 @@ export default function VaultCard(props: VaultCardProps): JSX.Element {
     >
       <ShareVaultModal
         vault={props.vault}
-        setVault={props.setVault}
         open={openShareVaultModal}
         onClose={() => setOpenShareVaultModal(false)}
       />

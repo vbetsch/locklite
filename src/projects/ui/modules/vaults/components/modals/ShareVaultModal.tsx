@@ -25,10 +25,13 @@ import type { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-v
 import type { UsersStoreState } from '@ui/modules/users/stores/users.store';
 import { usersStore } from '@ui/modules/users/stores/users.store';
 import { useStore } from '@ui/stores/hooks/useStore';
+import {
+  vaultsStore,
+  type VaultsStoreState,
+} from '@ui/modules/vaults/stores/vaults.store';
 
 type ShareVaultModalProps = {
   vault: VaultWithMembersModelDto;
-  setVault: (vault: VaultWithMembersModelDto) => void;
   open: boolean;
   onClose: () => void;
 };
@@ -36,6 +39,7 @@ type ShareVaultModalProps = {
 export default function ShareVaultModal(
   props: ShareVaultModalProps
 ): JSX.Element {
+  const vaultsState: VaultsStoreState = useStore(vaultsStore);
   const usersState: UsersStoreState = useStore(usersStore);
   const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
   const allMembers: VaultMemberModelDto[] = useMembers(usersState.allUsers);
@@ -43,6 +47,14 @@ export default function ShareVaultModal(
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
     useMembers(props.vault.members)
   );
+
+  const setVault = (editedVault: VaultWithMembersModelDto): void => {
+    vaultsStore.setState({
+      vaults: vaultsState.vaults.map(vault =>
+        vault.id === editedVault.id ? editedVault : vault
+      ),
+    });
+  };
 
   const handleClose = (): void => {
     setGlobalError(null);
@@ -60,7 +72,7 @@ export default function ShareVaultModal(
     request: input => vaultsGateway.editVaultMembers(input!),
     onSuccess: data => {
       handleClose();
-      props.setVault(data.vaultEdited);
+      setVault(data.vaultEdited);
     },
     onError: err => {
       setGlobalError(err);

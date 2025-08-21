@@ -7,49 +7,24 @@ import type { JSX } from 'react';
 import VaultsList from '@ui/modules/vaults/components/core/organisms/VaultsList';
 import AddIcon from '@mui/icons-material/Add';
 import { useVaultsWithMembers } from '@ui/modules/vaults/hooks/useVaults.withMembers';
-import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import IconTextButton from '@ui/components/buttons/IconTextButton';
+import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
 
 export default function AppDynamicVaultsList(): JSX.Element {
   const { vaults: initialVaults, loading, error } = useVaultsWithMembers();
   const [openAddVaultModal, setOpenAddVaultModal] = useState<boolean>(false);
-  const [localVaults, setLocalVaults] = useState<VaultWithMembersModelDto[]>(
-    []
-  );
 
   useEffect(() => {
-    setLocalVaults(initialVaults);
+    vaultsStore.setState({ vaults: [...initialVaults] });
   }, [initialVaults]);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const filteredVaults: VaultWithMembersModelDto[] = localVaults.filter(v =>
-    v.label.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const addVault = (vaultCreated: VaultWithMembersModelDto): void => {
-    setLocalVaults(prevVaults => [...prevVaults, vaultCreated]);
-  };
-
-  const editVault = (editedVault: VaultWithMembersModelDto): void => {
-    setLocalVaults(prevVaults =>
-      prevVaults.map(vault =>
-        vault.id === editedVault.id ? editedVault : vault
-      )
-    );
-  };
-
-  const deleteVault = (deletedVault: VaultWithMembersModelDto): void => {
-    setLocalVaults(prevVaults =>
-      prevVaults.filter(vault => vault.id !== deletedVault.id)
-    );
-  };
 
   return (
     <>
       <AddVaultModal
         open={openAddVaultModal}
         onClose={() => setOpenAddVaultModal(false)}
-        addVault={addVault}
       />
       <Box
         sx={{
@@ -66,13 +41,7 @@ export default function AppDynamicVaultsList(): JSX.Element {
         />
       </Box>
       <ErrorMessage error={error} />
-      <VaultsList
-        loading={loading}
-        searchTerm={searchTerm}
-        displayedVaults={filteredVaults}
-        editVault={editVault}
-        deleteVault={deleteVault}
-      />
+      <VaultsList loading={loading} searchTerm={searchTerm} />
     </>
   );
 }
