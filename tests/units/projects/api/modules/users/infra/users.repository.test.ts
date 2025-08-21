@@ -1,12 +1,12 @@
 import 'reflect-metadata';
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
-import type { Prisma, PrismaClient, User } from '@prisma/generated';
 import prisma from '@lib/prisma';
 import type { UserEmailRecord } from '@api/modules/users/infra/records/user-email.record';
 import type { CreateUserRecord } from '@api/modules/users/infra/records/create-user.record';
 import { UsersRepository } from '@api/modules/users/infra/users.repository';
-import type { DefaultArgs } from '@prisma/generated/runtime/library';
+import type { Prisma, PrismaClient, User } from '@prisma/client';
+import type { DefaultArgs } from 'prisma/generated/runtime/library';
 
 jest.mock('@api/infra/prisma/helpers/handle-prisma-request');
 jest.mock('@lib/prisma', () => ({
