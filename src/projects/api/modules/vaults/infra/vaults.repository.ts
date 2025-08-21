@@ -63,8 +63,15 @@ export class VaultsRepository {
     userId: string
   ): Promise<void> {
     await handlePrismaRequest(() =>
-      prisma.vaultMember.create({
-        data: {
+      prisma.vaultMember.upsert({
+        where: {
+          vaultId_userId: {
+            vaultId: vaultId,
+            userId: userId,
+          },
+        },
+        update: {},
+        create: {
           vaultId: vaultId,
           userId: userId,
         },
