@@ -96,6 +96,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       payload: {
         label: newLabel,
         secret: newSecret,
+        members: selectedUsers,
       },
     });
   };

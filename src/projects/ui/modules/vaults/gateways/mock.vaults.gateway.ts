@@ -55,7 +55,7 @@ export class MockVaultsGateway implements IVaultsGateway {
     const vaultCreated: VaultWithMembersModelDto = {
       ...input.payload,
       id: input.payload.label,
-      members: [],
+      members: input.payload.members,
     };
     mockVaults = [...mockVaults, vaultCreated];
     return await returnSuccessResultMock<CreateVaultDataDto>(
