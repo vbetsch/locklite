@@ -43,7 +43,7 @@ Une fois connecté, vous accédez au tableau de bord LockLite :
 1. Cliquer sur **Add a vault** _(Ajouter un coffre-fort)_.
 2. Entrer un label _(nom)_ et un secret. Le secret peut être un mot de passe, une clé d'accès, un code à 6 chiffres,
    etc.
-3. Cliquer sur créer pour valider : le coffre-fort est visible dans le tableau de bord.
+3. Cliquer sur **Create** _(Créer)_ pour valider : le coffre-fort est visible dans le tableau de bord.
 
 ### Supprimer un coffre-fort
 
