@@ -4,11 +4,6 @@
 
 [//]: # (TODO: Add when we will have share vault -> SHARE)
 
-### Références
-
-- Manuel de mise à jour : [CONTRIBUTING.md](CONTRIBUTING.md)
-- Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
-
 ## 1. Objet
 
 Ce document décrit l’utilisation de l’application LockLite par un utilisateur final.  
