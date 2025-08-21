@@ -19,7 +19,7 @@ l’intégrité des données et la sécurité lors du passage d’une version N 
 ## 2. Pré-requis
 
 - Accès au dépôt Git du projet.
-- Accès à l’infrastructure d’hébergement (Vercel) et à aux bases de données PostgreSQL (Neon).
+- Accès à l’infrastructure d’hébergement (Vercel) et aux bases de données PostgreSQL (Neon).
 - Droits administrateur pour gérer la base de données et les variables d’environnement.
 - Sauvegarde complète et validée de la base de données et des secrets.
 - Node.js et npm installés dans les environnements concernés.
