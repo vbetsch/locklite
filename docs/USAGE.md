@@ -30,8 +30,8 @@ administrateur.
 
 Une fois connecté, vous accédez au tableau de bord LockLite :
 
-- Aperçu des coffres-forts auxquels vous avez accès.
-- Barre de recherche pour filtrer les coffres-forts affichés
+- Aperçu de vos coffres-forts.
+- Barre de recherche pour filtrer vos coffres-forts
 - Bouton pour créer un nouveau coffre-fort
 
 ## 5. Gestion des coffres-forts
