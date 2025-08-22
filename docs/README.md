@@ -1,4 +1,3 @@
-[//]: # (<img src="LOGO_PATH" alt="LOGO_NAME" style="width: 500px;">)
 
 # Locklite
 
@@ -9,6 +8,8 @@ The Locklite project is a password manager designed to protect and organize conf
 a fictitious scenario, it is intended for companies wishing to guarantee the confidentiality of their employees' data.
 In the reality of this academic project, it takes the form of an MVP developed on its own, providing a concrete
 illustration of the design, deployment and supervision of a complete application.
+
+<img src="img/screenshot.png" alt="Screenshot of the application" style="width: 100%;">
 
 ### Stack
 
