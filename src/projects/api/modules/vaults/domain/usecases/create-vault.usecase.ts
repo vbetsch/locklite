@@ -6,9 +6,11 @@ import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
 import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 import { VaultAlreadyExistsError } from '@api/modules/vaults/app/errors/vault-already-exists.error';
-import { User, Vault } from '@prisma/client';
+import { User } from '@prisma/client';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
+import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
 export class CreateVaultUseCase
@@ -33,13 +35,15 @@ export class CreateVaultUseCase
   }
 
   private async _createVaultInDatabase(
-    input: CreateVaultPayloadDto,
-    userId: string
-  ): Promise<Vault> {
+    label: string,
+    secret: string,
+    userEmails: string[]
+  ): Promise<VaultIncludeMembersResult> {
     try {
-      return await this._vaultsRepository.create({
-        ...input,
-        userId,
+      return await this._vaultsRepository.createWithMembersByEmail({
+        label,
+        secret,
+        userEmails,
       });
     } catch (error: unknown) {
       if (error instanceof RequestedValueTooLongError)
@@ -48,13 +52,19 @@ export class CreateVaultUseCase
     }
   }
 
-  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
+  public async handle(
+    input: CreateVaultPayloadDto
+  ): Promise<VaultWithMembersModelDto> {
     const currentUser: User = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
-    const vaultCreated: Vault = await this._createVaultInDatabase(
-      input,
-      currentUser.id
+    const membersEmailsToAdd: string[] = input.members.map(
+      member => member.email
     );
-    return this._vaultAdapter.getDtoFromEntity(vaultCreated);
+    const vaultCreated: VaultIncludeMembersResult =
+      await this._createVaultInDatabase(input.label, input.secret, [
+        ...membersEmailsToAdd,
+        currentUser.email,
+      ]);
+    return this._vaultAdapter.getDtoFromIncludeMembers(vaultCreated);
   }
 }

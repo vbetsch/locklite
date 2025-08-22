@@ -18,6 +18,11 @@ import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-me
  *           type: string
  *           description: password, token, code or other sensitive string to store
  *           format: password
+ *         members:
+ *           type: array
+ *           description: users with access to the vault
+ *           items:
+ *             $ref: '#/components/schemas/VaultMemberModelDto'
  */
 export type CreateVaultPayloadDto = {
   label: string;
