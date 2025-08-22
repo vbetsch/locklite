@@ -24,10 +24,10 @@ L’objectif est de garantir l’évolutivité et la sécurité du code source.
 
 - Chaque coffre-fort est lié à un seul et unique identifiant utilisateur.
 - Des tests de recette vérifient la relation entre utilisateurs et coffres-forts en base de données.
+- Mise en place du partage de coffres-forts via une relation many-to-many.
 
 ### Mesures prévues
 
-- Mise en place du partage de coffres-forts via une relation many-to-many (version ultérieure).
 - Introduction d’un contrôle d’accès basé sur les rôles (RBAC).
 - Définir et appliquer des droits : lecture seule, édition, suppression (ACL)
 
