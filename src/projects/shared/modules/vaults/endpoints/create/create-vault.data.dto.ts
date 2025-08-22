@@ -15,7 +15,7 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
  *            - vaultCreated
  *           properties:
  *             vaultCreated:
- *               $ref: '#/components/schemas/VaultModelDto'
+ *               $ref: '#/components/schemas/VaultWithMembersModelDto'
  */
 export type CreateVaultDataDto = {
   vaultCreated: VaultWithMembersModelDto;
