@@ -4,7 +4,6 @@ import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-req
 import prisma from '@lib/prisma';
 import { SharedUuidRecord } from '@api/infra/shared-uuid.record';
 import { VaultLabelRecord } from '@api/modules/vaults/infra/records/vault-label.record';
-import { CreateVaultRecord } from '@api/modules/vaults/infra/records/create-vault.record';
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
 import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
 import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
@@ -49,12 +48,6 @@ export class VaultsRepository {
       prisma.vault.count({
         where: { label: record.label },
       })
-    );
-  }
-
-  public async create(record: CreateVaultRecord): Promise<Vault> {
-    return await handlePrismaRequest<Vault>(() =>
-      prisma.vault.create({ data: record })
     );
   }
 
@@ -165,7 +158,87 @@ export class VaultsRepository {
   public async editMembersById(
     record: EditMembersRecord
   ): Promise<VaultIncludeMembersResult> {
-    return await handlePrismaRequest<VaultIncludeMembersResult>(() => {});
+    return await handlePrismaRequest<VaultIncludeMembersResult>(() =>
+      prisma.$transaction(async tx => {
+        const vault: Vault | null = await tx.vault.findUnique({
+          where: { uuid: record.vaultId },
+        });
+
+        if (!vault) {
+          throw new Error(`Vault with ID ${record.vaultId} not found`);
+        }
+
+        const users: {
+          name: string | null;
+          id: string;
+          email: string;
+        }[] = await tx.user.findMany({
+          where: {
+            email: {
+              in: record.userEmails,
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        });
+
+        if (users.length !== record.userEmails.length) {
+          const foundEmails: string[] = users.map(user => user.email);
+          const missingEmails: string[] = record.userEmails.filter(
+            email => !foundEmails.includes(email)
+          );
+          throw new Error(`Users not found: ${missingEmails.join(', ')}`);
+        }
+
+        await tx.vaultMember.deleteMany({
+          where: {
+            vaultId: record.vaultId,
+          },
+        });
+
+        const createdMembers: {
+          uuid: string;
+          vaultId: string;
+          userId: string;
+          user: {
+            id: string;
+            name: string | null;
+            email: string;
+          };
+        }[] = await Promise.all(
+          users.map(async user => {
+            const member: {
+              uuid: string;
+              vaultId: string;
+              userId: string;
+            } = await tx.vaultMember.create({
+              data: {
+                vaultId: record.vaultId,
+                userId: user.id,
+              },
+            });
+            return {
+              uuid: member.uuid,
+              vaultId: member.vaultId,
+              userId: member.userId,
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+              },
+            };
+          })
+        );
+
+        return {
+          ...vault,
+          members: createdMembers,
+        };
+      })
+    );
   }
 
   public async addMemberToVault(record: AddMemberRecord): Promise<void> {
