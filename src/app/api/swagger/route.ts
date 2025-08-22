@@ -5,7 +5,7 @@ import { CONSTANTS } from '@shared/config/constants';
 export function GET(): NextResponse {
   const spec: object = createSwaggerSpec({
     apiFolder: 'src/app/api',
-    schemaFolders: ['src/projects/shared/dto'],
+    schemaFolders: ['src/projects/shared/dto', 'src/projects/shared/modules'],
     definition: {
       openapi: '3.0.0',
       info: {

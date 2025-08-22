@@ -16,6 +16,8 @@ export const metadata: Metadata = {
  *     description: Authentication and user management
  *   - name: Vaults
  *     description: Manage password vault entries and encryption.
+ *   - name: Users
+ *     description: Manage and get information about users
  */
 
 export default function RootLayout({

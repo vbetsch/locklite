@@ -4,10 +4,6 @@
 
 > Compétence RNCP : C2.1.1
 
-[//]: # (TODO: Add when we will have sentry -> SENTRY)
-
-[//]: # (TODO: Add when we will have lighthouse -> LIGHTHOUSE)
-
 ### Références
 
 - Déploiement continue : [CD.md](CD.md)
@@ -50,10 +46,6 @@ reste fiable, maintenable et performant.
   - INP (Interaction to Next Paint) < 200ms
 - Lazy-loading des composants lourds et optimisation des assets.
 
-[//]: # (TODO: LIGHTHOUSE)
-
-[//]: # (- Audit régulier avec Lighthouse en préproduction.)
-
 ### 3.2 Back-end (API + Prisma + PostgreSQL)
 
 - Temps de réponse API : < 300ms.
@@ -70,10 +62,7 @@ reste fiable, maintenable et performant.
 
 - Chaque déploiement est associé à un commit et un tag Git.
 - Rollback en moins de 5 minutes possible via revert Git + redéploiement Vercel.
-
-[//]: # (TODO: SENTRY)
-
-[//]: # (- Suivi des logs et alertes via Sentry.)
+- Suivi des logs et alertes via un outil de monitoring (Sentry).
 
 ## 6. Traçabilité
 

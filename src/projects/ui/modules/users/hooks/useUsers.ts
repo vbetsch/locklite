@@ -1,10 +1,10 @@
 import { container } from 'tsyringe';
 import { useState } from 'react';
 import { useApiFetch } from '@ui/hooks/useApiFetch';
-import { MockUsersGateway } from '@ui/modules/users/gateways/mock.users.gateway';
-import type { UserModelDto } from '@shared/dto/models/user.model.dto';
-import type { GetUsersListDataDto } from '@shared/dto/output/data/get-users-list.data.dto';
+import type { UserModelDto } from '@shared/modules/users/user.model.dto';
+import type { GetUsersListDataDto } from '@shared/modules/users/get-users-list.data.dto';
 import type { IUsersGateway } from '@ui/modules/users/gateways/abstract/users.gateway.interface';
+import { UsersGateway } from '@ui/modules/users/gateways/users.gateway';
 
 export function useUsers(): {
   users: UserModelDto[];
@@ -12,7 +12,7 @@ export function useUsers(): {
   error: Error | null;
   refetch: () => Promise<void>;
 } {
-  const gateway: IUsersGateway = container.resolve(MockUsersGateway);
+  const gateway: IUsersGateway = container.resolve(UsersGateway);
   const [users, setUsers] = useState<UserModelDto[]>([]);
   const [error, setError] = useState<Error | null>(null);
 

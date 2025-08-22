@@ -1,5 +1,6 @@
 import { LoggerTagEnum } from '@shared/logs/logger-tag.enum';
 import { LoggerColorEnum } from '@shared/logs/logger-color.enum';
+import type { LoggerErrorType } from '@shared/logs/logger.error.type';
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export abstract class Logger {
@@ -7,11 +8,14 @@ export abstract class Logger {
 
   protected static _compute(
     tag: LoggerTagEnum,
-    message: string,
+    message?: string,
     color?: LoggerColorEnum
   ): string | void {
     if (process.env.NODE_ENV !== 'development') return;
-    const content: string = `${this._prefix} ${tag}: ${message}`;
+    let content: string = `${this._prefix} ${tag}: `;
+    if (message) {
+      content += message;
+    }
     if (color) {
       return `${color}${content}${LoggerColorEnum.RESET}`;
     }
@@ -52,19 +56,21 @@ export abstract class Logger {
     );
   }
 
-  public static error(message: string | null, error?: unknown): void {
+  public static error(args: LoggerErrorType): void {
     console.error(
-      message
-        ? this._compute(LoggerTagEnum.ERROR, message, LoggerColorEnum.ERROR)
-        : null,
-      error
+      this._compute(LoggerTagEnum.ERROR, args.message, LoggerColorEnum.ERROR),
+      args.error
     );
   }
 
-  public static critical(message: string, error?: unknown): void {
+  public static critical(args: LoggerErrorType): void {
     console.error(
-      this._compute(LoggerTagEnum.CRITICAL, message, LoggerColorEnum.ERROR),
-      error
+      this._compute(
+        LoggerTagEnum.CRITICAL,
+        args.message,
+        LoggerColorEnum.ERROR
+      ),
+      args.error
     );
   }
 }

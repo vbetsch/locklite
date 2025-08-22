@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { SessionStatus } from '@shared/auth/session-status.enum';
+import { SessionStatus } from '@shared/modules/auth/session-status.enum';
 import { RoutesEnum } from '@ui/routes.enum';
 import CircularLoader from '@ui/components/loaders/CircularLoader';
 import { Box } from '@mui/material';
@@ -31,7 +31,7 @@ export function SignInForm(): JSX.Element | null {
   }, [session, status, router]);
 
   useEffect(() => {
-    const err: string | null = searchParams.get('error');
+    const err: string | null = searchParams.get('callbackUrl');
     if (err) handleError();
   }, [searchParams]);
 
@@ -62,7 +62,13 @@ export function SignInForm(): JSX.Element | null {
   return (
     // eslint-disable-next-line no-restricted-syntax
     <form onSubmit={handleSubmit}>
-      <Box display="flex" flexDirection="column" width={500} gap={2}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        maxWidth={500}
+        width="100%"
+        gap={2}
+      >
         <Box display="flex" flexDirection="column" gap={2}>
           <TextField
             error={!!error}

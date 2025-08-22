@@ -1,41 +1,64 @@
 import { inject, injectable } from 'tsyringe';
-import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
-import { CreateVaultDataDto } from '@shared/dto/output/data/create-vault.data.dto';
-import { GetMyVaultsDataDto } from '@shared/dto/output/data/get-my-vaults.data.dto';
+import { InternalApiRequestService } from '@ui/services/internal-api-request.service';
+import { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
+import { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
-import { CreateVaultParams } from '@shared/dto/input/params/create-vault.params';
-import { CreateVaultPayloadDto } from '@shared/dto/input/payloads/create-vault.payload.dto';
+import { DeleteVaultParamsDto } from '@shared/modules/vaults/endpoints/delete/delete-vault.params.dto';
+import { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
+import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import { GetMyVaultsWithMembersDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.with-members.data.dto';
+import { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
+import { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
+import { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
 
 @injectable()
 export class VaultsGateway implements IVaultsGateway {
   public constructor(
-    @inject(LockliteApiRequestService)
-    private readonly _lockliteRequestService: LockliteApiRequestService
+    @inject(InternalApiRequestService)
+    private readonly _internalApiRequestService: InternalApiRequestService
   ) {}
 
   public async getMyVaults(): Promise<
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
-    return await this._lockliteRequestService.get<GetMyVaultsDataDto>(
+    return await this._internalApiRequestService.get<GetMyVaultsDataDto>(
       '/vaults'
     );
   }
 
   public async createVault(
-    data: CreateVaultPayloadDto
+    input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
-    return await this._lockliteRequestService.post<CreateVaultDataDto>(
+    return await this._internalApiRequestService.post<CreateVaultDataDto>(
       '/vaults',
-      data
+      input.payload
     );
   }
 
   public async deleteVault(
-    params: CreateVaultParams
+    input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
-    return await this._lockliteRequestService.delete<number>(
-      '/vaults/' + params.id
+    return await this._internalApiRequestService.delete<number>(
+      '/vaults/' + input.params.vaultId
+    );
+  }
+
+  public async getMyVaultsWithMembers(): Promise<
+    RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
+  > {
+    return await this._internalApiRequestService.get<GetMyVaultsWithMembersDataDto>(
+      '/vaults'
+    );
+  }
+
+  public async editVaultMembers(input: {
+    params: ShareVaultParamsDto;
+    payload: ShareVaultPayloadDto;
+  }): Promise<RequestServiceOutputType<ShareVaultDataDto>> {
+    return await this._internalApiRequestService.put<ShareVaultDataDto>(
+      '/vaults/' + input.params.vaultId + '/members',
+      input.payload
     );
   }
 }
