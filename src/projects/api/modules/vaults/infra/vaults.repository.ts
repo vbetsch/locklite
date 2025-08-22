@@ -84,8 +84,8 @@ export class VaultsRepository {
 
   public async createWithMembersByEmail(
     record: CreateVaultWithMembersByEmailRecord
-  ): Promise<Vault> {
-    return await handlePrismaRequest<Vault>(() =>
+  ): Promise<VaultIncludeMembersResult> {
+    return await handlePrismaRequest<VaultIncludeMembersResult>(() =>
       prisma.$transaction(async tx => {
         const vault: Vault = await tx.vault.create({
           data: {
@@ -94,34 +94,69 @@ export class VaultsRepository {
           },
         });
 
-        const users: { id: string }[] = await tx.user.findMany({
+        const users: {
+          name: string | null;
+          id: string;
+          email: string;
+        }[] = await tx.user.findMany({
           where: {
             email: {
               in: record.userEmails,
             },
           },
-          select: { id: true },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
         });
 
         if (users.length !== record.userEmails.length) {
-          const foundEmails: { email: string }[] = await tx.user.findMany({
-            where: { email: { in: record.userEmails } },
-            select: { email: true },
-          });
+          const foundEmails: string[] = users.map(user => user.email);
           const missingEmails: string[] = record.userEmails.filter(
-            email => !foundEmails.some(user => user.email === email)
+            email => !foundEmails.includes(email)
           );
           throw new Error(`Users not found: ${missingEmails.join(', ')}`);
         }
 
-        await tx.vaultMember.createMany({
-          data: users.map(user => ({
-            vaultId: vault.uuid,
-            userId: user.id,
-          })),
-        });
+        const createdMembers: {
+          uuid: string;
+          vaultId: string;
+          userId: string;
+          user: {
+            id: string;
+            name: string | null;
+            email: string;
+          };
+        }[] = await Promise.all(
+          users.map(async user => {
+            const member: {
+              uuid: string;
+              vaultId: string;
+              userId: string;
+            } = await tx.vaultMember.create({
+              data: {
+                vaultId: vault.uuid,
+                userId: user.id,
+              },
+            });
+            return {
+              uuid: member.uuid,
+              vaultId: member.vaultId,
+              userId: member.userId,
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+              },
+            };
+          })
+        );
 
-        return vault;
+        return {
+          ...vault,
+          members: createdMembers,
+        };
       })
     );
   }
