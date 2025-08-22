@@ -31,7 +31,7 @@ export function SignInForm(): JSX.Element | null {
   }, [session, status, router]);
 
   useEffect(() => {
-    const err: string | null = searchParams.get('error');
+    const err: string | null = searchParams.get('callbackUrl');
     if (err) handleError();
   }, [searchParams]);
 
