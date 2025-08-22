@@ -10,6 +10,7 @@ import type { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my
 import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/create/create-vault.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
 
 /**
  * @swagger
@@ -108,9 +109,11 @@ export async function POST(
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
-      const vaultCreated: VaultWithMembersModelDto =
+      const vaultCreated: VaultModelDto =
         await createVaultUseCase.handle(payload);
-      const response: CreateVaultDataDto = { vaultCreated };
+      const response: CreateVaultDataDto = {
+        vaultCreated: { ...vaultCreated, members: [] },
+      };
       return response;
     },
     successStatusCode: StatusCodes.CREATED,
