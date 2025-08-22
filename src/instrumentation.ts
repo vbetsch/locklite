@@ -9,5 +9,5 @@ export async function register(): Promise<void> {
   }
 }
 
-export const onRequestError: typeof Sentry.captureRequestError =
-  Sentry.captureRequestError;
+// eslint-disable-next-line @typescript-eslint/typedef
+export const onRequestError = Sentry.captureRequestError;
