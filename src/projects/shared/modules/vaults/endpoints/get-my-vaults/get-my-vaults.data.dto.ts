@@ -17,7 +17,7 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
  *             myVaults:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/VaultModelDto'
+ *                 $ref: '#/components/schemas/VaultWithMembersModelDto'
  */
 export type GetMyVaultsDataDto = {
   myVaults: VaultWithMembersModelDto[];
