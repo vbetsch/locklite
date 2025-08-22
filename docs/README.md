@@ -28,7 +28,6 @@ illustration of the design, deployment and supervision of a complete application
 
 ### Documentation
 
-- [Installation guide](INSTALL.md) - EN
 - [Quality and Performance Criteria](CRITERIA.md) - FR (C2.1.1)
 - [Continuous Deployment](CD.md) - FR (C2.1.1)
 - [Continuous Integration](CI.md) - FR (C2.1.2)
@@ -40,3 +39,4 @@ illustration of the design, deployment and supervision of a complete application
 - [Contributing Guide](CONTRIBUTING.md) - FR (C2.4.1)
 - [Deployment Guide](DEPLOYMENT.md) - FR (C2.4.1)
 - [User Guide](USER.md) - FR (C2.4.1)
+- [Installation guide](INSTALL.md) - EN

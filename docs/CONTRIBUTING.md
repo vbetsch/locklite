@@ -6,6 +6,7 @@
 
 ### Références
 
+- Guide d'installation (EN) : [INSTALL.md](INSTALL.md)
 - Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 1. Objet
