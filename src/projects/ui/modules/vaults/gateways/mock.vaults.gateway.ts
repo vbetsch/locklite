@@ -40,7 +40,7 @@ export class MockVaultsGateway implements IVaultsGateway {
   > {
     return await returnSuccessResultMock<GetMyVaultsDataDto>(
       {
-        myVaults: myVaultsDataMock,
+        myVaults: myVaultsDataMock.map(vault => ({ ...vault, members: [] })),
       },
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       4000

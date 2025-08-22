@@ -9,7 +9,6 @@ import { VaultAlreadyExistsError } from '@api/modules/vaults/app/errors/vault-al
 import { User, Vault } from '@prisma/client';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
-import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
 export class CreateVaultUseCase
@@ -49,9 +48,7 @@ export class CreateVaultUseCase
     }
   }
 
-  public async handle(
-    input: CreateVaultPayloadDto
-  ): Promise<VaultWithMembersModelDto> {
+  public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
     const currentUser: User = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
     const vaultCreated: Vault = await this._createVaultInDatabase(

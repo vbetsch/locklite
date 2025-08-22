@@ -1,4 +1,4 @@
-import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 /**
  * @swagger
@@ -17,8 +17,8 @@ import type { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dt
  *             myVaults:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/VaultModelDto'
+ *                 $ref: '#/components/schemas/VaultWithMembersModelDto'
  */
 export type GetMyVaultsDataDto = {
-  myVaults: VaultModelDto[];
+  myVaults: VaultWithMembersModelDto[];
 };
