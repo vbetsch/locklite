@@ -1,0 +1,44 @@
+import { inject, injectable } from 'tsyringe';
+import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
+import type { EditMembersPayloadDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.payload.dto';
+import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
+import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
+import { HttpInputDto } from '@shared/dto/input/http-input.dto';
+import type { EditMembersParamsDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.params.dto';
+import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
+import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { User } from '@prisma/client';
+import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
+
+@injectable()
+export class EditMembersUseCase
+  implements
+    IUseCaseWithInput<
+      HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>,
+      VaultWithMembersModelDto
+    >
+{
+  public constructor(
+    @inject(CurrentUserService)
+    private readonly _currentUserService: CurrentUserService,
+    @inject(VaultsRepository)
+    private readonly _vaultsRepository: VaultsRepository,
+    @inject(VaultAdapter)
+    private readonly _vaultAdapter: VaultAdapter
+  ) {}
+
+  public async handle(
+    input: HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
+  ): Promise<VaultWithMembersModelDto> {
+    const currentUser: User = await this._currentUserService.get();
+    const newMembersEmails: string[] = input.payload.members.map(
+      member => member.email
+    );
+    const vaultUpdated: VaultIncludeMembersResult =
+      await this._vaultsRepository.editMembersById({
+        vaultId: input.params.vaultId,
+        userEmails: [...newMembersEmails, currentUser.email],
+      });
+    return this._vaultAdapter.getDtoFromIncludeMembers(vaultUpdated);
+  }
+}

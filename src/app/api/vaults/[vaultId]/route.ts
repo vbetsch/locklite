@@ -9,13 +9,13 @@ import type { HttpOptionsDto } from '@shared/dto/input/http-options.dto';
 
 /**
  * @swagger
- * /api/vaults/{id}:
+ * /api/vaults/{vaultId}:
  *   delete:
  *     tags: [Vaults]
  *     summary: Delete a vault by ID
  *     parameters:
  *      - in: path
- *        name: id
+ *        name: vaultId
  *        required: true
  *        description: ID of vault to delete
  *        schema:
