@@ -4,16 +4,10 @@
 
 > Compétence RNCP : C2.2.3
 
-[//]: # (TODO: Modify when we will have audits in CI/CD -> CI)
-
 ### Références
 
 - Mesures de sécurité : [SECURITY.md](SECURITY.md)
 - Cahier de recettes : [ACCEPTANCE.md](ACCEPTANCE.md)
-
-[//]: # (TODO: CI)
-
-[//]: # (- Intégration Continue : [CI.md]&#40;CI.md&#41;)
 
 ## 1. Objet et périmètre
 
@@ -73,17 +67,9 @@ Certains critères du RGAA ne concernent pas l’application dans son état actu
 
 ## 6. Procédure d’exécution
 
-[//]: # (TODO: CI)
-
-[//]: # (- **CI/CD** : exécution automatique des audits à chaque Pull Request sur la branche `main`.)
-
 - **Recettes manuelles** : ajoutées dans le cahier de recettes au fil du développement, par fonctionnalité.
 
 ## 7. Critères de réussite
 
 - Couverture RGAA AA sur 100% des pages et composants critiques.
 - Validation intégrale des recettes manuelles d’accessibilité.
-
-[//]: # (TODO: CI)
-
-[//]: # (- Score ≥ 90% sur Lighthouse accessibilité.)
