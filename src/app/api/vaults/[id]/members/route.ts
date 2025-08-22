@@ -66,7 +66,10 @@ export async function PUT(
     needToBeAuthenticated: true,
     callback: async () => {
       const vaultUpdated: VaultWithMembersModelDto =
-        await editMembersUseCase.handle(payload);
+        await editMembersUseCase.handle({
+          params: await options.params,
+          payload,
+        });
       const response: EditMembersDataDto = {
         vaultUpdated,
       };
