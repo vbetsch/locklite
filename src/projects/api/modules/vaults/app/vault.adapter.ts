@@ -27,8 +27,8 @@ export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
       label: result.label,
       secret: result.secret,
       members: result.members.map(member => ({
-        email: member.email,
-        name: member.name,
+        email: member.user.email,
+        name: member.user.name ?? undefined,
       })),
     };
   }

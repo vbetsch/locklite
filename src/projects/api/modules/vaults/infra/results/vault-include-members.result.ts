@@ -1,9 +1,14 @@
 import type { Vault } from '@prisma/client';
 
-export type VaultIncludeMembersResult = {
+export type VaultIncludeMembersResult = Vault & {
   members: {
-    id: string;
-    name: string;
-    email: string;
+    uuid: string;
+    vaultId: string;
+    userId: string;
+    user: {
+      id: string;
+      name: string | null;
+      email: string;
+    };
   }[];
-} & Vault;
+};
