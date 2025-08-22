@@ -8,7 +8,7 @@ import { HttpError } from '@shared/errors/http-error';
 import { BusinessError } from '@shared/errors/business-error';
 
 @injectable()
-export class LockliteApiRequestService extends RequestService {
+export class InternalApiRequestService extends RequestService {
   private readonly _baseUrl: string = '/api';
 
   private _returnStatusWithoutData<Data>(): RequestServiceOutputType<Data> {
@@ -22,7 +22,7 @@ export class LockliteApiRequestService extends RequestService {
     const message: string =
       error instanceof Error
         ? error.message
-        : 'An error occurred while parsing locklite API response';
+        : 'An error occurred while parsing internal API response';
     UiLogger.error({ message: `${message}: `, error });
     throw new Error(message);
   }
@@ -51,7 +51,7 @@ export class LockliteApiRequestService extends RequestService {
       }
       throw new HttpError(responseBody.error.message, response.status);
     }
-    this._errorMessage = 'An error occurred while parsing locklite API call.';
+    this._errorMessage = 'An error occurred while parsing internal API call.';
     UiLogger.error({
       message: `${this._errorMessage} Response: `,
       error: responseBody,
