@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import type { HttpOptionsDto } from '@shared/dto/input/http-options.dto';
 import type { EditMembersParamsDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.params.dto';
