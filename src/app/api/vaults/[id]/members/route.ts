@@ -7,6 +7,7 @@ import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import type { EditMembersDataDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.data.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import type { EditMembersPayloadDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.payload.dto';
+import { EditMembersUseCase } from '@api/modules/vaults/domain/usecases/edit-members.usecase';
 
 /**
  * @swagger
@@ -64,10 +65,10 @@ export async function PUT(
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
-      const vaultCreated: VaultWithMembersModelDto =
+      const vaultUpdated: VaultWithMembersModelDto =
         await editMembersUseCase.handle(payload);
       const response: EditMembersDataDto = {
-        vaultCreated,
+        vaultUpdated,
       };
       return response;
     },
