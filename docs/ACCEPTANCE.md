@@ -41,11 +41,11 @@ Périmètre couvert : toutes les fonctionnalités du MVP.
 
 ## 4. Matrice de couverture
 
-| ID | Fonctionnalité            | Tests fonctionnels                                                              | Tests structurels    | Tests sécurité                                     | Tests accessibilité                                   |
-|----|---------------------------|---------------------------------------------------------------------------------|----------------------|----------------------------------------------------|-------------------------------------------------------|
-| F0 | Documentation API         | `TC-F0`                                                                         | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                                     |
-| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5`, `TC-F1.6` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-ZOOM`, `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
-| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                              | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-ZOOM`, `AC-F2.1`, `AC-F2.2`                       |
+| ID | Fonctionnalité            | Tests fonctionnels                                                   | Tests structurels    | Tests sécurité                                     | Tests accessibilité                                   |
+|----|---------------------------|----------------------------------------------------------------------|----------------------|----------------------------------------------------|-------------------------------------------------------|
+| F0 | Documentation API         | `TC-F0`                                                              | `TS-F0.1`, `TS-F0.2` | —                                                  | —                                                     |
+| F1 | Gestion des coffres-forts | `TC-F1.1`, `TC-F1.2`, `TC-F1.3.A`, `TC-F1.3.B`, `TC-F1.4`, `TC-F1.5` | `TS-F1.3`            | `SE-VAULTS`, `SE-F1.5-A`, `SE-F1.5-B`, `SE-F1.5-C` | `AC-ZOOM`, `AC-F1.1`, `AC-F1.2`, `AC-F1.3`, `AC-F1.4` |
+| F2 | Authentification          | `TC-F2.1.A`, `TC-F2.1.B`, `TC-F2.2.A`, `TC-F2.2.B`                   | —                    | `SE-HASH`, `SE-GUARD-UI`, `SE-GUARD-API`           | `AC-ZOOM`, `AC-F2.1`, `AC-F2.2`                       |
 
 ## 5. Tests fonctionnels
 
@@ -110,9 +110,10 @@ sensible
 1. Accéder à `/ui/workspace`
 2. Cliquer sur le bouton pour créer un coffre-fort
 3. Entrer un libellé ainsi qu'un mot de passe
-4. Cliquer sur le bouton pour créer
+4. Entrer ou non des membres
+5. Cliquer sur le bouton pour créer
 
-**Résultat attendu** : le coffre-fort s'ajoute au début de la liste, je suis le seul membre de ce coffre-fort
+**Résultat attendu** : le coffre-fort s'ajoute au début de la liste, ses membres correspondent à ceux entrés
 
 **Couverture** :
 
@@ -165,23 +166,6 @@ existe déjà
 4. Appliquer la modification
 
 **Résultat attendu** : les membres correspondent à la modification appliquée
-
-**Couverture** :
-
-- [ ] test manuel
-
-### TC-F1.6 — Modifier les informations d'un coffre-fort
-
-**Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
-
-**Étapes** :
-
-1. Accéder à `/ui/workspace`
-2. Cliquer sur le bouton "Modifier" d'un coffre-fort
-3. Modifier le nom et le secret
-4. Confirmer les modifications
-
-**Résultat attendu** : les informations se sont bien mises à jour
 
 **Couverture** :
 
@@ -306,7 +290,8 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **But** : vérifier la sécurité du stockage des coffres-forts
 
-**Vérification** : inspection de la base de données: les coffres-forts sont bien liés à un seul et unique userId
+**Vérification** : créer un coffre-fort sans ajouter de membre, vérifier en base de données que je suis bien le seul
+membre
 
 **Securité** : `OWASP-A01:2021`
 
@@ -369,7 +354,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **But** : sécuriser l'accès aux vaults
 
-**Vérification** : un ex-membre ne peut plus rien faire immédiatement
+**Vérification** : un ex-membre ne peut plus rien faire sur le vault dont il avait accès
 
 **Securité** : `OWASP-A01:2021`
 
@@ -444,7 +429,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** :
 
-- Chaque champ (nom, mot de passe) possède un `label` associé.
+- Chaque champ (nom, mot de passe, membres) possède un `label` associé.
 - Les messages d’erreur sont lisibles par un lecteur d’écran (ex. via `aria-describedby`).
 
 **Accessibilité** : `RGAA-4.1`, `RGAA-11.1`
