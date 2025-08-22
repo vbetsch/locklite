@@ -1,12 +1,17 @@
+import type { Prisma } from '@prisma/client';
 import { PrismaClient } from '@prisma/client';
+import type { DefaultArgs } from '@prisma/client/runtime/library';
 
-// eslint-disable-next-line @typescript-eslint/typedef
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
+const globalForPrisma: { prisma: PrismaClient | undefined } =
+  globalThis as unknown as {
+    prisma: PrismaClient | undefined;
+  };
 
-// eslint-disable-next-line @typescript-eslint/typedef
-export const prisma =
+export const prisma: PrismaClient<
+  Prisma.PrismaClientOptions,
+  never,
+  DefaultArgs
+> =
   globalForPrisma.prisma ??
   new PrismaClient({
     log:
