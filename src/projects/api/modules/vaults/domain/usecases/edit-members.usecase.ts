@@ -5,6 +5,8 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 import { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import type { EditMembersParamsDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.params.dto';
+import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
+import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
 
 @injectable()
 export class EditMembersUseCase
@@ -15,6 +17,8 @@ export class EditMembersUseCase
     >
 {
   public constructor(
+    @inject(VaultsRepository)
+    private readonly _vaultsRepository: VaultsRepository,
     @inject(VaultAdapter)
     private readonly _vaultAdapter: VaultAdapter
   ) {}
@@ -22,6 +26,11 @@ export class EditMembersUseCase
   public async handle(
     input: HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
   ): Promise<VaultWithMembersModelDto> {
-    return await this._vaultAdapter.getDtoFromIncludeMembers(vaultUpdated);
+    const vaultUpdated: VaultIncludeMembersResult =
+      await this._vaultsRepository.editMembersById({
+        vaultId: input.params.vaultId,
+        newMembers: input.payload.members,
+      });
+    return this._vaultAdapter.getDtoFromIncludeMembers(vaultUpdated);
   }
 }
