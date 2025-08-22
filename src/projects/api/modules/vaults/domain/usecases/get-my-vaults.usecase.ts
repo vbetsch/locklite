@@ -6,7 +6,7 @@ import { CurrentUserService } from '@api/modules/users/domain/current-user.servi
 import { User } from '@prisma/client';
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultIncludeMembersRecord } from '@api/modules/vaults/infra/records/vault-include-members.record';
 
 @injectable()
 export class GetMyVaultsUseCase implements IUseCase<VaultModelDto[]> {
@@ -21,7 +21,7 @@ export class GetMyVaultsUseCase implements IUseCase<VaultModelDto[]> {
 
   public async handle(): Promise<VaultWithMembersModelDto[]> {
     const currentUser: User = await this._currentUserService.get();
-    const myVaults: VaultIncludeMembersResult[] =
+    const myVaults: VaultIncludeMembersRecord[] =
       await this._vaultsRepository.findByUserId({
         userId: currentUser.id,
       });

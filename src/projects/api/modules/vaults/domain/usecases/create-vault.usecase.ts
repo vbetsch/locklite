@@ -9,7 +9,7 @@ import { VaultAlreadyExistsError } from '@api/modules/vaults/app/errors/vault-al
 import { User } from '@prisma/client';
 import { RequestedValueTooLongError } from '@api/infra/prisma/errors/requested-value-too-long.error';
 import { VaultLabelTooLongError } from '@api/modules/vaults/app/errors/vault-label-too-long.error';
-import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultIncludeMembersRecord } from '@api/modules/vaults/infra/records/vault-include-members.record';
 import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
@@ -38,7 +38,7 @@ export class CreateVaultUseCase
     label: string,
     secret: string,
     userEmails: string[]
-  ): Promise<VaultIncludeMembersResult> {
+  ): Promise<VaultIncludeMembersRecord> {
     try {
       return await this._vaultsRepository.createWithMembersByEmail({
         label,
@@ -60,7 +60,7 @@ export class CreateVaultUseCase
     const membersEmailsToAdd: string[] = input.members.map(
       member => member.email
     );
-    const vaultCreated: VaultIncludeMembersResult =
+    const vaultCreated: VaultIncludeMembersRecord =
       await this._createVaultInDatabase(input.label, input.secret, [
         ...membersEmailsToAdd,
         currentUser.email,

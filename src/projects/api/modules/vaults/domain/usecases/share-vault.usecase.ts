@@ -4,7 +4,7 @@ import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vau
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 import { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
-import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultIncludeMembersRecord } from '@api/modules/vaults/infra/records/vault-include-members.record';
 import { User } from '@prisma/client';
 import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
 import { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
@@ -34,7 +34,7 @@ export class ShareVaultUseCase
     const newMembersEmails: string[] = input.payload.sharedWithMembers.map(
       member => member.email
     );
-    const vaultUpdated: VaultIncludeMembersResult =
+    const vaultUpdated: VaultIncludeMembersRecord =
       await this._vaultsRepository.editMembersById({
         vaultId: input.params.vaultId,
         userEmails: [...newMembersEmails, currentUser.email],

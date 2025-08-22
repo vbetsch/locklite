@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import { Prisma, PrismaClient, Vault } from '@prisma/client';
+import { Vault } from '@prisma/client';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
 import prisma from '@lib/prisma';
 import { SharedUuidRecord } from '@api/infra/shared-uuid.record';
@@ -7,35 +7,19 @@ import { VaultLabelRecord } from '@api/modules/vaults/infra/records/vault-label.
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
 import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
 import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
-import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultIncludeMembersRecord } from '@api/modules/vaults/infra/records/vault-include-members.record';
 import { CreateVaultWithMembersByEmailRecord } from '@api/modules/vaults/infra/records/create-vault-with-members-by-email.record';
 import { EditMembersRecord } from '@api/modules/vaults/infra/records/edit-members.record';
-import { DefaultArgs } from 'prisma/generated/runtime/library';
-
-type Tx = Omit<
-  PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>,
-  '$connect' | '$disconnect' | '$on' | '$transaction' | '$extends'
->;
-
-type UserSelect = {
-  id: string;
-  name: string | null;
-  email: string;
-};
-
-type VaultMemberWithUser = {
-  uuid: string;
-  vaultId: string;
-  userId: string;
-  user: UserSelect;
-};
+import { TxType } from '@api/infra/prisma/tx.type';
+import { VaultMemberWithUserRecord } from '@api/modules/vaults/infra/records/vault-member-with-user.record';
+import { UserSelectRecord } from '@api/modules/vaults/infra/records/user-select.record';
 
 @injectable()
 export class VaultsRepository {
   public async findByUserId(
     record: VaultUserIdRecord
-  ): Promise<VaultIncludeMembersResult[]> {
-    return await handlePrismaRequest<VaultIncludeMembersResult[]>(() =>
+  ): Promise<VaultIncludeMembersRecord[]> {
+    return await handlePrismaRequest<VaultIncludeMembersRecord[]>(() =>
       prisma.vault.findMany({
         where: {
           members: {
@@ -96,18 +80,18 @@ export class VaultsRepository {
 
   public async createWithMembersByEmail(
     record: CreateVaultWithMembersByEmailRecord
-  ): Promise<VaultIncludeMembersResult> {
-    return await handlePrismaRequest<VaultIncludeMembersResult>(() =>
+  ): Promise<VaultIncludeMembersRecord> {
+    return await handlePrismaRequest<VaultIncludeMembersRecord>(() =>
       prisma.$transaction(async tx => {
         const vault: Vault = await this.createVault(tx, record);
-        const users: UserSelect[] = await this.findUsersByEmails(
+        const users: UserSelectRecord[] = await this.findUsersByEmails(
           tx,
           record.userEmails
         );
 
         this.validateAllUsersExist(users, record.userEmails);
 
-        const createdMembers: VaultMemberWithUser[] =
+        const createdMembers: VaultMemberWithUserRecord[] =
           await this.createVaultMembers(tx, vault.uuid, users);
 
         return {
@@ -120,11 +104,11 @@ export class VaultsRepository {
 
   public async editMembersById(
     record: EditMembersRecord
-  ): Promise<VaultIncludeMembersResult> {
-    return await handlePrismaRequest<VaultIncludeMembersResult>(() =>
+  ): Promise<VaultIncludeMembersRecord> {
+    return await handlePrismaRequest<VaultIncludeMembersRecord>(() =>
       prisma.$transaction(async tx => {
         const vault: Vault = await this.findVaultById(tx, record.vaultId);
-        const users: UserSelect[] = await this.findUsersByEmails(
+        const users: UserSelectRecord[] = await this.findUsersByEmails(
           tx,
           record.userEmails
         );
@@ -132,7 +116,7 @@ export class VaultsRepository {
         this.validateAllUsersExist(users, record.userEmails);
 
         await this.deleteAllVaultMembers(tx, record.vaultId);
-        const createdMembers: VaultMemberWithUser[] =
+        const createdMembers: VaultMemberWithUserRecord[] =
           await this.createVaultMembers(tx, record.vaultId, users);
 
         return {
@@ -176,7 +160,7 @@ export class VaultsRepository {
   }
 
   private createVault(
-    tx: Tx,
+    tx: TxType,
     record: CreateVaultWithMembersByEmailRecord
   ): Promise<Vault> {
     return tx.vault.create({
@@ -188,9 +172,9 @@ export class VaultsRepository {
   }
 
   private findUsersByEmails(
-    tx: Tx,
+    tx: TxType,
     userEmails: string[]
-  ): Promise<UserSelect[]> {
+  ): Promise<UserSelectRecord[]> {
     return tx.user.findMany({
       where: {
         email: {
@@ -206,7 +190,7 @@ export class VaultsRepository {
   }
 
   private validateAllUsersExist(
-    users: UserSelect[],
+    users: UserSelectRecord[],
     userEmails: string[]
   ): void {
     if (users.length !== userEmails.length) {
@@ -218,7 +202,7 @@ export class VaultsRepository {
     }
   }
 
-  private async findVaultById(tx: Tx, vaultId: string): Promise<Vault> {
+  private async findVaultById(tx: TxType, vaultId: string): Promise<Vault> {
     const vault: Vault | null = await tx.vault.findUnique({
       where: { uuid: vaultId },
     });
@@ -230,7 +214,10 @@ export class VaultsRepository {
     return vault;
   }
 
-  private async deleteAllVaultMembers(tx: Tx, vaultId: string): Promise<void> {
+  private async deleteAllVaultMembers(
+    tx: TxType,
+    vaultId: string
+  ): Promise<void> {
     await tx.vaultMember.deleteMany({
       where: {
         vaultId: vaultId,
@@ -239,10 +226,10 @@ export class VaultsRepository {
   }
 
   private async createVaultMembers(
-    tx: Tx,
+    tx: TxType,
     vaultId: string,
-    users: UserSelect[]
-  ): Promise<VaultMemberWithUser[]> {
+    users: UserSelectRecord[]
+  ): Promise<VaultMemberWithUserRecord[]> {
     return await Promise.all(
       users.map(async user => {
         const member: {
