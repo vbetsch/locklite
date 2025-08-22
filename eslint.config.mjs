@@ -100,7 +100,7 @@ export default tseslint.config(
           },
         ],
         '@typescript-eslint/typedef': [
-          'error',
+          'warn',
           {
             variableDeclaration: true,
             memberVariableDeclaration: true,

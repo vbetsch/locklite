@@ -3,6 +3,7 @@ import prisma from '@lib/prisma';
 import { container } from 'tsyringe';
 import { UpsertUserWithVaultsUseCase } from '@api/modules/seed/domain/upsert-user-with-vaults.usecase';
 import { usersDataSeed } from '@api/modules/seed/app/data/users.data.seed';
+import { ApiLogger } from '@api/app/api.logger';
 
 const upsertUserWithVaultsUseCase: UpsertUserWithVaultsUseCase =
   container.resolve(UpsertUserWithVaultsUseCase);
@@ -18,7 +19,7 @@ void main()
     await prisma.$disconnect();
   })
   .catch(async (error: unknown): Promise<void> => {
-    console.error(error);
+    ApiLogger.error({ error: error });
     await prisma.$disconnect();
     process.exit(1);
   });

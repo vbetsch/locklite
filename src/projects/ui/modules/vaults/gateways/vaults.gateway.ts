@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { LockliteApiRequestService } from '@ui/services/locklite-api-request.service';
+import { InternalApiRequestService } from '@ui/services/internal-api-request.service';
 import { CreateVaultDataDto } from '@shared/modules/vaults/endpoints/create/create-vault.data.dto';
 import { GetMyVaultsDataDto } from '@shared/modules/vaults/endpoints/get-my-vaults/get-my-vaults.data.dto';
 import { RequestServiceOutputType } from '@shared/requests/request-service-output.type';
@@ -15,14 +15,14 @@ import { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/
 @injectable()
 export class VaultsGateway implements IVaultsGateway {
   public constructor(
-    @inject(LockliteApiRequestService)
-    private readonly _lockliteRequestService: LockliteApiRequestService
+    @inject(InternalApiRequestService)
+    private readonly _internalApiRequestService: InternalApiRequestService
   ) {}
 
   public async getMyVaults(): Promise<
     RequestServiceOutputType<GetMyVaultsDataDto>
   > {
-    return await this._lockliteRequestService.get<GetMyVaultsDataDto>(
+    return await this._internalApiRequestService.get<GetMyVaultsDataDto>(
       '/vaults'
     );
   }
@@ -30,7 +30,7 @@ export class VaultsGateway implements IVaultsGateway {
   public async createVault(
     input: HttpInputDto<null, CreateVaultPayloadDto>
   ): Promise<RequestServiceOutputType<CreateVaultDataDto>> {
-    return await this._lockliteRequestService.post<CreateVaultDataDto>(
+    return await this._internalApiRequestService.post<CreateVaultDataDto>(
       '/vaults',
       input.payload
     );
@@ -39,7 +39,7 @@ export class VaultsGateway implements IVaultsGateway {
   public async deleteVault(
     input: HttpInputDto<DeleteVaultParamsDto, null>
   ): Promise<RequestServiceOutputType<number>> {
-    return await this._lockliteRequestService.delete<number>(
+    return await this._internalApiRequestService.delete<number>(
       '/vaults/' + input.params.vaultId
     );
   }
@@ -47,7 +47,7 @@ export class VaultsGateway implements IVaultsGateway {
   public async getMyVaultsWithMembers(): Promise<
     RequestServiceOutputType<GetMyVaultsWithMembersDataDto>
   > {
-    return await this._lockliteRequestService.get<GetMyVaultsWithMembersDataDto>(
+    return await this._internalApiRequestService.get<GetMyVaultsWithMembersDataDto>(
       '/vaults'
     );
   }
@@ -56,7 +56,7 @@ export class VaultsGateway implements IVaultsGateway {
     params: ShareVaultParamsDto;
     payload: ShareVaultPayloadDto;
   }): Promise<RequestServiceOutputType<ShareVaultDataDto>> {
-    return await this._lockliteRequestService.put<ShareVaultDataDto>(
+    return await this._internalApiRequestService.put<ShareVaultDataDto>(
       '/vaults/' + input.params.vaultId + '/members',
       input.payload
     );

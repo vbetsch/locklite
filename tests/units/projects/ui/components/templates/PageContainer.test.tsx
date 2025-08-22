@@ -21,7 +21,6 @@ describe('PageContainer', () => {
         <span>Child</span>
       </PageContainer>
     );
-    // MUI Container renders as a div by default
     const div: HTMLDivElement | null = container.querySelector('div');
     expect(div).not.toBeNull();
     expect(screen.getByText('Child')).toBeInTheDocument();
