@@ -10,6 +10,7 @@ import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.re
 import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
 import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
 import { CreateVaultWithMembersByEmailRecord } from '@api/modules/vaults/infra/records/create-vault-with-members-by-email.record';
+import { EditMembersRecord } from '@api/modules/vaults/infra/records/edit-members.record';
 
 @injectable()
 export class VaultsRepository {
@@ -159,6 +160,12 @@ export class VaultsRepository {
         };
       })
     );
+  }
+
+  public async editMembersById(
+    record: EditMembersRecord
+  ): Promise<VaultIncludeMembersResult> {
+    return await handlePrismaRequest<VaultIncludeMembersResult>(() => {});
   }
 
   public async addMemberToVault(record: AddMemberRecord): Promise<void> {

@@ -29,7 +29,7 @@ export class EditMembersUseCase
     const vaultUpdated: VaultIncludeMembersResult =
       await this._vaultsRepository.editMembersById({
         vaultId: input.params.vaultId,
-        newMembers: input.payload.members,
+        userEmails: input.payload.members.map(member => member.email),
       });
     return this._vaultAdapter.getDtoFromIncludeMembers(vaultUpdated);
   }
