@@ -22,6 +22,15 @@ l’intégration en préproduction.
 - Environnement de développement configuré (Node.js, npm).
 - Respect des conventions de commits, branches et pull requests.
 
+### Base de données
+
+ - La base de données PostgreSQL est conteneurisée via Docker Compose. 
+ - Le développeur doit avoir Docker et Docker Compose installés sur sa machine. 
+ - Le fichier [docker-compose.yml](../docker-compose.yml) permet de lancer un conteneur PostgreSQL configuré pour l’environnement local :
+  ```sh
+  docker compose up -d
+  ```
+
 ## 3. Étapes préparatoires
 
 1. Création d’un ticket dans l’outil de gestion de projet
