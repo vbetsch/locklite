@@ -13,7 +13,6 @@ export class DeleteVaultUseCase
   ) {}
 
   public async handle(params: DeleteVaultParamsDto): Promise<void> {
-    const vaultId: string = params.vaultId;
-    await this._vaultsRepository.delete({ uuid: vaultId });
+    await this._vaultsRepository.delete({ uuid: params.vaultId });
   }
 }

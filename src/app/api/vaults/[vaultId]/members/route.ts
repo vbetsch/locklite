@@ -12,13 +12,13 @@ import { EditMembersUseCase } from '@api/modules/vaults/domain/usecases/edit-mem
 
 /**
  * @swagger
- * /api/vaults/{id}/members:
+ * /api/vaults/{vaultId}/members:
  *   put:
  *     tags: [Vaults]
  *     summary: Edit members of a vault by ID
  *     parameters:
  *      - in: path
- *        name: id
+ *        name: vaultId
  *        required: true
  *        description: ID of vault to edit
  *        schema:
@@ -62,7 +62,7 @@ export async function PUT(
   const payload: EditMembersPayloadDto = await request.json();
   const editMembersUseCase: EditMembersUseCase =
     container.resolve(EditMembersUseCase);
-  return await handleApiRequest<void>({
+  return await handleApiRequest<EditMembersDataDto>({
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
