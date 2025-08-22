@@ -62,7 +62,7 @@ export function SignInForm(): JSX.Element | null {
   return (
     // eslint-disable-next-line no-restricted-syntax
     <form onSubmit={handleSubmit}>
-      <Box display="flex" flexDirection="column" width={500} gap={2}>
+      <Box display="flex" flexDirection="column" maxWidth={500} gap={2}>
         <Box display="flex" flexDirection="column" gap={2}>
           <TextField
             error={!!error}
