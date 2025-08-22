@@ -1,20 +1,20 @@
 import { inject, injectable } from 'tsyringe';
 import { IUseCaseWithInput } from '@api/domain/usecases/usecase.with-input.interface';
-import type { EditMembersPayloadDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import { VaultAdapter } from '@api/modules/vaults/app/vault.adapter';
 import { HttpInputDto } from '@shared/dto/input/http-input.dto';
-import type { EditMembersParamsDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.params.dto';
 import { VaultsRepository } from '@api/modules/vaults/infra/vaults.repository';
 import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
 import { User } from '@prisma/client';
 import { CurrentUserService } from '@api/modules/users/domain/current-user.service';
+import { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
+import { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 
 @injectable()
-export class EditMembersUseCase
+export class ShareVaultUseCase
   implements
     IUseCaseWithInput<
-      HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>,
+      HttpInputDto<ShareVaultParamsDto, ShareVaultPayloadDto>,
       VaultWithMembersModelDto
     >
 {
@@ -28,10 +28,10 @@ export class EditMembersUseCase
   ) {}
 
   public async handle(
-    input: HttpInputDto<EditMembersParamsDto, EditMembersPayloadDto>
+    input: HttpInputDto<ShareVaultParamsDto, ShareVaultPayloadDto>
   ): Promise<VaultWithMembersModelDto> {
     const currentUser: User = await this._currentUserService.get();
-    const newMembersEmails: string[] = input.payload.members.map(
+    const newMembersEmails: string[] = input.payload.sharedWithMembers.map(
       member => member.email
     );
     const vaultUpdated: VaultIncludeMembersResult =
