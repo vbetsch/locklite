@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 import { IAdapter } from '@api/app/adapter.interface';
 import { Vault } from '@prisma/client';
 import { VaultModelDto } from '@shared/modules/vaults/models/vault.model.dto';
-import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { VaultIncludeMembersRecord } from '@api/modules/vaults/infra/records/vault-include-members.record';
 import { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 
 @injectable()
@@ -20,7 +20,7 @@ export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
   }
 
   public getDtoFromIncludeMembers(
-    result: VaultIncludeMembersResult
+    result: VaultIncludeMembersRecord
   ): VaultWithMembersModelDto {
     return {
       id: result.uuid,
@@ -34,9 +34,9 @@ export class VaultAdapter implements IAdapter<Vault, VaultModelDto> {
   }
 
   public getDtoListFromIncludeMembers(
-    results: VaultIncludeMembersResult[]
+    results: VaultIncludeMembersRecord[]
   ): VaultWithMembersModelDto[] {
-    return results.map((result: VaultIncludeMembersResult) =>
+    return results.map((result: VaultIncludeMembersRecord) =>
       this.getDtoFromIncludeMembers(result)
     );
   }
