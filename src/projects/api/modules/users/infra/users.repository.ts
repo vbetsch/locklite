@@ -7,6 +7,10 @@ import { CreateUserRecord } from '@api/modules/users/infra/records/create-user.r
 
 @injectable()
 export class UsersRepository {
+  public async getAllUsers(): Promise<User[]> {
+    return await handlePrismaRequest<User[]>(() => prisma.user.findMany());
+  }
+
   public async findByEmail(record: UserEmailRecord): Promise<User | null> {
     return await handlePrismaRequest<User | null>(() =>
       prisma.user.findUnique({
@@ -22,17 +26,19 @@ export class UsersRepository {
   }
 
   public async createOrUpdate(record: CreateUserRecord): Promise<User> {
-    return await prisma.user.upsert({
-      where: { email: record.email },
-      update: {
-        name: record.name,
-        password: record.password,
-      },
-      create: {
-        name: record.name,
-        email: record.email,
-        password: record.password,
-      },
-    });
+    return await handlePrismaRequest<User>(() =>
+      prisma.user.upsert({
+        where: { email: record.email },
+        update: {
+          name: record.name,
+          password: record.password,
+        },
+        create: {
+          name: record.name,
+          email: record.email,
+          password: record.password,
+        },
+      })
+    );
   }
 }
