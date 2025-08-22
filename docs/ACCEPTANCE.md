@@ -186,7 +186,7 @@ existe déjà
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
 
@@ -206,7 +206,7 @@ identifiants valides
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TC-F2.2.A — Menu profil de l'utilisateur : affichage
 
@@ -254,7 +254,7 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
 
@@ -268,7 +268,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
 
@@ -282,7 +282,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ## 7. Tests de sécurité
 
@@ -310,7 +310,7 @@ membre
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### SE-GUARD-UI — Protection des routes : front-end
 
@@ -336,7 +336,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 **Couverture** :
 
 - [ ] test manuel
-- [ ] tests unitaires
+- [x] tests unitaires
 
 ### SE-F1.5-A — Partager un coffre-fort : Accès refusé
 
