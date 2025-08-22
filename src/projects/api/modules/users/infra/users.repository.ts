@@ -7,8 +7,8 @@ import { CreateUserRecord } from '@api/modules/users/infra/records/create-user.r
 
 @injectable()
 export class UsersRepository {
-  public async getAllUsers(): Promise<User[]> {
-    return await prisma.user.findMany();
+  public getAllUsers(): Promise<User[]> {
+    return prisma.user.findMany();
   }
 
   public async findByEmail(record: UserEmailRecord): Promise<User | null> {
@@ -25,8 +25,8 @@ export class UsersRepository {
     );
   }
 
-  public async createOrUpdate(record: CreateUserRecord): Promise<User> {
-    return await prisma.user.upsert({
+  public createOrUpdate(record: CreateUserRecord): Promise<User> {
+    return prisma.user.upsert({
       where: { email: record.email },
       update: {
         name: record.name,
