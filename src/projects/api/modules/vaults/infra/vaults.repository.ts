@@ -13,6 +13,8 @@ import { EditMembersRecord } from '@api/modules/vaults/infra/records/edit-member
 import { TxType } from '@api/infra/prisma/tx.type';
 import { VaultMemberWithUserRecord } from '@api/modules/vaults/infra/records/vault-member-with-user.record';
 import { UserSelectRecord } from '@api/modules/vaults/infra/records/user-select.record';
+import { VaultNotFoundError } from '@api/modules/vaults/app/errors/vault-not-found.error';
+import { UsersNotFoundError } from '@api/modules/users/app/errors/users-not-found.error';
 
 @injectable()
 export class VaultsRepository {
@@ -198,7 +200,7 @@ export class VaultsRepository {
       const missingEmails: string[] = userEmails.filter(
         email => !foundEmails.includes(email)
       );
-      throw new Error(`Users not found: ${missingEmails.join(', ')}`);
+      throw new UsersNotFoundError(missingEmails);
     }
   }
 
@@ -208,7 +210,7 @@ export class VaultsRepository {
     });
 
     if (!vault) {
-      throw new Error(`Vault with ID ${vaultId} not found`);
+      throw new VaultNotFoundError(vaultId);
     }
 
     return vault;
