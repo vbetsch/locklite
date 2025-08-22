@@ -7,7 +7,6 @@ const currentUserFormatted: VaultMemberModelDto = {
   name: currentUserDataMock.name,
 };
 
-// TODO: remove it
 export const myVaultsWithMembersDataMock: VaultWithMembersModelDto[] = [
   {
     id: 'v1',
