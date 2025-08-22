@@ -122,6 +122,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
       >
         <TextField
           inputRef={labelInputRef}
+          margin="dense"
           label="Label"
           fullWidth
           required
