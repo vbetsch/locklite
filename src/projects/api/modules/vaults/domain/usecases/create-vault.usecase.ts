@@ -33,13 +33,15 @@ export class CreateVaultUseCase
   }
 
   private async _createVaultInDatabase(
-    input: CreateVaultPayloadDto,
-    userId: string
+    label: string,
+    secret: string,
+    userEmails: string[]
   ): Promise<Vault> {
     try {
-      return await this._vaultsRepository.create({
-        ...input,
-        userId,
+      return await this._vaultsRepository.createWithMembersByEmail({
+        label,
+        secret,
+        userEmails,
       });
     } catch (error: unknown) {
       if (error instanceof RequestedValueTooLongError)
@@ -51,9 +53,13 @@ export class CreateVaultUseCase
   public async handle(input: CreateVaultPayloadDto): Promise<VaultModelDto> {
     const currentUser: User = await this._currentUserService.get();
     await this._testVaultAlreadyExists(input.label);
+    const membersEmailsToAdd: string[] = input.members.map(
+      member => member.email
+    );
     const vaultCreated: Vault = await this._createVaultInDatabase(
-      input,
-      currentUser.id
+      input.label,
+      input.secret,
+      [...membersEmailsToAdd, currentUser.email]
     );
     return this._vaultAdapter.getDtoFromEntity(vaultCreated);
   }

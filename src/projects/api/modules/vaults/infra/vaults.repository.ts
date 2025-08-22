@@ -9,6 +9,7 @@ import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-
 import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
 import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
 import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
+import { CreateVaultWithMembersByEmailRecord } from '@api/modules/vaults/infra/records/create-vault-with-members-by-email.record';
 
 @injectable()
 export class VaultsRepository {
@@ -73,6 +74,50 @@ export class VaultsRepository {
           data: record.userIds.map(userId => ({
             vaultId: vault.uuid,
             userId: userId,
+          })),
+        });
+
+        return vault;
+      })
+    );
+  }
+
+  public async createWithMembersByEmail(
+    record: CreateVaultWithMembersByEmailRecord
+  ): Promise<Vault> {
+    return await handlePrismaRequest<Vault>(() =>
+      prisma.$transaction(async tx => {
+        const vault: Vault = await tx.vault.create({
+          data: {
+            label: record.label,
+            secret: record.secret,
+          },
+        });
+
+        const users: { id: string }[] = await tx.user.findMany({
+          where: {
+            email: {
+              in: record.userEmails,
+            },
+          },
+          select: { id: true },
+        });
+
+        if (users.length !== record.userEmails.length) {
+          const foundEmails: { email: string }[] = await tx.user.findMany({
+            where: { email: { in: record.userEmails } },
+            select: { email: true },
+          });
+          const missingEmails: string[] = record.userEmails.filter(
+            email => !foundEmails.some(user => user.email === email)
+          );
+          throw new Error(`Users not found: ${missingEmails.join(', ')}`);
+        }
+
+        await tx.vaultMember.createMany({
+          data: users.map(user => ({
+            vaultId: vault.uuid,
+            userId: user.id,
           })),
         });
 
