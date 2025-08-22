@@ -1,6 +1,7 @@
 import React from 'react';
 import type { JSX } from 'react';
 import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import type { SxProps } from '@mui/system';
 import type { Theme } from '@mui/material/styles';
@@ -30,14 +31,16 @@ export default function ColorfulLetterAvatar(
 ): JSX.Element {
   if (!props.userName) {
     return (
-      <Avatar sx={avatarSxStyle}>
-        <AccountCircle
-          sx={{
-            width: '100%',
-            height: '100%',
-          }}
-        />
-      </Avatar>
+      <Tooltip title="Anonymous">
+        <Avatar sx={avatarSxStyle}>
+          <AccountCircle
+            sx={{
+              width: '100%',
+              height: '100%',
+            }}
+          />
+        </Avatar>
+      </Tooltip>
     );
   }
 
@@ -75,5 +78,9 @@ export default function ColorfulLetterAvatar(
     };
   };
 
-  return <Avatar {...stringAvatar(props.userName)} />;
+  return (
+    <Tooltip title={props.userName}>
+      <Avatar {...stringAvatar(props.userName)} />
+    </Tooltip>
+  );
 }
