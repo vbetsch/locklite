@@ -1,14 +1,14 @@
 import 'reflect-metadata';
 import type { NextRequest, NextResponse } from 'next/server';
 import type { HttpOptionsDto } from '@shared/dto/input/http-options.dto';
-import type { EditMembersParamsDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.params.dto';
 import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/handle-api-request';
 import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
-import type { EditMembersDataDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.data.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import type { EditMembersPayloadDto } from '@shared/modules/vaults/endpoints/edit-members/edit-members.payload.dto';
 import { EditMembersUseCase } from '@api/modules/vaults/domain/usecases/edit-members.usecase';
+import type { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
+import type { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
+import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 
 /**
  * @swagger
@@ -57,22 +57,22 @@ import { EditMembersUseCase } from '@api/modules/vaults/domain/usecases/edit-mem
  */
 export async function PUT(
   request: NextRequest,
-  options: HttpOptionsDto<EditMembersParamsDto>
-): Promise<NextResponse<HttpResponseDto<EditMembersDataDto>>> {
-  const payload: EditMembersPayloadDto = await request.json();
+  options: HttpOptionsDto<ShareVaultParamsDto>
+): Promise<NextResponse<HttpResponseDto<ShareVaultDataDto>>> {
+  const payload: ShareVaultPayloadDto = await request.json();
   const editMembersUseCase: EditMembersUseCase =
     container.resolve(EditMembersUseCase);
-  return await handleApiRequest<EditMembersDataDto>({
+  return await handleApiRequest<ShareVaultDataDto>({
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
-      const vaultUpdated: VaultWithMembersModelDto =
+      const vaultEdited: VaultWithMembersModelDto =
         await editMembersUseCase.handle({
           params: await options.params,
           payload,
         });
-      const response: EditMembersDataDto = {
-        vaultUpdated,
+      const response: ShareVaultDataDto = {
+        vaultEdited,
       };
       return response;
     },
