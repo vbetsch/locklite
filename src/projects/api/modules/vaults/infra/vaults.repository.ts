@@ -8,11 +8,14 @@ import { CreateVaultRecord } from '@api/modules/vaults/infra/records/create-vaul
 import { VaultUserIdRecord } from '@api/modules/vaults/infra/records/vault-user-id.record';
 import { AddMemberRecord } from '@api/modules/vaults/infra/records/add-member.record';
 import { CreateVaultWithMembersRecord } from '@api/modules/vaults/infra/records/create-vault-with-members.record';
+import { VaultIncludeMembersResult } from '@api/modules/vaults/infra/results/vault-include-members.result';
 
 @injectable()
 export class VaultsRepository {
-  public async findByUserId(record: VaultUserIdRecord): Promise<Vault[]> {
-    return await handlePrismaRequest<Vault[]>(() =>
+  public async findByUserId(
+    record: VaultUserIdRecord
+  ): Promise<VaultIncludeMembersResult[]> {
+    return await handlePrismaRequest<VaultIncludeMembersResult[]>(() =>
       prisma.vault.findMany({
         where: {
           members: {
