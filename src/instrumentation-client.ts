@@ -12,8 +12,8 @@ Sentry.init({
   ],
 });
 
-export const onRouterTransitionStart: typeof Sentry.captureRouterTransitionStart =
-  Sentry.captureRouterTransitionStart;
+// eslint-disable-next-line @typescript-eslint/typedef
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
 
 export const onRequestError: typeof Sentry.captureRequestError =
   Sentry.captureRequestError;
