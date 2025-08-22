@@ -2,8 +2,12 @@
 
 # Locklite
 
-🔐 Intranet password manager for
-businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
+[![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
+
+The Locklite project is a password manager designed to protect and organize confidential information in secure areas. In
+a fictitious scenario, it is intended for companies wishing to guarantee the confidentiality of their employees' data.
+In the reality of this academic project, it takes the form of an MVP developed on its own, providing a concrete
+illustration of the design, deployment and supervision of a complete application.
 
 ### Stack
 
@@ -19,12 +23,8 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
-
-### References
-
-- [Github repository](https://github.com/vbetsch/locklite)
-- [All releases](https://github.com/vbetsch/locklite/releases) (C2.2.4)
-- [Last release](https://github.com/vbetsch/locklite/releases/latest) (C2.2.4)
+![Sentry](https://img.shields.io/badge/sentry-%23362D59.svg?style=for-the-badge&logo=sentry&logoColor=white)
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 
 ### Documentation
 
