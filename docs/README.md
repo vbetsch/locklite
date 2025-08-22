@@ -3,7 +3,7 @@
 # Locklite
 
 [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
-[![Deployment Status](https://vercelbadges.vercel.app/api/vbetsch/locklite)](https://vercel.com/vbetsch/locklite)
+![Deploy Status](https://deploy-badge.vercel.app/vercel/locklite)
 
 The Locklite project is a password manager designed to protect and organize confidential information in secure areas. In
 a fictitious scenario, it is intended for companies wishing to guarantee the confidentiality of their employees' data.
