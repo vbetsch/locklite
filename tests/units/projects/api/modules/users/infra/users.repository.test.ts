@@ -1,18 +1,20 @@
 import 'reflect-metadata';
-import { describe, it, expect, jest, beforeEach } from '@jest/globals';
+import { UsersRepository } from '@api/modules/users/infra/users.repository';
 import { handlePrismaRequest } from '@api/infra/prisma/helpers/handle-prisma-request';
 import prisma from '@lib/prisma';
+import type { User } from '@prisma/client';
 import type { UserEmailRecord } from '@api/modules/users/infra/records/user-email.record';
 import type { CreateUserRecord } from '@api/modules/users/infra/records/create-user.record';
-import { UsersRepository } from '@api/modules/users/infra/users.repository';
-import type { Prisma, PrismaClient, User } from '@prisma/client';
-import type { DefaultArgs } from 'prisma/generated/runtime/library';
 
-jest.mock('@api/infra/prisma/helpers/handle-prisma-request');
+jest.mock('@api/infra/prisma/helpers/handle-prisma-request', () => ({
+  handlePrismaRequest: jest.fn(),
+}));
+
 jest.mock('@lib/prisma', () => ({
   __esModule: true,
   default: {
     user: {
+      findMany: jest.fn(),
       findUnique: jest.fn(),
       create: jest.fn(),
       upsert: jest.fn(),
@@ -20,280 +22,136 @@ jest.mock('@lib/prisma', () => ({
   },
 }));
 
-const mockHandlePrismaRequest: jest.MockedFunction<typeof handlePrismaRequest> =
-  jest.mocked(handlePrismaRequest);
-const mockPrisma: jest.MockedObject<
-  PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>
-> = jest.mocked(prisma);
-
 describe('UsersRepository', () => {
-  let usersRepository: UsersRepository;
+  const repo: UsersRepository = new UsersRepository();
 
-  beforeEach(() => {
+  const mockedHandlePrismaRequest: jest.MockedFunction<
+    typeof handlePrismaRequest
+  > = handlePrismaRequest as jest.MockedFunction<typeof handlePrismaRequest>;
+
+  // eslint-disable-next-line @typescript-eslint/typedef
+  const mockedPrisma = prisma as unknown as {
+    user: {
+      findMany: jest.Mock<Promise<User[]>, []>;
+      findUnique: jest.Mock<Promise<User | null>, [unknown]>;
+      create: jest.Mock<Promise<User>, [unknown]>;
+      upsert: jest.Mock<Promise<User>, [unknown]>;
+    };
+  };
+
+  const USER_ID: number = 1;
+  const USER_EMAIL: string = 'john@doe.tld';
+  const USER_NAME: string = 'John';
+  const USER_PASSWORD: string = 'hashed';
+
+  const makeUser = (overrides?: Partial<User>): User => {
+    return {
+      id: USER_ID.toString(),
+      email: USER_EMAIL,
+      name: USER_NAME,
+      password: USER_PASSWORD,
+      ...overrides,
+    };
+  };
+
+  beforeEach((): void => {
     jest.clearAllMocks();
-    usersRepository = new UsersRepository();
+    mockedHandlePrismaRequest.mockImplementation(
+      <T>(cb: () => Promise<T>): Promise<T> => cb()
+    );
   });
 
-  describe('findByEmail', () => {
-    it('should return user when found', async () => {
-      const userEmailRecord: UserEmailRecord = { email: 'test@example.com' };
-      const expectedUser: User = {
-        id: 1,
-        email: 'test@example.com',
-        name: 'Test User',
-        password: 'hashedpassword',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+  it('getAllUsers returns users and calls prisma.user.findMany', async (): Promise<void> => {
+    const users: User[] = [makeUser(), makeUser({ id: '2', email: 'a@b.tld' })];
+    mockedPrisma.user.findMany.mockResolvedValue(users);
 
-      mockHandlePrismaRequest.mockResolvedValue(expectedUser);
+    const result: User[] = await repo.getAllUsers();
 
-      const result: User | null =
-        await usersRepository.findByEmail(userEmailRecord);
-
-      expect(result).toEqual(expectedUser);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledTimes(1);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledWith(
-        expect.any(Function)
-      );
-    });
-
-    it('should return null when user not found', async () => {
-      const userEmailRecord: UserEmailRecord = {
-        email: 'notfound@example.com',
-      };
-
-      mockHandlePrismaRequest.mockResolvedValue(null);
-
-      const result: User | null =
-        await usersRepository.findByEmail(userEmailRecord);
-
-      expect(result).toBeNull();
-      expect(mockHandlePrismaRequest).toHaveBeenCalledTimes(1);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledWith(
-        expect.any(Function)
-      );
-    });
-
-    it('should call prisma.user.findUnique with correct parameters', async () => {
-      const userEmailRecord: UserEmailRecord = { email: 'test@example.com' };
-
-      mockHandlePrismaRequest.mockImplementation(callback => callback());
-
-      await usersRepository.findByEmail(userEmailRecord);
-
-      expect(mockPrisma.user.findUnique).toHaveBeenCalledTimes(1);
-      expect(mockPrisma.user.findUnique).toHaveBeenCalledWith({
-        where: { email: 'test@example.com' },
-      });
-    });
-
-    it('should handle errors through handlePrismaRequest', async () => {
-      const userEmailRecord: UserEmailRecord = { email: 'test@example.com' };
-      const error: Error = new Error('Database connection failed');
-
-      mockHandlePrismaRequest.mockRejectedValue(error);
-
-      await expect(
-        usersRepository.findByEmail(userEmailRecord)
-      ).rejects.toThrow(error);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledTimes(1);
-    });
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(mockedPrisma.user.findMany).toHaveBeenCalledTimes(1);
+    expect(result).toEqual(users);
   });
 
-  describe('create', () => {
-    it('should create and return new user', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'New User',
-        email: 'newuser@example.com',
-        password: 'hashedpassword',
-      };
-      const expectedUser: User = {
-        id: 2,
-        email: 'newuser@example.com',
-        name: 'New User',
-        password: 'hashedpassword',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+  it('findByEmail returns a user when found and calls prisma.user.findUnique with where.email', async (): Promise<void> => {
+    const user: User = makeUser();
+    mockedPrisma.user.findUnique.mockResolvedValue(user);
 
-      mockHandlePrismaRequest.mockResolvedValue(expectedUser);
+    const record: UserEmailRecord = { email: USER_EMAIL };
+    const result: User | null = await repo.findByEmail(record);
 
-      const result: User = await usersRepository.create(createUserRecord);
-
-      expect(result).toEqual(expectedUser);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledTimes(1);
-      expect(mockHandlePrismaRequest).toHaveBeenCalledWith(
-        expect.any(Function)
-      );
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(mockedPrisma.user.findUnique).toHaveBeenCalledWith({
+      where: { email: USER_EMAIL },
     });
-
-    it('should call prisma.user.create with correct parameters', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'New User',
-        email: 'newuser@example.com',
-        password: 'hashedpassword',
-      };
-
-      mockHandlePrismaRequest.mockImplementation(callback => callback());
-
-      await usersRepository.create(createUserRecord);
-
-      expect(mockPrisma.user.create).toHaveBeenCalledTimes(1);
-      expect(mockPrisma.user.create).toHaveBeenCalledWith({
-        data: createUserRecord,
-      });
-    });
-
-    it('should handle errors through handlePrismaRequest', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'New User',
-        email: 'newuser@example.com',
-        password: 'hashedpassword',
-      };
-      const error: Error = new Error('Unique constraint violation');
-
-      mockHandlePrismaRequest.mockRejectedValue(error);
-
-      await expect(usersRepository.create(createUserRecord)).rejects.toThrow(
-        error
-      );
-      expect(mockHandlePrismaRequest).toHaveBeenCalledTimes(1);
-    });
+    expect(result).toEqual(user);
   });
 
-  describe('createOrUpdate', () => {
-    it('should create new user when user does not exist', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'New User',
-        email: 'newuser@example.com',
-        password: 'hashedpassword',
-      };
-      const expectedUser: User = {
-        id: 3,
-        email: 'newuser@example.com',
-        name: 'New User',
-        password: 'hashedpassword',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
+  it('findByEmail returns null when no user found', async (): Promise<void> => {
+    mockedPrisma.user.findUnique.mockResolvedValue(null);
 
-      mockPrisma.user.upsert.mockResolvedValue(expectedUser);
+    const record: UserEmailRecord = { email: 'nobody@nowhere.tld' };
+    const result: User | null = await repo.findByEmail(record);
 
-      const result: User =
-        await usersRepository.createOrUpdate(createUserRecord);
-
-      expect(result).toEqual(expectedUser);
-      expect(mockPrisma.user.upsert).toHaveBeenCalledTimes(1);
-      expect(mockPrisma.user.upsert).toHaveBeenCalledWith({
-        where: { email: createUserRecord.email },
-        update: {
-          name: createUserRecord.name,
-          password: createUserRecord.password,
-        },
-        create: {
-          name: createUserRecord.name,
-          email: createUserRecord.email,
-          password: createUserRecord.password,
-        },
-      });
-    });
-
-    it('should update existing user when user exists', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'Updated User',
-        email: 'existing@example.com',
-        password: 'newhashedpassword',
-      };
-      const existingUser: User = {
-        id: 1,
-        email: 'existing@example.com',
-        name: 'Old Name',
-        password: 'oldhashedpassword',
-        createdAt: new Date('2023-01-01'),
-        updatedAt: new Date('2023-01-01'),
-      };
-      const updatedUser: User = {
-        ...existingUser,
-        name: 'Updated User',
-        password: 'newhashedpassword',
-        updatedAt: new Date(),
-      };
-
-      mockPrisma.user.upsert.mockResolvedValue(updatedUser);
-
-      const result: User =
-        await usersRepository.createOrUpdate(createUserRecord);
-
-      expect(result).toEqual(updatedUser);
-      expect(mockPrisma.user.upsert).toHaveBeenCalledTimes(1);
-    });
-
-    it('should handle database errors', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'User',
-        email: 'user@example.com',
-        password: 'hashedpassword',
-      };
-      const error: Error = new Error('Database connection failed');
-
-      mockPrisma.user.upsert.mockRejectedValue(error);
-
-      await expect(
-        usersRepository.createOrUpdate(createUserRecord)
-      ).rejects.toThrow(error);
-      expect(mockPrisma.user.upsert).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call upsert with all required parameters', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'Test User',
-        email: 'test@example.com',
-        password: 'testpassword',
-      };
-
-      mockPrisma.user.upsert.mockResolvedValue({} as User);
-
-      await usersRepository.createOrUpdate(createUserRecord);
-
-      expect(mockPrisma.user.upsert).toHaveBeenCalledWith({
-        where: { email: 'test@example.com' },
-        update: {
-          name: 'Test User',
-          password: 'testpassword',
-        },
-        create: {
-          name: 'Test User',
-          email: 'test@example.com',
-          password: 'testpassword',
-        },
-      });
-    });
-
-    it('should not use handlePrismaRequest wrapper', async () => {
-      const createUserRecord: CreateUserRecord = {
-        name: 'User',
-        email: 'user@example.com',
-        password: 'hashedpassword',
-      };
-
-      mockPrisma.user.upsert.mockResolvedValue({} as User);
-
-      await usersRepository.createOrUpdate(createUserRecord);
-
-      expect(mockHandlePrismaRequest).not.toHaveBeenCalled();
-    });
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(result).toBeNull();
   });
 
-  describe('dependency injection', () => {
-    it('should be instantiable', () => {
-      expect(usersRepository).toBeInstanceOf(UsersRepository);
-    });
+  it('create returns created user and calls prisma.user.create with data record', async (): Promise<void> => {
+    const created: User = makeUser();
+    mockedPrisma.user.create.mockResolvedValue(created);
 
-    it('should have all required methods', () => {
-      expect(typeof usersRepository.findByEmail).toBe('function');
-      expect(typeof usersRepository.create).toBe('function');
-      expect(typeof usersRepository.createOrUpdate).toBe('function');
+    const record: CreateUserRecord = {
+      name: USER_NAME,
+      email: USER_EMAIL,
+      password: USER_PASSWORD,
+    };
+
+    const result: User = await repo.create(record);
+
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(mockedPrisma.user.create).toHaveBeenCalledWith({ data: record });
+    expect(result).toEqual(created);
+  });
+
+  it('createOrUpdate returns user from upsert and calls prisma.user.upsert with correct where/update/create', async (): Promise<void> => {
+    const upserted: User = makeUser({ name: 'Johnny' });
+    mockedPrisma.user.upsert.mockResolvedValue(upserted);
+
+    const record: CreateUserRecord = {
+      name: USER_NAME,
+      email: USER_EMAIL,
+      password: USER_PASSWORD,
+    };
+
+    const result: User = await repo.createOrUpdate(record);
+
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(mockedPrisma.user.upsert).toHaveBeenCalledWith({
+      where: { email: USER_EMAIL },
+      update: {
+        name: USER_NAME,
+        password: USER_PASSWORD,
+      },
+      create: {
+        name: USER_NAME,
+        email: USER_EMAIL,
+        password: USER_PASSWORD,
+      },
     });
+    expect(result).toEqual(upserted);
+  });
+
+  it('propagates errors from handlePrismaRequest', async (): Promise<void> => {
+    const boom: Error = new Error('boom');
+    mockedHandlePrismaRequest.mockImplementation(
+      <T>(_cb: () => Promise<T>): Promise<T> => {
+        throw boom;
+      }
+    );
+
+    await expect(repo.getAllUsers()).rejects.toBe(boom);
+
+    expect(mockedHandlePrismaRequest).toHaveBeenCalledTimes(1);
+    expect(mockedPrisma.user.findMany).not.toHaveBeenCalled();
   });
 });
