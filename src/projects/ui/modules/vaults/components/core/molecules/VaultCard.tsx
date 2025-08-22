@@ -19,10 +19,10 @@ import VaultCardMembers from '@ui/modules/vaults/components/core/atoms/VaultCard
 import ShareVaultModal from '@ui/modules/vaults/components/modals/ShareVaultModal';
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
-import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
 import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
 import { useStore } from '@ui/stores/hooks/useStore';
+import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 
 type VaultCardProps = {
   vault: VaultWithMembersModelDto;
@@ -30,7 +30,7 @@ type VaultCardProps = {
 
 export default function VaultCard(props: VaultCardProps): JSX.Element {
   const vaultsState: VaultsStoreState = useStore(vaultsStore);
-  const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [vaultToDelete, setVaultToDelete] =
     useState<VaultWithMembersModelDto | null>(null);

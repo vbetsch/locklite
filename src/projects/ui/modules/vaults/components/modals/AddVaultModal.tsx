@@ -20,7 +20,6 @@ import type { CreateVaultPayloadDto } from '@shared/modules/vaults/endpoints/cre
 import { BusinessError } from '@shared/errors/business-error';
 import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
-import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
 import type { VaultsStoreState } from '@ui/modules/vaults/stores/vaults.store';
 import { vaultsStore } from '@ui/modules/vaults/stores/vaults.store';
@@ -30,6 +29,7 @@ import type { VaultMemberModelDto } from '@shared/modules/vaults/models/vault-me
 import { useMembers } from '@ui/modules/vaults/hooks/useMembers';
 import type { UsersStoreState } from '@ui/modules/users/stores/users.store';
 import { usersStore } from '@ui/modules/users/stores/users.store';
+import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
 
 type AddVaultModalProps = {
   open: boolean;
@@ -45,7 +45,7 @@ export default function AddVaultModal(props: AddVaultModalProps): JSX.Element {
   const [newSecret, setNewSecret] = useState<string>('');
   const [labelError, setLabelError] = useState<Error | null>(null);
   const [globalError, setGlobalError] = useState<Error | null>(null);
-  const vaultsGateway: IVaultsGateway = container.resolve(MockVaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const labelInputRef: RefObject<HTMLInputElement | null> =
     useRef<HTMLInputElement>(null);
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>([]);

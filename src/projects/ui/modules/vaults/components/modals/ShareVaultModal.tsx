@@ -16,7 +16,6 @@ import { useApiCall } from '@ui/hooks/useApiCall';
 import type { HttpInputDto } from '@shared/dto/input/http-input.dto';
 import { UiLogger } from '@ui/ui.logger';
 import { container } from 'tsyringe';
-import { MockVaultsGateway } from '@ui/modules/vaults/gateways/mock.vaults.gateway';
 import type { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
 import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
@@ -29,6 +28,8 @@ import {
   vaultsStore,
   type VaultsStoreState,
 } from '@ui/modules/vaults/stores/vaults.store';
+import { VaultsGateway } from '@ui/modules/vaults/gateways/vaults.gateway';
+import type { IVaultsGateway } from '@ui/modules/vaults/gateways/abstract/vaults.gateway.interface';
 
 type ShareVaultModalProps = {
   vault: VaultWithMembersModelDto;
@@ -41,7 +42,7 @@ export default function ShareVaultModal(
 ): JSX.Element {
   const vaultsState: VaultsStoreState = useStore(vaultsStore);
   const usersState: UsersStoreState = useStore(usersStore);
-  const vaultsGateway: MockVaultsGateway = container.resolve(MockVaultsGateway);
+  const vaultsGateway: IVaultsGateway = container.resolve(VaultsGateway);
   const allMembers: VaultMemberModelDto[] = useMembers(usersState.allUsers);
   const [globalError, setGlobalError] = useState<Error | null>(null);
   const [selectedUsers, setSelectedUsers] = useState<VaultMemberModelDto[]>(
