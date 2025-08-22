@@ -1,4 +1,3 @@
-
 # Locklite
 
 [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
@@ -35,7 +34,7 @@ illustration of the design, deployment and supervision of a complete application
 - **C2.1.2** - [Continuous Integration](CI.md)
 - **C2.2.3** - [Security measures](SECURITY.md)
 - **C2.2.3** - [Accessibility measures](ACCESSIBILITY.md)
-- **C2.2.4** - [Changelogs](CHANGELOG.md)
+- **C2.2.4** - [Changelog](CHANGELOG.md)
 - **C2.3.1** - [Test Plan](ACCEPTANCE.md)
 - **C2.3.2** - [Defect Correction Plan](BUGS.md)
 - **C2.4.1** - [Deployment Guide](DEPLOYMENT.md)
