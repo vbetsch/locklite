@@ -414,8 +414,6 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Vérification** :
 
-[//]: # (TODO: ajouter 'editer' dans les actions)
-
 - Naviguer avec `Tab` et `Shift+Tab`, chaque coffre-fort est atteignable.
 - Les actions (supprimer, modifier les membres) sont activables avec `Entrée` ou `Espace`.
 

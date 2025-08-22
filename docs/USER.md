@@ -4,8 +4,6 @@
 
 > Compétence RNCP : C2.4.1
 
-[//]: # (TODO: Add when we will have share vault -> SHARE)
-
 ## 1. Objet
 
 Ce document décrit l’utilisation de l’application LockLite par un utilisateur final.  
@@ -24,7 +22,8 @@ administrateur.
 1. Accéder à l’URL fournie par votre administrateur (exemple : `https://locklite.mondomaine.com`).
 2. Saisir votre email et le mot de passe maître que vous a fourni votre administrateur, puis cliquer sur **Sign in** _(
    Se connecter)_.
-3. En cas d’oubli de mot de passe, utiliser la procédure prévue par votre administrateur.
+3. Vous pouvez également assigner le coffre-fort à d'autres membres. Si vous n'assignez personne, il n'appartiendra qu'à vous.
+4. En cas d’oubli de mot de passe, utiliser la procédure prévue par votre administrateur.
 
 ## 4. Tableau de bord
 
@@ -51,23 +50,27 @@ Une fois connecté, vous accédez au tableau de bord LockLite :
 2. Cliquer sur le bouton **Delete** _(Supprimer)_ de celui-ci.
 3. Confirmer l’action (suppression définitive).
 
-[//]: # (TODO: SHARE)
+## 6. Partage de coffres-forts
 
-[//]: # (## 6. Partage de coffres-forts)
+### Modifier les membres d'un coffre-fort
 
-## 6. Déconnexion
+1. Choisir le coffre-fort à modifier
+2. Cliquer sur sa liste d'avatars
+3. Assigner les utilisateurs que vous souhaitez. Si vous n'assignez personne, il n'appartiendra qu'à vous.
+
+## 7. Déconnexion
 
 - Cliquer sur l’icône de profil en haut à droite.
 - Cliquer sur  **Logout** _(Se déconnecter)_.
 - Pour des raisons de sécurité, toujours se déconnecter après usage, surtout sur un poste partagé.
 
-## 7. Bonnes pratiques de sécurité
+## 8. Bonnes pratiques de sécurité
 
 - Ne **jamais** partager vos identifiants de connexion.
 - Ne pas enregistrer vos mots de passe LockLite en clair ailleurs (post-it, fichiers texte, etc.).
 - Signaler immédiatement toute anomalie ou suspicion d’accès non autorisé à l’administrateur.
 
-## 8. Support
+## 9. Support
 
 En cas de problème ou de question :
 

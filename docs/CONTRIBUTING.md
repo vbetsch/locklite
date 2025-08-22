@@ -6,6 +6,7 @@
 
 ### Références
 
+- Guide d'installation (EN) : [INSTALL.md](INSTALL.md)
 - Manuel de déploiement : [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ## 1. Objet
@@ -20,6 +21,15 @@ l’intégration en préproduction.
 - Connaissance du workflow Git utilisé (`feature` → `develop` → `main`).
 - Environnement de développement configuré (Node.js, npm).
 - Respect des conventions de commits, branches et pull requests.
+
+### Base de données
+
+ - La base de données PostgreSQL est conteneurisée via Docker Compose. 
+ - Le développeur doit avoir Docker et Docker Compose installés sur sa machine. 
+ - Le fichier [docker-compose.yml](../docker-compose.yml) permet de lancer un conteneur PostgreSQL configuré pour l’environnement local :
+  ```sh
+  docker compose up -d
+  ```
 
 ## 3. Étapes préparatoires
 
@@ -87,4 +97,5 @@ l’intégration en préproduction.
 - Respecter les conventions de nommage des branches et commits.
 - Ne jamais committer de secrets (GitGuardian assure un contrôle automatique).
 - Écrire du code lisible, testé et conforme aux règles ESLint + Prettier.
-- Associer systématiquement les changements à un ticket pour assurer la traçabilité.  
+- Associer systématiquement les changements à un ticket pour assurer la traçabilité.
+- Les commits doivent être écris selon la [Conventional Commits](https://www.conventionalcommits.org)

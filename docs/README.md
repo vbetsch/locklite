@@ -1,9 +1,15 @@
-[//]: # (<img src="LOGO_PATH" alt="LOGO_NAME" style="width: 500px;">)
 
 # Locklite
 
-🔐 Intranet password manager for
-businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
+[![Build Status](https://github.com/vbetsch/lockLite/actions/workflows/ci.yml/badge.svg)](https://github.com/vbetsch/lockLite/actions)
+![Deploy Status](https://deploy-badge.vercel.app/vercel/locklite)
+
+The Locklite project is a password manager designed to protect and organize confidential information in secure areas. In
+a fictitious scenario, it is intended for companies wishing to guarantee the confidentiality of their employees' data.
+In the reality of this academic project, it takes the form of an MVP developed on its own, providing a concrete
+illustration of the design, deployment and supervision of a complete application.
+
+<img src="img/screenshot.png" alt="Screenshot of the application" style="width: 100%;">
 
 ### Stack
 
@@ -19,24 +25,19 @@ businesses [![Build Status](https://github.com/vbetsch/lockLite/actions/workflow
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black)
-
-### References
-
-- [Github repository](https://github.com/vbetsch/locklite)
-- [All releases](https://github.com/vbetsch/locklite/releases) (C2.2.4)
-- [Last release](https://github.com/vbetsch/locklite/releases/latest) (C2.2.4)
+![Sentry](https://img.shields.io/badge/sentry-%23362D59.svg?style=for-the-badge&logo=sentry&logoColor=white)
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 
 ### Documentation
 
-- [Installation guide](INSTALL.md) - EN
-- [Quality and Performance Criteria](CRITERIA.md) - FR (C2.1.1)
-- [Continuous Deployment](CD.md) - FR (C2.1.1)
-- [Continuous Integration](CI.md) - FR (C2.1.2)
-- [Security measures](SECURITY.md) - FR (C2.2.3)
-- [Accessibility measures](ACCESSIBILITY.md) - FR (C2.2.3)
-- [Changelogs](CHANGELOG.md) - EN (C2.2.4)
-- [Test Plan](ACCEPTANCE.md) - FR (C2.3.1)
-- [Defect Correction Plan](BUGS.md) - FR (C2.3.2)
-- [Contributing Guide](CONTRIBUTING.md) - FR (C2.4.1)
-- [Deployment Guide](DEPLOYMENT.md) - FR (C2.4.1)
-- [User Guide](USER.md) - FR (C2.4.1)
+- **C2.1.1** - [Continuous Deployment](CD.md)
+- **C2.1.1** - [Quality and Performance Criteria](CRITERIA.md)
+- **C2.1.2** - [Continuous Integration](CI.md)
+- **C2.2.3** - [Security measures](SECURITY.md)
+- **C2.2.3** - [Accessibility measures](ACCESSIBILITY.md)
+- **C2.2.4** - [Changelogs](CHANGELOG.md)
+- **C2.3.1** - [Test Plan](ACCEPTANCE.md)
+- **C2.3.2** - [Defect Correction Plan](BUGS.md)
+- **C2.4.1** - [Deployment Guide](DEPLOYMENT.md)
+- **C2.4.1** - [User Guide](USER.md)
+- **C2.4.1** - [Contributing Guide](CONTRIBUTING.md)

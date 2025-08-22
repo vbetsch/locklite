@@ -4,8 +4,6 @@
 
 > Compétence RNCP : C2.1.1
 
-[//]: # (TODO: Add when we will have lighthouse -> LIGHTHOUSE)
-
 ### Références
 
 - Déploiement continue : [CD.md](CD.md)
@@ -47,10 +45,6 @@ reste fiable, maintenable et performant.
   - CLS (Cumulative Layout Shift) < 0,1
   - INP (Interaction to Next Paint) < 200ms
 - Lazy-loading des composants lourds et optimisation des assets.
-
-[//]: # (TODO: LIGHTHOUSE)
-
-[//]: # (- Audit régulier avec Lighthouse en préproduction.)
 
 ### 3.2 Back-end (API + Prisma + PostgreSQL)
 
