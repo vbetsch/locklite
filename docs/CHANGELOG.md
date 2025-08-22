@@ -9,13 +9,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)  
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-[//]: # (### Added)
-
-[//]: # (### Changed)
-
-[//]: # (### Fixed)
-
-[//]: # (### Security)
+[1.2.0]: https://github.com/vbetsch/locklite/releases/tag/v1.2.0
 
 [1.1.2]: https://github.com/vbetsch/locklite/releases/tag/v1.1.2
 
@@ -24,6 +18,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.0]: https://github.com/vbetsch/locklite/releases/tag/v1.1.0
 
 [1.0.0]: https://github.com/vbetsch/locklite/releases/tag/v1.0.0
+
+## [1.2.0] - 2025-08-22
+
+### Added
+
+* [LOCKLITE-103] Display vault members list by @vbetsch in https://github.com/vbetsch/locklite/pull/104
+* [LOCKLITE-149] Add e2e library to test accessibility by @vbetsch in https://github.com/vbetsch/locklite/pull/111
+* [LOCKLITE-105] Implement Vercel Speed Insights by @vbetsch in https://github.com/vbetsch/locklite/pull/124
+* [LOCKLITE-105] Add vercel cron job for monitoring by @vbetsch in https://github.com/vbetsch/locklite/pull/128
+* [LOCKLITE-138] Implement Dependabot by @vbetsch in https://github.com/vbetsch/locklite/pull/140
+* [LOCKLITE-84] Be able to edit members about a vault by @vbetsch in https://github.com/vbetsch/locklite/pull/139
+* [LOCKLITE-71] Add users multiselect in create vault modal by @vbetsch in https://github.com/vbetsch/locklite/pull/148
+* [LOCKLITE-39] Add a route to edit members for a specific vault by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/152
+* [LOCKLITE-75] Create an endpoint to get all users for the members multiselect by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/153
+* [LOCKLITE-186] Add a tooltip on avatars by @vbetsch in https://github.com/vbetsch/locklite/pull/159
+
+### Changed
+
+* [LOCKLITE-160] Replace icon profile by letter avatar when the user name is defined by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/100
+* [LOCKLITE-148] Add rules in linter for accessibility by @vbetsch in https://github.com/vbetsch/locklite/pull/110
+* [LOCKLITE-81] Add many-to-many relation between users and vaults in database by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/149
+* [LOCKLITE-70] Return members in get vaults by @vbetsch in https://github.com/vbetsch/locklite/pull/150
+* [LOCKLITE-82] Create a vault with members in API by @vbetsch in https://github.com/vbetsch/locklite/pull/151
+* [LOCKLITE-166] Increase global mobile width by @vbetsch in https://github.com/vbetsch/locklite/pull/161
+
+### Fixed
+
+* [LOCKLITE-94] & [LOCKLITE-99] & [LOCKLITE-100] & [LOCKLITE-123] Link resources and references in README and change
+  node version in CI by @vbetsch in https://github.com/vbetsch/locklite/pull/105
+* [LOCKLITE-158] Invalid login errors no longer appear in the login form by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/157
+* [LOCKLITE-188] Fix label not visible in the creation form by @vbetsch in https://github.com/vbetsch/locklite/pull/158
+* [LOCKLITE-165] Fix login input overflow by @vbetsch in https://github.com/vbetsch/locklite/pull/160
+
+### Security
+
+* [LOCKLITE-95] Create documentation file about security by @vbetsch in https://github.com/vbetsch/locklite/pull/106
+* [LOCKLITE-116] Implement and plan security tasks by @vbetsch in https://github.com/vbetsch/locklite/pull/107
+* [LOCKLITE-143] Create a security disclaimer alert for production by @vbetsch
+  in https://github.com/vbetsch/locklite/pull/113
+* [LOCKLITE-144] Disable Swagger in production environment by @vbetsch in https://github.com/vbetsch/locklite/pull/114
+* chore(deps): bump @mui/icons-material from 7.2.0 to 7.3.1 by @dependabot[bot]
+  in https://github.com/vbetsch/locklite/pull/144
+* chore(deps): bump next-swagger-doc from 0.4.0 to 0.4.1 by @dependabot[bot]
+  in https://github.com/vbetsch/locklite/pull/142
+* chore(deps): bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/vbetsch/locklite/pull/141
 
 ## [1.1.2] - 2025-08-10
 
