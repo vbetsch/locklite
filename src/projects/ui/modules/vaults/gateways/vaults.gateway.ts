@@ -57,7 +57,7 @@ export class VaultsGateway implements IVaultsGateway {
     payload: ShareVaultPayloadDto;
   }): Promise<RequestServiceOutputType<ShareVaultDataDto>> {
     return await this._lockliteRequestService.put<ShareVaultDataDto>(
-      '/vaults/' + input.params.vaultId,
+      '/vaults/' + input.params.vaultId + '/members',
       input.payload
     );
   }
