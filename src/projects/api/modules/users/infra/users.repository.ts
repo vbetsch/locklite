@@ -7,6 +7,10 @@ import { CreateUserRecord } from '@api/modules/users/infra/records/create-user.r
 
 @injectable()
 export class UsersRepository {
+  public async getAllUsers(): Promise<User[]> {
+    return await prisma.user.findMany();
+  }
+
   public async findByEmail(record: UserEmailRecord): Promise<User | null> {
     return await handlePrismaRequest<User | null>(() =>
       prisma.user.findUnique({

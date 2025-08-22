@@ -5,6 +5,7 @@ import { handleApiRequest } from '@api/app/handle-api-request';
 import type { UserModelDto } from '@shared/modules/users/user.model.dto';
 import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import type { GetUsersListDataDto } from '@shared/modules/users/get-users-list.data.dto';
+import { GetUsersListUseCase } from '@api/modules/users/domain/get-users-list.usecase';
 
 export async function GET(
   request: NextRequest
