@@ -20,7 +20,8 @@ export default function PageContainer(props: PageContainerProps): JSX.Element {
     >
       <Container
         sx={{
-          padding: '2rem',
+          paddingTop: '2rem',
+          paddingInline: 0,
           display: 'flex',
           flexDirection: 'column',
           gap: '3rem',
