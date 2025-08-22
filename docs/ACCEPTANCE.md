@@ -60,7 +60,7 @@ documentées, les schémas sont tous présents et complets, je peux exécuter le
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.1 — Affichage des coffres-forts
 
@@ -78,7 +78,7 @@ peux voir leurs noms, leurs noms d'utilisateurs, leurs secrets, et leurs membres
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.2 — Recherche de coffres-forts
 
@@ -97,7 +97,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 > Si aucun résultat n'est trouvé, un texte me l'indique
 
@@ -117,7 +117,7 @@ sensible
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.3.B — Création de coffres-forts : déjà existant
 
@@ -135,7 +135,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F1.4 — Suppression de coffres-forts
 
@@ -152,9 +152,9 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
-### TC-F1.5 — Partager un coffre-fort
+### TC-F1.5 — Assigner un coffre-fort à des utilisateurs
 
 **Préconditions** : être connecté avec un utilisateur, avoir au moins un coffre-fort
 
@@ -169,7 +169,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F2.1.A — Connexion d'un utilisateur : succès
 
@@ -185,7 +185,7 @@ existe déjà
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TC-F2.1.B — Connexion d'un utilisateur : mauvais identifiants
@@ -205,7 +205,7 @@ identifiants valides
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TC-F2.2.A — Menu profil de l'utilisateur : affichage
@@ -222,7 +222,7 @@ si j'ai un nom
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### TC-F2.2.B — Menu profil de l'utilisateur : déconnexion
 
@@ -238,7 +238,7 @@ si j'ai un nom
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ## 6. Tests structurels
 
@@ -253,7 +253,7 @@ contiennent bien tous un objet `error` contenant un attribut `message`
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TS-F0.2 — Format des réponses API
@@ -267,7 +267,7 @@ contiennent bien tous un objet `data` contenant les informations à transmettre
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### TS-F1.3 — Libellé de coffre-fort trop long
@@ -281,7 +281,7 @@ caractères, le coffre-fort ne s'ajoute pas dans la liste, une erreur apparaît 
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ## 7. Tests de sécurité
@@ -297,7 +297,7 @@ membre
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-HASH — Hashage des mots de passe
 
@@ -309,7 +309,7 @@ membre
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### SE-GUARD-UI — Protection des routes : front-end
@@ -322,7 +322,7 @@ membre
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-GUARD-API — Protection des routes : back-end
 
@@ -335,7 +335,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 - [x] tests unitaires
 
 ### SE-F1.5-A — Partager un coffre-fort : Accès refusé
@@ -348,7 +348,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-F1.5-B — Partager un coffre-fort : Révocation
 
@@ -360,7 +360,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### SE-F1.5-C — Partager un coffre-fort : Non-orphelin
 
@@ -372,7 +372,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ## 8. Tests d'accessibilité
 
@@ -421,7 +421,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### AC-F1.3 — Création et modification de coffres-forts : pertinence des labels
 
@@ -436,7 +436,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### AC-F1.4 — Suppression et partage de coffres-forts : confirmation accessible
 
@@ -468,7 +468,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ### AC-F2.2 — Menu profil : pertinence des intitulés
 
@@ -483,7 +483,7 @@ Je dois avoir une erreur 401 "Unauthorized". Je n'ai pas de "vault" dans les dat
 
 **Couverture** :
 
-- [ ] test manuel
+- [x] test manuel
 
 ## 9. Procédure d’exécution
 
