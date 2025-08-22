@@ -97,4 +97,5 @@ l’intégration en préproduction.
 - Respecter les conventions de nommage des branches et commits.
 - Ne jamais committer de secrets (GitGuardian assure un contrôle automatique).
 - Écrire du code lisible, testé et conforme aux règles ESLint + Prettier.
-- Associer systématiquement les changements à un ticket pour assurer la traçabilité.  
+- Associer systématiquement les changements à un ticket pour assurer la traçabilité.
+- Les commits doivent être écris selon la [Conventional Commits](https://www.conventionalcommits.org)
