@@ -5,17 +5,17 @@ import { container } from 'tsyringe';
 import { handleApiRequest } from '@api/app/handle-api-request';
 import type { HttpResponseDto } from '@shared/dto/output/http.response.dto';
 import type { VaultWithMembersModelDto } from '@shared/modules/vaults/models/vault.with-members.model.dto';
-import { EditMembersUseCase } from '@api/modules/vaults/domain/usecases/edit-members.usecase';
 import type { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.params.dto';
 import type { ShareVaultDataDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.data.dto';
 import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
+import { ShareVaultUseCase } from '@api/modules/vaults/domain/usecases/share-vault.usecase';
 
 /**
  * @swagger
  * /api/vaults/{vaultId}/members:
  *   put:
  *     tags: [Vaults]
- *     summary: Edit members of a vault by ID
+ *     summary: Share vault with members
  *     parameters:
  *      - in: path
  *        name: vaultId
@@ -28,14 +28,14 @@ import type { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/shar
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/EditMembersPayloadDto'
+ *             $ref: '#/components/schemas/ShareVaultPayloadDto'
  *     responses:
  *       200:
  *         description: Returns the vault edited
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/EditMembersDataDto'
+ *               $ref: '#/components/schemas/ShareVaultDataDto'
  *       404:
  *         description: Resource not found
  *         content:
@@ -60,14 +60,14 @@ export async function PUT(
   options: HttpOptionsDto<ShareVaultParamsDto>
 ): Promise<NextResponse<HttpResponseDto<ShareVaultDataDto>>> {
   const payload: ShareVaultPayloadDto = await request.json();
-  const editMembersUseCase: EditMembersUseCase =
-    container.resolve(EditMembersUseCase);
+  const shareVaultUseCase: ShareVaultUseCase =
+    container.resolve(ShareVaultUseCase);
   return await handleApiRequest<ShareVaultDataDto>({
     request: request,
     needToBeAuthenticated: true,
     callback: async () => {
       const vaultEdited: VaultWithMembersModelDto =
-        await editMembersUseCase.handle({
+        await shareVaultUseCase.handle({
           params: await options.params,
           payload,
         });

@@ -11,7 +11,7 @@ import { ShareVaultParamsDto } from '@shared/modules/vaults/endpoints/share-vaul
 import { ShareVaultPayloadDto } from '@shared/modules/vaults/endpoints/share-vault/share-vault.payload.dto';
 
 @injectable()
-export class EditMembersUseCase
+export class ShareVaultUseCase
   implements
     IUseCaseWithInput<
       HttpInputDto<ShareVaultParamsDto, ShareVaultPayloadDto>,
