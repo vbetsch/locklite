@@ -26,7 +26,7 @@ export default function VaultCardContentLine(
         variant="body2"
         color="text.secondary"
         fontFamily={'monospace'}
-        overflow={'scroll'}
+        overflow={'auto'}
         textOverflow={'ellipsis'}
       >
         {props.value}
