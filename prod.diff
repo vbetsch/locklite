@@ -1,9 +1,9 @@
-# sudo diff -r locklite locklite-prod --exclude='.idea' --exclude='node_modules' --exclude='.git' --exclude='prod.diff' > locklite/prod.diff
+# sudo diff -r locklite locklite-prod -x .idea -x node_modules -x .git -x prod.diff > locklite/prod.diff
 Seulement dans locklite-prod: .env
 Seulement dans locklite: .env.prod
 Seulement dans locklite-prod: .next
 Seulement dans locklite-prod: next-env.d.ts
-diff -r '--exclude=.idea' '--exclude=node_modules' '--exclude=.git' '--exclude=prod.diff' locklite/src/app/ui/login/page.tsx locklite-prod/src/app/ui/login/page.tsx
+diff -r -x .idea -x node_modules -x .git -x prod.diff locklite/src/app/ui/login/page.tsx locklite-prod/src/app/ui/login/page.tsx
 8c8
 < import { Alert, Typography } from '@mui/material';
 ---
