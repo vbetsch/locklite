@@ -1,3 +1,0 @@
-# sudo diff -r locklite locklite-prod -x .idea -x .git -x prod.diff -x .next -x node_modules -x package-lock.json > locklite/prod.diff
-Seulement dans locklite-prod: .env
-Seulement dans locklite: .env.prod
