@@ -1,3 +1,3 @@
 #!/bin/bash
-docker-compose up --detach
+docker-compose up --detach --file docker-compose.prod.yml
 npm start
