@@ -1,29 +1,28 @@
-Seulement dans locklite: diff-locklite-prod.txt
-diff locklite/docker-compose.yml locklite-prod/docker-compose.yml
-2c2
-<   postgres:
----
->   postgres-prod:
-9c9
-<       - psql_data:/var/lib/postgresql/data
----
->       - psql_data_prod:/var/lib/postgresql/data
-14c14
-<   psql_data:
----
->   psql_data_prod:
-Les sous-répertoires locklite/docs et locklite-prod/docs sont identiques
 Seulement dans locklite-prod: .env
+Seulement dans locklite: .env.prod
 Seulement dans locklite: .git
-Les sous-répertoires locklite/.github et locklite-prod/.github sont identiques
-Les sous-répertoires locklite/.idea et locklite-prod/.idea sont identiques
+Seulement dans locklite: locklite-prod.diff
 Seulement dans locklite-prod: .next
 Seulement dans locklite-prod: next-env.d.ts
-Les sous-répertoires locklite/node_modules et locklite-prod/node_modules sont identiques
-diff locklite/package.json locklite-prod/package.json
-8a9
->     "start:local": "next start -H 0.0.0.0",
-Les sous-répertoires locklite/prisma et locklite-prod/prisma sont identiques
-Les sous-répertoires locklite/public et locklite-prod/public sont identiques
-Les sous-répertoires locklite/src et locklite-prod/src sont identiques
-Les sous-répertoires locklite/tests et locklite-prod/tests sont identiques
+diff -r '--exclude=.idea' '--exclude=node_modules' locklite/src/app/ui/login/page.tsx locklite-prod/src/app/ui/login/page.tsx
+8c8
+< import { Alert, Typography } from '@mui/material';
+---
+> // import { Alert, Typography } from '@mui/material';
+13,19c13,19
+<       <Alert variant="filled" severity="error">
+<         This application is{' '}
+<         <Typography component="span" fontWeight="bold">
+<           fictitious
+<         </Typography>
+<         . We strongly recommend that you do not enter your real login details.
+<       </Alert>
+---
+>       {/*<Alert variant="filled" severity="error">*/}
+>       {/*  This application is{' '}*/}
+>       {/*  <Typography component="span" fontWeight="bold">*/}
+>       {/*    fictitious*/}
+>       {/*  </Typography>*/}
+>       {/*  . We strongly recommend that you do not enter your real login details.*/}
+>       {/*</Alert>*/}
+Seulement dans locklite-prod/src: middleware.dev.ts
