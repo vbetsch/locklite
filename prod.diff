@@ -1,3 +1,4 @@
+# sudo diff -r locklite locklite-prod --exclude='.idea' --exclude='node_modules' > locklite/prod.diff
 Seulement dans locklite-prod: .env
 Seulement dans locklite: .env.prod
 Seulement dans locklite: .git
