@@ -1,15 +1,4 @@
 # sudo diff -r locklite locklite-prod -x .idea -x .git -x prod.diff -x .next -x node_modules -x package-lock.json > locklite/prod.diff
 Seulement dans locklite-prod: .env
 Seulement dans locklite: .env.prod
-diff -r -x .idea -x .git -x prod.diff -x .next -x node_modules -x package-lock.json locklite/src/app/ui/login/page.tsx locklite-prod/src/app/ui/login/page.tsx
-7a8
-> // import { Alert, Typography } from '@mui/material';
-11a13,19
->       {/*<Alert variant="filled" severity="error">*/}
->       {/*  This application is{' '}*/}
->       {/*  <Typography component="span" fontWeight="bold">*/}
->       {/*    fictitious*/}
->       {/*  </Typography>*/}
->       {/*  . We strongly recommend that you do not enter your real login details.*/}
->       {/*</Alert>*/}
 Seulement dans locklite-prod/src: middleware.dev.ts
