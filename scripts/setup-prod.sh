@@ -17,13 +17,13 @@ fi
 
 # STEP 0 - REMOVE TMP FOLDER IF EXISTS
 if [ -d "$tmp_root_path/$tmp_folder_name" ]; then
-  rm -rf $tmp_root_path/$tmp_folder_name
+  rm -rfv $tmp_root_path/$tmp_folder_name
 fi
 
 # STEP 1 - CLONE PROJECT IN TMP AND RENAME IT
 cd $tmp_root_path
 git clone "git@github.com:vbetsch/$project_name.git"
-mv $project_name $tmp_folder_name
+mv -v $project_name $tmp_folder_name
 
 # STEP 2 - CHECKOUT PROD BRANCH
 cd $tmp_folder_name
@@ -34,11 +34,11 @@ npm install
 npm run build
 
 # STEP 4 - REPLACE FILES IN PROD
-sudo rm -rf $prod_root_path/$prod_folder_name/
-sudo mkdir $prod_root_path/$prod_folder_name/
-sudo cp $env_source_file_path .env
+sudo rm -rfv $prod_root_path/$prod_folder_name/
+sudo mkdir -pv $prod_root_path/$prod_folder_name/
+sudo cp -v $env_source_file_path .env
 cd $tmp_root_path/$tmp_folder_name
-sudo mv .next/ docker-compose.prod.yml $prod_root_path/$prod_folder_name/
+sudo mv -v .next/ docker-compose.prod.yml $prod_root_path/$prod_folder_name/
 
 # STEP X - REMOVE TMP FOLDER
-rm -rf $tmp_root_path/$tmp_folder_name
+rm -rfv $tmp_root_path/$tmp_folder_name
