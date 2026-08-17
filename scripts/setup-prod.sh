@@ -3,7 +3,7 @@
 # VARIABLES
 env_source_file_path='/srv/.env.locklite'
 project_name='locklite'
-prod_branch_name='220-automate-the-deployment-process' # main
+prod_branch_name='main'
 prod_folder_name='locklite-prod'
 prod_root_path='/srv'
 tmp_root_path='/tmp'
