@@ -9,6 +9,12 @@ prod_root_path='/srv'
 tmp_root_path='/tmp'
 tmp_folder_name='locklite-tmp'
 
+# CHECK - PROD FOLDER EXISTS
+if [ ! -d "$prod_root_path/$prod_folder_name" ]; then
+  echo 'ERROR: PROD FOLDER NOT EXISTS'
+  exit 0
+fi
+
 # STEP 0 - REMOVE TMP FOLDER IF EXISTS
 if [ -d "$tmp_root_path/$tmp_folder_name" ]; then
   rm -rf $tmp_root_path/$tmp_folder_name
