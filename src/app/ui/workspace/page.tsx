@@ -8,7 +8,7 @@ import PageContainer from '@ui/components/templates/PageContainer';
 
 export default function WorkspacePage(): JSX.Element {
   return (
-    <PageContainer title={'Vaults test'}>
+    <PageContainer title={'Vaults'}>
       <AppDynamicVaultsList />
     </PageContainer>
   );
