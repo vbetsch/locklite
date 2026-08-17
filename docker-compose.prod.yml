@@ -10,5 +10,17 @@ services:
     ports:
       - '${DATABASE_PORT}:5432'
 
+  webapp-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: locklite-webapp:latest
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres-prod
+
 volumes:
   psql_data_prod:
