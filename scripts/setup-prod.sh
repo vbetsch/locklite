@@ -11,7 +11,7 @@ tmp_folder_name='locklite-tmp'
 
 # STEP 0 - CLEAN
 if [ ! -d "$prod_root_path/$prod_folder_name" ]; then
-  mkdir -pv "$prod_root_path/$prod_folder_name"
+  sudo mkdir -pv "$prod_root_path/$prod_folder_name"
 fi
 
 if [ -d "$tmp_root_path/$tmp_folder_name" ]; then
