@@ -28,7 +28,7 @@ npm install
 npm run build
 
 # STEP 4 - REPLACE FILES IN PROD
-rm -rf $prod_root_path/$prod_folder_name/*
+sudo rm -rf $prod_root_path/$prod_folder_name/*
 sudo cp $env_source_file_path .env
 cd $tmp_root_path/$tmp_folder_name
 sudo mv .next/ docker-compose.prod.yml $prod_root_path/$prod_folder_name/
