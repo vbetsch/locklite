@@ -40,5 +40,5 @@ sudo cp -v $env_source_file_path $prod_root_path/$prod_folder_name/.env
 cd $tmp_root_path/$tmp_folder_name
 sudo mv -v .next/ node_modules/ docker-compose.prod.yml package.json scripts/run-prod.sh $prod_root_path/$prod_folder_name/
 
-# STEP X - REMOVE TMP FOLDER
+# STEP 5 - REMOVE TMP FOLDER
 rm -rfv $tmp_root_path/$tmp_folder_name
